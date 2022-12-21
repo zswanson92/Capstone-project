@@ -241,7 +241,7 @@ const EditBusiness = () => {
                         </input>
                     </div>
                     <div className="two-edit-form-buttons-div">
-                    <button type='submit' className="submit-edit-question-button">Submit Edited Question</button>
+                    <button type='submit' className="submit-edit-question-button">Submit Edited Business Info</button>
                     <button onClick={cancelEdit} className='close-edit-question-button'>Close</button>
                     </div>
                 </form>

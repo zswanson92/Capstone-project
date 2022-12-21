@@ -33,15 +33,15 @@ const Businesses = () => {
                 <h1>TEST!!</h1>
             </div>
             <div>
-                <span>{aBusiness.length} Businesses</span>
+                <span>{aBusiness?.length} Businesses</span>
             </div>
             <div>
                 {aBusiness.map((obj) => {
                     return (
-                        <div key={obj.id} className="business-detail">
-                            <Link style={{ textDecoration: 'none' }} to={`/businesses/${obj.id}`}>
-                                <p>{obj.id}. {obj.name}</p>
-                                <p>{obj.tags}, {obj.address}</p>
+                        <div key={obj?.id} className="business-detail">
+                            <Link to={`/businesses/${obj?.id}`} style={{ textDecoration: 'none' }} >
+                                <p>{obj?.id}. {obj.name}</p>
+                                <p>{obj?.tags}, {obj?.address}</p>
                                 <div className="details-image-div">
                                     <img src={obj?.preview_img}/>
                                 </div>

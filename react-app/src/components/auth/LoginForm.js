@@ -30,6 +30,12 @@ const LoginForm = () => {
     return <Redirect to='/' />;
   }
 
+  const setDemoUser = () => {
+    setEmail('demo@aa.io')
+    setPassword('password')
+    return dispatch(login(email, password))
+  }
+
   return (
     <form onSubmit={onLogin}>
       <div>
@@ -57,6 +63,7 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
+        <button type='submit' onClick={setDemoUser}>Login as Demo User</button>
       </div>
     </form>
   );
