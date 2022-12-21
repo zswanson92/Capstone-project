@@ -97,7 +97,7 @@ export const getAllBusinessesThunk = () => async dispatch => {
 
 export const createBusinessThunk = (payload) => async dispatch => {
     const {
-        name, preview_img,
+        name, preview_img, services,
         monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
         saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
     } = payload
@@ -106,7 +106,7 @@ export const createBusinessThunk = (payload) => async dispatch => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, preview_img,
+        body: JSON.stringify({ name, preview_img, services,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
             saturday_hours, sunday_hours, email, address, phone_number, business_website, tags })
     })
@@ -132,7 +132,7 @@ const businessReducer = (state = initialState, action) => {
                     [action.payload.id]: {
                         name: action.payload.name,
                         previewImage: action.payload.preview_img,
-                        // services: action.payload.services,
+                        services: action.payload.services,
                         monHours: action.payload.monday_hours,
                         tuesHours: action.payload.tuesday_hours,
                         wedsHours: action.payload.wednesday_hours,

@@ -3,16 +3,34 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./BusinessForm.css";
 import { createBusinessThunk } from "../../store/business";
+import Multiselect from 'multiselect-react-dropdown';
 
 
 const BusinessForm = () => {
     const dispatch = useDispatch();
     let history = useHistory();
 
+    const data = [
+        {Service: "Dine-In"},
+        {Service: "Take Out"},
+        {Service: "In House Delivery"},
+        {Service: "Pick Up"},
+        {Service: "App Based Delivery"},
+        {Service: "Takes Reservations"},
+        {Service: "Vegan Friendly"},
+        {Service: "Gluten Free Friendly"},
+        {Service: "Keto Friendly"},
+    ]
+
+    // console.log(data)
+
+
     const [name, setName] = useState("");
     const [preview_img, setPreviewImage] = useState("");
-    // const [services, setServices] = useState("");
+    const [services, setServices] = useState("");
+    // const [services, setServices] = useState(data);
     const [monday_hours, setMonHours] = useState("");
+    const [selectValue, setSelectValue] = useState("")
     const [tuesday_hours, setTuesHours] = useState("");
     const [wednesday_hours, setWedsHours] = useState("");
     const [thursday_hours, setThursHours] = useState("");
@@ -34,10 +52,6 @@ const BusinessForm = () => {
     const imageSet = (e) => {
         setPreviewImage(e.target.value)
     }
-
-    // const serviceSet = (e) => {
-    //     setServices(e.target.value)
-    // }
 
     const monSet = (e) => {
         setMonHours(e.target.value)
@@ -87,16 +101,33 @@ const BusinessForm = () => {
         setTags(e.target.value)
     }
 
+    // function checkAvailability(arr, val) {
+    //     return arr.some((arrVal) => val === arrVal);
+    //   }
 
 
+    const serviceSet = (e) => {
+        // services.push(e.target.value)
+        // if(checkAvailability(theservices, e.target.value) === false) theservices.push(e.target.value)
+        // setServices(e.target.option)
+        setServices(e.target.value)
+    }
+    // "Dine-In", "Take Out", "In House Delivery", "Pick Up", "App Based Delivery", "Takes Reservations", "Vegan Friendly", "Gluten Free Friendly", "Keto Friendly"
 
+    // let services = "";
+    // console.log("!!!!!!!!!", theservices)
+    // const abc = theservices.forEach((item) => {
+    //     services += item + " "
+    // })
+    // console.log("!!!!!!!!!", services)
 
+    console.log("@@@@@@@", services)
     const onSubmit = async (e) => {
         e.preventDefault();
         // setSubmitted(true);
         // if (errors.length > 0) return;
         const createdBusiness = {
-            name, preview_img,
+            name, preview_img, services,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
             saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
         };
@@ -133,16 +164,22 @@ const BusinessForm = () => {
                         value={preview_img}
                         ></input>
                 </div>
-                {/* <div>
+                <div>
                     <label>Services</label>
-                    <select name="services" multiple>
-                        <option value='Dine-In'>Dine-In</option>
+                    <select id="myform" name="services" value={services} onChange={serviceSet}>
+                        {/* <input type='radio' value='Dine-In' onClick={serviceSet} />
+                        <label>Dine-In</label>
+                        <input type='radio' value='Take Out' onClick={serviceSet} />
+                        <label>Take Out</label> */}
                         <option value='Take Out'>Take Out</option>
-                        <option value='In House Delivery'>In House Delivery</option>
-                        <option value='Pick Up'>Pick Up</option>
+                        <option  value='In House Delivery'>In House Delivery</option>
+                        <option  value='Pick Up'>Pick Up</option>
                     </select>
+                </div>
+                {/* <div>
+                    <label>Services Offered</label>
+                    <Multiselect options={services} displayValue="Service" onChange={serviceSet} />
                 </div> */}
-
                 <div>
                     <div>
                         <label> Monday Hours</label>

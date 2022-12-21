@@ -46,9 +46,17 @@ def delete_business(id):
 @login_required
 def add_business():
     form = BusinessForm()
-    print("THIS IS FORM!!", form)
+
 
     form['csrf_token'].data = request.cookies['csrf_token']
+    # print("THIS IS FORM DATA!!", form.data['services'][0].Service)
+    print("THIS IS FORM DATA!!", form.data['services'])
+    # print("@@@@@@@@@@@@", request.form.getlist('myform'))
+    # if request.method == 'POST':
+    #     as_dict = request.form.getlist('myform')
+    #     print(request)
+    # abcd = form.data['services']
+
 
     if form.validate_on_submit():
 
@@ -56,7 +64,7 @@ def add_business():
             user_id = current_user.id,
             name = form.data['name'],
             preview_img = form.data['preview_img'],
-            # services = form.data['services'],
+            services = form.data['services'],
             monday_hours = form.data['monday_hours'],
             tuesday_hours = form.data['tuesday_hours'],
             wednesday_hours = form.data['wednesday_hours'],

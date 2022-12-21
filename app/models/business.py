@@ -12,7 +12,7 @@ class Business(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = db.Column(db.Text, nullable=False)
     preview_img = db.Column(db.Text, nullable=True)
-    # services = db.Column(db.Text, nullable=False)
+    services = db.Column(db.Text, nullable=True)
     monday_hours = db.Column(db.Text, nullable=False)
     tuesday_hours = db.Column(db.Text, nullable=False)
     wednesday_hours = db.Column(db.Text, nullable=False)
@@ -36,7 +36,7 @@ class Business(db.Model):
             'user_id': self.user_id,
             'name': self.name,
             'preview_img': self.preview_img,
-            # 'services': self.services,
+            'services': self.services,
             'monday_hours': self.monday_hours,
             'tuesday_hours': self.tuesday_hours,
             'wednesday_hours': self.wednesday_hours,

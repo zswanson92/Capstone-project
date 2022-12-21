@@ -53,6 +53,10 @@ const BusinessDetails = () => {
                         <li>Website: <Link>{businessInfoObj?.business_website}</Link></li>
                     </ul>
                 </div>
+                <div>
+                    <h2>TESTING SERVICES</h2>
+                    <p>{businessInfoObj?.services}</p>
+                </div>
 
                 <div className="question-buttons">
                     <div>
