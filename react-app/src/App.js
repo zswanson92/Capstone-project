@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import BusinessForm from './components/business_form/BusinessForm';
 import Businesses from './components/Businesses';
 import BusinessDetails from './components/BusinessDetails';
+import EditBusiness from './components/edit_business';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,6 +52,9 @@ function App() {
         </Route>
         <Route path='/businesses/:businessId' exact={true}>
         <BusinessDetails />
+        </Route>
+        <Route exact={true} path="/edit/businesses/:businessId">
+          <EditBusiness />
         </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>

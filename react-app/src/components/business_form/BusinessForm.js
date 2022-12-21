@@ -11,7 +11,7 @@ const BusinessForm = () => {
 
     const [name, setName] = useState("");
     const [preview_img, setPreviewImage] = useState("");
-    const [services, setServices] = useState("");
+    // const [services, setServices] = useState("");
     const [monday_hours, setMonHours] = useState("");
     const [tuesday_hours, setTuesHours] = useState("");
     const [wednesday_hours, setWedsHours] = useState("");

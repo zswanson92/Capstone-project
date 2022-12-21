@@ -5,6 +5,7 @@ from app.forms import BusinessForm
 
 business_routes = Blueprint("businesses", __name__)
 create_business_route = Blueprint("create", __name__)
+# another_business_route = Blueprint("")
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -80,6 +81,7 @@ def add_business():
 @business_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_business(id):
+    print("THIS IS id!", id)
     business = Business.query.get(id)
 
     form = BusinessForm()
@@ -87,20 +89,20 @@ def edit_business(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        new_name = form.data['name'],
-        new_preview_img = form.data['preview_img'],
+        new_name = form.data['name']
+        new_preview_img = form.data['preview_img']
         # services = form.data['services'],
-        new_monday_hours = form.data['monday_hours'],
-        new_tuesday_hours = form.data['tuesday_hours'],
-        new_wednesday_hours = form.data['wednesday_hours'],
-        new_thursday_hours = form.data['thursday_hours'],
-        new_friday_hours = form.data['friday_hours'],
-        new_saturday_hours = form.data['saturday_hours'],
-        new_sunday_hours = form.data['sunday_hours'],
-        new_phone_number = form.data['phone_number'],
-        new_email = form.data['email'],
-        new_address = form.data['address'],
-        new_business_website = form.data['business_website'],
+        new_monday_hours = form.data['monday_hours']
+        new_tuesday_hours = form.data['tuesday_hours']
+        new_wednesday_hours = form.data['wednesday_hours']
+        new_thursday_hours = form.data['thursday_hours']
+        new_friday_hours = form.data['friday_hours']
+        new_saturday_hours = form.data['saturday_hours']
+        new_sunday_hours = form.data['sunday_hours']
+        new_phone_number = form.data['phone_number']
+        new_email = form.data['email']
+        new_address = form.data['address']
+        new_business_website = form.data['business_website']
         new_tags = form.data['tags']
 
         business.name = new_name
@@ -119,5 +121,5 @@ def edit_business(id):
         business.tags = new_tags
 
         db.session.commit()
-
+    print("ERRORS!!!!!!", form.errors)
     return business.to_dict()

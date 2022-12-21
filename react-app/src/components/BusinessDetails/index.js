@@ -2,6 +2,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/business";
+import './BusinessDetails.css'
 
 
 const BusinessDetails = () => {
@@ -57,7 +58,7 @@ const BusinessDetails = () => {
                     <div>
                         {sessionUser &&
                             (sessionUser.id === businessInfoObj?.user_id && (
-                                <Link exact="true" to={`/edit/business/${businessId}`}>
+                                <Link exact="true" to={`/edit/businesses/${businessId}`}>
                                     <button className="edit-business-button">
                                         Edit Business
                                     </button>
@@ -75,6 +76,11 @@ const BusinessDetails = () => {
                                     Delete Business{" "}
                                 </button>
                             ) : null)}
+                    </div>
+                    <div className="where-reviews-will-go-probably">
+
+
+
                     </div>
                 </div>
             </div>

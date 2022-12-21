@@ -33,12 +33,13 @@ const editBusiness = (business) => ({
 
 
 export const editBusinessThunk = (payload) => async dispatch => {
+
     const {
         businessId, name, preview_img,
         monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
         saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
     } = payload
-
+    console.log("@@@@@@@@@@", businessId)
     const response = await fetch(`/api/businesses/${businessId}`, {
         method: 'PUT',
         headers:{
