@@ -1,6 +1,8 @@
 const ADD_BUSINESS = 'create/NEW_BUSINESS'
 const GET_BUSINESSES = 'get/BUSINESSES'
-
+const GET_BUSINESS = 'get/BUSINESS'
+const DELETE_BUSINESS = 'delete/BUSINESS'
+const EDIT_BUSINESS = 'edit/BUSINESS'
 
 
 const addBusiness = (business) => ({
@@ -12,6 +14,72 @@ const allBusinesses = (businesses) => ({
     type: GET_BUSINESSES,
     payload: businesses
 })
+
+const getBusinessById = (business) => ({
+    type: GET_BUSINESS,
+    payload: business
+})
+
+const deleteBusiness = (business) => ({
+    type: DELETE_BUSINESS,
+    payload: business
+})
+
+const editBusiness = (business) => ({
+    type: EDIT_BUSINESS,
+    payload: business
+})
+
+
+
+export const editBusinessThunk = (payload) => async dispatch => {
+    const {
+        businessId, name, preview_img,
+        monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
+        saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
+    } = payload
+
+    const response = await fetch(`/api/businesses/${businessId}`, {
+        method: 'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, preview_img,
+            monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
+            saturday_hours, sunday_hours, email, address, phone_number, business_website, tags })
+    })
+
+    if(response.ok){
+        const business = await response.json()
+        dispatch(editBusiness(business))
+        return business
+    }
+}
+
+
+export const deleteBusinessThunk = (businessId) => async dispatch => {
+    const response = await fetch(`/api/businesses/${businessId}`, {
+        method: 'DELETE'
+    })
+
+    if(response.ok){
+        dispatch(deleteBusiness(businessId))
+    }
+}
+
+
+
+
+export const getBusinessByIdThunk = (businessId) => async dispatch => {
+    const response = await fetch(`/api/businesses/${businessId}`)
+
+    if(response.ok){
+        const business = await response.json()
+        dispatch(getBusinessById(business))
+        return business
+    }
+}
+
 
 
 export const getAllBusinessesThunk = () => async dispatch => {
@@ -87,11 +155,29 @@ const businessReducer = (state = initialState, action) => {
             const newState = Object.assign({}, state)
             newState.businesses = {}
             const business = (action.payload)
-            newState.allQuestions = business
+            newState.businesses = business
             return newState
         }
 
+        case GET_BUSINESS: {
+            const newState = { ...state }
+            newState.businesses = {}
+            const business = action.payload
+            newState.businesses = business
+            return newState
+        }
 
+        case DELETE_BUSINESS: {
+            const newState = { ...state }
+            delete newState.businesses[action.payload]
+            return newState
+        }
+
+        case EDIT_BUSINESS:
+            return {
+            ...state,
+            [action.payload.id]: action.payload
+            }
 
 
 

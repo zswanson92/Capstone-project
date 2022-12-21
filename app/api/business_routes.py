@@ -31,6 +31,14 @@ def get_specific_business(id):
     business = Business.query.get(id)
     return {business.id: business.to_dict()}
 
+@business_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_business(id):
+    business = Business.query.get(id)
+    db.session.delete(business)
+    db.session.commit()
+    return {"message": "Delete Successful"}
+
 
 
 @create_business_route.route("", methods=["POST"])
@@ -68,3 +76,48 @@ def add_business():
 
     print("ERRORS!!!!!!", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@business_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def edit_business(id):
+    business = Business.query.get(id)
+
+    form = BusinessForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_name = form.data['name'],
+        new_preview_img = form.data['preview_img'],
+        # services = form.data['services'],
+        new_monday_hours = form.data['monday_hours'],
+        new_tuesday_hours = form.data['tuesday_hours'],
+        new_wednesday_hours = form.data['wednesday_hours'],
+        new_thursday_hours = form.data['thursday_hours'],
+        new_friday_hours = form.data['friday_hours'],
+        new_saturday_hours = form.data['saturday_hours'],
+        new_sunday_hours = form.data['sunday_hours'],
+        new_phone_number = form.data['phone_number'],
+        new_email = form.data['email'],
+        new_address = form.data['address'],
+        new_business_website = form.data['business_website'],
+        new_tags = form.data['tags']
+
+        business.name = new_name
+        business.preview_img = new_preview_img
+        business.monday_hours = new_monday_hours
+        business.tuesday_hours = new_tuesday_hours
+        business.wednesday_hours = new_wednesday_hours
+        business.thursday_hours = new_thursday_hours
+        business.friday_hours = new_friday_hours
+        business.saturday_hours = new_saturday_hours
+        business.sunday_hours = new_sunday_hours
+        business.phone_number = new_phone_number
+        business.email = new_email
+        business.address = new_address
+        business.business_website = new_business_website
+        business.tags = new_tags
+
+        db.session.commit()
+
+    return business.to_dict()
