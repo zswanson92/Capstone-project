@@ -2,12 +2,18 @@
     width: 40em;
     margin-top: 2.75em;
     height: 2.4em;
+    border-radius: 3px;
+    /* padding-right: 30px; */
 }
 
 .search-form {
-    display: flex;
-    flex-direction: row;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* flex-direction: row; */
     gap: .25em;
+    padding-right: 2em;
+
 }
 
 .search-button{

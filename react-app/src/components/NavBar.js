@@ -1,61 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
-import logo from '../assets/zelp_logo.png'
+import logo from '../assets/yelp_logo.PNG'
 import { useSelector } from 'react-redux';
 import SearchBar from './SearchBar/SearchBar';
 
 
 const NavBar = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const openMenu = () => {
+    setShowMenu(!showMenu)
+  }
+
   const sessionUser = useSelector(state => state.session.user);
 
   return (
     <nav className='main-nav-bar'>
-      <ul className='navbar-primary-ul'>
-        <li className='navbar-home-li'>
-          <NavLink to='/' exact={true} activeClassName='active' className='home-navlink'>
-            <div className='navbar-img-div'>
-              <img src={logo} alt='Logo' className='home-logo-img'></img>
-            </div>
-          </NavLink>
-        </li>
-        <li className='navbar-signup-li'>
-          <SearchBar />
-        </li>
-        { sessionUser ? "" :
-        <li className='navbar-login-li'>
+      <div>
+        <NavLink to='/' exact={true} activeClassName='active' className='home-navlink'>
+          <div className='navbar-img-div'>
+            <span className='zelp-span'>Zelp!</span>
+            <img src={logo} alt='Logo' className='home-logo-img'></img>
+          </div>
+        </NavLink>
+      </div>
+      <div className='navbar-searchbar-div'>
+        <SearchBar />
+      </div>
+      <div>
+        <NavLink to='/businesses' exact={true} activeClassName='active' className='viewbusiness-navlink'>
+          View Businesses
+        </NavLink>
+      </div>
+      {sessionUser ? "" :
+        <div>
           <NavLink to='/login' exact={true} activeClassName='active' className='login-navlink'>
             Login
           </NavLink>
-        </li> }
-        { sessionUser ? "" :
-        <li className='navbar-signup-li'>
+        </div>}
+      {sessionUser ? "" :
+        <div>
           <NavLink to='/sign-up' exact={true} activeClassName='active' className='signup-navlink'>
             Sign Up
           </NavLink>
-        </li>}
-        {/* <li>
+        </div>}
+      {/* <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
         </li> */}
-        {sessionUser ?
-        <li className='navbar-createbusiness-li'>
+
+      {sessionUser ?
+        <div>
           <NavLink to='/create' exact={true} activeClassName='active' className='createbusiness-navlink'>
             Create Business
           </NavLink>
-        </li> : ""}
-        <li className='navbar-viewbusiness-li'>
-          <NavLink to='/businesses' exact={true} activeClassName='active' className='viewbusiness-navlink'>
-            View Businesses
-          </NavLink>
-        </li>
-        {sessionUser ?
-        <li className='navbar-home-li'>
-          <LogoutButton />
-        </li> : ""}
-      </ul>
+        </div> : ""}
+
+      {sessionUser ?
+        <div>
+          {/* <LogoutButton /> */}
+          <button className='profile-dropdown-button' onClick={openMenu}><i class="fa-regular fa-circle-user fa-2x"></i></button>
+        </div> : ""}
+
+      {showMenu && (sessionUser ?
+        (
+          <div className="profile-dropdown-div">
+            <ul className="profile-dropdown">
+              <li className="fullname-li">Full Name: {sessionUser.fullname}</li>
+              <li className="username-li">Username: {sessionUser.username}</li>
+              <li className="useremail-li">User email: {sessionUser.email}</li>
+              <li className="logout-li">
+                {/* <button className="the-logout-button" onClick={logout}>Log Out</button> */}
+                <LogoutButton />
+              </li>
+            </ul>
+          </div>) : "")}
     </nav>
   );
 }
