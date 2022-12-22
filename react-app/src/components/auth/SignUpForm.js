@@ -33,9 +33,9 @@ const SignUpForm = () => {
     setFullname(e.target.value)
   }
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  // const updateEmail = (e) => {
+  //   setEmail(e.target.value);
+  // };
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
@@ -49,67 +49,94 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  const handleChange = event => {
+    if (!isValidEmail(event.target.value)) {
+      let err = []
+      err.push('Email is invalid');
+      setErrors(err)
+    } else {
+      setErrors(null);
+    }
+
+    setEmail(event.target.value);
+  };
+
   return (
     <div className='signupform-main-container'>
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        {/* <label>User Name</label> */}
-        <input
-          placeholder='User Name'
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        {/* <label>Full Name</label> */}
-        <input
-          placeholder='Full Name'
-          type='text'
-          name='fullname'
-          onChange={updateFullname}
-          value={fullname}
-        ></input>
-      </div>
-      <div>
-        {/* <label>Email</label> */}
-        <input
-          placeholder='Email'
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        {/* <label>Password</label> */}
-        <input
-          placeholder='Password'
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        {/* <label>Repeat Password</label> */}
-        <input
-          placeholder='Repeat Password'
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button className='sign-up-button' type='submit'>Sign Up</button>
-    </form>
+      <form onSubmit={onSignUp}>
+        <div>
+          {errors?.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div className='first-signupform-input-div'>
+          {/* <label>User Name</label> */}
+          <input
+            required={true}
+            className='signupform-inputs'
+            placeholder='User Name'
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+          ></input>
+        </div>
+        <div className='signupform-input-div'>
+          {/* <label>Full Name</label> */}
+          <input
+            required={true}
+            className='signupform-inputs'
+            placeholder='Full Name'
+            type='text'
+            name='fullname'
+            onChange={updateFullname}
+            value={fullname}
+          ></input>
+        </div>
+        <div className='signupform-input-div'>
+          {/* <label>Email</label> */}
+          <input
+            required={true}
+            className='signupform-inputs'
+            placeholder='Email'
+            type='text'
+            name='email'
+            onChange={handleChange}
+            value={email}
+          ></input>
+        </div>
+        <div className='signupform-input-div'>
+          {/* <label>Password</label> */}
+          <input
+            required={true}
+            className='signupform-inputs'
+            placeholder='Password'
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+        </div>
+        <div className='signupform-input-div'>
+          {/* <label>Repeat Password</label> */}
+          <input
+
+            className='signupform-inputs'
+            placeholder='Repeat Password'
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+        </div>
+        {/* {} */}
+        <button className='sign-up-button' type='submit'>Sign Up</button>
+      </form>
     </div>
   );
 };

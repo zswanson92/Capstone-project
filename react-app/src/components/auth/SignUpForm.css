@@ -11,4 +11,21 @@
     border: none;
     height: 3em;
     width: 5em;
+    margin-left: 5.8em;
+}
+
+.first-signupform-input-div{
+    margin-top: 8em;
+    padding-bottom: .8em;
+}
+
+.signupform-input-div{
+    padding-bottom: .8em;
+}
+
+.signupform-inputs{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
 }

@@ -1,0 +1,50 @@
+.main-login-form-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 8em;
+}
+
+.login-form-login-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 3em;
+    width: 5em;
+    margin-left: 5.8em;
+}
+
+.login-form-login-demo-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 3em;
+    width: 11em;
+    margin-left: 5.8em;
+}
+
+.two-loginform-buttons{
+    display: flex;
+    /* gap: 1em; */
+    padding-top: 1em;
+}
+
+.loginform-inputs{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+    margin-left: 8em;
+}
+
+.loginform-inputs-one{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+    margin-left: 8em;
+    margin-bottom: 1em;
+}

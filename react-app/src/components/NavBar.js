@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 import logo from '../assets/yelp_logo.PNG'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from './SearchBar/SearchBar';
-
+import { logout } from '../store/session'
+import './auth/LogoutButton.css'
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -13,6 +14,12 @@ const NavBar = () => {
   const openMenu = () => {
     setShowMenu(!showMenu)
   }
+
+  const dispatch = useDispatch()
+  const onLogout = async (e) => {
+    setShowMenu(false)
+    await dispatch(logout());
+  };
 
   const sessionUser = useSelector(state => state.session.user);
 
@@ -74,7 +81,8 @@ const NavBar = () => {
               <li className="useremail-li">User email: {sessionUser.email}</li>
               <li className="logout-li">
                 {/* <button className="the-logout-button" onClick={logout}>Log Out</button> */}
-                <LogoutButton />
+                {/* <LogoutButton /> */}
+                <button className='logout-button' onClick={onLogout}>Log Out</button>
               </li>
             </ul>
           </div>) : "")}
