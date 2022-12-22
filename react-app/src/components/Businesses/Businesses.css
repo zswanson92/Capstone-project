@@ -1,0 +1,68 @@
+ .business-detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.details-image-div{
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.business-list-info-div{
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.main-container-div-all-businesses{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin-left: 300px; */
+    padding-top: 1em;
+}
+
+.first-sub-container-businesses{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.businesses-h1-div{
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+/* .total-business-count-div{
+    display: flex;
+    justify-content: center;
+} */
+
+.business-id-name-p{
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+}
+
+.business-id-tags-p{
+    display: flex;
+    justify-content: center;
+}
+
+.business-links{
+    color: black;
+}
+
+/* .line-4{
+    height: 1px;
+    border: 0;
+    background: black;
+} */
+
+.businesses-hr{
+    margin-bottom: 20px;
+    width: 120em;
+}

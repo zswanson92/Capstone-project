@@ -1,1 +1,16 @@
 /* TODO Add site wide styles */
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-kerning: auto;
+
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-variant-ligatures: normal;
+    font-weight: normal;
+}
+
+
+#root {
+    height: 100vh;
+}

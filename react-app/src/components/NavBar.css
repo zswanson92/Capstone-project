@@ -8,9 +8,10 @@
 .navbar-primary-ul{
     display: flex;
     flex-direction: row;
+    width: 100%;
     /* justify-content: space-between; */
     align-items: center;
-    gap: 15em;
+    gap: 5em;
     list-style: none;
 }
 

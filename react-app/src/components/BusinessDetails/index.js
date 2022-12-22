@@ -29,28 +29,65 @@ const BusinessDetails = () => {
 
     return (
         <div className="main-container-business-details">
-            <h1> {businessInfoObj?.name} </h1>
-            <div className="contact-info-div">
-                <div className="daily-hours-div">
-                    <h2>Hours of Operation</h2>
-                    <ul>
-                        <li>Monday: {businessInfoObj?.monday_hours}</li>
-                        <li>Tuesday: {businessInfoObj?.tuesday_hours}</li>
-                        <li>Wednesday: {businessInfoObj?.wednesday_hours}</li>
-                        <li>Thursday: {businessInfoObj?.thursday_hours}</li>
-                        <li>Friday: {businessInfoObj?.friday_hours}</li>
-                        <li>Saturday: {businessInfoObj?.saturday_hours}</li>
-                        <li>Sunday: {businessInfoObj?.sunday_hours}</li>
-                    </ul>
+            <div className="delete-edit-business-buttons-div">
+                <div>
+                    {sessionUser &&
+                        (sessionUser.id === businessInfoObj?.user_id && (
+                            <Link exact="true" to={`/edit/businesses/${businessId}`}>
+                                <button className="edit-business-button">
+                                    Edit Business
+                                </button>
+                            </Link>
+                        ))}
+                </div>
+                <div>
+                    {sessionUser &&
+                        (sessionUser.id === businessInfoObj?.user_id ? (
+                            <button
+                                className="business-delete-button"
+                                onClick={(event) => deleteABusiness(event, businessId)}
+                            >
+                                {" "}
+                                Delete Business{" "}
+                            </button>
+                        ) : null)}
                 </div>
 
+            </div>
+            <div className="bannerimage" style={{ backgroundImage: `url(${businessInfoObj?.preview_img})` }}>
+                <h1 className="business-name-h1"> {businessInfoObj?.name} </h1>
+                <h2 className="business-name-h2"> {businessInfoObj?.tags} </h2>
+            </div>
+            <div className="contact-info-div">
+                <h2>Location & Hours</h2>
+                <div className="daily-hours-div">
+                    <div className="address-single-div">
+                        {businessInfoObj?.address}
+                    </div>
+                    <ul className="contact-info-ul">
+                        <li className="hours-li">Mon  &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>
+                        <li className="hours-li">Tue  &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>
+                        <li className="hours-li">Wed  &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours}</li>
+                        <li className="hours-li">Thu  &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours}</li>
+                        <li className="hours-li">Fri  &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours}</li>
+                        <li className="hours-li">Sat  &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours}</li>
+                        <li className="hours-li">Sun  &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>
+                        <br></br>
+
+                    </ul>
+
+                </div>
                 <div className="details-contact-info-div">
-                    <h2>Contact Information</h2>
-                    <ul>
-                        <li>Address: {businessInfoObj?.address}</li>
-                        <li>Phone Number: {businessInfoObj?.phone_number}</li>
-                        <li>Email Address: {businessInfoObj?.email}</li>
+                    <h2 className="contact-info-h2">Contact Information</h2>
+                    <hr />
+                    <ul className="contact-info-ul">
                         <li>Website: <Link>{businessInfoObj?.business_website}</Link></li>
+                        <hr className="contact-info-ul-hr" />
+                        <li>Phone Number: {businessInfoObj?.phone_number}</li>
+                        <hr className="contact-info-ul-hr" />
+                        <li>Email Address: {businessInfoObj?.email}</li>
+                        <hr className="contact-info-ul-hr" />
+                        <li>Address: {businessInfoObj?.address}</li>
                     </ul>
                 </div>
                 <div>
@@ -58,34 +95,8 @@ const BusinessDetails = () => {
                     <p>{businessInfoObj?.services}</p>
                 </div>
 
-                <div className="question-buttons">
-                    <div>
-                        {sessionUser &&
-                            (sessionUser.id === businessInfoObj?.user_id && (
-                                <Link exact="true" to={`/edit/businesses/${businessId}`}>
-                                    <button className="edit-business-button">
-                                        Edit Business
-                                    </button>
-                                </Link>
-                            ))}
-                    </div>
-                    <div>
-                        {sessionUser &&
-                            (sessionUser.id === businessInfoObj?.user_id ? (
-                                <button
-                                    className="business-delete-button"
-                                    onClick={(event) => deleteABusiness(event, businessId)}
-                                >
-                                    {" "}
-                                    Delete Business{" "}
-                                </button>
-                            ) : null)}
-                    </div>
-                    <div className="where-reviews-will-go-probably">
 
-
-
-                    </div>
+                <div className="where-reviews-will-go-probably">
                 </div>
             </div>
         </div>

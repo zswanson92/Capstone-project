@@ -1,3 +1,110 @@
 .where-reviews-will-go-probably{
     border: 2px solid red
 }
+
+.bannerimage{
+    width: 100%;
+    height: 300px;
+    background-color: gray;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.business-name-h1{
+    color: white;
+    margin-top: 180px;
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.business-name-h2{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.delete-edit-business-buttons-div{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap: 30px;
+    border: .1px solid gray;
+    width: 18em;
+    /* height: 1em; */
+    /* margin-left: 75em; */
+    /* margin-top: -45em; */
+}
+
+.business-delete-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 4em;
+    width: 10em;
+}
+
+.edit-business-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 4em;
+    width: 8em;
+}
+
+.details-contact-info-div{
+    border: .1px solid gray;
+    width: 18em;
+    margin-left: 65em;
+    margin-top: -23em;
+    /* display:flex;
+    justify-content: center;
+    flex-direction: column; */
+}
+
+.contact-info-ul{
+    list-style: none;
+}
+
+.contact-info-h2{
+    display:flex;
+    justify-content: center;
+}
+
+.contact-info-ul-hr{
+    /* width: 17em; */
+    /* padding-left: 100px; */
+    /* margin-right: 20px; */
+    margin-left: -40px;
+    display:flex;
+    justify-content: center;
+    /* font-weight: bold; */
+}
+
+.daily-hours-div{
+    /* border: 2px solid black; */
+    /* width: 18em; */
+    display: flex;
+    /* flex-direction: row-reverse; */
+}
+
+.contact-info-div{
+    /* display: flex; */
+    width: 100%;
+}
+
+.address-single-div{
+    display: flex;
+    align-items: flex-end;
+}
+
+.hours-li{
+    font-weight: bold;
+    padding-bottom: 20px;
+}
