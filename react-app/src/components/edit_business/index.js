@@ -29,6 +29,23 @@ const EditBusiness = () => {
     const [tags, setTags] = useState(currentBiz?.tags);
     const [errors, setErrors] = useState([]);
 
+    // const [name, setName] = useState("");
+    // const [preview_img, setPreviewImage] = useState("");
+    // // const [services, setServices] = useState("");
+    // const [monday_hours, setMonHours] = useState("");
+    // const [tuesday_hours, setTuesHours] = useState("");
+    // const [wednesday_hours, setWedsHours] = useState("");
+    // const [thursday_hours, setThursHours] = useState("");
+    // const [friday_hours, setFriHours] = useState("");
+    // const [saturday_hours, setSatHours] = useState("");
+    // const [sunday_hours, setSunHours] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [address, setAddress] = useState("");
+    // const [phone_number, setPhone] = useState("");
+    // const [business_website, setWebsite] = useState("");
+    // const [tags, setTags] = useState("");
+    // const [errors, setErrors] = useState([]);
+
     const nameSet = (e) => {
         setName(e.target.value)
     }
@@ -99,27 +116,27 @@ const EditBusiness = () => {
             saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
         }
 
-        const editedBusiness = await dispatch(editBusinessThunk(updatedBusiness))
-        if (editedBusiness) {
-            history.push(`/businesses/${businessId}`)
-        }
+        await dispatch(editBusinessThunk(updatedBusiness))
+        history.push(`/businesses/${businessId}`)
+        // const editedBusiness = await dispatch(editBusinessThunk(updatedBusiness))
+        // if (editedBusiness) {
+        //     history.push(`/businesses/${businessId}`)
+        // }
     }
 
     const cancelEdit = () => {
         history.push(`/businesses/${businessId}`)
     }
 
-
-
-
-
     return (
         <div className="edit-business-main-container">
             <div className="first-inner-container-edit-business">
                 <form onSubmit={onSubmit}>
+                    <h1>Edit Business Information</h1>
                     <div className="edit-business-name-div">
-                        <label>Name</label>
+                        {/* <label>Name</label> */}
                         <input
+                            className="business-form-name-input"
                             type='text'
                             name='name'
                             onChange={nameSet}
@@ -127,17 +144,22 @@ const EditBusiness = () => {
                             placeholder="Business Name"></input>
                     </div>
                     <div className="edit-business-previewimage-div">
-                        <label>Preview Image</label>
-                        <input type='text'
+                        {/* <label>Preview Image</label> */}
+                        <input
+                            className="business-form-previmg-input"
+                            type='text'
                             name='preview_image'
                             onChange={imageSet}
                             value={preview_img}
                         ></input>
                     </div>
                     <div className="edit-business-hours-div">
+                    <p>Business Hours &#40;Please enter in xx:xx am/pm - yy:yy am/pm format&#41;</p>
                         <div>
-                            <label> Monday Hours</label>
-                            <input name='hours'
+                            {/* <label> Monday Hours</label> */}
+                            <input
+                                className="business-form-hours-input"
+                                name='hours'
                                 type='text'
                                 onChange={monSet}
                                 value={monday_hours}>
@@ -145,8 +167,10 @@ const EditBusiness = () => {
                             </input>
                         </div>
                         <div>
-                            <label> Tuesday Hours</label>
-                            <input name='hours'
+                            {/* <label> Tuesday Hours</label> */}
+                            <input
+                                className="business-form-hours-input"
+                                name='hours'
                                 type='text'
                                 onChange={tuesSet}
                                 value={tuesday_hours}>
@@ -154,8 +178,10 @@ const EditBusiness = () => {
                             </input>
                         </div>
                         <div>
-                            <label> Wedsnesday Hours</label>
-                            <input name='hours'
+                            {/* <label> Wedsnesday Hours</label> */}
+                            <input
+                                className="business-form-hours-input"
+                                name='hours'
                                 type='text'
                                 onChange={wedsSet}
                                 value={wednesday_hours}>
@@ -163,8 +189,10 @@ const EditBusiness = () => {
                             </input>
                         </div>
                         <div>
-                            <label> Thursday Hours</label>
-                            <input name='hours'
+                            {/* <label> Thursday Hours</label> */}
+                            <input
+                                className="business-form-hours-input"
+                                name='hours'
                                 type='text'
                                 onChange={thursSet}
                                 value={thursday_hours}>
@@ -172,8 +200,10 @@ const EditBusiness = () => {
                             </input>
                         </div>
                         <div>
-                            <label> Friday Hours</label>
-                            <input name='hours'
+                            {/* <label> Friday Hours</label> */}
+                            <input
+                                className="business-form-hours-input"
+                                name='hours'
                                 type='text'
                                 onChange={friSet}
                                 value={friday_hours}>
@@ -181,50 +211,59 @@ const EditBusiness = () => {
                             </input>
                         </div>
                         <div>
-                            <label> Saturday Hours</label>
-                            <input name='hours'
+                            {/* <label> Saturday Hours</label> */}
+                            <input
+                                className="business-form-hours-input"
+                                name='hours'
                                 type='text'
                                 onChange={satSet}
                                 value={saturday_hours}>
 
                             </input>
                         </div>
-                    </div>
-                    <div>
-                        <label> Sunday Hours</label>
-                        <input name='hours'
+                        <div>
+                        {/* <label> Sunday Hours</label> */}
+                        <input
+                            className="business-form-hours-input"
+                            name='hours'
                             type='text'
                             onChange={sunSet}
                             value={sunday_hours}>
                         </input>
                     </div>
+                    </div>
+
                     <div className="edit-business-email-div">
-                        <label>Email</label>
+                        {/* <label>Email</label> */}
                         <input
+                            className="business-form-email-input"
                             name='email'
                             type='text'
                             onChange={emailSet}
                             value={email}></input>
                     </div>
                     <div className="edit-business-address-div">
-                        <label>Address</label>
+                        {/* <label>Address</label> */}
                         <input
+                            className="business-form-address-input"
                             name='address'
                             type='text'
                             onChange={addressSet}
                             value={address}></input>
                     </div>
                     <div className="edit-business-phone-div">
-                        <label>Phone Number</label>
+                        {/* <label>Phone Number</label> */}
                         <input
+                            className="business-form-phone-input"
                             name='phone_number'
                             type='text'
                             onChange={phoneSet}
                             value={phone_number}></input>
                     </div>
                     <div className="edit-business-website-div">
-                        <label>Business Website</label>
+                        {/* <label>Business Website</label> */}
                         <input
+                            className="business-form-website-input"
                             type='text'
                             name='business_website'
                             onChange={websiteSet}
@@ -232,8 +271,9 @@ const EditBusiness = () => {
                         </input>
                     </div>
                     <div className="edit-business-tags-div">
-                        <label>Tags</label>
+                        {/* <label>Tags</label> */}
                         <input
+                            className="business-form-tags-input"
                             type='text'
                             name='tags'
                             onChange={tagSet}

@@ -1,0 +1,70 @@
+.edit-business-main-container{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+}
+
+.first-inner-container-edit-business{
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+}
+
+.edit-business-name-div{
+    padding-bottom: .8em;
+}
+
+.edit-business-previewimage-div{
+    padding-bottom: .8em;
+}
+
+.edit-business-hours-div{
+    padding-bottom: .8em;
+}
+
+.edit-business-email-div{
+    padding-bottom: .8em;
+}
+
+.edit-business-address-div{
+    padding-bottom: .8em;
+}
+
+.edit-business-phone-div{
+    padding-bottom: .8em;
+}
+
+.edit-business-website-div{
+    padding-bottom: .8em;
+}
+
+.edit-business-tags-div{
+    padding-bottom: 1.5em;
+}
+
+.two-edit-form-buttons-div{
+    display: flex;
+    gap: 3em;
+}
+
+
+
+.submit-edit-question-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 4em;
+    width: 18em;
+}
+
+.close-edit-question-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 4em;
+    width: 10em;
+}

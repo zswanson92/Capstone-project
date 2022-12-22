@@ -1,0 +1,25 @@
+.search-bar {
+    width: 40em;
+    margin-top: 2.75em;
+    height: 2.4em;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    gap: .25em;
+}
+
+.search-button{
+    height: 2em;
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+}
+
+.main-search-container{
+    display: flex;
+    align-items: center;
+}

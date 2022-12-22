@@ -4,6 +4,7 @@ import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 import logo from '../assets/zelp_logo.png'
 import { useSelector } from 'react-redux';
+import SearchBar from './SearchBar/SearchBar';
 
 
 const NavBar = () => {
@@ -19,16 +20,21 @@ const NavBar = () => {
             </div>
           </NavLink>
         </li>
+        <li className='navbar-signup-li'>
+          <SearchBar />
+        </li>
+        { sessionUser ? "" :
         <li className='navbar-login-li'>
           <NavLink to='/login' exact={true} activeClassName='active' className='login-navlink'>
             Login
           </NavLink>
-        </li>
+        </li> }
+        { sessionUser ? "" :
         <li className='navbar-signup-li'>
           <NavLink to='/sign-up' exact={true} activeClassName='active' className='signup-navlink'>
             Sign Up
           </NavLink>
-        </li>
+        </li>}
         {/* <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users

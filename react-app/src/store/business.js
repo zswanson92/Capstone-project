@@ -39,7 +39,7 @@ export const editBusinessThunk = (payload) => async dispatch => {
         monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
         saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
     } = payload
-    console.log("@@@@@@@@@@", businessId)
+    // console.log("@@@@@@@@@@", businessId)
     const response = await fetch(`/api/businesses/${businessId}`, {
         method: 'PUT',
         headers:{
@@ -97,7 +97,7 @@ export const getAllBusinessesThunk = () => async dispatch => {
 
 export const createBusinessThunk = (payload) => async dispatch => {
     const {
-        name, preview_img, services,
+        name, preview_img,
         monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
         saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
     } = payload
@@ -106,7 +106,7 @@ export const createBusinessThunk = (payload) => async dispatch => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, preview_img, services,
+        body: JSON.stringify({ name, preview_img,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
             saturday_hours, sunday_hours, email, address, phone_number, business_website, tags })
     })
@@ -125,7 +125,7 @@ const businessReducer = (state = initialState, action) => {
     switch(action.type) {
 
         case ADD_BUSINESS: {
-            console.log("THIS IS ACTION", action)
+            // console.log("THIS IS ACTION", action)
             // if(!state[action.id]){
                 const newState = {
                     ...state,

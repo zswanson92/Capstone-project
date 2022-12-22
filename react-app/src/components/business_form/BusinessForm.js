@@ -27,10 +27,10 @@ const BusinessForm = () => {
 
     const [name, setName] = useState("");
     const [preview_img, setPreviewImage] = useState("");
-    const [services, setServices] = useState("");
+    // const [services, setServices] = useState("");
     // const [services, setServices] = useState(data);
     const [monday_hours, setMonHours] = useState("");
-    const [selectValue, setSelectValue] = useState("")
+    // const [selectValue, setSelectValue] = useState("")
     const [tuesday_hours, setTuesHours] = useState("");
     const [wednesday_hours, setWedsHours] = useState("");
     const [thursday_hours, setThursHours] = useState("");
@@ -106,12 +106,12 @@ const BusinessForm = () => {
     //   }
 
 
-    const serviceSet = (e) => {
+    // const serviceSet = (e) => {
         // services.push(e.target.value)
         // if(checkAvailability(theservices, e.target.value) === false) theservices.push(e.target.value)
         // setServices(e.target.option)
-        setServices(e.target.value)
-    }
+        // setServices(e.target.value)
+    // }
     // "Dine-In", "Take Out", "In House Delivery", "Pick Up", "App Based Delivery", "Takes Reservations", "Vegan Friendly", "Gluten Free Friendly", "Keto Friendly"
 
     // let services = "";
@@ -121,13 +121,13 @@ const BusinessForm = () => {
     // })
     // console.log("!!!!!!!!!", services)
 
-    console.log("@@@@@@@", services)
+    // console.log("@@@@@@@", services)
     const onSubmit = async (e) => {
         e.preventDefault();
         // setSubmitted(true);
         // if (errors.length > 0) return;
         const createdBusiness = {
-            name, preview_img, services,
+            name, preview_img,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
             saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
         };
@@ -171,25 +171,25 @@ const BusinessForm = () => {
                         value={preview_img}
                     ></input>
                 </div>
-                <div className="custom-select">
+                {/* <div className="custom-select">
                     <label className="custom-selector">Services: </label>
-                    <select name="services" value={services} onChange={serviceSet}>
+                    <select name="services" value={services} onChange={serviceSet}> */}
                         {/* <input type='radio' value='Dine-In' onClick={serviceSet} />
                         <label>Dine-In</label>
                         <input type='radio' value='Take Out' onClick={serviceSet} />
                         <label>Take Out</label> */}
-                        <option value='Take Out'>Take Out</option>
+                        {/* <option value='Take Out'>Take Out</option>
                         <option value='In House Delivery'>In House Delivery</option>
                         <option value='Pick Up'>Pick Up</option>
                     </select>
-                </div>
+                </div> */}
                 {/* <div>
                     <label>Services Offered</label>
                     <Multiselect options={services} displayValue="Service" onChange={serviceSet} />
                 </div> */}
                 <div className="business-form-hours-inputs-div">
                     <div>
-                    <p>Business Hours &#40;Please enter in x:xx am/pm - y:yy am/pm format&#41;</p>
+                    <p>Business Hours &#40;Please enter in xx:xx am/pm - yy:yy am/pm format&#41;</p>
                         {/* <label> Monday Hours of Operation: </label> */}
                         <input
                             className="business-form-hours-input"

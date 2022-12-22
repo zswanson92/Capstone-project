@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css'
+
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -48,6 +50,7 @@ const SignUpForm = () => {
   }
 
   return (
+    <div className='signupform-main-container'>
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
@@ -55,8 +58,9 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label>User Name</label>
+        {/* <label>User Name</label> */}
         <input
+          placeholder='User Name'
           type='text'
           name='username'
           onChange={updateUsername}
@@ -64,8 +68,9 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Full Name</label>
+        {/* <label>Full Name</label> */}
         <input
+          placeholder='Full Name'
           type='text'
           name='fullname'
           onChange={updateFullname}
@@ -73,8 +78,9 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Email</label>
+        {/* <label>Email</label> */}
         <input
+          placeholder='Email'
           type='text'
           name='email'
           onChange={updateEmail}
@@ -82,8 +88,9 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Password</label>
+        {/* <label>Password</label> */}
         <input
+          placeholder='Password'
           type='password'
           name='password'
           onChange={updatePassword}
@@ -91,8 +98,9 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        {/* <label>Repeat Password</label> */}
         <input
+          placeholder='Repeat Password'
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
@@ -100,8 +108,9 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button className='sign-up-button' type='submit'>Sign Up</button>
     </form>
+    </div>
   );
 };
 

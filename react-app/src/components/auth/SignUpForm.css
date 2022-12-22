@@ -1,0 +1,14 @@
+.signupform-main-container{
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 3em;
+    width: 5em;
+}

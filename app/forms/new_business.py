@@ -32,7 +32,7 @@ data = [
 class BusinessForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
     preview_img = StringField("Preview Image")
-    services = SelectField("Services", choices=["Pick Up", "Take Out", "In House Delivery"])
+    # services = SelectField("Services", choices=["Pick Up", "Take Out", "In House Delivery"])
     monday_hours = StringField("Monday Hours", validators=[DataRequired()])
     tuesday_hours = StringField("Tuesday Hours", validators=[DataRequired()])
     wednesday_hours = StringField("Wednesday Hours", validators=[DataRequired()])
