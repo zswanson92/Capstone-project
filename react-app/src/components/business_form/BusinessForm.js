@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./BusinessForm.css";
 import { createBusinessThunk } from "../../store/business";
-import Multiselect from 'multiselect-react-dropdown';
+// import Multiselect from 'multiselect-react-dropdown';
 
 
 const BusinessForm = () => {
@@ -11,15 +11,15 @@ const BusinessForm = () => {
     let history = useHistory();
 
     const data = [
-        {Service: "Dine-In"},
-        {Service: "Take Out"},
-        {Service: "In House Delivery"},
-        {Service: "Pick Up"},
-        {Service: "App Based Delivery"},
-        {Service: "Takes Reservations"},
-        {Service: "Vegan Friendly"},
-        {Service: "Gluten Free Friendly"},
-        {Service: "Keto Friendly"},
+        { Service: "Dine-In" },
+        { Service: "Take Out" },
+        { Service: "In House Delivery" },
+        { Service: "Pick Up" },
+        { Service: "App Based Delivery" },
+        { Service: "Takes Reservations" },
+        { Service: "Vegan Friendly" },
+        { Service: "Gluten Free Friendly" },
+        { Service: "Keto Friendly" },
     ]
 
     // console.log(data)
@@ -139,51 +139,62 @@ const BusinessForm = () => {
         // setSubmitted(false);
     };
 
+    const onClose = () => {
+        history.push('/');
+    }
 
 
 
 
     return (
         <div className="main-business-form-div">
-            <h1>This is a test H1 for creating a new Business!</h1>
             <form onSubmit={onSubmit}>
-                <div>
-                    <label>Name</label>
+                <h1>Create a New Business</h1>
+                <div className="business-form-name-input-div">
+                    {/* <label>Name: </label> */}
                     <input
+                        className="business-form-name-input"
                         type='text'
                         name='name'
                         onChange={nameSet}
                         value={name}
                         placeholder="Business Name"></input>
                 </div>
-                <div>
-                    <label>Preview Image</label>
-                    <input type='text'
+                <div className="business-form-previmg-input-div">
+                    {/* <label>Preview Image: </label> */}
+                    <input
+                        placeholder="Preview image link - must be a png or jpg format"
+                        className="business-form-previmg-input"
+                        type='text'
                         name='preview_image'
                         onChange={imageSet}
                         value={preview_img}
-                        ></input>
+                    ></input>
                 </div>
-                <div>
-                    <label>Services</label>
-                    <select id="myform" name="services" value={services} onChange={serviceSet}>
+                <div className="custom-select">
+                    <label className="custom-selector">Services: </label>
+                    <select name="services" value={services} onChange={serviceSet}>
                         {/* <input type='radio' value='Dine-In' onClick={serviceSet} />
                         <label>Dine-In</label>
                         <input type='radio' value='Take Out' onClick={serviceSet} />
                         <label>Take Out</label> */}
                         <option value='Take Out'>Take Out</option>
-                        <option  value='In House Delivery'>In House Delivery</option>
-                        <option  value='Pick Up'>Pick Up</option>
+                        <option value='In House Delivery'>In House Delivery</option>
+                        <option value='Pick Up'>Pick Up</option>
                     </select>
                 </div>
                 {/* <div>
                     <label>Services Offered</label>
                     <Multiselect options={services} displayValue="Service" onChange={serviceSet} />
                 </div> */}
-                <div>
+                <div className="business-form-hours-inputs-div">
                     <div>
-                        <label> Monday Hours</label>
-                        <input name='hours'
+                    <p>Business Hours &#40;Please enter in x:xx am/pm - y:yy am/pm format&#41;</p>
+                        {/* <label> Monday Hours of Operation: </label> */}
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Monday Hours of Operation"
+                            name='hours'
                             type='text'
                             onChange={monSet}
                             value={monday_hours}>
@@ -191,8 +202,11 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        <label> Tuesday Hours</label>
-                        <input name='hours'
+                        {/* <label> Tuesday Hours of Operation: </label> */}
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Tuesday Hours of Operation"
+                            name='hours'
                             type='text'
                             onChange={tuesSet}
                             value={tuesday_hours}>
@@ -200,8 +214,11 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        <label> Wedsnesday Hours</label>
-                        <input name='hours'
+                        {/* <label> Wedsnesday Hours of Operation: </label> */}
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Wedsnesday Hours of Operation"
+                            name='hours'
                             type='text'
                             onChange={wedsSet}
                             value={wednesday_hours}>
@@ -209,8 +226,11 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        <label> Thursday Hours</label>
-                        <input name='hours'
+                        {/* <label> Thursday Hours of Operation: </label> */}
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Thursday Hours of Operation"
+                            name='hours'
                             type='text'
                             onChange={thursSet}
                             value={thursday_hours}>
@@ -218,8 +238,11 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        <label> Friday Hours</label>
-                        <input name='hours'
+                        {/* <label> Friday Hours of Operation: </label> */}
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Friday Hours of Operation"
+                            name='hours'
                             type='text'
                             onChange={friSet}
                             value={friday_hours}>
@@ -227,8 +250,11 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        <label> Saturday Hours</label>
-                        <input name='hours'
+                        {/* <label> Saturday Hours of Operation: </label> */}
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Saturday Hours of Operation"
+                            name='hours'
                             type='text'
                             onChange={satSet}
                             value={saturday_hours}>
@@ -236,8 +262,11 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        <label> Sunday Hours</label>
-                        <input name='hours'
+                        {/* <label> Sunday Hours of Operation: </label> */}
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Sunday Hours of Operation"
+                            name='hours'
                             type='text'
                             onChange={sunSet}
                             value={sunday_hours}>
@@ -247,50 +276,61 @@ const BusinessForm = () => {
                 </div>
 
 
-                <div>
-                    <label>Email</label>
+                <div className="business-form-email-input-div">
+                    {/* <label>Email: </label> */}
                     <input
+                        placeholder="Email Address"
+                        className="business-form-email-input"
                         name='email'
                         type='text'
                         onChange={emailSet}
                         value={email}></input>
                 </div>
-                <div>
-                    <label>Address</label>
+                <div className="business-form-address-input-div">
+                    {/* <label>Address: </label> */}
                     <input
+                        placeholder="Business Address"
+                        className="business-form-address-input"
                         name='address'
                         type='text'
                         onChange={addressSet}
                         value={address}></input>
                 </div>
-                <div>
-                    <label>Phone Number</label>
+                <div className="business-form-phone-input-div">
+                    {/* <label>Phone Number: </label> */}
                     <input
+                        placeholder="Business Phone Number"
+                        className="business-form-phone-input"
                         name='phone_number'
                         type='text'
                         onChange={phoneSet}
                         value={phone_number}></input>
                 </div>
-                <div>
-                    <label>Business Website</label>
+                <div className="business-form-website-input-div">
+                    {/* <label>Business Website: </label> */}
                     <input
+                        placeholder="Business Website Link"
+                        className="business-form-website-input"
                         type='text'
                         name='business_website'
                         onChange={websiteSet}
                         value={business_website}>
                     </input>
                 </div>
-                <div>
-                    <label>Tags</label>
+                <div className="business-form-tags-input-div">
+                    {/* <label>Tags: </label> */}
                     <input
+                        placeholder="Tags related to Business"
+                        className="business-form-tags-input"
                         type='text'
                         name='tags'
                         onChange={tagSet}
                         value={tags}>
                     </input>
                 </div>
-                <div>
+                <div className="create-business-form-two-button-div">
                     <button className='business-form-button-submit' type="submit">Submit Business</button>
+                    <button className='business-form-button-close' onClick={onClose}>Close</button>
                 </div>
             </form>
         </div>

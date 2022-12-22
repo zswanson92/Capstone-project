@@ -1,0 +1,44 @@
+.main-nav-bar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 5em;
+}
+
+.navbar-primary-ul{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+    gap: 15em;
+    list-style: none;
+}
+
+.home-navlink{
+    text-decoration: none;
+}
+
+.login-navlink{
+    text-decoration: none;
+}
+
+.signup-navlink{
+    text-decoration: none;
+}
+
+.createbusiness-navlink{
+    text-decoration: none;
+}
+
+.viewbusiness-navlink{
+    text-decoration: none;
+}
+
+/* .navbar-img-div{
+    height: 2em;
+    width: 2em;
+} */
+.home-logo-img{
+    height: 5em;
+    width: 5em;
+}

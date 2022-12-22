@@ -1,0 +1,140 @@
+.main-business-form-div{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+}
+
+.business-form-name-input-div{
+    padding-bottom: .8em;
+}
+
+.business-form-name-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 20em;
+    border-radius: 3px;
+}
+
+.business-form-previmg-input-div{
+    padding-bottom: .8em;
+}
+
+.business-form-previmg-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 25em;
+    border-radius: 3px;
+}
+
+.business-form-hours-inputs-div{
+    padding-bottom: 1.5em;
+}
+
+.business-form-hours-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 19em;
+    border-radius: 3px;
+}
+
+.business-form-email-input-div{
+    padding-bottom: .8em;
+}
+
+.business-form-email-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+}
+
+.business-form-address-input-div{
+    padding-bottom: .8em;
+}
+
+.business-form-phone-input-div{
+    padding-bottom: .8em;
+}
+
+.business-form-website-input-div{
+    padding-bottom: .8em;
+}
+
+.business-form-tags-input-div{
+    padding-bottom: .8em;
+}
+
+.business-form-address-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 20em;
+    border-radius: 3px;
+}
+
+.business-form-phone-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+}
+
+.business-form-website-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 20em;
+    border-radius: 3px;
+}
+
+.business-form-tags-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+}
+
+.create-business-form-two-button-div{
+    display: flex;
+    gap: 5em;
+}
+
+.business-form-button-submit{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 4em;
+    width: 10em;
+}
+
+.business-form-button-close{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 4em;
+    width: 7em;
+}
+
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    width:200px;
+}
+
+.custom-select select {
+    /* display: none; hide original SELECT element: */
+}
+
+/* .select-selected {
+    background-color: DodgerBlue;
+} */
+select {
+    width: 200px;
+    min-height: 35px;
+    /* background:#c41200; */
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: .5em;
+}
