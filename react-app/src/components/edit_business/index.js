@@ -128,10 +128,73 @@ const EditBusiness = () => {
         history.push(`/businesses/${businessId}`)
     }
 
+    function isValidPhone(phone) {
+        let i = 0
+        phone.split('').forEach((letter) => {
+            if (letter === '-') {
+                i++
+            }
+        })
+        return i
+    }
+
+    function isValidTime(time){
+        let regexp = /^[aAmMpP0-9---:]+$/;
+        return regexp.test(time)
+    }
+
+    function isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+    }
+
+    useEffect(() => {
+        const err = [];
+        if (name.length < 6) {
+            err.push("Business name must be at least 6 characters long.")
+        }
+        if (isValidPhone(phone_number) !== 2 || phone_number.length !== 12) {
+            err.push("Must be a valid formatted phone number.")
+        }
+        if(address.length < 15){
+            err.push("Address must be at least 15 characters long")
+        }
+        if(monday_hours.length !== 15 || (!isValidTime(monday_hours))){
+            err.push("Must be valid time format for Monday.")
+        }
+        if(tuesday_hours.length !== 15 || (!isValidTime(tuesday_hours))){
+            err.push("Must be valid time format for Tuesday.")
+        }
+        if(wednesday_hours.length !== 15 || (!isValidTime(wednesday_hours))){
+            err.push("Must be valid time format for Wednesday.")
+        }
+        if(thursday_hours.length !== 15 || (!isValidTime(thursday_hours))){
+            err.push("Must be valid time format for Thursday.")
+        }
+        if(friday_hours.length !== 15 || (!isValidTime(friday_hours))){
+            err.push("Must be valid time format for Friday.")
+        }
+        if(saturday_hours.length !== 15 || (!isValidTime(saturday_hours))){
+            err.push("Must be valid time format for Saturday.")
+        }
+        if(sunday_hours.length !== 15 || (!isValidTime(sunday_hours))){
+            err.push("Must be valid time format for Sunday.")
+        }
+        if(!isValidEmail(email)){
+            err.push("Must be a valid Email address")
+        }
+        setErrors(err)
+    }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
+        thursday_hours, friday_hours, saturday_hours, sunday_hours, email])
+
     return (
         <div className="edit-business-main-container">
             <div className="first-inner-container-edit-business">
                 <form onSubmit={onSubmit}>
+                <ul>
+                    {errors?.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
                     <h1>Edit Business Information</h1>
                     <div className="edit-business-name-div">
                         {/* <label>Name</label> */}
@@ -154,7 +217,7 @@ const EditBusiness = () => {
                         ></input>
                     </div>
                     <div className="edit-business-hours-div">
-                    <p>Business Hours &#40;Please enter in xx:xx am/pm - yy:yy am/pm format&#41;</p>
+                    <p>Business Hours &#40;Please enter in xx:xx am/pm-yy:yy am/pm format&#41;</p>
                         <div>
                             {/* <label> Monday Hours</label> */}
                             <input

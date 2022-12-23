@@ -20,7 +20,6 @@ class Business(db.Model):
     friday_hours = db.Column(db.Text, nullable=False)
     saturday_hours = db.Column(db.Text, nullable=False)
     sunday_hours = db.Column(db.Text, nullable=False)
-    # contact_info = db.Column(db.Text, nullable=False)
     email = db.Column(db.Text, nullable=False)
     address = db.Column(db.Text, nullable=False)
     phone_number = db.Column(db.Text, nullable=False)
@@ -28,6 +27,9 @@ class Business(db.Model):
     tags = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+    business_review = db.relationship("Review", back_populates="review_business", cascade="all, delete-orphan")
+    business_user = db.relationship("User", back_populates="user_business")
 
 
     def to_dict(self):
@@ -44,10 +46,11 @@ class Business(db.Model):
             'friday_hours': self.friday_hours,
             'saturday_hours': self.saturday_hours,
             'sunday_hours': self.sunday_hours,
-            # 'contact_info': self.contact_info,
             'phone_number': self.phone_number,
             'email': self.email,
             'address': self.address,
             'business_website': self.business_website,
-            'tags': self.tags
+            'tags': self.tags,
+            "user_business": self.question_user.to_dict(),
+            "reviews": [review.to_dict() for review in self.business_review]
         }

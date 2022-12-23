@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/business";
 import './BusinessDetails.css'
+import ReviewFormButton from "../review_form/ReviewForm";
 
 
 const BusinessDetails = () => {
@@ -82,17 +83,20 @@ const BusinessDetails = () => {
                         <h2 className="contact-info-h2">Contact Information</h2>
                         <hr />
                         <ul className="contact-info-ul">
-                            <li>Website: <Link>{businessInfoObj?.business_website}</Link></li>
+                            <li className="contact-info-li">Website: <Link>{businessInfoObj?.business_website}</Link></li>
                             <hr className="contact-info-ul-hr" />
-                            <li>Phone Number: {businessInfoObj?.phone_number}</li>
+                            <li className="contact-info-li">Phone Number: {businessInfoObj?.phone_number}</li>
                             <hr className="contact-info-ul-hr" />
-                            <li>Email Address: {businessInfoObj?.email}</li>
+                            <li className="contact-info-li">Email Address: {businessInfoObj?.email}</li>
                             <hr className="contact-info-ul-hr" />
-                            <li>Address: {businessInfoObj?.address}</li>
+                            <li className="contact-info-li">Address: {businessInfoObj?.address}</li>
                         </ul>
                     </div>
 
                 </div>
+            </div>
+            <div>
+                {sessionUser && (sessionUser.id !== businessInfoObj?.user_id ? <ReviewFormButton /> : null)}
             </div>
             <div className="services-div">
                 <h2>TESTING SERVICES</h2>
