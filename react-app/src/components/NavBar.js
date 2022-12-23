@@ -69,7 +69,7 @@ const NavBar = () => {
       {sessionUser ?
         <div>
           {/* <LogoutButton /> */}
-          <button className='profile-dropdown-button' onClick={openMenu}><i class="fa-regular fa-circle-user fa-2x"></i></button>
+          <button className='profile-dropdown-button' onClick={openMenu}><i className="fa-regular fa-circle-user fa-2x"></i></button>
         </div> : ""}
 
       {showMenu && (sessionUser ?

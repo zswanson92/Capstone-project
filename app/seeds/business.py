@@ -18,6 +18,8 @@ def seed_businesses():
         address="1234 nerd ave. Dallas, TX, 75319",
         phone_number="499-321-4459",
         business_website="www.wingstop.com",
+        about_us="we sell lots of chicken in a lot of different flavors!, also delicious fries and drinks",
+        price=4,
         tags="chicken, fries, sauce"
     )
     biz2 = Business(
@@ -35,6 +37,8 @@ def seed_businesses():
         address="56745 freezing st. Anchorage, AK, 58376",
         phone_number="221-135-3559",
         business_website="www.burgerking.com",
+        about_us="we sell lots food that is very fast, and we hate mcdonalds",
+        price=1,
         tags="chicken, fries, burgers, milkshakes"
     )
     biz3 = Business(
@@ -52,6 +56,8 @@ def seed_businesses():
         address="3126 NE 82nd Ave, Portland, OR 97220",
         phone_number="503-252-1343",
         business_website="elburritoloco3.com",
+        about_us="we make delicious authentic Mexican food at a reasonable price and offer a drive through!",
+        price=2,
         tags="burritos, tacos, traditional, tortas, nachos"
     )
 

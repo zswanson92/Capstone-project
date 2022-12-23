@@ -12,7 +12,7 @@ const addReview = (review) => ({
 export const createReviewThunk = (payload) => async dispatch => {
     const { businessId, user_id, body, stars, image_url } = payload
 
-    const response = await fetch(`/api/businesses/${businessId}/reviews`, {
+    const response = await fetch(`/api/create/${businessId}/reviews`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

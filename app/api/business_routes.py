@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Business, db
-from app.forms import BusinessForm
+from app.models import Business, db, Review
+from app.forms import BusinessForm, ReviewForm
 
 business_routes = Blueprint("businesses", __name__)
 create_business_route = Blueprint("create", __name__)
@@ -49,13 +49,7 @@ def add_business():
 
 
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print("THIS IS FORM DATA!!", form.data['services'][0].Service)
-    # print("THIS IS FORM DATA!!", form.data['services'])
-    # print("@@@@@@@@@@@@", request.form.getlist('myform'))
-    # if request.method == 'POST':
-    #     as_dict = request.form.getlist('myform')
-    #     print(request)
-    # abcd = form.data['services']
+
 
 
     if form.validate_on_submit():
@@ -64,7 +58,6 @@ def add_business():
             user_id = current_user.id,
             name = form.data['name'],
             preview_img = form.data['preview_img'],
-            # services = form.data['services'],
             monday_hours = form.data['monday_hours'],
             tuesday_hours = form.data['tuesday_hours'],
             wednesday_hours = form.data['wednesday_hours'],
@@ -76,6 +69,8 @@ def add_business():
             email = form.data['email'],
             address = form.data['address'],
             business_website = form.data['business_website'],
+            about_us = form.data['about_us'],
+            price = form.data['price'],
             tags = form.data['tags']
         )
 
@@ -99,7 +94,6 @@ def edit_business(id):
     if form.validate_on_submit():
         new_name = form.data['name']
         new_preview_img = form.data['preview_img']
-        # services = form.data['services'],
         new_monday_hours = form.data['monday_hours']
         new_tuesday_hours = form.data['tuesday_hours']
         new_wednesday_hours = form.data['wednesday_hours']
@@ -111,6 +105,8 @@ def edit_business(id):
         new_email = form.data['email']
         new_address = form.data['address']
         new_business_website = form.data['business_website']
+        new_about_us = form.data['about_us']
+        new_price = form.data['price']
         new_tags = form.data['tags']
 
         business.name = new_name
@@ -126,8 +122,39 @@ def edit_business(id):
         business.email = new_email
         business.address = new_address
         business.business_website = new_business_website
+        business.about_us = new_about_us
+        business.price = new_price
         business.tags = new_tags
 
         db.session.commit()
     print("ERRORS!!!!!!", form.errors)
     return business.to_dict()
+
+
+@create_business_route.route("/<int:id>/reviews", methods=["POST"])
+@login_required
+def add_review(id):
+
+    """
+    Presents a form to create a review
+    """
+
+    form = ReviewForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        review = Review(
+        business_id = id,
+        user_id = current_user.id,
+        body = form.data['body'],
+        stars = form.data['stars'],
+        image_url = form.data['image_url']
+        )
+
+        db.session.add(review)
+        db.session.commit()
+        return review.to_dict()
+
+    print("REVIEW FORM ERRORS!@!", form.errors)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

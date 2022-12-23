@@ -12,7 +12,6 @@ class Business(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = db.Column(db.Text, nullable=False)
     preview_img = db.Column(db.Text, nullable=True)
-    # services = db.Column(db.Text, nullable=True)
     monday_hours = db.Column(db.Text, nullable=False)
     tuesday_hours = db.Column(db.Text, nullable=False)
     wednesday_hours = db.Column(db.Text, nullable=False)
@@ -24,6 +23,8 @@ class Business(db.Model):
     address = db.Column(db.Text, nullable=False)
     phone_number = db.Column(db.Text, nullable=False)
     business_website = db.Column(db.Text, nullable=True)
+    about_us = db.Column(db.Text, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
     tags = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
@@ -38,7 +39,6 @@ class Business(db.Model):
             'user_id': self.user_id,
             'name': self.name,
             'preview_img': self.preview_img,
-            # 'services': self.services,
             'monday_hours': self.monday_hours,
             'tuesday_hours': self.tuesday_hours,
             'wednesday_hours': self.wednesday_hours,
@@ -50,7 +50,9 @@ class Business(db.Model):
             'email': self.email,
             'address': self.address,
             'business_website': self.business_website,
+            'about_us': self.about_us,
+            'price': self.price,
             'tags': self.tags,
-            "user_business": self.question_user.to_dict(),
+            "user_business": self.business_user.to_dict(),
             "reviews": [review.to_dict() for review in self.business_review]
         }

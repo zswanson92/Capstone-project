@@ -83,7 +83,7 @@ const BusinessDetails = () => {
                         <h2 className="contact-info-h2">Contact Information</h2>
                         <hr />
                         <ul className="contact-info-ul">
-                            <li className="contact-info-li">Website: <Link>{businessInfoObj?.business_website}</Link></li>
+                            <li className="contact-info-li">Website: <Link to={`/`}>{businessInfoObj?.business_website}</Link></li>
                             <hr className="contact-info-ul-hr" />
                             <li className="contact-info-li">Phone Number: {businessInfoObj?.phone_number}</li>
                             <hr className="contact-info-ul-hr" />

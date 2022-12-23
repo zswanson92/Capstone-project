@@ -38,6 +38,8 @@ const BusinessForm = () => {
     const [address, setAddress] = useState("");
     const [phone_number, setPhone] = useState("");
     const [business_website, setWebsite] = useState("");
+    const [about_us, setAbout] = useState("");
+    const [price, setPrice] = useState("");
     const [tags, setTags] = useState("");
     const [errors, setErrors] = useState([]);
 
@@ -104,7 +106,7 @@ const BusinessForm = () => {
         const createdBusiness = {
             name, preview_img,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-            saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
+            saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags
         };
 
         await dispatch(createBusinessThunk(createdBusiness));
@@ -151,22 +153,22 @@ const BusinessForm = () => {
             err.push("Must be valid time format for Monday.")
         }
         if(tuesday_hours.length !== 15 || (!isValidTime(tuesday_hours))){
-            err.push("Must be valid time format for Monday.")
+            err.push("Must be valid time format for Tuesday.")
         }
         if(wednesday_hours.length !== 15 || (!isValidTime(wednesday_hours))){
-            err.push("Must be valid time format for Monday.")
+            err.push("Must be valid time format for Wednesday.")
         }
         if(thursday_hours.length !== 15 || (!isValidTime(thursday_hours))){
-            err.push("Must be valid time format for Monday.")
+            err.push("Must be valid time format for Thursday.")
         }
         if(friday_hours.length !== 15 || (!isValidTime(friday_hours))){
-            err.push("Must be valid time format for Monday.")
+            err.push("Must be valid time format for Friday.")
         }
         if(saturday_hours.length !== 15 || (!isValidTime(saturday_hours))){
-            err.push("Must be valid time format for Monday.")
+            err.push("Must be valid time format for Saturday.")
         }
         if(sunday_hours.length !== 15 || (!isValidTime(sunday_hours))){
-            err.push("Must be valid time format for Monday.")
+            err.push("Must be valid time format for Sunday.")
         }
         if(!isValidEmail(email)){
             err.push("Must be a valid Email address")
@@ -349,6 +351,28 @@ const BusinessForm = () => {
                         name='business_website'
                         onChange={websiteSet}
                         value={business_website}>
+                    </input>
+                </div>
+                <div className="business-form-aboutus-input-div">
+                    <textarea
+                        required={true}
+                        placeholder="Description of your business and offerings."
+                        className="business-form-aboutus-input"
+                        type='text'
+                        name='aboutus'
+                        onChange={(e) => setAbout(e.target.value)}
+                        value={about_us}>
+                    </textarea>
+                </div>
+                <div className="business-form-price-input-div">
+                    <input
+                        required={true}
+                        placeholder="1-5 $'s"
+                        className="business-form-price-input"
+                        type='number'
+                        name='price'
+                        onChange={(e) => setPrice(e.target.value)}
+                        value={price}>
                     </input>
                 </div>
                 <div className="business-form-tags-input-div">

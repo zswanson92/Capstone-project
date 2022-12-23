@@ -37,7 +37,7 @@ export const editBusinessThunk = (payload) => async dispatch => {
     const {
         businessId, name, preview_img,
         monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-        saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
+        saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags
     } = payload
     // console.log("@@@@@@@@@@", businessId)
     const response = await fetch(`/api/businesses/${businessId}`, {
@@ -47,7 +47,7 @@ export const editBusinessThunk = (payload) => async dispatch => {
         },
         body: JSON.stringify({ name, preview_img,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-            saturday_hours, sunday_hours, email, address, phone_number, business_website, tags })
+            saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags })
     })
 
     if(response.ok){
@@ -99,7 +99,7 @@ export const createBusinessThunk = (payload) => async dispatch => {
     const {
         name, preview_img,
         monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-        saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
+        saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags
     } = payload
     const response = await fetch('/api/create', {
         method: 'POST',
@@ -108,7 +108,7 @@ export const createBusinessThunk = (payload) => async dispatch => {
         },
         body: JSON.stringify({ name, preview_img,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-            saturday_hours, sunday_hours, email, address, phone_number, business_website, tags })
+            saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags })
     })
 
     if(response.ok){
@@ -120,7 +120,9 @@ export const createBusinessThunk = (payload) => async dispatch => {
 
 
 
-const initialState = { businesses: {}, reviews: {} }
+// const initialState = { businesses: {}, reviews: {} }
+const initialState = { businesses: {} }
+
 const businessReducer = (state = initialState, action) => {
     switch(action.type) {
 
@@ -144,6 +146,8 @@ const businessReducer = (state = initialState, action) => {
                         address: action.payload.address,
                         phone: action.payload.phone_number,
                         website: action.payload.business_website,
+                        about_us: action.payload.about_us,
+                        price: action.payload.price,
                         tags: action.payload.tags
                     }
                 }
