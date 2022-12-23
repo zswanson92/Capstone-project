@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+// import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 import logo from '../assets/yelp_logo.PNG'
 import { useSelector, useDispatch } from 'react-redux';

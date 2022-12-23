@@ -10,20 +10,17 @@ const BusinessForm = () => {
     const dispatch = useDispatch();
     let history = useHistory();
 
-    const data = [
-        { Service: "Dine-In" },
-        { Service: "Take Out" },
-        { Service: "In House Delivery" },
-        { Service: "Pick Up" },
-        { Service: "App Based Delivery" },
-        { Service: "Takes Reservations" },
-        { Service: "Vegan Friendly" },
-        { Service: "Gluten Free Friendly" },
-        { Service: "Keto Friendly" },
-    ]
-
-    // console.log(data)
-
+    // const data = [
+    //     { Service: "Dine-In" },
+    //     { Service: "Take Out" },
+    //     { Service: "In House Delivery" },
+    //     { Service: "Pick Up" },
+    //     { Service: "App Based Delivery" },
+    //     { Service: "Takes Reservations" },
+    //     { Service: "Vegan Friendly" },
+    //     { Service: "Gluten Free Friendly" },
+    //     { Service: "Keto Friendly" },
+    // ]
 
     const [name, setName] = useState("");
     const [preview_img, setPreviewImage] = useState("");
@@ -43,7 +40,6 @@ const BusinessForm = () => {
     const [business_website, setWebsite] = useState("");
     const [tags, setTags] = useState("");
     const [errors, setErrors] = useState([]);
-    // const [submitted, setSubmitted] = useState(false);
 
     const nameSet = (e) => {
         setName(e.target.value)
@@ -101,31 +97,10 @@ const BusinessForm = () => {
         setTags(e.target.value)
     }
 
-    // function checkAvailability(arr, val) {
-    //     return arr.some((arrVal) => val === arrVal);
-    //   }
 
-
-    // const serviceSet = (e) => {
-        // services.push(e.target.value)
-        // if(checkAvailability(theservices, e.target.value) === false) theservices.push(e.target.value)
-        // setServices(e.target.option)
-        // setServices(e.target.value)
-    // }
-    // "Dine-In", "Take Out", "In House Delivery", "Pick Up", "App Based Delivery", "Takes Reservations", "Vegan Friendly", "Gluten Free Friendly", "Keto Friendly"
-
-    // let services = "";
-    // console.log("!!!!!!!!!", theservices)
-    // const abc = theservices.forEach((item) => {
-    //     services += item + " "
-    // })
-    // console.log("!!!!!!!!!", services)
-
-    // console.log("@@@@@@@", services)
     const onSubmit = async (e) => {
         e.preventDefault();
-        // setSubmitted(true);
-        // if (errors.length > 0) return;
+        if (errors.length > 0) return;
         const createdBusiness = {
             name, preview_img,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
@@ -136,12 +111,69 @@ const BusinessForm = () => {
 
         let path = `/`;
         await history.push(path);
-        // setSubmitted(false);
     };
 
     const onClose = () => {
         history.push('/');
     }
+
+    function isValidPhone(phone) {
+        let i = 0
+        phone.split('').forEach((letter) => {
+            if (letter === '-') {
+                i++
+            }
+        })
+        return i
+    }
+
+    function isValidTime(time){
+        let regexp = /^[aAmMpP0-9---:]+$/;
+        return regexp.test(time)
+    }
+
+    function isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+    }
+
+    useEffect(() => {
+        const err = [];
+        if (name.length < 6) {
+            err.push("Business name must be at least 6 characters long.")
+        }
+        if (isValidPhone(phone_number) !== 2 || phone_number.length !== 12) {
+            err.push("Must be a valid formatted phone number.")
+        }
+        if(address.length < 15){
+            err.push("Address must be at least 15 characters long")
+        }
+        if(monday_hours.length !== 15 || (!isValidTime(monday_hours))){
+            err.push("Must be valid time format for Monday.")
+        }
+        if(tuesday_hours.length !== 15 || (!isValidTime(tuesday_hours))){
+            err.push("Must be valid time format for Monday.")
+        }
+        if(wednesday_hours.length !== 15 || (!isValidTime(wednesday_hours))){
+            err.push("Must be valid time format for Monday.")
+        }
+        if(thursday_hours.length !== 15 || (!isValidTime(thursday_hours))){
+            err.push("Must be valid time format for Monday.")
+        }
+        if(friday_hours.length !== 15 || (!isValidTime(friday_hours))){
+            err.push("Must be valid time format for Monday.")
+        }
+        if(saturday_hours.length !== 15 || (!isValidTime(saturday_hours))){
+            err.push("Must be valid time format for Monday.")
+        }
+        if(sunday_hours.length !== 15 || (!isValidTime(sunday_hours))){
+            err.push("Must be valid time format for Monday.")
+        }
+        if(!isValidEmail(email)){
+            err.push("Must be a valid Email address")
+        }
+        setErrors(err)
+    }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
+        thursday_hours, friday_hours, saturday_hours, sunday_hours, email])
 
 
 
@@ -149,10 +181,15 @@ const BusinessForm = () => {
     return (
         <div className="main-business-form-div">
             <form onSubmit={onSubmit}>
+                <ul>
+                    {errors?.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
                 <h1>Create a New Business</h1>
                 <div className="business-form-name-input-div">
-                    {/* <label>Name: </label> */}
                     <input
+                        required={true}
                         className="business-form-name-input"
                         type='text'
                         name='name'
@@ -161,7 +198,6 @@ const BusinessForm = () => {
                         placeholder="Business Name"></input>
                 </div>
                 <div className="business-form-previmg-input-div">
-                    {/* <label>Preview Image: </label> */}
                     <input
                         placeholder="Preview image link - must be a png or jpg format"
                         className="business-form-previmg-input"
@@ -174,11 +210,11 @@ const BusinessForm = () => {
                 {/* <div className="custom-select">
                     <label className="custom-selector">Services: </label>
                     <select name="services" value={services} onChange={serviceSet}> */}
-                        {/* <input type='radio' value='Dine-In' onClick={serviceSet} />
+                {/* <input type='radio' value='Dine-In' onClick={serviceSet} />
                         <label>Dine-In</label>
                         <input type='radio' value='Take Out' onClick={serviceSet} />
                         <label>Take Out</label> */}
-                        {/* <option value='Take Out'>Take Out</option>
+                {/* <option value='Take Out'>Take Out</option>
                         <option value='In House Delivery'>In House Delivery</option>
                         <option value='Pick Up'>Pick Up</option>
                     </select>
@@ -189,9 +225,9 @@ const BusinessForm = () => {
                 </div> */}
                 <div className="business-form-hours-inputs-div">
                     <div>
-                    <p>Business Hours &#40;Please enter in xx:xx am/pm - yy:yy am/pm format&#41;</p>
-                        {/* <label> Monday Hours of Operation: </label> */}
+                        <p>Business Hours &#40;Please enter in xx:xx am/pm-yy:yy am/pm format&#41;</p>
                         <input
+                            required={true}
                             className="business-form-hours-input"
                             placeholder="Monday Hours of Operation"
                             name='hours'
@@ -202,8 +238,8 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        {/* <label> Tuesday Hours of Operation: </label> */}
                         <input
+                            required={true}
                             className="business-form-hours-input"
                             placeholder="Tuesday Hours of Operation"
                             name='hours'
@@ -214,8 +250,8 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        {/* <label> Wedsnesday Hours of Operation: </label> */}
                         <input
+                            required={true}
                             className="business-form-hours-input"
                             placeholder="Wedsnesday Hours of Operation"
                             name='hours'
@@ -226,8 +262,8 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        {/* <label> Thursday Hours of Operation: </label> */}
                         <input
+                            required={true}
                             className="business-form-hours-input"
                             placeholder="Thursday Hours of Operation"
                             name='hours'
@@ -238,8 +274,8 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        {/* <label> Friday Hours of Operation: </label> */}
                         <input
+                            required={true}
                             className="business-form-hours-input"
                             placeholder="Friday Hours of Operation"
                             name='hours'
@@ -250,8 +286,8 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        {/* <label> Saturday Hours of Operation: </label> */}
                         <input
+                            required={true}
                             className="business-form-hours-input"
                             placeholder="Saturday Hours of Operation"
                             name='hours'
@@ -262,8 +298,8 @@ const BusinessForm = () => {
                         </input>
                     </div>
                     <div>
-                        {/* <label> Sunday Hours of Operation: </label> */}
                         <input
+                            required={true}
                             className="business-form-hours-input"
                             placeholder="Sunday Hours of Operation"
                             name='hours'
@@ -274,11 +310,9 @@ const BusinessForm = () => {
                         </input>
                     </div>
                 </div>
-
-
                 <div className="business-form-email-input-div">
-                    {/* <label>Email: </label> */}
                     <input
+                        required={true}
                         placeholder="Email Address"
                         className="business-form-email-input"
                         name='email'
@@ -287,8 +321,8 @@ const BusinessForm = () => {
                         value={email}></input>
                 </div>
                 <div className="business-form-address-input-div">
-                    {/* <label>Address: </label> */}
                     <input
+                        required={true}
                         placeholder="Business Address"
                         className="business-form-address-input"
                         name='address'
@@ -297,8 +331,8 @@ const BusinessForm = () => {
                         value={address}></input>
                 </div>
                 <div className="business-form-phone-input-div">
-                    {/* <label>Phone Number: </label> */}
                     <input
+                        required={true}
                         placeholder="Business Phone Number"
                         className="business-form-phone-input"
                         name='phone_number'
@@ -307,8 +341,8 @@ const BusinessForm = () => {
                         value={phone_number}></input>
                 </div>
                 <div className="business-form-website-input-div">
-                    {/* <label>Business Website: </label> */}
                     <input
+                        required={true}
                         placeholder="Business Website Link"
                         className="business-form-website-input"
                         type='text'
@@ -318,7 +352,6 @@ const BusinessForm = () => {
                     </input>
                 </div>
                 <div className="business-form-tags-input-div">
-                    {/* <label>Tags: </label> */}
                     <input
                         placeholder="Tags related to Business"
                         className="business-form-tags-input"
@@ -329,7 +362,7 @@ const BusinessForm = () => {
                     </input>
                 </div>
                 <div className="create-business-form-two-button-div">
-                    <button className='business-form-button-submit' type="submit">Submit Business</button>
+                    {errors.length ? "" : <button className='business-form-button-submit' type="submit">Submit Business</button>}
                     <button className='business-form-button-close' onClick={onClose}>Close</button>
                 </div>
             </form>
