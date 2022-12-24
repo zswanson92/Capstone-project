@@ -15,17 +15,26 @@ const EditBusiness = () => {
     const [name, setName] = useState(currentBiz?.name);
     const [preview_img, setPreviewImage] = useState(currentBiz?.preview_img);
     // const [services, setServices] = useState("");
-    const [monday_hours, setMonHours] = useState(currentBiz?.monday_hours);
-    const [tuesday_hours, setTuesHours] = useState(currentBiz?.tuesday_hours);
-    const [wednesday_hours, setWedsHours] = useState(currentBiz?.wednesday_hours);
-    const [thursday_hours, setThursHours] = useState(currentBiz?.thursday_hours);
-    const [friday_hours, setFriHours] = useState(currentBiz?.friday_hours);
-    const [saturday_hours, setSatHours] = useState(currentBiz?.saturday_hours);
-    const [sunday_hours, setSunHours] = useState(currentBiz?.sunday_hours);
+    const [monday_hours, setMonHours] = useState(currentBiz?.monday_hours.split(',')[0]);
+    const [monday_hours_two, setMonHoursTwo] = useState(currentBiz?.monday_hours.split(',')[1]);
+    const [tuesday_hours, setTuesHours] = useState(currentBiz?.tuesday_hours.split(',')[0]);
+    const [tuesday_hours_two, setTuesHoursTwo] = useState(currentBiz?.tuesday_hours.split(',')[1]);
+    const [wednesday_hours, setWedsHours] = useState(currentBiz?.wednesday_hours.split(',')[0]);
+    const [wednesday_hours_two, setWedsHoursTwo] = useState(currentBiz?.wednesday_hours.split(',')[1]);
+    const [thursday_hours, setThursHours] = useState(currentBiz?.thursday_hours.split(',')[0]);
+    const [thursday_hours_two, setThursHoursTwo] = useState(currentBiz?.thursday_hours.split(',')[1]);
+    const [friday_hours, setFriHours] = useState(currentBiz?.friday_hours.split(',')[0]);
+    const [friday_hours_two, setFriHoursTwo] = useState(currentBiz?.friday_hours.split(',')[1]);
+    const [saturday_hours, setSatHours] = useState(currentBiz?.saturday_hours.split(',')[0]);
+    const [saturday_hours_two, setSatHoursTwo] = useState(currentBiz?.saturday_hours.split(',')[1]);
+    const [sunday_hours, setSunHours] = useState(currentBiz?.sunday_hours.split(',')[0]);
+    const [sunday_hours_two, setSunHoursTwo] = useState(currentBiz?.sunday_hours.split(',')[1]);
     const [email, setEmail] = useState(currentBiz?.email);
     const [address, setAddress] = useState(currentBiz?.address);
     const [phone_number, setPhone] = useState(currentBiz?.phone_number);
     const [business_website, setWebsite] = useState(currentBiz?.business_website);
+    const [about_us, setAbout] = useState(currentBiz?.about_us);
+    const [price, setPrice] = useState(currentBiz?.price);
     const [tags, setTags] = useState(currentBiz?.tags);
     const [errors, setErrors] = useState([]);
 
@@ -110,11 +119,30 @@ const EditBusiness = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        // const updatedBusiness = {
+        //     businessId, name, preview_img,
+        //     monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
+        //     saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
+        // }
         const updatedBusiness = {
-            businessId, name, preview_img,
-            monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-            saturday_hours, sunday_hours, email, address, phone_number, business_website, tags
-        }
+            businessId,
+            name,
+            preview_img,
+            monday_hours: monday_hours + "," + monday_hours_two,
+            tuesday_hours: tuesday_hours + "," + tuesday_hours_two,
+            wednesday_hours: wednesday_hours + "," + wednesday_hours_two,
+            thursday_hours: thursday_hours + "," + thursday_hours_two,
+            friday_hours: friday_hours + "," + friday_hours_two,
+            saturday_hours: saturday_hours + "," + saturday_hours_two,
+            sunday_hours: sunday_hours + "," + sunday_hours_two,
+            email,
+            address,
+            phone_number,
+            business_website,
+            about_us,
+            price,
+            tags
+        };
 
         await dispatch(editBusinessThunk(updatedBusiness))
         history.push(`/businesses/${businessId}`)
@@ -197,7 +225,6 @@ const EditBusiness = () => {
                 </ul>
                     <h1>Edit Business Information</h1>
                     <div className="edit-business-name-div">
-                        {/* <label>Name</label> */}
                         <input
                             className="business-form-name-input"
                             type='text'
@@ -207,7 +234,6 @@ const EditBusiness = () => {
                             placeholder="Business Name"></input>
                     </div>
                     <div className="edit-business-previewimage-div">
-                        {/* <label>Preview Image</label> */}
                         <input
                             className="business-form-previmg-input"
                             type='text'
@@ -217,9 +243,8 @@ const EditBusiness = () => {
                         ></input>
                     </div>
                     <div className="edit-business-hours-div">
-                    <p>Business Hours &#40;Please enter in xx:xx am/pm-yy:yy am/pm format&#41;</p>
+                    <p>Business Hours &#40;Must enter in xx:xxam/pm-yy:yyam/pm format&#41;</p>
                         <div>
-                            {/* <label> Monday Hours</label> */}
                             <input
                                 className="business-form-hours-input"
                                 name='hours'
@@ -229,8 +254,17 @@ const EditBusiness = () => {
 
                             </input>
                         </div>
+                        <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Monday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setMonHoursTwo(e.target.value)}
+                            value={monday_hours_two}>
+                        </input>
+                    </div>
                         <div>
-                            {/* <label> Tuesday Hours</label> */}
                             <input
                                 className="business-form-hours-input"
                                 name='hours'
@@ -240,8 +274,17 @@ const EditBusiness = () => {
 
                             </input>
                         </div>
+                        <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Tuesday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setTuesHoursTwo(e.target.value)}
+                            value={tuesday_hours_two}>
+                        </input>
+                    </div>
                         <div>
-                            {/* <label> Wedsnesday Hours</label> */}
                             <input
                                 className="business-form-hours-input"
                                 name='hours'
@@ -251,8 +294,17 @@ const EditBusiness = () => {
 
                             </input>
                         </div>
+                        <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Wednesday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setWedsHoursTwo(e.target.value)}
+                            value={wednesday_hours_two}>
+                        </input>
+                    </div>
                         <div>
-                            {/* <label> Thursday Hours</label> */}
                             <input
                                 className="business-form-hours-input"
                                 name='hours'
@@ -262,8 +314,17 @@ const EditBusiness = () => {
 
                             </input>
                         </div>
+                        <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Thursday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setThursHoursTwo(e.target.value)}
+                            value={thursday_hours_two}>
+                        </input>
+                    </div>
                         <div>
-                            {/* <label> Friday Hours</label> */}
                             <input
                                 className="business-form-hours-input"
                                 name='hours'
@@ -273,8 +334,17 @@ const EditBusiness = () => {
 
                             </input>
                         </div>
+                        <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Friday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setFriHoursTwo(e.target.value)}
+                            value={friday_hours_two}>
+                        </input>
+                    </div>
                         <div>
-                            {/* <label> Saturday Hours</label> */}
                             <input
                                 className="business-form-hours-input"
                                 name='hours'
@@ -284,8 +354,17 @@ const EditBusiness = () => {
 
                             </input>
                         </div>
+                        <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Saturday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setSatHoursTwo(e.target.value)}
+                            value={saturday_hours_two}>
+                        </input>
+                    </div>
                         <div>
-                        {/* <label> Sunday Hours</label> */}
                         <input
                             className="business-form-hours-input"
                             name='hours'
@@ -294,10 +373,19 @@ const EditBusiness = () => {
                             value={sunday_hours}>
                         </input>
                     </div>
+                    <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Sunday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setSunHoursTwo(e.target.value)}
+                            value={sunday_hours_two}>
+                        </input>
+                    </div>
                     </div>
 
                     <div className="edit-business-email-div">
-                        {/* <label>Email</label> */}
                         <input
                             className="business-form-email-input"
                             name='email'
@@ -306,7 +394,6 @@ const EditBusiness = () => {
                             value={email}></input>
                     </div>
                     <div className="edit-business-address-div">
-                        {/* <label>Address</label> */}
                         <input
                             className="business-form-address-input"
                             name='address'
@@ -315,7 +402,6 @@ const EditBusiness = () => {
                             value={address}></input>
                     </div>
                     <div className="edit-business-phone-div">
-                        {/* <label>Phone Number</label> */}
                         <input
                             className="business-form-phone-input"
                             name='phone_number'
@@ -324,7 +410,6 @@ const EditBusiness = () => {
                             value={phone_number}></input>
                     </div>
                     <div className="edit-business-website-div">
-                        {/* <label>Business Website</label> */}
                         <input
                             className="business-form-website-input"
                             type='text'
@@ -333,8 +418,29 @@ const EditBusiness = () => {
                             value={business_website}>
                         </input>
                     </div>
+                    <div className="edit-business-aboutus-input-div">
+                    <textarea
+                        required={true}
+                        placeholder="Description of your business and offerings."
+                        className="business-form-aboutus-input"
+                        type='text'
+                        name='aboutus'
+                        onChange={(e) => setAbout(e.target.value)}
+                        value={about_us}>
+                    </textarea>
+                </div>
+                <div className="edit-business-price-input-div">
+                    <input
+                        required={true}
+                        placeholder="1-5 $'s"
+                        className="business-form-price-input"
+                        type='number'
+                        name='price'
+                        onChange={(e) => setPrice(e.target.value)}
+                        value={price}>
+                    </input>
+                </div>
                     <div className="edit-business-tags-div">
-                        {/* <label>Tags</label> */}
                         <input
                             className="business-form-tags-input"
                             type='text'

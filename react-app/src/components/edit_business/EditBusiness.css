@@ -68,3 +68,26 @@
     height: 4em;
     width: 10em;
 }
+
+.edit-business-price-input-div{
+    padding-bottom: .8em;
+}
+
+.edit-business-aboutus-input-div{
+    padding-bottom: .8em;
+}
+
+.business-form-aboutus-input{
+    resize: none;
+    padding: .3em;
+    height: 8em;
+    width: 25em;
+    border-radius: 8px;
+}
+
+.business-form-price-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+}

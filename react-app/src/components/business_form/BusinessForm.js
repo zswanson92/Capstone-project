@@ -3,37 +3,29 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./BusinessForm.css";
 import { createBusinessThunk } from "../../store/business";
-// import Multiselect from 'multiselect-react-dropdown';
 
 
 const BusinessForm = () => {
     const dispatch = useDispatch();
     let history = useHistory();
 
-    // const data = [
-    //     { Service: "Dine-In" },
-    //     { Service: "Take Out" },
-    //     { Service: "In House Delivery" },
-    //     { Service: "Pick Up" },
-    //     { Service: "App Based Delivery" },
-    //     { Service: "Takes Reservations" },
-    //     { Service: "Vegan Friendly" },
-    //     { Service: "Gluten Free Friendly" },
-    //     { Service: "Keto Friendly" },
-    // ]
 
     const [name, setName] = useState("");
     const [preview_img, setPreviewImage] = useState("");
-    // const [services, setServices] = useState("");
-    // const [services, setServices] = useState(data);
     const [monday_hours, setMonHours] = useState("");
-    // const [selectValue, setSelectValue] = useState("")
+    const [monday_hours_two, setMonHoursTwo] = useState("");
     const [tuesday_hours, setTuesHours] = useState("");
+    const [tuesday_hours_two, setTuesHoursTwo] = useState("");
     const [wednesday_hours, setWedsHours] = useState("");
+    const [wednesday_hours_two, setWedsHoursTwo] = useState("");
     const [thursday_hours, setThursHours] = useState("");
+    const [thursday_hours_two, setThursHoursTwo] = useState("");
     const [friday_hours, setFriHours] = useState("");
+    const [friday_hours_two, setFriHoursTwo] = useState("");
     const [saturday_hours, setSatHours] = useState("");
+    const [saturday_hours_two, setSatHoursTwo] = useState("");
     const [sunday_hours, setSunHours] = useState("");
+    const [sunday_hours_two, setSunHoursTwo] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [phone_number, setPhone] = useState("");
@@ -104,14 +96,27 @@ const BusinessForm = () => {
         e.preventDefault();
         if (errors.length > 0) return;
         const createdBusiness = {
-            name, preview_img,
-            monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-            saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags
+            name,
+            preview_img,
+            monday_hours: monday_hours + "," + monday_hours_two,
+            tuesday_hours: tuesday_hours + "," + tuesday_hours_two,
+            wednesday_hours: wednesday_hours + "," + wednesday_hours_two,
+            thursday_hours: thursday_hours + "," + thursday_hours_two,
+            friday_hours: friday_hours + "," + friday_hours_two,
+            saturday_hours: saturday_hours + "," + saturday_hours_two,
+            sunday_hours: sunday_hours + "," + sunday_hours_two,
+            email,
+            address,
+            phone_number,
+            business_website,
+            about_us,
+            price,
+            tags
         };
 
         await dispatch(createBusinessThunk(createdBusiness));
 
-        let path = `/`;
+        let path = `/businesses`;
         await history.push(path);
     };
 
@@ -173,9 +178,15 @@ const BusinessForm = () => {
         if(!isValidEmail(email)){
             err.push("Must be a valid Email address")
         }
+        if(price < 1 || price > 5){
+            err.push("Price must be between 1 and 5.")
+        }
+        if(about_us.length < 30){
+            err.push("Description must be longer.")
+        }
         setErrors(err)
     }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
-        thursday_hours, friday_hours, saturday_hours, sunday_hours, email])
+        thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us])
 
 
 
@@ -209,25 +220,9 @@ const BusinessForm = () => {
                         value={preview_img}
                     ></input>
                 </div>
-                {/* <div className="custom-select">
-                    <label className="custom-selector">Services: </label>
-                    <select name="services" value={services} onChange={serviceSet}> */}
-                {/* <input type='radio' value='Dine-In' onClick={serviceSet} />
-                        <label>Dine-In</label>
-                        <input type='radio' value='Take Out' onClick={serviceSet} />
-                        <label>Take Out</label> */}
-                {/* <option value='Take Out'>Take Out</option>
-                        <option value='In House Delivery'>In House Delivery</option>
-                        <option value='Pick Up'>Pick Up</option>
-                    </select>
-                </div> */}
-                {/* <div>
-                    <label>Services Offered</label>
-                    <Multiselect options={services} displayValue="Service" onChange={serviceSet} />
-                </div> */}
                 <div className="business-form-hours-inputs-div">
                     <div>
-                        <p>Business Hours &#40;Please enter in xx:xx am/pm-yy:yy am/pm format&#41;</p>
+                        <p>Business Hours &#40;Must enter in xx:xx am/pm-yy:yy am/pm format&#41;</p>
                         <input
                             required={true}
                             className="business-form-hours-input"
@@ -239,9 +234,18 @@ const BusinessForm = () => {
 
                         </input>
                     </div>
+                    <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Monday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setMonHoursTwo(e.target.value)}
+                            value={monday_hours_two}>
+                        </input>
+                    </div>
                     <div>
                         <input
-                            required={true}
                             className="business-form-hours-input"
                             placeholder="Tuesday Hours of Operation"
                             name='hours'
@@ -249,6 +253,16 @@ const BusinessForm = () => {
                             onChange={tuesSet}
                             value={tuesday_hours}>
 
+                        </input>
+                    </div>
+                    <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Tuesday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setTuesHoursTwo(e.target.value)}
+                            value={tuesday_hours_two}>
                         </input>
                     </div>
                     <div>
@@ -263,6 +277,16 @@ const BusinessForm = () => {
 
                         </input>
                     </div>
+                    <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Wednesday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setWedsHoursTwo(e.target.value)}
+                            value={wednesday_hours_two}>
+                        </input>
+                    </div>
                     <div>
                         <input
                             required={true}
@@ -273,6 +297,16 @@ const BusinessForm = () => {
                             onChange={thursSet}
                             value={thursday_hours}>
 
+                        </input>
+                    </div>
+                    <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Thursday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setThursHoursTwo(e.target.value)}
+                            value={thursday_hours_two}>
                         </input>
                     </div>
                     <div>
@@ -287,6 +321,16 @@ const BusinessForm = () => {
 
                         </input>
                     </div>
+                    <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Friday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setFriHoursTwo(e.target.value)}
+                            value={friday_hours_two}>
+                        </input>
+                    </div>
                     <div>
                         <input
                             required={true}
@@ -299,6 +343,16 @@ const BusinessForm = () => {
 
                         </input>
                     </div>
+                    <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Saturday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setSatHoursTwo(e.target.value)}
+                            value={saturday_hours_two}>
+                        </input>
+                    </div>
                     <div>
                         <input
                             required={true}
@@ -309,6 +363,16 @@ const BusinessForm = () => {
                             onChange={sunSet}
                             value={sunday_hours}>
 
+                        </input>
+                    </div>
+                    <div className="secondary-hours-input-div">
+                        <input
+                            className="business-form-hours-input"
+                            placeholder="Secondary Sunday Hours of Operation"
+                            name='hours'
+                            type='text'
+                            onChange={(e) => setSunHoursTwo(e.target.value)}
+                            value={sunday_hours_two}>
                         </input>
                     </div>
                 </div>
@@ -367,7 +431,7 @@ const BusinessForm = () => {
                 <div className="business-form-price-input-div">
                     <input
                         required={true}
-                        placeholder="1-5 $'s"
+                        placeholder="1-5 (Will be represented by $'s)"
                         className="business-form-price-input"
                         type='number'
                         name='price'

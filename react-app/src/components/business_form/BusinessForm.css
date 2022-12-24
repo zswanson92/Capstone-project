@@ -117,24 +117,29 @@
     width: 7em;
 }
 
-.custom-select {
-    position: relative;
-    font-family: Arial;
-    width:200px;
+.business-form-aboutus-input-div{
+    padding-bottom: .8em;
 }
 
-.custom-select select {
-    /* display: none; hide original SELECT element: */
+.business-form-price-input-div{
+    padding-bottom: .8em;
 }
 
-/* .select-selected {
-    background-color: DodgerBlue;
-} */
-select {
-    width: 200px;
-    min-height: 35px;
-    /* background:#c41200; */
+.business-form-aboutus-input{
+    resize: none;
+    padding: .3em;
+    height: 8em;
+    width: 25em;
+    border-radius: 8px;
+}
+
+.business-form-price-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
     border-radius: 3px;
-    border: 2px solid black;
-    padding: .5em;
+}
+
+.secondary-hours-input-div{
+    padding-bottom: .8em;
 }
