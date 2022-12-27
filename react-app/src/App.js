@@ -12,6 +12,7 @@ import BusinessForm from './components/business_form/BusinessForm';
 import Businesses from './components/Businesses';
 import BusinessDetails from './components/BusinessDetails';
 import EditBusiness from './components/edit_business';
+import EditReviewButton from './components/edit_review/EditReview';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,6 +56,9 @@ function App() {
         </Route>
         <Route exact={true} path="/edit/businesses/:businessId">
           <EditBusiness />
+        </Route>
+        <Route exact={true} path="/edit/:businessId/reviews/:reviewId">
+          <EditReviewButton />
         </Route>
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>

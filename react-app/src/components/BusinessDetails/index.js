@@ -144,6 +144,20 @@ const BusinessDetails = () => {
                 <p>{businessInfoObj?.services}</p>
             </div>
             <div className="where-reviews-will-go-probably">
+                <div className="testing-review-location">
+                    {businessInfoObj?.reviews.map((reviewObj) => {
+                        return (
+                                <>
+                                <li key={reviewObj.id}>"{reviewObj?.body}"</li>
+                                {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
+                                <Link to={`/edit/${businessId}/reviews/${reviewObj.id}`}>Edit Review</Link>
+                                ) : null}
+                                </>
+                        )
+                        // {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
+                    })}
+
+                </div>
             </div>
         </>
     )
