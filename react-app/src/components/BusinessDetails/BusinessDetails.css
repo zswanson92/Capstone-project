@@ -1,5 +1,5 @@
 .where-reviews-will-go-probably{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     margin-top: 200px;
 }
 
@@ -107,6 +107,14 @@
     /* align-items: flex-end; */
     /* height: 10px; */
     font-weight: bold;
+    margin-top: 15em;
+}
+
+.potential-map-location{
+    display: flex;
+    margin-left: -15em;
+    margin-top: 5em;
+    padding-right: 100px;
 }
 
 .hours-li{

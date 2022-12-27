@@ -31,7 +31,7 @@ const ReviewFormButton = () => {
         await dispatch(createReviewThunk(newReview));
         setBody('');
         setReviewForm(false)
-        history.push('/')
+        history.push(`/businesses/${businessId}`)
         // return await dispatch(getBusinessByIdThunk(businessId))
     };
 
@@ -47,8 +47,8 @@ const ReviewFormButton = () => {
           </ul>
           )}
           <div>
-          <label>
-            Review:
+          {/* <label>
+            Review: */}
             <br></br>
             <textarea
               className="create-review-inputfield"
@@ -58,9 +58,10 @@ const ReviewFormButton = () => {
               onChange={(e) => setBody(e.target.value)}
               required
             ></textarea>
-          </label>
+          {/* </label> */}
           <label className="stars-label">
             <input
+            className="stars-create-review-input"
             type="number"
             min="1"
             max="5"
@@ -69,15 +70,16 @@ const ReviewFormButton = () => {
             required/>
             Stars (1-5)
           </label>
-          <label>
-            Image URL:
+          {/* <label>
+            Image URL: */}
             <input
+            className="image-url-create-review-input"
             type="text"
             value={image_url}
             onChange={(e) => setImage_url(e.target.value)}
-            placeholder="Optional Image"
+            placeholder="Optional Image URL"
             />
-          </label>
+          {/* </label> */}
           <button type="submit" className="submitreview-button">Submit Review</button>
           <button onClick={() => setReviewForm(false)} className='discardreviewform-button'>Close Form</button>
           </div>

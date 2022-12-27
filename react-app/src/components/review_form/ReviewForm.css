@@ -1,0 +1,35 @@
+.createreview-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 4em;
+    width: 10em;
+    margin-left: 15em;
+    /* display: flex; */
+}
+
+.create-review-inputfield{
+    resize: none;
+    padding: .3em;
+    height: 8em;
+    width: 25em;
+    border-radius: 8px;
+    margin-left: 15em;
+    margin-right: 2em;
+}
+
+.stars-create-review-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 2em;
+    border-radius: 3px;
+}
+
+.image-url-create-review-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+}

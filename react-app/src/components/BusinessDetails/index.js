@@ -35,33 +35,42 @@ const BusinessDetails = () => {
     let satCheck = false
     let sunCheck = false
 
-    if(businessInfoObj?.monday_hours.split('').includes(',')){
+    if (businessInfoObj?.monday_hours.split('').includes(',')) {
         monCheck = true
     }
 
-    if(businessInfoObj?.tuesday_hours.split('').includes(',')){
+    if (businessInfoObj?.tuesday_hours.split('').includes(',')) {
         tuesCheck = true
     }
 
-    if(businessInfoObj?.wednesday_hours.split('').includes(',')){
+    if (businessInfoObj?.wednesday_hours.split('').includes(',')) {
         wedsCheck = true
     }
 
-    if(businessInfoObj?.thursday_hours.split('').includes(',')){
+    if (businessInfoObj?.thursday_hours.split('').includes(',')) {
         thursCheck = true
     }
 
-    if(businessInfoObj?.friday_hours.split('').includes(',')){
+    if (businessInfoObj?.friday_hours.split('').includes(',')) {
         friCheck = true
     }
 
-    if(businessInfoObj?.saturday_hours.split('').includes(',')){
+    if (businessInfoObj?.saturday_hours.split('').includes(',')) {
         satCheck = true
     }
 
-    if(businessInfoObj?.sunday_hours.split('').includes(',')){
+    if (businessInfoObj?.sunday_hours.split('').includes(',')) {
         sunCheck = true
     }
+
+    // const currReview = Object.values(businessInfoObj)
+    // console.log("THIS IS CURRREVIEW", currReview)
+
+
+    const reviewFilter = businessInfoObj?.reviews.filter(obj => {
+        return obj.user_id === sessionUser.id
+    })
+    console.log("THIS IS REVFILTER !!!!!", reviewFilter)
 
 
     return (
@@ -99,9 +108,16 @@ const BusinessDetails = () => {
                 <div className="contact-info-div">
                     <h2>Location & Hours</h2>
                     <div className="daily-hours-div">
+
                         <div className="address-single-div">
                             {businessInfoObj?.address}
                         </div>
+                        {/* <div className="potential-map-location">
+                            This is where Map will be!
+                        </div> */}
+                        <span className="potential-map-location">
+                            This is where Map will be!
+                        </span>
                         <ul className="contact-info-ul">
                             {monCheck ? <li className="hours-li">Mon&nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon&nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
                             {monCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li> : ""}
@@ -136,23 +152,26 @@ const BusinessDetails = () => {
 
                 </div>
             </div>
-            <div>
-                {sessionUser && (sessionUser.id !== businessInfoObj?.user_id ? <ReviewFormButton /> : null)}
-            </div>
-            <div className="services-div">
+
+            {/* <div className="services-div">
                 <h2>TESTING SERVICES</h2>
                 <p>{businessInfoObj?.services}</p>
-            </div>
+            </div> */}
+
             <div className="where-reviews-will-go-probably">
+                <div className="leave-review-button-div">
+                    {sessionUser && reviewFilter?.length < 1 && (sessionUser.id !== businessInfoObj?.user_id ? <ReviewFormButton /> : null)}
+                    {/* {console.log("@@@@", businessInfoObj)} */}
+                </div>
                 <div className="testing-review-location">
                     {businessInfoObj?.reviews.map((reviewObj) => {
                         return (
-                                <>
+                            <>
                                 <li key={reviewObj.id}>"{reviewObj?.body}"</li>
                                 {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
-                                <Link to={`/edit/${businessId}/reviews/${reviewObj.id}`}>Edit Review</Link>
+                                    <Link to={`/edit/${businessId}/reviews/${reviewObj.id}`}>Edit Review</Link>
                                 ) : null}
-                                </>
+                            </>
                         )
                         // {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
                     })}

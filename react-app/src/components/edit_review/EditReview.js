@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
 import { editReviewThunk, deleteReviewThunk } from "../../store/review";
 
@@ -16,19 +16,19 @@ const EditReviewButton = () => {
     const [errors, setErrors] = useState([])
 
 
-    const currBusiness = useSelector(state => {
-        return state.businessReducer.businesses
-    })
+    // const currBusiness = useSelector(state => {
+    //     return state.businessReducer.businesses
+    // })
 
     // console.log("THIS IS CURRBUSINESS", currBusiness)
 
-    const currReview = Object.values(currBusiness)[0]?.reviews
+    // const currReview = Object.values(currBusiness)[0]?.reviews
     // console.log("THIS IS CURRREVIEW", currReview)
 
 
-    const reviewFilter = currReview?.filter(obj => {
-        return obj.id === +reviewId
-    })
+    // const reviewFilter = currReview?.filter(obj => {
+    //     return obj.id === +reviewId
+    // })
 
 
     useEffect(() => {
