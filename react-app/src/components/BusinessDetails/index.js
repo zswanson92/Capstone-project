@@ -1,5 +1,5 @@
 import { useParams, useHistory, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/business";
 import './BusinessDetails.css'
@@ -11,12 +11,14 @@ const BusinessDetails = () => {
     const dispatch = useDispatch();
     const { businessId } = useParams();
 
+    const [users, setUsers] = useState([]);
+
     const sessionUser = useSelector((state) => state.session.user);
 
     const businessInfoObj = useSelector((state) => {
         return state.businessReducer.businesses[businessId];
     });
-    // console.log("@@@@@@@", businessInfoObj)
+    console.log("@@@@@@@", businessInfoObj)
 
     let newArr = []
     let sum = 0
@@ -80,12 +82,67 @@ const BusinessDetails = () => {
     // const editLinkButton = () => {
     //     return history.push(`/edit/${businessId}/reviews/${reviewObj.id}`)
     // }
+    // let date = new Date()
+    // let time = date.toLocaleTimeString().split(":").splice(0, 2).join(':');
+    // console.log("@@@@@@@@@", time)
+
+    // console.log("!!!!!!!!!!!!!!!", businessInfoObj?.monday_hours.split(',')[0].split('-')[1])
+    // const testTestTest = businessInfoObj?.monday_hours.split(',')[0].split('-')[1].split('').splice(0, 5).join('')
+    // console.log("????????????????", testTestTest)
+    // console.log("????????????????", testTestTest < time)
 
 
     const reviewFilter = businessInfoObj?.reviews.filter(obj => {
         return obj.user_id === sessionUser?.id
     })
-    console.log("THIS IS REVFILTER !!!!!", reviewFilter)
+    // console.log("THIS IS REVFILTER !!!!!", reviewFilter)
+
+    const starNumChecker = (stars) => {
+        let abc;
+
+        if(stars === 1){
+            abc = "⭐"
+        }
+        if(stars === 2){
+            abc = "⭐⭐"
+        }
+        if(stars === 3){
+            abc = "⭐⭐⭐"
+        }
+        if(stars === 4){
+            abc = "⭐⭐⭐⭐"
+        }
+        if(stars === 5){
+            abc = "⭐⭐⭐⭐⭐"
+        }
+        return abc
+    }
+
+    useEffect(() => {
+        async function fetchData() {
+          const response = await fetch(`/api/users/`);
+          const responseData = await response.json();
+          setUsers(responseData.users);
+        }
+        fetchData();
+      }, []);
+
+
+    //   const userComponents = (randomid) => users.filter((user) => {
+    //         if(user.id === randomid){
+    //             return user.fullname
+    //         }
+    //   });
+    let abcdef = []
+    let xyz = []
+     const userComponents = users.map((user) => {
+    //   <li key={user.id}>
+        abcdef.push(user.id + user.fullname)
+        // xyz.push(abcdef)
+    //   </li>
+  });
+    console.log(abcdef)
+    console.log(xyz)
 
 
     return (
@@ -184,7 +241,12 @@ const BusinessDetails = () => {
                     {businessInfoObj?.reviews.map((reviewObj) => {
                         return (
                             <>
-                                <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; {reviewObj?.stars}⭐</li>
+                                <div className="move-around-reviews-li-div">
+                                {/* {userComponents(reviewObj.user_id)} */}
+                                <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
+                                <li className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</li>
+                                <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; </li>
+                                </div>
                                 {reviewObj?.image_url ? <li className="business-details-reviews-li"><img className="review-prev-img" src={reviewObj?.image_url} /></li> : ""}
                                 {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
                                     <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
@@ -193,7 +255,6 @@ const BusinessDetails = () => {
                         )
                         // {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
                     })}
-
                 </div>
             </div>
         </>

@@ -153,12 +153,31 @@
 .business-details-reviews-li{
     padding-bottom: 3em;
     list-style: none;
+    display: flex;
+    justify-content: center;
+    /* width: 20em; */
+    /* margin-left: 20em; */
+}
+
+.business-details-reviews-stars-li{
+    list-style: none;
+    padding-bottom: 2em;
 }
 
 .testing-review-location{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 10em;
+    width: 45em;
+    margin-left: 30em;
+}
+
+.move-around-reviews-li-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* width: 45em; */
 }
 
 .edit-review-link-business-details{
@@ -179,10 +198,16 @@
     border: none;
     height: 2.5em;
     width: 8em;
-    margin-bottom: 1em;
+    margin-bottom: 3em;
+
 }
 
 .review-prev-img{
     height: 6em;
     width: 6em;
+}
+
+.reviewer-name-p{
+    font-weight: bold;
+    font-size: 18px;
 }

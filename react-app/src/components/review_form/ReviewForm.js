@@ -196,7 +196,7 @@ const ReviewFormButton = () => {
               </div>
             </div>
           </form>
-        </div> : (<button onClick={() => setReviewForm(true)} className='createreview-button'> ⭐ Leave a Review </button>)}
+        </div> : (<button onClick={() => setReviewForm(true)} className='createreview-button'> ⭐ Write a Review </button>)}
     </>
   );
 }
