@@ -1,0 +1,71 @@
+.edit-review-container-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 15em;
+}
+
+.edit-review-text-area{
+    resize: none;
+    padding: .3em;
+    height: 8em;
+    width: 25em;
+    border-radius: 8px;
+    margin-bottom: 2em;
+}
+
+.stars-edit-review-input-div{
+    margin-bottom: 2em;
+}
+
+.image-url-edit-review-input{
+    margin-bottom: 4em;
+    padding: .3em;
+    height: 1.2em;
+    width: 25em;
+    border-radius: 3px;
+}
+
+.submit-edited-review-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 3em;
+    width: 12em;
+}
+
+.delete-edited-review-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 3em;
+    width: 9em;
+}
+
+.return-button-edit-review{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 3em;
+    width: 12em;
+}
+
+.edit-review-button-duo{
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    /* margin-right: 3em; */
+}
+
+.edit-review-input-divs-container{
+    margin-left: 3.3em;
+}
+
+.edit-review-ul-errors{
+    margin-left: 3.3em;
+}

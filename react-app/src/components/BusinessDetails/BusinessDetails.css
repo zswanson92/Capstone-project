@@ -129,3 +129,20 @@
 /* .contact-info-li{
     margin-right: 5em;
 } */
+.leave-review-button-div{
+    /* display: flex; */
+    /* justify-content: center; */
+    margin-bottom: 4em;
+    margin-top: -4em;
+}
+
+.business-details-reviews-li{
+    padding-bottom: 3em;
+    list-style: none;
+}
+
+.testing-review-location{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

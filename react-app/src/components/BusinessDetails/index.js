@@ -68,7 +68,7 @@ const BusinessDetails = () => {
 
 
     const reviewFilter = businessInfoObj?.reviews.filter(obj => {
-        return obj.user_id === sessionUser.id
+        return obj.user_id === sessionUser?.id
     })
     console.log("THIS IS REVFILTER !!!!!", reviewFilter)
 
@@ -167,7 +167,7 @@ const BusinessDetails = () => {
                     {businessInfoObj?.reviews.map((reviewObj) => {
                         return (
                             <>
-                                <li key={reviewObj.id}>"{reviewObj?.body}"</li>
+                                <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; {reviewObj.stars}⭐</li>
                                 {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
                                     <Link to={`/edit/${businessId}/reviews/${reviewObj.id}`}>Edit Review</Link>
                                 ) : null}
