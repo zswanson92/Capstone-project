@@ -16,6 +16,18 @@ const BusinessDetails = () => {
     const businessInfoObj = useSelector((state) => {
         return state.businessReducer.businesses[businessId];
     });
+    // console.log("@@@@@@@", businessInfoObj)
+
+    let newArr = []
+    let sum = 0
+
+    const eachReviewStarsArr = businessInfoObj?.reviews.forEach(obj => newArr.push(obj.stars))
+
+    const reviewStarArrReduce = newArr?.reduce((accum, currVal) => accum + currVal, sum)
+
+    const reviewStarAvg = (reviewStarArrReduce / businessInfoObj?.reviews.length).toFixed(2)
+    // console.log("$$$$$$$$$$$", eachReviewStarsArr)
+    // console.log("!!!!!!!!!!!", reviewStarAvg)
 
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId));
@@ -65,6 +77,9 @@ const BusinessDetails = () => {
 
     // const currReview = Object.values(businessInfoObj)
     // console.log("THIS IS CURRREVIEW", currReview)
+    // const editLinkButton = () => {
+    //     return history.push(`/edit/${businessId}/reviews/${reviewObj.id}`)
+    // }
 
 
     const reviewFilter = businessInfoObj?.reviews.filter(obj => {
@@ -103,7 +118,9 @@ const BusinessDetails = () => {
                 </div>
                 <div className="bannerimage" style={{ backgroundImage: `url(${businessInfoObj?.preview_img})` }}>
                     <h1 className="business-name-h1"> {businessInfoObj?.name} </h1>
-                    <h2 className="business-name-h2"> {businessInfoObj?.tags} </h2>
+                    {/* <h2>  </h2> */}
+                    <h2 className="business-name-h2">{reviewStarAvg > 0 ? reviewStarAvg: ""}⭐</h2>
+                    <h2 className="business-name-h2-two"> {businessInfoObj?.tags}  </h2>
                 </div>
                 <div className="contact-info-div">
                     <h2>Location & Hours</h2>
@@ -119,19 +136,19 @@ const BusinessDetails = () => {
                             This is where Map will be!
                         </span>
                         <ul className="contact-info-ul">
-                            {monCheck ? <li className="hours-li">Mon&nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon&nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
+                            {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
                             {monCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li> : ""}
-                            {tuesCheck ? <li className="hours-li">Tue&nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li> : <li className="hours-li">Tue&nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
+                            {tuesCheck ? <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li> : <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
                             {tuesCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[1]}</li> : ""}
-                            {wedsCheck ? <li className="hours-li">Wed&nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[0]}</li> : <li className="hours-li">Wed&nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours}</li>}
+                            {wedsCheck ? <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[0]}</li> : <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours}</li>}
                             {wedsCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[1]}</li> : ""}
-                            {thursCheck ? <li className="hours-li">Thur&nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[0]}</li> : <li className="hours-li">Thur&nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours}</li>}
+                            {thursCheck ? <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[0]}</li> : <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours}</li>}
                             {thursCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[1]}</li> : ""}
-                            {friCheck ? <li className="hours-li">Fri &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[0]}</li> : <li className="hours-li">Fri&nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours}</li>}
+                            {friCheck ? <li className="hours-li">Fri &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[0]}</li> : <li className="hours-li">Fri  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours}</li>}
                             {friCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[1]}</li> : ""}
-                            {satCheck ? <li className="hours-li">Sat&nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[0]}</li> : <li className="hours-li">Sat&nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours}</li>}
-                            {satCheck ? <li className="hours-li"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[1]}</li> : ""}
-                            {sunCheck ? <li className="hours-li">Sun&nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[0]}</li> : <li className="hours-li">Sun&nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>}
+                            {satCheck ? <li className="hours-li">Sat &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[0]}</li> : <li className="hours-li">Sat  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours}</li>}
+                            {satCheck ? <li className="hours-li"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[1]}</li> : ""}
+                            {sunCheck ? <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[0]}</li> : <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>}
                             {sunCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[1]}</li> : ""}
                             <br></br>
                         </ul>
@@ -140,13 +157,13 @@ const BusinessDetails = () => {
                         <h2 className="contact-info-h2">Contact Information</h2>
                         <hr />
                         <ul className="contact-info-ul">
-                            <li className="contact-info-li">Website: <Link to={`/`}>{businessInfoObj?.business_website}</Link></li>
+                            <li className="contact-info-li"><i class="fa fa-share" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp; <Link to={`/`}>{businessInfoObj?.business_website}</Link></li>
                             <hr className="contact-info-ul-hr" />
-                            <li className="contact-info-li">Phone Number: {businessInfoObj?.phone_number}</li>
+                            <li className="contact-info-li"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp; {businessInfoObj?.phone_number}</li>
                             <hr className="contact-info-ul-hr" />
-                            <li className="contact-info-li">Email Address: {businessInfoObj?.email}</li>
+                            <li className="contact-info-li"><i class="fa fa-envelope-o" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp; {businessInfoObj?.email}</li>
                             <hr className="contact-info-ul-hr" />
-                            <li className="contact-info-li">Address: {businessInfoObj?.address}</li>
+                            <li className="contact-info-li"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp; {businessInfoObj?.address}</li>
                         </ul>
                     </div>
 
@@ -167,9 +184,10 @@ const BusinessDetails = () => {
                     {businessInfoObj?.reviews.map((reviewObj) => {
                         return (
                             <>
-                                <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; {reviewObj.stars}⭐</li>
+                                <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; {reviewObj?.stars}⭐</li>
+                                {reviewObj?.image_url ? <li className="business-details-reviews-li"><img className="review-prev-img" src={reviewObj?.image_url} /></li> : ""}
                                 {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
-                                    <Link to={`/edit/${businessId}/reviews/${reviewObj.id}`}>Edit Review</Link>
+                                    <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
                                 ) : null}
                             </>
                         )

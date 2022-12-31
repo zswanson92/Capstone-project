@@ -29,6 +29,13 @@
     color: white;
 }
 
+.business-name-h2-two{
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-bottom: 5em;
+}
+
 .delete-edit-business-buttons-div{
     display: flex;
     justify-content: center;
@@ -73,6 +80,11 @@
 
 .contact-info-ul{
     list-style: none;
+}
+
+.contact-info-li{
+    padding-right: 1em;
+    font-size: .92em;
 }
 
 .contact-info-h2{
@@ -129,6 +141,8 @@
 /* .contact-info-li{
     margin-right: 5em;
 } */
+
+
 .leave-review-button-div{
     /* display: flex; */
     /* justify-content: center; */
@@ -145,4 +159,30 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.edit-review-link-business-details{
+    /* margin-top: -2em; */
+    text-decoration: none;
+}
+
+.edit-review-link-business-details-div{
+    margin-top: -2em;
+    width: 6em;
+}
+
+.edit-review-link-business-details-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2.5em;
+    width: 8em;
+    margin-bottom: 1em;
+}
+
+.review-prev-img{
+    height: 6em;
+    width: 6em;
 }
