@@ -100,37 +100,58 @@ const BusinessDetails = () => {
     const starNumChecker = (stars) => {
         let abc;
 
-        if(stars === 1){
+        if (stars === 1.00 || (stars > 0 && stars < 2)) {
             abc = "⭐"
         }
-        if(stars === 2){
+        if (stars === 2.00 || (stars > 1 && stars < 3)) {
             abc = "⭐⭐"
         }
-        if(stars === 3){
+        if (stars === 3.00 || (stars > 2 && stars < 4)) {
             abc = "⭐⭐⭐"
         }
-        if(stars === 4){
+        if (stars === 4.00 || (stars > 3 && stars < 5)) {
             abc = "⭐⭐⭐⭐"
         }
-        if(stars === 5){
+        if (stars == 5.00) {
             abc = "⭐⭐⭐⭐⭐"
         }
         return abc
     }
 
+    const dollarNumChecker = (price) => {
+        let dollar;
+
+        if (price === 1) {
+            dollar = "$"
+        }
+        if (price === 2) {
+            dollar = "$$"
+        }
+        if (price === 3) {
+            dollar = "$$$"
+        }
+        if (price === 4) {
+            dollar = "$$$$"
+        }
+        if (price === 5) {
+            dollar = "$$$$$"
+        }
+        return dollar
+    }
+
     useEffect(() => {
         async function fetchData() {
-          const response = await fetch(`/api/users/`);
-          const responseData = await response.json();
-          setUsers(responseData.users);
+            const response = await fetch(`/api/users/`);
+            const responseData = await response.json();
+            setUsers(responseData.users);
         }
         fetchData();
-      }, []);
+    }, []);
 
 
 
     let abcdef = []
-     const userComponents = users?.map((user) => {
+    const userComponents = users?.map((user) => {
         return abcdef.push(user.id + user.fullname)
     });
 
@@ -164,10 +185,13 @@ const BusinessDetails = () => {
 
                 </div>
                 <div className="bannerimage" style={{ backgroundImage: `url(${businessInfoObj?.preview_img})` }}>
-                    <h1 className="business-name-h1"> {businessInfoObj?.name} </h1>
+                    <div className="business-name-h1"> {businessInfoObj?.name} </div>
                     {/* <h2>  </h2> */}
-                    <h2 className="business-name-h2">{reviewStarAvg > 0 ? reviewStarAvg: ""}⭐</h2>
-                    <h2 className="business-name-h2-two"> {businessInfoObj?.tags}  </h2>
+                    <div className="business-name-h2"> {reviewStarAvg > 0 ?
+                        (<p className="business-name-h2">{`Average Rating ${reviewStarAvg}`} • {starNumChecker(reviewStarAvg)} {businessInfoObj?.reviews.length} review(s)</p>)
+                        : ""}</div>
+                    {/* <p></p> */}
+                    <div className="business-name-h2-two">{dollarNumChecker(businessInfoObj?.price)} &nbsp; &nbsp; • &nbsp; &nbsp; {businessInfoObj?.tags}  </div>
                 </div>
                 <div className="contact-info-div">
                     <h2>Location & Hours</h2>
@@ -184,7 +208,7 @@ const BusinessDetails = () => {
                         </span>
                         <ul className="contact-info-ul">
                             <div>
-                            {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
+                                {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
                             </div>
                             {monCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li> : ""}
                             {tuesCheck ? <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li> : <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
@@ -234,10 +258,12 @@ const BusinessDetails = () => {
                         return (
                             <>
                                 <div className="move-around-reviews-li-div">
-                                {/* {userComponents(reviewObj.user_id)} */}
-                                <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
-                                <li className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</li>
-                                <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; </li>
+                                    {/* {userComponents(reviewObj.user_id)} */}
+                                    <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
+                                    {reviewObj ? <p>{reviewObj?.updated_at}</p> : <p>{reviewObj?.created_at}</p>}
+                                    <li className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</li>
+                                    <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; </li>
+                                    {console.log("!!!!!!!!!!!!!!!!", reviewObj)}
                                 </div>
                                 {reviewObj?.image_url ? <li className="business-details-reviews-li"><img className="review-prev-img" src={reviewObj?.image_url} alt="" /></li> : ""}
                                 {sessionUser && (sessionUser.id === reviewObj.user_id) ? (

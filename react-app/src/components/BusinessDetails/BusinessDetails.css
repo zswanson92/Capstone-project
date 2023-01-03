@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
 
 .business-name-h1{
@@ -21,19 +22,24 @@
     display: flex;
     justify-content: center;
     font-size: 50px;
+    font-weight: bold;
 }
 
 .business-name-h2{
     display: flex;
     justify-content: center;
     color: white;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .business-name-h2-two{
     display: flex;
     justify-content: center;
     color: white;
-    margin-bottom: 5em;
+    margin-bottom: 3em;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .delete-edit-business-buttons-div{
@@ -212,5 +218,6 @@
 
 .reviewer-name-p{
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
+    margin-bottom: -10px;
 }

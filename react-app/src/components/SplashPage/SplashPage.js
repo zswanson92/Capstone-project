@@ -51,7 +51,7 @@ const SplashPage = () => {
                 <p className='your-next-rev-text'>Your Next Review Awaits</p>
             </div>
             <div className='mapped-suggest-businesses-div'>
-                {aBusiness.map((business) => {
+                {aBusiness?.map((business) => {
                     return (
                         <Link to={`/businesses/${business.id}`} className='suggested-reviews-links'>
                             <div className='suggested-reviews-div'>

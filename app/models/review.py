@@ -26,5 +26,7 @@ class Review(db.Model):
             "business_id": self.business_id,
             "body": self.body,
             "stars": self.stars,
-            "image_url": self.image_url
+            "image_url": self.image_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
         }
