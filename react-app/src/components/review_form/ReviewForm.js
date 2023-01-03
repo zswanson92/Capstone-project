@@ -43,7 +43,7 @@ const ReviewFormButton = () => {
   const starOneClick = () => {
     if(stars < 2){
     setStarOne(!starOne)
-    setStars(1)
+    setStars(1) // what is this doing
     }
     if(stars === 1){
       setStars(0)

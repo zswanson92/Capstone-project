@@ -36,8 +36,9 @@
 }
 
 .mapped-suggest-businesses-div{
-    display: flex;
+    display: grid;
     justify-content: center;
+    grid-template-columns: auto auto;
     width: 70%;
     /* width: 5em; */
     /* flex-direction: column; */
@@ -51,6 +52,10 @@
     text-decoration: none;
     color: black;
     display: flex;
+}
+
+.suggested-reviews-links:hover{
+    text-decoration: underline;
 }
 
 .suggested-reviews-img{
@@ -103,12 +108,17 @@
     width: 10em;
     height: 10em;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
+    /* margin-top: 3em; */
+}
+
+.text-inside-category-div{
+    padding-bottom: 2em;
 }
 
 .splash-page-category-divs:hover{
-    background-color: yellow;
+    box-shadow: rgba(124, 120, 120, 0.35) 0px 5px 15px;
 }
 
 .main-categories-div{
@@ -122,4 +132,24 @@
 
 .splash-footer{
     background-color: rgb(216, 203, 203);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.splash-github-link{
+    text-decoration: none;
+    color: black;
+    /* padding-top: 20px; */
+}
+
+.splash-logo-img{
+    object-fit: cover;
+    height: 2.5em;
+    width: 2.5em;
+}
+
+.category-div-links{
+    color: black;
+    text-decoration: none;
 }

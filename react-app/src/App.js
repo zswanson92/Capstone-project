@@ -64,6 +64,9 @@ function App() {
         <Route path='/' exact={true} >
           <SplashPage />
         </Route>
+        <Route path='/production'>
+          <h1>Implementation not complete, coming soon.</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

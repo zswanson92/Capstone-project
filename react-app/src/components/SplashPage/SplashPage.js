@@ -3,6 +3,7 @@ import { getAllBusinessesThunk } from '../../store/business';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom'
 import './SplashPage.css'
+import logo from '../../assets/githublogo.png'
 
 const SplashPage = () => {
     const sessionUser = useSelector(state => state.session.user)
@@ -52,7 +53,7 @@ const SplashPage = () => {
             <div className='mapped-suggest-businesses-div'>
                 {aBusiness.map((business) => {
                     return (
-                        <Link className='suggested-reviews-links'>
+                        <Link to={`/businesses/${business.id}`} className='suggested-reviews-links'>
                             <div className='suggested-reviews-div'>
                                 <div className='abcdef-div'><img className='suggested-reviews-img' src={business.preview_img} alt='' /></div>
                                 <div className='agddgaddga-div'>
@@ -77,18 +78,18 @@ const SplashPage = () => {
             <hr className='post-mapped-sugg-business-hr'></hr>
             <h2 className='splash-page-categories-h2'>Categories</h2>
             <div className='main-categories-div'>
-                <div className='splash-page-category-divs'>Restaurants</div>
-                <div className='splash-page-category-divs'>Shopping</div>
-                <div className='splash-page-category-divs'>Nightlife</div>
-                <div className='splash-page-category-divs'>Active Life</div>
-                <div className='splash-page-category-divs'>Beauty & Spas</div>
-                <div className='splash-page-category-divs'>Automotive</div>
-                <div className='splash-page-category-divs'>Home Services</div>
-                <div className='splash-page-category-divs'>More</div>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Restaurants</p> <i class="fa fa-cutlery" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Shopping</p> <i class="fa fa-shopping-cart" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Nightlife</p><i class="fa fa-moon-o" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Active Life</p> <i class="fa fa-bicycle" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Beauty & Spas</p> <i class="fa fa-scissors" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Automotive</p> <i class="fa fa-car" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Home Services</p> <i class="fa fa-home" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>More</p> <i class="fa fa-expand" aria-hidden="true"></i></div></Link>
             </div>
             <footer className='splash-footer'>
-                <p>About</p>
-
+                <p>© 2022 Zelp Corp</p>
+                <a className='splash-github-link' href='https://github.com/zswanson92'> <img src={logo} alt='Logo' className='splash-logo-img'></img> Zack Swanson</a>
             </footer>
         </div>
     )
