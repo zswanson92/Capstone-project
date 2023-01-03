@@ -60,10 +60,30 @@ def seed_businesses():
         price=2,
         tags="burritos, tacos, traditional, tortas, nachos"
     )
+    biz4 = Business(
+        user_id=4,
+        name='Waffle House',
+        preview_img='https://s.hdnux.com/photos/01/23/56/54/21949240/6/ratio3x2_1800.jpg',
+        monday_hours="11:00am-10:59am",
+        tuesday_hours="11:00am-10:59am",
+        wednesday_hours="11:00am-10:59am",
+        thursday_hours="11:00am-10:59am",
+        friday_hours="11:00am-10:59am",
+        saturday_hours="11:00am-10:59am",
+        sunday_hours="11:00am-10:59am",
+        email="wafflez123@waffle.com",
+        address="443 se plaza dr",
+        phone_number="877-393-9901",
+        business_website="wafflehouse.waffle",
+        about_us="We are a 24 hour breakfast chain that offers premium waffles. We've been around since the 70s and work year round to make sure you have access to some great waffles.",
+        price=2,
+        tags="waffles, breakfast, comfort food, 24 hours"
+    )
 
     db.session.add(biz1)
     db.session.add(biz2)
     db.session.add(biz3)
+    db.session.add(biz4)
     db.session.commit()
 
 

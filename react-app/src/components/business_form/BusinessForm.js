@@ -182,7 +182,7 @@ const BusinessForm = () => {
             err.push("Price must be between 1 and 5.")
         }
         if(about_us.length < 30){
-            err.push("Description must be longer.")
+            err.push("Description must be at least 30 characters.")
         }
         setErrors(err)
     }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,

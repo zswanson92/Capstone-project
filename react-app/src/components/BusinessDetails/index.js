@@ -128,21 +128,11 @@ const BusinessDetails = () => {
       }, []);
 
 
-    //   const userComponents = (randomid) => users.filter((user) => {
-    //         if(user.id === randomid){
-    //             return user.fullname
-    //         }
-    //   });
+
     let abcdef = []
-    let xyz = []
      const userComponents = users.map((user) => {
-    //   <li key={user.id}>
-        abcdef.push(user.id + user.fullname)
-        // xyz.push(abcdef)
-    //   </li>
-  });
-    console.log(abcdef)
-    console.log(xyz)
+        return abcdef.push(user.id + user.fullname)
+    });
 
 
     return (
@@ -193,7 +183,9 @@ const BusinessDetails = () => {
                             This is where Map will be!
                         </span>
                         <ul className="contact-info-ul">
+                            <div>
                             {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
+                            </div>
                             {monCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li> : ""}
                             {tuesCheck ? <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li> : <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
                             {tuesCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[1]}</li> : ""}
@@ -214,13 +206,13 @@ const BusinessDetails = () => {
                         <h2 className="contact-info-h2">Contact Information</h2>
                         <hr />
                         <ul className="contact-info-ul">
-                            <li className="contact-info-li"><i class="fa fa-share" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp; <Link to={`/`}>{businessInfoObj?.business_website}</Link></li>
+                            <li className="contact-info-li">  <Link to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i class="fa fa-share" aria-hidden="true"></i></li>
                             <hr className="contact-info-ul-hr" />
-                            <li className="contact-info-li"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp; {businessInfoObj?.phone_number}</li>
+                            <li className="contact-info-li"> {businessInfoObj?.phone_number} &nbsp; &nbsp; &nbsp;  <i class="fa fa-phone" aria-hidden="true"></i></li>
                             <hr className="contact-info-ul-hr" />
-                            <li className="contact-info-li"><i class="fa fa-envelope-o" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp; {businessInfoObj?.email}</li>
+                            <li className="contact-info-li">  {businessInfoObj?.email} &nbsp; &nbsp; &nbsp;  <i class="fa fa-envelope-o" aria-hidden="true"></i></li>
                             <hr className="contact-info-ul-hr" />
-                            <li className="contact-info-li"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; &nbsp; &nbsp; {businessInfoObj?.address}</li>
+                            <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></li>
                         </ul>
                     </div>
 
@@ -247,7 +239,7 @@ const BusinessDetails = () => {
                                 <li className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</li>
                                 <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; </li>
                                 </div>
-                                {reviewObj?.image_url ? <li className="business-details-reviews-li"><img className="review-prev-img" src={reviewObj?.image_url} /></li> : ""}
+                                {reviewObj?.image_url ? <li className="business-details-reviews-li"><img className="review-prev-img" src={reviewObj?.image_url} alt="" /></li> : ""}
                                 {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
                                     <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
                                 ) : null}

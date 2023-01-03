@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "./ReviewForm.css";
 import { createReviewThunk } from "../../store/review";
+import { getBusinessByIdThunk } from "../../store/business";
 
 
 const ReviewFormButton = () => {
@@ -12,7 +13,7 @@ const ReviewFormButton = () => {
   const { businessId } = useParams()
 
   const [body, setBody] = useState("");
-  const [stars, setStars] = useState(1);
+  const [stars, setStars] = useState(0);
   const [image_url, setImage_url] = useState("");
   const [showReviewForm, setReviewForm] = useState(false)
   const [starOne, setStarOne] = useState(false)
@@ -36,8 +37,7 @@ const ReviewFormButton = () => {
     await dispatch(createReviewThunk(newReview));
     setBody('');
     setReviewForm(false)
-    history.push(`/businesses/${businessId}`)
-    // return await dispatch(getBusinessByIdThunk(businessId))
+    await dispatch(getBusinessByIdThunk(businessId))
   };
 
   const starOneClick = () => {
@@ -134,6 +134,19 @@ const ReviewFormButton = () => {
       setStarFour(false)
     }
   }
+
+  useEffect(() => {
+    const err = []
+
+    if(body.length < 10){
+      err.push("Review must be at least 10 characters long.")
+    }
+    if(stars < 1 || stars > 5){
+      err.push("Review rating must be on a 1-5 scale.")
+    }
+
+    setErrors(err)
+  }, [body, stars])
 
   return (
     <>

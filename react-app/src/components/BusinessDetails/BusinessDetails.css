@@ -80,6 +80,9 @@
 
 .contact-info-ul{
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .contact-info-li{
@@ -93,7 +96,7 @@
 }
 
 .contact-info-ul-hr{
-    /* width: 17em; */
+    width: 17.9em;
     /* padding-left: 100px; */
     /* margin-right: 20px; */
     margin-left: -40px;
