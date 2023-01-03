@@ -4,7 +4,7 @@ from app.models import Review, db, User
 from app.forms import ReviewForm
 
 review_routes = Blueprint("reviews", __name__)
-
+edit_route = Blueprint("edit", __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     """

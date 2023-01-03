@@ -13,6 +13,7 @@ import Businesses from './components/Businesses';
 import BusinessDetails from './components/BusinessDetails';
 import EditBusiness from './components/edit_business';
 import EditReviewButton from './components/edit_review/EditReview';
+import SplashPage from './components/SplashPage/SplashPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -61,7 +62,7 @@ function App() {
           <EditReviewButton />
         </Route>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <SplashPage />
         </Route>
       </Switch>
     </BrowserRouter>

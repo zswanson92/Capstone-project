@@ -79,11 +79,71 @@ def seed_businesses():
         price=2,
         tags="waffles, breakfast, comfort food, 24 hours"
     )
+    biz5 = Business(
+        user_id=5,
+        name='Moo-Yah',
+        preview_img='https://tastychomps.com/wp-content/uploads/2018/10/mooyah-10-gift-card-8-6438182-regular.jpg',
+        monday_hours="11:00am-08:00pm",
+        tuesday_hours="11:00am-08:00pm",
+        wednesday_hours="11:00am-08:00pm",
+        thursday_hours="11:00am-08:00pm",
+        friday_hours="11:00am-08:00pm",
+        saturday_hours="11:00am-08:00pm",
+        sunday_hours="11:00am-08:00pm",
+        email="moo@yah.com",
+        address="2700 Richmond Rd Ste. 3, Texarkana, TX 75503",
+        phone_number="903-306-0139",
+        business_website="mooyahburgs.com",
+        about_us="Counter-serve chain for custom burgers, including poultry & veggie versions, plus fries & shakes.",
+        price=3,
+        tags="burgers, fries, shakes, vegetarian options"
+    )
+    biz6 = Business(
+        user_id=6,
+        name='Taste of India Bar & Grill',
+        preview_img='https://txktoday.com/wp-content/uploads/2020/01/TASTE-OF-INDIA.jpg',
+        monday_hours="11:00am-08:00pm",
+        tuesday_hours="11:00am-08:00pm",
+        wednesday_hours="11:00am-08:00pm",
+        thursday_hours="11:00am-08:00pm",
+        friday_hours="11:00am-09:00pm",
+        saturday_hours="11:00am-09:00pm",
+        sunday_hours="11:00am-08:00pm",
+        email="tasteof@india.com",
+        address="4270 St Michael Dr, Texarkana, TX 75503",
+        phone_number="903-255-7834",
+        business_website="tasteofindia.com",
+        about_us="Counter-serve chain for custom burgers, including poultry & veggie versions, plus fries & shakes.",
+        price=4,
+        tags="indian, vegetarian, dine-in, delivery, take out"
+    )
+    biz7 = Business(
+        user_id=1,
+        name='Sonic Drive-In',
+        preview_img='https://hips.hearstapps.com/hmg-prod/images/2-1551729230.png',
+        monday_hours="06:00am-10:00pm",
+        tuesday_hours="06:00am-10:00pm",
+        wednesday_hours="06:00am-10:00pm",
+        thursday_hours="06:00am-10:00pm",
+        friday_hours="06:00am-10:00pm",
+        saturday_hours="06:00am-10:00pm",
+        sunday_hours="07:00am-10:00pm",
+        email="sonicburgies@sonic.com",
+        address="3101 Richmond Rd, Texarkana, TX 75503",
+        phone_number="903-831-4146",
+        business_website="sooonicburger.com",
+        about_us="Fast-food burger & fries joint with an old-school feel, including retro drive-in service.",
+        price=2,
+        tags="burgers, fries, shakes"
+    )
 
     db.session.add(biz1)
     db.session.add(biz2)
     db.session.add(biz3)
     db.session.add(biz4)
+    db.session.add(biz5)
+    db.session.add(biz6)
+    db.session.add(biz7)
     db.session.commit()
 
 

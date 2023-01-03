@@ -36,15 +36,16 @@ const EditReviewButton = () => {
     //     return obj.id === +reviewId
     // })
 
+
     // useEffect(() => {
     //     (async () => {
-    //       const res = await fetch(`/api/businesses/${businessId}`)
+    //       const res = await fetch(`/api/reviews/${reviewId}`)
     //       const data = await res.json()
-    //       setBody(data.body)
     //       setStars(data.stars)
+    //       setBody(data.body)
     //     })()
     //   }, [reviewId])
-
+    // this needs a get review by Id thunk to work
 
     useEffect(() => {
         const err = []
@@ -182,6 +183,7 @@ const EditReviewButton = () => {
     const backRoute = () => {
         return history.push(`/businesses/${businessId}`)
     }
+
 
 
     return (

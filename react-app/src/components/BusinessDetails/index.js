@@ -130,7 +130,7 @@ const BusinessDetails = () => {
 
 
     let abcdef = []
-     const userComponents = users.map((user) => {
+     const userComponents = users?.map((user) => {
         return abcdef.push(user.id + user.fullname)
     });
 

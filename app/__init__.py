@@ -8,7 +8,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.business_routes import business_routes, create_business_route
-from .api.review_routes import review_routes
+from .api.review_routes import review_routes, edit_route
 from .seeds import seed_commands
 from .config import Config
 
@@ -33,6 +33,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(business_routes, url_prefix='/api/businesses')
 app.register_blueprint(create_business_route, url_prefix='/api/create')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
+app.register_blueprint(edit_route, url_prefix='/api/edit/businessId/reviews')
 db.init_app(app)
 Migrate(app, db)
 

@@ -1,0 +1,125 @@
+.main-splashpage-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.splash-header-img{
+    width: 100%;
+    height: 40em;
+    /* margin-bottom: 100px; */
+    image-rendering: -webkit-optimize-contrast;
+    object-fit: cover;
+}
+
+.splash-image-div{
+    /* margin-bottom: -100px; */
+}
+
+.your-next-rev-text{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.next-rev-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.suggested-reviews-div{
+    border: .1px solid gray;
+    border-radius: 5px;
+    display: flex;
+    /* flex-direction: row; */
+    width: 25em;
+}
+
+.mapped-suggest-businesses-div{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    /* width: 5em; */
+    /* flex-direction: column; */
+    /* width: 15em; */
+    gap: 30px;
+    margin-left: 16em;
+
+}
+
+.suggested-reviews-links{
+    text-decoration: none;
+    color: black;
+    display: flex;
+}
+
+.suggested-reviews-img{
+    height: 6em;
+    width: 6em;
+    padding-right: .5em;
+    object-fit: cover
+}
+
+.abcdef-div{
+    /* display: flex; */
+    /* justify-content: flex-end; */
+}
+
+.agddgaddga-div{
+    /* display: flex;
+    justify-content: flex-end; */
+}
+
+.star-buttons-sugg-review{
+    background: none;
+    border: none;
+    /* margin-bottom: 1px; */
+}
+
+.star-buttons-sugg-review:hover{
+    background: yellow;
+}
+
+.sugg-review-business-name{
+    margin-top: -1px;
+    padding-top: 6px;
+}
+
+.post-mapped-sugg-business-hr{
+    margin-top: 3em;
+    width: 100%;
+}
+
+.splash-page-categories-h2{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.splash-page-category-divs{
+    border: .1px solid gray;
+    border-radius: 3px;
+    width: 10em;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-page-category-divs:hover{
+    background-color: yellow;
+}
+
+.main-categories-div{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 50px;
+    row-gap: 50px;
+    margin-bottom: 4em;
+}
+
+.splash-footer{
+    background-color: rgb(216, 203, 203);
+}
