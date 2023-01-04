@@ -64,12 +64,22 @@
     border-radius: 3px;
 }
 
+.falsey-business-form-email-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+    border-color: red;
+}
+
 .business-form-address-input-div{
     padding-bottom: .8em;
 }
 
 .business-form-phone-input-div{
     padding-bottom: .8em;
+    display: flex;
+    flex-direction: column;
 }
 
 .business-form-website-input-div{
@@ -87,11 +97,32 @@
     border-radius: 3px;
 }
 
+.falsey-business-form-address-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 20em;
+    border-radius: 3px;
+    border-color: red;
+}
+
+.phone-num-input-label{
+    padding-bottom: .5em;
+    font-size: 15px;
+}
+
 .business-form-phone-input{
     padding: .3em;
     height: 1.2em;
     width: 15em;
     border-radius: 3px;
+}
+
+.falsey-business-form-phone-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+    border-color: red;
 }
 
 .business-form-website-input{
@@ -149,11 +180,28 @@
     border-radius: 8px;
 }
 
+.falsey-business-form-aboutus-input{
+    resize: none;
+    padding: .3em;
+    height: 8em;
+    width: 25em;
+    border-radius: 8px;
+    border-color: red;
+}
+
 .business-form-price-input{
     padding: .3em;
     height: 1.2em;
     width: 15em;
     border-radius: 3px;
+}
+
+.falsey-business-form-price-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+    border-color: red;
 }
 
 .secondary-hours-input-div{

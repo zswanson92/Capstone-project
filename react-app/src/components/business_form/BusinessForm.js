@@ -126,14 +126,13 @@ const BusinessForm = () => {
 
     function isValidPhone(phone) {
         let i = 0
+        // console.log(phone.split(''))
         phone.split('').forEach((letter) => {
-            if (letter === '-') {
+            if (letter === '-' || letter === '1' || letter === '2' || letter === '3' || letter === '4' || letter === '5' || letter === '6' || letter === '7' || letter === '8' || letter === '9' || letter === '0') {
                 i++
             }
-            if(letter !== 1 || letter !== 2 || letter !== 3 || letter !== 4 || letter !== 5 || letter !== 6 || letter !== 7 || letter !== 8 || letter !== 9 || letter !== 0){
-                i--
-            }
         })
+        // console.log(i)
         return i
     }
 
@@ -268,7 +267,7 @@ const BusinessForm = () => {
                             >
 
                         </input>
-                        {tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Tuesday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -292,7 +291,7 @@ const BusinessForm = () => {
                             value={wednesday_hours}>
 
                         </input>
-                        {weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Wednesday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -315,7 +314,7 @@ const BusinessForm = () => {
                             value={thursday_hours}>
 
                         </input>
-                        {thurs_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {thurs_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Thursday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -338,7 +337,7 @@ const BusinessForm = () => {
                             value={friday_hours}>
 
                         </input>
-                        {fri_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {fri_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Friday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -361,7 +360,7 @@ const BusinessForm = () => {
                             value={saturday_hours}>
 
                         </input>
-                        {sat_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {sat_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Saturday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -384,7 +383,7 @@ const BusinessForm = () => {
                             value={sunday_hours}>
 
                         </input>
-                        {sun_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {sun_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Sunday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -401,7 +400,7 @@ const BusinessForm = () => {
                     <input
                         required={true}
                         placeholder="Email Address"
-                        className="business-form-email-input"
+                        className={!isValidEmail(email) ? "falsey-business-form-email-input" : "business-form-email-input"}
                         name='email'
                         type='text'
                         onChange={emailSet}
@@ -413,7 +412,7 @@ const BusinessForm = () => {
                     <input
                         required={true}
                         placeholder="Business Address"
-                        className="business-form-address-input"
+                        className={address.length < 15 ? "falsey-business-form-address-input" : "business-form-address-input"}
                         name='address'
                         type='text'
                         onChange={addressSet}
@@ -422,15 +421,16 @@ const BusinessForm = () => {
 
                 </div>
                 <div className="business-form-phone-input-div">
+                    <label className="phone-num-input-label">Please enter in "xxx-xxx-xxxx" format.</label>
                     <input
                         required={true}
                         placeholder="Business Phone Number"
-                        className="business-form-phone-input"
+                        className={isValidPhone(phone_number) !== 12 ? "falsey-business-form-phone-input" : "business-form-phone-input"}
                         name='phone_number'
                         type='text'
                         onChange={phoneSet}
                         value={phone_number}></input>
-                        {isValidPhone(phone_number) !== 2 || phone_number.length !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : "" }
+                        {isValidPhone(phone_number) !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : "" }
                 </div>
                 <div className="business-form-website-input-div">
                     <input
@@ -447,7 +447,7 @@ const BusinessForm = () => {
                     <textarea
                         required={true}
                         placeholder="Description of your business and offerings."
-                        className="business-form-aboutus-input"
+                        className={about_us.length < 30 ? "falsey-business-form-aboutus-input" : "business-form-aboutus-input"}
                         type='text'
                         name='aboutus'
                         onChange={(e) => setAbout(e.target.value)}
@@ -459,7 +459,7 @@ const BusinessForm = () => {
                     <input
                         required={true}
                         placeholder="1-5 (Will be represented by $'s)"
-                        className="business-form-price-input"
+                        className={(price < 1 || price > 5) ? "falsey-business-form-price-input" : "business-form-price-input"}
                         type='number'
                         name='price'
                         onChange={(e) => setPrice(e.target.value)}
