@@ -145,12 +145,25 @@ const BusinessForm = () => {
         return /\S+@\S+\.\S+/.test(email);
     }
 
+    function validImageUrl(url){
+        let falseycheck;
+        let lastThree = url.split('').slice(url.length - 3)
+        // console.log(lastThree.join(''))
+        if(lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg'){
+            falseycheck = true
+        } else {
+            falseycheck = false
+        }
+        // console.log(falseycheck)
+        return falseycheck
+    }
+
     useEffect(() => {
         const err = [];
         if (name.length < 6) {
             err.push("Business name must be at least 6 characters long.")
         }
-        if (isValidPhone(phone_number) !== 2 || phone_number.length !== 12) {
+        if (isValidPhone(phone_number) !== 12) {
             err.push("Must be a valid formatted phone number.")
         }
         if(address.length < 15){
@@ -186,10 +199,14 @@ const BusinessForm = () => {
         if(about_us.length < 30){
             err.push("Description must be at least 30 characters.")
         }
+        if(preview_img.length > 0 && !validImageUrl(preview_img)){
+            err.push("must be valid image url")
+        }
         setErrors(err)
     }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
-        thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us])
+        thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us, preview_img])
 
+    // console.log(errors)
 
     let mon_falsey_check = (monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))
     // console.log(mon_falsey_check)
@@ -230,6 +247,7 @@ const BusinessForm = () => {
                         onChange={imageSet}
                         value={preview_img}
                     ></input>
+                    {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""}
                 </div>
                 <div className="business-form-hours-inputs-div">
                     <div>
