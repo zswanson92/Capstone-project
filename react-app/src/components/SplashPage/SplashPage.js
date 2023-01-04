@@ -15,7 +15,7 @@ const SplashPage = () => {
 
     const aBusiness = Object.values(businessesObj.businessReducer.businesses)
 
-    console.log(aBusiness)
+    // console.log(aBusiness)
 
     let imgs = []
 
@@ -23,7 +23,7 @@ const SplashPage = () => {
         return imgs.push(business.preview_img)
     })
 
-    console.log("@@@@@@@@@@@", imgs)
+    // console.log("@@@@@@@@@@@", imgs)
 
     useEffect(() => {
         dispatch(getAllBusinessesThunk());
