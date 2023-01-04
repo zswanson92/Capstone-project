@@ -136,6 +136,170 @@ def seed_businesses():
         price=2,
         tags="burgers, fries, shakes"
     )
+    biz8 = Business(
+        user_id=2,
+        name='Outback Steakhouse',
+        preview_img='https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Outback_Steakhouse.svg/1200px-Outback_Steakhouse.svg.png',
+        monday_hours="11:00am-02:00pm,04:00PM-11:00PM",
+        tuesday_hours="11:00am-02:00pm,04:00PM-11:00PM",
+        wednesday_hours="11:00am-02:00pm,04:00PM-11:00PM",
+        thursday_hours="11:00am-02:00pm,04:00PM-11:00PM",
+        friday_hours="11:00am-02:00pm,04:00PM-11:00PM",
+        saturday_hours="11:00am-02:00pm,04:00PM-11:00PM",
+        sunday_hours="11:00am-02:00pm,04:00PM-11:00PM",
+        email="sonicburgies@sonic.com",
+        address="3209 Mall Dr, Texarkana, TX 75503",
+        phone_number="903-831-4252",
+        business_website="outbacksteakz.com",
+        about_us="Boisterous Australian-themed chain serving steaks, seafood & other hearty steakhouse fare.",
+        price=4,
+        tags="steaks, fries, appetizers"
+    )
+    biz9 = Business(
+        user_id=3,
+        name='Eden Bubble Tea',
+        preview_img='https://fastly.4sqi.net/img/general/600x600/4501982_sOUOJgvNfBDr1psgDTaKY6O6zFgIRvaz1qzo1Uu9J8o.jpg',
+        monday_hours="11:00am-01:00pm,02:00PM-08:00PM",
+        tuesday_hours="11:00am-01:00pm,02:00PM-08:00PM",
+        wednesday_hours="11:00am-01:00pm,02:00PM-08:00PM",
+        thursday_hours="11:00am-01:00pm,02:00PM-08:00PM",
+        friday_hours="11:00am-01:00pm,02:00PM-08:00PM",
+        saturday_hours="11:00am-01:00pm,02:00PM-09:00PM",
+        sunday_hours="11:00am-01:00pm,02:00PM-07:00PM",
+        email="edenbubz@gmail.com",
+        address="3003 Richmond Rd, Texarkana, TX 75503",
+        phone_number="903-334-7373",
+        business_website="bubblebobaz.com",
+        about_us="Serving delicious bubble teas since 2005. We are also connected to a loaded baked potato restaraunt that is fantastically delicious. We offer the standard fare of bubble teas, milk teas and hot teas. We have popping bubbles, tapioca pearls and all the sorts. We welcome unique flavor combinations and have an enthusiastic staff that is happy to offer flavor recomendations as well!",
+        price=3,
+        tags="boba, potatoes, tea, fusion"
+    )
+    biz10 = Business(
+        user_id=4,
+        name='Screen Door Eastside',
+        preview_img='https://s3-media0.fl.yelpcdn.com/bphoto/ziEim_mPUIUMId3Tl8H3Qw/o.jpg',
+        monday_hours="09:00am-02:30pm,05:00PM-09:00PM",
+        tuesday_hours="09:00am-02:30pm,05:00PM-09:00PM",
+        wednesday_hours="09:00am-02:30pm,05:00PM-09:00PM",
+        thursday_hours="09:00am-02:30pm,05:00PM-09:00PM",
+        friday_hours="09:00am-02:30pm,05:00PM-09:00PM",
+        saturday_hours="09:00am-02:30pm,05:00PM-09:00PM",
+        sunday_hours="09:00am-02:30pm,05:00PM-09:00PM",
+        email="screendoor@aa.io",
+        address="2337 E Burnside St Portland, OR 97214",
+        phone_number="503-406-4665",
+        business_website="screendooreastsiders.com",
+        about_us="""Specialties
+Screen Door presents a revival of regional American cuisine, a survey of the south, from South Carolina Lowcountry cuisine to soul food and Cajun one-pot cookery to the refined Creole and French preparations found in New Orleans. We celebrate Southern cuisine from the quintessential hearty fare to the everyday foods gathered fresh from the garden. At Screen Door we serve natural, local and organic produce and meats everyday. Central to our concept is weaving the rich bounty of local fresh produce found here in the Pacific Northwest into our menu.
+
+History
+Established in 2006.
+
+Screen Door's menu is a survey of the south, from South Carolina Low country cuisine to soul food and Cajun one-pot cookery to the refined Creole and French preparations found in New Orleans. We explore all methodologies and preparations from the historical to the modern and from the rudimentary to the refined. At Screen Door we serve local and organic produce and meats everyday. Screen Door is a part of maintaining the connection between farm and plate and simultaneously presenting a revival of regional American cuisine through the historical methodologies and preparations found in the South.""",
+        price=5,
+        tags="southern, breakfast/brunch, cajun/creole"
+    )
+    biz11 = Business(
+        user_id=5,
+        name="Cheryl's on 12th",
+        preview_img='https://s3-media0.fl.yelpcdn.com/bphoto/oAdgz_VizpyBwLNDjDlCRg/o.jpg',
+        monday_hours="07:00am-04:00pm",
+        tuesday_hours="07:00am-04:00pm",
+        wednesday_hours="07:00am-04:00pm",
+        thursday_hours="07:00am-04:00pm",
+        friday_hours="07:00am-04:00pm",
+        saturday_hours="07:00am-04:00pm",
+        sunday_hours="07:00am-04:00pm",
+        email="cheryl@aol.com",
+        address="1135 SW Washington St Portland, OR 97205",
+        phone_number="503-595-2252",
+        business_website="cherylz.com",
+        about_us="An in house bakery makes fabulous pastries, the marketplace features gourmet imports, local artisan foods, cheese, charcuterie, wine and custom gift baskets and the kitchen prepares fine foods for dine in, take out and catering events of all kinds.",
+        price=3,
+        tags="Breakfast & Brunch, Sandwiches, American (New)"
+    )
+    biz12 = Business(
+        user_id=6,
+        name='Lechon',
+        preview_img='https://s3-media0.fl.yelpcdn.com/bphoto/D024GLSRhP9R7l9DGYQYMg/o.jpg',
+        monday_hours="04:00PM-09:00PM",
+        tuesday_hours="04:00PM-09:00PM",
+        wednesday_hours="04:00PM-09:00PM",
+        thursday_hours="04:00PM-09:00PM",
+        friday_hours="04:00PM-09:00PM",
+        saturday_hours="04:00PM-09:00PM",
+        sunday_hours="Closed",
+        email="lechon@aa.com",
+        address="113 SW Naito Pkwy Portland, OR 97204",
+        phone_number="503-219-9000",
+        business_website="lechonfoodz.com",
+        about_us="Cocktail bar with lovely Tapas and high quality appetizers served during the evenings in downtown Portland.",
+        price=5,
+        tags="Tapas Bars, Cocktail Bars"
+    )
+    biz13 = Business(
+        user_id=1,
+        name='Salt & Straw',
+        preview_img='https://s3-media0.fl.yelpcdn.com/bphoto/z77fmQ_91w_OUC6e7BClqg/o.jpg',
+        monday_hours="11:00am-11:00PM",
+        tuesday_hours="11:00am-11:00PM",
+        wednesday_hours="11:00am-11:00PM",
+        thursday_hours="11:00am-11:00PM",
+        friday_hours="11:00am-11:00PM",
+        saturday_hours="11:00am-11:00PM",
+        sunday_hours="11:00am-11:00PM",
+        email="saltnstrawice@icecream.com",
+        address="838 NW 23rd Ave Portland, OR 97210",
+        phone_number="503-673-6412",
+        business_website="saltnstraw.com",
+        about_us="""Specialties
+We make ice cream that's about more than ice cream. We make ice cream about the ingredients we use and the farms and artisans they come from. About how we cook and freeze and candy and sort and burn and smash and hand-drizzle and ribbon and spoon and sprinkle all of our ingredients in intriguing and unexpected ways.
+
+History
+Established in 2011.
+
+For years, Kim Malek was dreaming about the creation of a community gathering place. One where you could run into neighbors, spend time with family, or treat yourself. A great neighborhood place. The answer was clearly an ice cream shop. Enter Tyler, her cousin who wanted in. But there was a catch: Neither had ever made ice cream before. Luckily, Tyler wasn't afraid of his rookie status. He spent $16 on four used ice cream makers and got to work, spending hours endlessly testing flavor ideas in his own personal Wonka-verse (a.k.a., Kim's basement). Meanwhile, Kim cashed in her savings and bought a cart. And then the two of them turned to their community, asking friends--chefs, chocolatiers, brewers and farmers--for advice, finding inspiration everywhere they looked. And that's how Salt & Straw came to be. Our ice cream gives you a moment of happiness and connection to the community around you.""",
+        price=4,
+        tags="Ice Cream & Frozen Yogurt"
+    )
+    biz14 = Business(
+        user_id=2,
+        name="Pip's Original Doughnuts & Chai",
+        preview_img='https://s3-media0.fl.yelpcdn.com/bphoto/vZljJvbTFCykiqbY4pSiiA/o.jpg',
+        monday_hours="08:00am-02:00pm",
+        tuesday_hours="08:00am-02:00pm",
+        wednesday_hours="08:00am-02:00pm",
+        thursday_hours="08:00am-02:00pm",
+        friday_hours="08:00am-02:00pm",
+        saturday_hours="08:00am-02:00pm",
+        sunday_hours="08:00am-02:00pm",
+        email="pipz@donuts.com",
+        address="4759 NE Fremont St Ste C Portland, OR 97213",
+        phone_number="503-206-8692",
+        business_website="pipz.com",
+        about_us="Locally owned and operated by husband and wife duo Nate and Jamie. Pip's features fresh & hot, made to order doughnuts and house-crafted chai tea lattes, including chai flights. Our goal is simple: Excellence. Simplicity. Kindness. To to provide you with simple, excellent products in a kind, friendly, and welcoming manner, all served up in a warm and cozy space..",
+        price=3,
+        tags="Coffee & Tea, Donuts, American (Traditional)"
+    )
+    biz15 = Business(
+        user_id=3,
+        name='Pine State Biscuits',
+        preview_img='https://s3-media0.fl.yelpcdn.com/bphoto/uWrT5SjC3Y-e7vo-gmh3jQ/o.jpg',
+        monday_hours="08:00am-02:00pm",
+        tuesday_hours="08:00am-02:00pm",
+        wednesday_hours="08:00am-02:00pm",
+        thursday_hours="08:00am-02:00pm",
+        friday_hours="07:00am-03:00pm",
+        saturday_hours="07:00am-03:00pm",
+        sunday_hours="07:00am-03:00pm",
+        email="pinestate@biscuits.com",
+        address="2204 NE Alberta St Portland, OR 97211",
+        phone_number="503-477-6605",
+        business_website="pinebiscuitz.com",
+        about_us="Made from scratch buttermilk biscuits and fixins inspried by our southern roots.",
+        price=2,
+        tags="Southern, Breakfast & Brunch, Sandwiches"
+    )
 
     db.session.add(biz1)
     db.session.add(biz2)
@@ -144,6 +308,14 @@ def seed_businesses():
     db.session.add(biz5)
     db.session.add(biz6)
     db.session.add(biz7)
+    db.session.add(biz8)
+    db.session.add(biz9)
+    db.session.add(biz10)
+    db.session.add(biz11)
+    db.session.add(biz12)
+    db.session.add(biz13)
+    db.session.add(biz14)
+    db.session.add(biz15)
     db.session.commit()
 
 

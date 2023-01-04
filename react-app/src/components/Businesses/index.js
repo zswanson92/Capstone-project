@@ -42,7 +42,7 @@ const Businesses = () => {
                         <div key={obj?.id} className="business-detail">
                             <div className="details-image-div">
                                 <Link to={`/businesses/${obj?.id}`}>
-                                <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' style={{height: '9em', width: '19em'}}/>
+                                {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' style={{height: '9em', width: '19em'}}/> : ""}
                                 </Link>
                             </div>
                             <div className='business-list-info-div'>

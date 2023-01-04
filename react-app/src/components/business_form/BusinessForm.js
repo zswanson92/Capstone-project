@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import "./BusinessForm.css";
 import { createBusinessThunk } from "../../store/business";
 
@@ -130,6 +130,9 @@ const BusinessForm = () => {
             if (letter === '-') {
                 i++
             }
+            if(letter !== 1 || letter !== 2 || letter !== 3 || letter !== 4 || letter !== 5 || letter !== 6 || letter !== 7 || letter !== 8 || letter !== 9 || letter !== 0){
+                i--
+            }
         })
         return i
     }
@@ -154,25 +157,25 @@ const BusinessForm = () => {
         if(address.length < 15){
             err.push("Address must be at least 15 characters long")
         }
-        if(monday_hours.length !== 15 || (!isValidTime(monday_hours))){
+        if((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))  ){
             err.push("Must be valid time format for Monday.")
         }
-        if(tuesday_hours.length !== 15 || (!isValidTime(tuesday_hours))){
+        if((tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length !== 15) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))){
             err.push("Must be valid time format for Tuesday.")
         }
-        if(wednesday_hours.length !== 15 || (!isValidTime(wednesday_hours))){
+        if((wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length !== 15) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))){
             err.push("Must be valid time format for Wednesday.")
         }
-        if(thursday_hours.length !== 15 || (!isValidTime(thursday_hours))){
+        if((thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length !== 15) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))){
             err.push("Must be valid time format for Thursday.")
         }
-        if(friday_hours.length !== 15 || (!isValidTime(friday_hours))){
+        if((friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length !== 15) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))){
             err.push("Must be valid time format for Friday.")
         }
-        if(saturday_hours.length !== 15 || (!isValidTime(saturday_hours))){
+        if((saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length !== 15) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))){
             err.push("Must be valid time format for Saturday.")
         }
-        if(sunday_hours.length !== 15 || (!isValidTime(sunday_hours))){
+        if((sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length !== 15) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))){
             err.push("Must be valid time format for Sunday.")
         }
         if(!isValidEmail(email)){
@@ -189,26 +192,35 @@ const BusinessForm = () => {
         thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us])
 
 
+    let mon_falsey_check = (monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))
+    // console.log(mon_falsey_check)
+    let tues_falsey_check = (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length !== 15) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))
+    let weds_falsey_check = (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length !== 15) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))
+    let thurs_falsey_check = (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length !== 15) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))
+    let fri_falsey_check = (friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length !== 15) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))
+    let sat_falsey_check = (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length !== 15) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))
+    let sun_falsey_check = (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length !== 15) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))
 
 
     return (
         <div className="main-business-form-div">
             <form onSubmit={onSubmit}>
-                <ul>
+                {/* <ul>
                     {errors?.map((error, idx) => (
                         <li key={idx}>{error}</li>
                     ))}
-                </ul>
+                </ul> */}
                 <h1>Create a New Business</h1>
                 <div className="business-form-name-input-div">
                     <input
                         required={true}
-                        className="business-form-name-input"
+                        className={name.length ? "business-form-name-input" : "falsey-business-form-name-input"}
                         type='text'
                         name='name'
                         onChange={nameSet}
                         value={name}
                         placeholder="Business Name"></input>
+                        {name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
                 </div>
                 <div className="business-form-previmg-input-div">
                     <input
@@ -222,17 +234,18 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-hours-inputs-div">
                     <div>
-                        <p>Business Hours &#40;Must enter in xx:xx am/pm-yy:yy am/pm format&#41;</p>
+                        <p>Business Hours &#40;Must enter in xx:xx am/pm-yy:yy am/pm format, or "Closed"&#41;.</p>
                         <input
                             required={true}
-                            className="business-form-hours-input"
+                            className={mon_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Monday Hours of Operation"
                             name='hours'
                             type='text'
                             onChange={monSet}
-                            value={monday_hours}>
-
+                            value={monday_hours}
+                            >
                         </input>
+                        {mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -246,14 +259,16 @@ const BusinessForm = () => {
                     </div>
                     <div>
                         <input
-                            className="business-form-hours-input"
+                            className={tues_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Tuesday Hours of Operation"
                             name='hours'
                             type='text'
                             onChange={tuesSet}
-                            value={tuesday_hours}>
+                            value={tuesday_hours}
+                            >
 
                         </input>
+                        {tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -264,11 +279,12 @@ const BusinessForm = () => {
                             onChange={(e) => setTuesHoursTwo(e.target.value)}
                             value={tuesday_hours_two}>
                         </input>
+
                     </div>
                     <div>
                         <input
                             required={true}
-                            className="business-form-hours-input"
+                            className={weds_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Wedsnesday Hours of Operation"
                             name='hours'
                             type='text'
@@ -276,6 +292,7 @@ const BusinessForm = () => {
                             value={wednesday_hours}>
 
                         </input>
+                        {weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -290,7 +307,7 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className="business-form-hours-input"
+                            className={thurs_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Thursday Hours of Operation"
                             name='hours'
                             type='text'
@@ -298,6 +315,7 @@ const BusinessForm = () => {
                             value={thursday_hours}>
 
                         </input>
+                        {thurs_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -312,7 +330,7 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className="business-form-hours-input"
+                            className={fri_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Friday Hours of Operation"
                             name='hours'
                             type='text'
@@ -320,6 +338,7 @@ const BusinessForm = () => {
                             value={friday_hours}>
 
                         </input>
+                        {fri_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -334,7 +353,7 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className="business-form-hours-input"
+                            className={sat_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Saturday Hours of Operation"
                             name='hours'
                             type='text'
@@ -342,6 +361,7 @@ const BusinessForm = () => {
                             value={saturday_hours}>
 
                         </input>
+                        {sat_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -356,7 +376,7 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className="business-form-hours-input"
+                            className={sun_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Sunday Hours of Operation"
                             name='hours'
                             type='text'
@@ -364,6 +384,7 @@ const BusinessForm = () => {
                             value={sunday_hours}>
 
                         </input>
+                        {sun_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                     </div>
                     <div className="secondary-hours-input-div">
                         <input
@@ -385,6 +406,8 @@ const BusinessForm = () => {
                         type='text'
                         onChange={emailSet}
                         value={email}></input>
+                        {!isValidEmail(email) ? <div className="error-below-inputs-divs"> Must be a valid Email address. </div> : ""}
+
                 </div>
                 <div className="business-form-address-input-div">
                     <input
@@ -395,6 +418,8 @@ const BusinessForm = () => {
                         type='text'
                         onChange={addressSet}
                         value={address}></input>
+                        {address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
+
                 </div>
                 <div className="business-form-phone-input-div">
                     <input
@@ -405,10 +430,11 @@ const BusinessForm = () => {
                         type='text'
                         onChange={phoneSet}
                         value={phone_number}></input>
+                        {isValidPhone(phone_number) !== 2 || phone_number.length !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : "" }
                 </div>
                 <div className="business-form-website-input-div">
                     <input
-                        required={true}
+                        // required={true}
                         placeholder="Business Website Link"
                         className="business-form-website-input"
                         type='text'
@@ -427,6 +453,7 @@ const BusinessForm = () => {
                         onChange={(e) => setAbout(e.target.value)}
                         value={about_us}>
                     </textarea>
+                    {about_us.length < 30 ? <div className="error-below-inputs-divs"> Description must be at least 30 characters. </div> : "" }
                 </div>
                 <div className="business-form-price-input-div">
                     <input
@@ -438,6 +465,7 @@ const BusinessForm = () => {
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}>
                     </input>
+                    {(price < 1 || price > 5) ? <div className="error-below-inputs-divs"> Price must be between 1 and 5. </div> : ""}
                 </div>
                 <div className="business-form-tags-input-div">
                     <input
