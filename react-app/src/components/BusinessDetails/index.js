@@ -157,76 +157,78 @@ const BusinessDetails = () => {
 
 
     return (
-        <>
-            <div className="main-container-business-details">
-                <div className="delete-edit-business-buttons-div">
-                    <div>
-                        {sessionUser &&
-                            (sessionUser.id === businessInfoObj?.user_id && (
-                                <Link exact="true" to={`/edit/businesses/${businessId}`}>
-                                    <button className="edit-business-button">
-                                        Edit Business
-                                    </button>
-                                </Link>
-                            ))}
-                    </div>
-                    <div>
-                        {sessionUser &&
-                            (sessionUser.id === businessInfoObj?.user_id ? (
-                                <button
-                                    className="business-delete-button"
-                                    onClick={(event) => deleteABusiness(event, businessId)}
-                                >
-                                    {" "}
-                                    Delete Business{" "}
+        <div className='omega-main-container'>
+            {/* <div className="main-container-business-details"> */}
+            <div className="delete-edit-business-buttons-div">
+                <div>
+                    {sessionUser &&
+                        (sessionUser.id === businessInfoObj?.user_id && (
+                            <Link exact="true" to={`/edit/businesses/${businessId}`}>
+                                <button className="edit-business-button">
+                                    Edit Business
                                 </button>
-                            ) : null)}
-                    </div>
-
+                            </Link>
+                        ))}
                 </div>
-                <div className="bannerimage" style={{ backgroundImage: `url(${businessInfoObj?.preview_img})` }}>
-                    <div className="business-name-h1"> {businessInfoObj?.name} </div>
-                    {/* <h2>  </h2> */}
-                    <div className="business-name-h2"> {reviewStarAvg > 0 ?
-                        (<p className="business-name-h2">{`Average Rating ${reviewStarAvg}`} • {starNumChecker(reviewStarAvg)} {businessInfoObj?.reviews.length} review(s)</p>)
-                        : ""}</div>
-                    {/* <p></p> */}
-                    <div className="business-name-h2-two">{dollarNumChecker(businessInfoObj?.price)} &nbsp; &nbsp; • &nbsp; &nbsp; {businessInfoObj?.tags}  </div>
+                <div>
+                    {sessionUser &&
+                        (sessionUser.id === businessInfoObj?.user_id ? (
+                            <button
+                                className="business-delete-button"
+                                onClick={(event) => deleteABusiness(event, businessId)}
+                            >
+                                {" "}
+                                Delete Business{" "}
+                            </button>
+                        ) : null)}
                 </div>
-                <div className="contact-info-div">
-                    <h2>Location & Hours</h2>
-                    <div className="daily-hours-div">
 
-                        <div className="address-single-div">
-                            {businessInfoObj?.address}
-                        </div>
-                        {/* <div className="potential-map-location">
-                            This is where Map will be!
-                        </div> */}
-                        <span className="potential-map-location">
-                            This is where Map will be!
-                        </span>
-                        <ul className="contact-info-ul">
-                            <div>
-                                {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
-                            </div>
-                            {monCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li> : ""}
-                            {tuesCheck ? <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li> : <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
-                            {tuesCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[1]}</li> : ""}
-                            {wedsCheck ? <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[0]}</li> : <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours}</li>}
-                            {wedsCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[1]}</li> : ""}
-                            {thursCheck ? <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[0]}</li> : <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours}</li>}
-                            {thursCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[1]}</li> : ""}
-                            {friCheck ? <li className="hours-li">Fri &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[0]}</li> : <li className="hours-li">Fri  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours}</li>}
-                            {friCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[1]}</li> : ""}
-                            {satCheck ? <li className="hours-li">Sat &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[0]}</li> : <li className="hours-li">Sat  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours}</li>}
-                            {satCheck ? <li className="hours-li"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[1]}</li> : ""}
-                            {sunCheck ? <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[0]}</li> : <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>}
-                            {sunCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[1]}</li> : ""}
-                            <br></br>
-                        </ul>
+            </div>
+
+            <div className="bannerimage" style={{ backgroundImage: `url(${businessInfoObj?.preview_img})` }}>
+                <div className="business-name-h1"> {businessInfoObj?.name} </div>
+                {/* <h2>  </h2> */}
+                <div className="business-name-h2"> {reviewStarAvg > 0 ?
+                    (<p className="business-name-h2">{`Average Rating ${reviewStarAvg}`} • {starNumChecker(reviewStarAvg)} {businessInfoObj?.reviews.length} review(s)</p>)
+                    : ""}</div>
+                {/* <p></p> */}
+                <div className="business-name-h2-two">{dollarNumChecker(businessInfoObj?.price)} &nbsp; &nbsp; • &nbsp; &nbsp; {businessInfoObj?.tags}  </div>
+            </div>
+
+
+            {/* <div className="contact-info-div"> */}
+
+            <div className="daily-hours-div">
+                {/* <h2>Location & Hours</h2> */}
+                <div className="address-single-div">
+                    {businessInfoObj?.address}
+                </div>
+                <span className="potential-map-location">
+                    This is where Map will be!
+                </span>
+                <ul className="contact-info-ul">
+                    <div>
+                        {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
                     </div>
-                    <div className="details-contact-info-div">
+                    {monCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li> : ""}
+                    {tuesCheck ? <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li> : <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
+                    {tuesCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[1]}</li> : ""}
+                    {wedsCheck ? <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[0]}</li> : <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours}</li>}
+                    {wedsCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[1]}</li> : ""}
+                    {thursCheck ? <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[0]}</li> : <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours}</li>}
+                    {thursCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[1]}</li> : ""}
+                    {friCheck ? <li className="hours-li">Fri &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[0]}</li> : <li className="hours-li">Fri  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours}</li>}
+                    {friCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[1]}</li> : ""}
+                    {satCheck ? <li className="hours-li">Sat &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[0]}</li> : <li className="hours-li">Sat  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours}</li>}
+                    {satCheck ? <li className="hours-li"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[1]}</li> : ""}
+                    {sunCheck ? <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[0]}</li> : <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>}
+                    {sunCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[1]}</li> : ""}
+                    <br></br>
+                </ul>
+            </div>
+            {/* </div> */}
+            {/* </div> */}
+            {/* <div className="details-contact-info-div">
                         <h2 className="contact-info-h2">Contact Information</h2>
                         <hr />
                         <ul className="contact-info-ul">
@@ -238,15 +240,29 @@ const BusinessDetails = () => {
                             <hr className="contact-info-ul-hr" />
                             <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></li>
                         </ul>
-                    </div>
+                    </div> */}
 
-                </div>
+            <div className="details-contact-info-div">
+                <h2 className="contact-info-h2">Contact Information</h2>
+                <hr />
+                <ul className="contact-info-ul">
+                    <li className="contact-info-li">  <Link to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i class="fa fa-share" aria-hidden="true"></i></li>
+                    <hr className="contact-info-ul-hr" />
+                    <li className="contact-info-li"> {businessInfoObj?.phone_number} &nbsp; &nbsp; &nbsp;  <i class="fa fa-phone" aria-hidden="true"></i></li>
+                    <hr className="contact-info-ul-hr" />
+                    <li className="contact-info-li">  {businessInfoObj?.email} &nbsp; &nbsp; &nbsp;  <i class="fa fa-envelope-o" aria-hidden="true"></i></li>
+                    <hr className="contact-info-ul-hr" />
+                    <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                </ul>
             </div>
 
-            {/* <div className="services-div">
-                <h2>TESTING SERVICES</h2>
-                <p>{businessInfoObj?.services}</p>
-            </div> */}
+
+            <div className="about-the-biz-div">
+                <hr className="about-biz-hr-sep"></hr>
+                <h2 className="about-biz-h2">About the Business</h2>
+                {businessInfoObj?.about_us}
+                <hr className="about-biz-hr-sep-two"></hr>
+            </div>
 
             <div className="where-reviews-will-go-probably">
                 <div className="leave-review-button-div">
@@ -260,7 +276,7 @@ const BusinessDetails = () => {
                                 <div className="move-around-reviews-li-div">
                                     {/* {userComponents(reviewObj.user_id)} */}
                                     <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
-                                    {reviewObj ? <p>{reviewObj?.updated_at}</p> : <p>{reviewObj?.created_at}</p>}
+                                    {reviewObj ? <p>{reviewObj?.updated_at.split('').slice(0, 16).join('')}</p> : <p>{reviewObj?.created_at.split('').slice(0, 16).join('')}</p>}
                                     <li className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</li>
                                     <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; </li>
                                     {console.log("!!!!!!!!!!!!!!!!", reviewObj)}
@@ -274,8 +290,10 @@ const BusinessDetails = () => {
                         // {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
                     })}
                 </div>
+
             </div>
-        </>
+
+        </div>
     )
 }
 

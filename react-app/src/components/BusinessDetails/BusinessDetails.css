@@ -1,6 +1,10 @@
 .where-reviews-will-go-probably{
     /* border: 2px solid red; */
-    margin-top: 200px;
+    padding-top: 200px;
+}
+
+.main-container-business-details{
+    height: 100%;
 }
 
 .bannerimage{
@@ -18,7 +22,7 @@
 
 .business-name-h1{
     color: white;
-    margin-top: 180px;
+    padding-top: 180px;
     display: flex;
     justify-content: center;
     font-size: 50px;
@@ -37,7 +41,7 @@
     display: flex;
     justify-content: center;
     color: white;
-    margin-bottom: 3em;
+    padding-bottom: 3em;
     font-weight: bold;
     font-size: 20px;
 }
@@ -50,7 +54,7 @@
     /* border: .1px solid rgb(194, 184, 184); */
     width: 18em;
     /* height: 1em; */
-    margin-left: 50em;
+    padding-left: 50em;
     /* margin-top: -45em; */
 }
 
@@ -77,8 +81,15 @@
 .details-contact-info-div{
     border: .1px solid gray;
     width: 18em;
-    margin-left: 65em;
-    margin-top: -23em;
+    margin-left: 85em;
+    /* padding-top: -43em; */
+    position: sticky;
+    top: 5px;
+    /* padding-bottom: 100px; */
+    /* padding-bottom: -500px; */
+    margin-top: -19.5em;
+    /* padding-bottom: 100px; */
+    /* z-index: 1; */
     /* display:flex;
     justify-content: center;
     flex-direction: column; */
@@ -111,16 +122,22 @@
     /* font-weight: bold; */
 }
 
+
 .daily-hours-div{
     /* border: 2px solid black; */
     /* width: 18em; */
     display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    width: 40em;
+    /* justify-content: center; */
+    /* height: 100vh; */
     /* flex-direction: row-reverse; */
 }
 
 .contact-info-div{
     /* display: flex; */
-    width: 100%;
+    width: 45em;
 }
 
 .address-single-div{
@@ -134,7 +151,7 @@
 .potential-map-location{
     display: flex;
     margin-left: -15em;
-    margin-top: 5em;
+    padding-top: 5em;
     padding-right: 100px;
 }
 
@@ -144,7 +161,7 @@
 }
 
 .services-div{
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
 /* .contact-info-li{
@@ -155,8 +172,8 @@
 .leave-review-button-div{
     /* display: flex; */
     /* justify-content: center; */
-    margin-bottom: 4em;
-    margin-top: -4em;
+    padding-bottom: 4em;
+    padding-top: -4em;
 }
 
 .business-details-reviews-li{
@@ -179,7 +196,7 @@
     justify-content: center;
     padding-top: 10em;
     width: 45em;
-    margin-left: 30em;
+    padding-left: 30em;
 }
 
 .move-around-reviews-li-div{
@@ -219,5 +236,32 @@
 .reviewer-name-p{
     font-weight: bold;
     font-size: 22px;
-    margin-bottom: -10px;
+    /* padding-bottom:; */
+}
+
+.about-biz-hr-sep{
+    /* margin-top: 12em; */
+    width: 25em;
+    padding-right: 15em;
+}
+
+.about-biz-hr-sep-two{
+    width: 25em;
+    padding-right: 15em;
+}
+
+.about-biz-h2{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.about-the-biz-div{
+    padding-top: 20em;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding-bottom: 4em;
+    width: 40em;
+    padding-left: 22em;
 }
