@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { getAllBusinessesThunk } from '../../store/business';
 import './Businesses.css'
+import logo from '../../assets/yelp_logo.PNG'
 
 const Businesses = () => {
     const dispatch = useDispatch()
@@ -97,7 +98,11 @@ const Businesses = () => {
     // const reviewStarArrReduce = newArr?.reduce((accum, currVal) => accum + currVal, sum)
 
     // const reviewStarAvg = (reviewStarArrReduce / businessInfoObj?.reviews.length).toFixed(2)
+    const fillerImg = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
 
+    function addDefaultSrc(ev){
+        ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
+      }
 
     return (
         <>
@@ -117,7 +122,7 @@ const Businesses = () => {
                                 {/* </div> */}
                                 {/* <div className='business-list-info-div'> */}
                                 <Link className='business-links' to={`/businesses/${obj?.id}`} style={{ textDecoration: 'none' }} >
-                                {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' /> : ""}
+                                {obj?.preview_img ? <img className='business-prev-img' onError={addDefaultSrc} src={obj?.preview_img} alt='https://cdn-icons-png.flaticon.com/512/168/168812.png' /> : <img className='business-prev-img' src={fillerImg} alt={fillerImg} />}
                                     <div>
                                     <p className='business-id-name-p-name'>{obj?.id}. {obj.name}</p>
                                     <p className='business-id-tags-p'>{obj?.tags.split(',').map((tag) => {
@@ -125,7 +130,7 @@ const Businesses = () => {
                                         return (
 
                                             <div className='mapped-tag-buttons-businesses-div'>
-                                            <button className='mapped-tag-buttons-businesses'>{tag}</button>
+                                            {obj?.tags ? <button className='mapped-tag-buttons-businesses'>{tag}</button> : ""}
                                             {/* {"$$$$$$$$$$$", console.log(tag)} */}
                                             </div>
                                         )
