@@ -184,36 +184,42 @@ const EditReviewButton = () => {
         return history.push(`/businesses/${businessId}`)
     }
 
-
+    function validImageUrl(url){
+        let falseycheck;
+        let lastThree = url.split('').slice(url.length - 3)
+        // console.log(lastThree.join(''))
+        if(lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg'){
+            falseycheck = true
+        } else {
+            falseycheck = false
+        }
+        // console.log(falseycheck)
+        return falseycheck
+    }
 
     return (
         <div className="edit-review-container-div">
             <form onSubmit={editCurrReview} className="edit-review-form">
-                {errors.length > 0 && (
+                {/* {errors.length > 0 && (
                     <ul className="edit-review-ul-errors">
                         {errors.map((error, idx) => (
                             <li key={idx}>{error}</li>
                         ))}
                     </ul>
-                )}
+                )} */}
                 <div className="edit-review-input-divs-container">
                     <div className="edit-review-text-area-div">
                         <textarea
                             placeholder="Review"
-                            className="edit-review-text-area"
+                            className={body.length < 10 ? "falsey-create-review-inputfield" : "edit-review-text-area"}
                             type='text'
                             name='review-body'
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
                         ></textarea>
+                        {body.length < 10 ? <div className="falsey-review-form-body-input">Review must be at least 10 characters long.</div> : ""}
                     </div>
                     <div className="stars-edit-review-input-div">
-                        {/* <input
-                            placeholder="Stars"
-                            type='number'
-                            className="stars-edit-review-input"
-                            value={stars}
-                            onChange={(e) => setStars(e.target.value)} /> */}
                         <button className="star-buttons" type='button' onClick={starOneClick}
                         > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starOne ? "yellow" : "" }}></i> 1</button>
                         <button className="star-buttons" type='button' onClick={starTwoClick}
@@ -224,6 +230,7 @@ const EditReviewButton = () => {
                         > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFour ? "yellow" : "" }}></i> 4</button>
                         <button className="star-buttons" type='button' onClick={starFiveClick}
                         > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFive ? "yellow" : "" }}></i> 5</button>
+                        {stars < 1 || stars > 5 ? <div className="falsey-review-form-stars-input">Must click on a star value.</div> : ""}
                     </div>
                     <div className="image-url-edit-review-input-div">
                         <input
@@ -233,10 +240,11 @@ const EditReviewButton = () => {
                             value={image_url}
                             onChange={(e) => setImage_Url(e.target.value)}
                         />
+                        {image_url.length > 0 && !validImageUrl(image_url) ? <div className="error-below-inputs-divs-review-edit">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""}
                     </div>
                 </div>
                 <div className="edit-review-button-duo">
-                    <button type='submit' className="submit-edited-review-button">Submit Edited Review</button>
+                    {errors.length ? "" : <button type='submit' className="submit-edited-review-button">Submit Edited Review</button>}
                     <button onClick={deleteCurrReview} className='delete-edited-review-button'> Delete Review </button>
                     <button className="return-button-edit-review" onClick={backRoute}>Return to Business</button>
                 </div>

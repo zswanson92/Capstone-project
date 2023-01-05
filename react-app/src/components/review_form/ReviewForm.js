@@ -148,41 +148,44 @@ const ReviewFormButton = () => {
     setErrors(err)
   }, [body, stars])
 
+  function validImageUrl(url){
+    let falseycheck;
+    let lastThree = url.split('').slice(url.length - 3)
+    // console.log(lastThree.join(''))
+    if(lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg'){
+        falseycheck = true
+    } else {
+        falseycheck = false
+    }
+    // console.log(falseycheck)
+    return falseycheck
+}
+
   return (
     <>
 
       {showReviewForm ?
         <div className="create-review-div">
           <form onSubmit={onSubmit}>
-            {errors.length > 0 && (
+            {/* {errors.length > 0 && (
               <ul>
                 {errors?.map((error, idx) => <li key={idx}>{error}</li>)}
               </ul>
-            )}
+            )} */}
             <div>
               <div className="create-review-textarea-input-div">
                 {/* <br></br> */}
                 <textarea
-                  className="create-review-inputfield"
+                  className={body.length < 10 ? "falsey-create-review-inputfield" : "create-review-inputfield"}
                   type="text"
                   placeholder="Please be detailed in your Review"
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
                   required
                 ></textarea>
+                {body.length < 10 ? <div className="falsey-review-form-body-input">Review must be at least 10 characters long.</div> : ""}
               </div>
               <div className="create-review-stars-input-div">
-                {/* <label className="stars-label">
-                  <input
-                    className="stars-create-review-input"
-                    type="number"
-                    min="1"
-                    max="5"
-                    value={stars}
-                    onChange={(e) => setStars(e.target.value)}
-                    required />
-                  Stars (1-5)
-                </label> */}
                <button className="star-buttons" type='button' onClick={starOneClick}
                > <i class="fa fa-star-o" aria-hidden="true" style={{backgroundColor: starOne ? "yellow" : ""}}></i> 1</button>
                <button className="star-buttons" type='button' onClick={starTwoClick}
@@ -193,6 +196,7 @@ const ReviewFormButton = () => {
                > <i class="fa fa-star-o" aria-hidden="true" style={{backgroundColor: starFour ? "yellow" : ""}}></i> 4</button>
                <button className="star-buttons" type='button' onClick={starFiveClick}
                > <i class="fa fa-star-o" aria-hidden="true" style={{backgroundColor: starFive ? "yellow" : ""}}></i> 5</button>
+               {stars < 1 || stars > 5 ? <div className="falsey-review-form-stars-input">Must click on a star value.</div> : ""}
               </div>
               <div>
                 <input
@@ -202,9 +206,10 @@ const ReviewFormButton = () => {
                   onChange={(e) => setImage_url(e.target.value)}
                   placeholder="Optional Image URL"
                 />
+                {image_url.length > 0 && !validImageUrl(image_url) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""}
               </div>
               <div className="two-review-form-button-div">
-              <button type="submit" className="submitreview-button">Submit Review</button>
+              {errors.length ? "" : <button type="submit" className="submitreview-button">Submit Review</button>}
               <button onClick={() => setReviewForm(false)} className='discardreviewform-button'>Close Form</button>
               </div>
             </div>

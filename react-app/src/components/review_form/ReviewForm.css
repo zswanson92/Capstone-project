@@ -20,11 +20,33 @@
     /* margin-right: 2em; */
 }
 
+.falsey-create-review-inputfield{
+    resize: none;
+    padding: .3em;
+    height: 8em;
+    width: 25em;
+    border-radius: 8px;
+    border-color: red;
+}
+
+.falsey-review-form-body-input{
+    color: red;
+    font-size: .9em;
+    padding-left: 35px;
+}
+
 .stars-create-review-input{
     padding: .3em;
     height: 1.2em;
     width: 2em;
     border-radius: 3px;
+}
+
+.falsey-review-form-stars-input{
+    color: red;
+    font-size: .9em;
+    padding-left: 15px;
+    padding-top: 10px;
 }
 
 .image-url-create-review-input{
@@ -39,6 +61,7 @@
     display: flex;
     justify-content: center;
     padding-bottom: 10em;
+    padding-left: 29em;
 }
 
 .discardreviewform-button{
@@ -73,6 +96,7 @@
 
 .create-review-stars-input-div{
     padding-bottom: 1em;
+    padding-left: 4.5em;
 }
 
 .star-buttons{

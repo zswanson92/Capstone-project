@@ -4,19 +4,22 @@
     justify-content: center;
     align-items: center;
     width: 40em;
+    border-bottom: 1px solid gray;
+    padding: 0 55px
     /* height: 25em; */
 }
 
 .details-image-div{
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     /* flex-direction: column; */
+    /* padding-right: 1.5em; */
+}
+
+.details-div-image{
     padding-right: 1.5em;
 }
 
-.total-business-count-div{
-    /* margin-right: 20em; */
-}
 
 .business-list-info-div{
     display: flex;
@@ -93,6 +96,8 @@
 
 .business-links{
     color: black;
+    display: flex;
+    /* justify-content: center; */
 }
 
 /* .line-4{
@@ -104,12 +109,17 @@
 .businesses-hr{
     /* margin-bottom: 20px;  */
     width: 40em;
+    /* margin-left: 10em; */
+    /* height: 1px; */
+    /* color: gray; */
+    /* background-color: gray; */
 }
 
 .business-prev-img{
     width: 15em;
     height: 12em;
     padding-bottom: 10px;
+    padding-right: 1.5em;
     object-fit: contain;
 }
 

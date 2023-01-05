@@ -110,13 +110,15 @@ const Businesses = () => {
                     {aBusiness.map((obj) => {
                         return (
                             <div key={obj?.id} className="business-detail">
-                                <div className="details-image-div">
-                                    <Link to={`/businesses/${obj?.id}`}>
-                                        {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' /> : ""}
-                                    </Link>
-                                </div>
+                                {/* <div className="details-div-image"> */}
+                                    {/* <Link className="details-div-image" to={`/businesses/${obj?.id}`}> */}
+                                        {/* {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' /> : ""} */}
+                                    {/* </Link> */}
+                                {/* </div> */}
                                 {/* <div className='business-list-info-div'> */}
                                 <Link className='business-links' to={`/businesses/${obj?.id}`} style={{ textDecoration: 'none' }} >
+                                {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' /> : ""}
+                                    <div>
                                     <p className='business-id-name-p-name'>{obj?.id}. {obj.name}</p>
                                     <p className='business-id-tags-p'>{obj?.tags.split(',').map((tag) => {
 
@@ -128,10 +130,12 @@ const Businesses = () => {
                                             </div>
                                         )
                                     })} {dollarNumChecker(obj?.price)}</p>
-                                    <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1].body} </p><Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
-                                    <hr className='businesses-hr' />
+                                    <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1]?.body} </p><Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
+                                    </div>
+                                    {/* <hr className='businesses-hr' /> */}
                                 </Link>
                                 {/* </div> */}
+
                             </div>
                         )
                     })}
