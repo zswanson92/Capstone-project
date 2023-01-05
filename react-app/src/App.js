@@ -14,10 +14,28 @@ import BusinessDetails from './components/BusinessDetails';
 import EditBusiness from './components/edit_business';
 import EditReviewButton from './components/edit_review/EditReview';
 import SplashPage from './components/SplashPage/SplashPage';
+// import Pagination from './components/Pagination/Pagination';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [postPerPage, setPostsPerPage] = useState(8)
+
+
+
+  // const businessesObj = useSelector(state => {
+  //     return state
+  // })
+
+  // const aBusiness = Object.values(businessesObj.businessReducer.businesses)
+
+  // const lastPostIndex = currentPage * postPerPage;
+
+  // const firstPostIndex = lastPostIndex - postPerPage
+
+  // const currBusinesses = aBusiness.slice(firstPostIndex, lastPostIndex)
 
   useEffect(() => {
     (async() => {
@@ -51,6 +69,7 @@ function App() {
         </Route>
         <Route path='/businesses' exact={true}>
         <Businesses />
+        {/* <Pagination totalPosts={aBusiness.length} postsPerPage={postPerPage}/> */}
         </Route>
         <Route path='/businesses/:businessId' exact={true}>
         <BusinessDetails />

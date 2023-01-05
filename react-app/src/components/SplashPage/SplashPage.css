@@ -62,7 +62,7 @@
     height: 6em;
     width: 6em;
     padding-right: .5em;
-    object-fit: cover
+    object-fit: contain;
 }
 
 .abcdef-div{

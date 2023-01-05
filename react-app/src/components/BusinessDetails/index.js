@@ -206,10 +206,9 @@ const BusinessDetails = () => {
                 <span className="potential-map-location">
                     This is where Map will be!
                 </span>
-                <ul className="contact-info-ul">
-                    <div>
-                        {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
-                    </div>
+                {/* <div className="hours-info-ul">
+
+                    {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
                     {monCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li> : ""}
                     {tuesCheck ? <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li> : <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
                     {tuesCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[1]}</li> : ""}
@@ -224,7 +223,45 @@ const BusinessDetails = () => {
                     {sunCheck ? <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[0]}</li> : <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>}
                     {sunCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[1]}</li> : ""}
                     <br></br>
-                </ul>
+                </div> */}
+            </div>
+            <div className="hours-info-ul">
+
+                {monCheck ? <li className="abcd-test-div"><li className="hours-li">Mon &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li>
+                <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li>
+                </li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {'   '}{businessInfoObj?.monday_hours}</li>}
+                {/* {monCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li> : ""} */}
+                {/* {tuesCheck ? <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li> : <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
+                {tuesCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[1]}</li> : ""} */}
+                {tuesCheck ? <li className="abcd-test-div"><li className="hours-li">Tue &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[0]}</li>
+                <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours.split(',')[1]}</li>
+                </li> : <li className="hours-li">Tue &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.tuesday_hours}</li>}
+                {/* {wedsCheck ? <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[0]}</li> : <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours}</li>}
+                {wedsCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[1]}</li> : ""} */}
+                {wedsCheck ? <li className="abcd-test-div"><li className="hours-li">Wed &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[0]}</li>
+                <li className="hours-li">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours.split(',')[1]}</li>
+                </li> : <li className="hours-li">Wed &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.wednesday_hours}</li>}
+                {/* {thursCheck ? <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[0]}</li> : <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours}</li>}
+                {thursCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[1]}</li> : ""} */}
+                {thursCheck ? <li className="abcd-test-div"><li className="hours-li">Thu &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[0]}</li>
+                <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.thursday_hours.split(',')[1]}</li>
+                </li> : <li className="hours-li">Thu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {businessInfoObj?.thursday_hours}</li>}
+                {/* {friCheck ? <li className="hours-li">Fri &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[0]}</li> : <li className="hours-li">Fri  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours}</li>}
+                {friCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[1]}</li> : ""} */}
+                {friCheck ? <li className="abcd-test-div"><li className="hours-li">Fri &nbsp; &nbsp; {businessInfoObj?.friday_hours.split(',')[0]}</li>
+                <li className="hours-li">&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.friday_hours.split(',')[1]}</li>
+                </li> : <li className="hours-li">Fri &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {businessInfoObj?.friday_hours}</li>}
+                {/* {satCheck ? <li className="hours-li">Sat &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[0]}</li> : <li className="hours-li">Sat  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours}</li>}
+                {satCheck ? <li className="hours-li"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[1]}</li> : ""} */}
+                {satCheck ? <li className="abcd-test-div"><li className="hours-li">Sat &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[0]}</li>
+                <li className="hours-li"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours.split(',')[1]}</li>
+                </li> : <li className="hours-li">Sat &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.saturday_hours}</li>}
+                {/* {sunCheck ? <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[0]}</li> : <li className="hours-li">Sun &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>}
+                {sunCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[1]}</li> : ""} */}
+                {sunCheck ? <li className="abcd-test-div"><li className="hours-li">Sun&nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[0]}</li>
+                <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[1]}</li>
+                </li> : <li className="hours-li">Sun&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>}
+                <br></br>
             </div>
             {/* </div> */}
             {/* </div> */}
@@ -242,7 +279,7 @@ const BusinessDetails = () => {
                         </ul>
                     </div> */}
 
-            <div className="details-contact-info-div">
+            <div className={monCheck ? 'details-contact-info-div-two' : "details-contact-info-div"}>
                 <h2 className="contact-info-h2">Contact Information</h2>
                 <hr />
                 <ul className="contact-info-ul">
@@ -257,14 +294,15 @@ const BusinessDetails = () => {
             </div>
 
 
+
+
+            <div className="where-reviews-will-go-probably">
             <div className="about-the-biz-div">
                 <hr className="about-biz-hr-sep"></hr>
                 <h2 className="about-biz-h2">About the Business</h2>
                 {businessInfoObj?.about_us}
                 <hr className="about-biz-hr-sep-two"></hr>
             </div>
-
-            <div className="where-reviews-will-go-probably">
                 <div className="leave-review-button-div">
                     {sessionUser && reviewFilter?.length < 1 && (sessionUser.id !== businessInfoObj?.user_id ? <ReviewFormButton /> : null)}
                     {/* {console.log("@@@@", businessInfoObj)} */}

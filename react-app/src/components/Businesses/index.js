@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { getAllBusinessesThunk } from '../../store/business';
@@ -7,6 +7,12 @@ import './Businesses.css'
 const Businesses = () => {
     const dispatch = useDispatch()
     // const history = useHistory()
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postPerPage, setPosts] = useState([])
+
+    // const [postPerPage, setPostsPerPage] = useState(8)
+
+
 
     const businessesObj = useSelector(state => {
         return state
@@ -14,13 +20,23 @@ const Businesses = () => {
 
     const aBusiness = Object.values(businessesObj.businessReducer.businesses)
 
+    const lastPostIndex = currentPage * postPerPage;
+
+    const firstPostIndex = lastPostIndex - postPerPage
+
+    aBusiness.slice(firstPostIndex, lastPostIndex)
+
+    const nextPage = () => setCurrentPage(prev => prev + 1)
+
+    const prevPage = () => setCurrentPage(prev => prev - 1)
 
     // console.log("@@@@@@@@@@ BIZZ OBJ", businessesObj)
     // console.log("@@@@@@@@@@ AAA BISSSS", aBusiness)
 
     useEffect(() => {
-        dispatch(getAllBusinessesThunk())
-    }, [dispatch])
+        setPosts(dispatch(getAllBusinessesThunk()))
+
+    }, [dispatch, currentPage])
 
 
     if (!aBusiness.length) {

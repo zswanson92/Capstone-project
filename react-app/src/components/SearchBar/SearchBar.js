@@ -13,7 +13,7 @@ const SearchBar = () => {
           placeholder="Search..."
           className="search-bar"
         />
-        <button type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>
+        <button disabled={true} type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
   );

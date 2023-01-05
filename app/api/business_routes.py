@@ -23,7 +23,41 @@ def validation_errors_to_error_messages(validation_errors):
 @business_routes.route("", methods=["GET"])
 def get_all_businesses():
     businesses = Business.query.all()
+
+    # ROWS_PER_PAGE = 10
+    # page = request.args.get('page', 1, type = int)
+
+    # businesses = Business.query.paginate(page = page, per_page =ROWS_PER_PAGE)
+
+    # paginated_businesses = (businesses.items)
+    # print("!!!!!!!!", paginated_businesses)
+
+    # results = [{
+    #         'id': business.id,
+    #         'user_id': business.user_id,
+    #         'name': business.name,
+    #         'preview_img': business.preview_img,
+    #         'monday_hours': business.monday_hours,
+    #         'tuesday_hours': business.tuesday_hours,
+    #         'wednesday_hours': business.wednesday_hours,
+    #         'thursday_hours': business.thursday_hours,
+    #         'friday_hours': business.friday_hours,
+    #         'saturday_hours': business.saturday_hours,
+    #         'sunday_hours': business.sunday_hours,
+    #         'phone_number': business.phone_number,
+    #         'email': business.email,
+    #         'address': business.address,
+    #         'business_website': business.business_website,
+    #         'about_us': business.about_us,
+    #         'price': business.price,
+    #         'tags': business.tags,
+    #         "user_business": business.business_user.to_dict(),
+    #         # "reviews": [review.to_dict() for review in business.business_review]
+    # } for business in paginated_businesses]
+
+    # print(results)
     return { business.id: business.to_dict() for business in businesses}
+    # return results
 
 
 

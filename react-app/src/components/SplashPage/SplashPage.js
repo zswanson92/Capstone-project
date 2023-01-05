@@ -17,7 +17,18 @@ const SplashPage = () => {
 
     // console.log(aBusiness)
 
-    let imgs = []
+    let imgs = ['https://burst.shopifycdn.com/photos/flatlay-iron-skillet-with-meat-and-other-food.jpg?width=1200&format=pjpg&exif=1&iptc=1',
+'https://img.freepik.com/premium-photo/concept-indian-cuisine-baked-chicken-wings-legs-honey-mustard-sauce-serving-dishes-restaurant-black-plate-indian-spices-wooden-table-background-image_127425-18.jpg?w=2000',
+'https://images3.alphacoders.com/295/2957.jpg',
+'https://images7.alphacoders.com/421/421534.jpg',
+'https://images4.alphacoders.com/150/1506.jpg',
+'https://images.alphacoders.com/153/153783.jpg',
+'https://images2.alphacoders.com/970/97040.jpg',
+'https://images4.alphacoders.com/151/1514.jpg',
+'https://images.alphacoders.com/337/33751.jpg',
+'https://images.alphacoders.com/997/9973.jpg',
+'https://images4.alphacoders.com/988/988128.jpg'
+]
 
     const imgsFill = aBusiness?.map((business) => {
         return imgs.push(business.preview_img)
@@ -29,7 +40,7 @@ const SplashPage = () => {
         dispatch(getAllBusinessesThunk());
     }, [dispatch]);
 
-    const [arrTitles, setArrTitles] = useState("");
+    const [arrTitles, setArrTitles] = useState("https://images4.alphacoders.com/150/1506.jpg");
 
     const shuffle = useCallback(() => {
         const index = Math.floor(Math.random() * imgs.length);
@@ -55,7 +66,7 @@ const SplashPage = () => {
                     return (
                         <Link to={`/businesses/${business.id}`} className='suggested-reviews-links'>
                             <div className='suggested-reviews-div'>
-                                <div className='abcdef-div'><img className='suggested-reviews-img' src={business.preview_img} alt='' /></div>
+                                <div className='abcdef-div'><img className='suggested-reviews-img' src={business.preview_img} alt='https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' /></div>
                                 <div className='agddgaddga-div'>
                                     <p className='sugg-review-business-name'>{business.name}</p>
                                     <p>Do you recommend this business?</p>
