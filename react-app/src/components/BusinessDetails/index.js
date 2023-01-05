@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/business";
 import './BusinessDetails.css'
 import ReviewFormButton from "../review_form/ReviewForm";
+import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 
 
 const BusinessDetails = () => {
@@ -39,7 +40,7 @@ const BusinessDetails = () => {
 
     const confirmDelete = (e) => {
         e.preventDefault();
-        return alert("Are you sure you want to delete this business? You will lose access to all reviews and data associated with it.")
+        setConfirm(true)
     }
 
     const deleteABusiness = (e, id) => {
@@ -164,6 +165,10 @@ const BusinessDetails = () => {
         return abcdef.push(user.id + user.fullname)
     });
 
+    const theSetConfirm = () => {
+        setConfirm(false)
+    }
+
 
     return (
         <div className='omega-main-container'>
@@ -184,13 +189,14 @@ const BusinessDetails = () => {
                         (sessionUser.id === businessInfoObj?.user_id ? (
                             <button
                                 className="business-delete-button"
-                                onClick={(event) => deleteABusiness(event, businessId)}
-                                // onClick={(event) => confirmDelete(event)}
+                                // onClick={(event) => deleteABusiness(event, businessId)}
+                                onClick={(event) => confirmDelete(event)}
                             >
                                 {" "}
                                 Delete Business{" "}
                             </button>
                         ) : null)}
+                    {confirm ? <ConfirmDelete confirm={confirm} setconfirm={theSetConfirm} /> : ""}
                 </div>
 
             </div>
