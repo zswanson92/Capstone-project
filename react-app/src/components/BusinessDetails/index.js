@@ -12,13 +12,14 @@ const BusinessDetails = () => {
     const { businessId } = useParams();
 
     const [users, setUsers] = useState([]);
+    const [confirm, setConfirm] = useState(false)
 
     const sessionUser = useSelector((state) => state.session.user);
 
     const businessInfoObj = useSelector((state) => {
         return state.businessReducer.businesses[businessId];
     });
-    console.log("@@@@@@@", businessInfoObj)
+    // console.log("@@@@@@@", businessInfoObj)
 
     let newArr = []
     let sum = 0
@@ -35,8 +36,16 @@ const BusinessDetails = () => {
         dispatch(getBusinessByIdThunk(businessId));
     }, [dispatch, businessId]);
 
+
+    const confirmDelete = (e) => {
+        e.preventDefault();
+        return alert("Are you sure you want to delete this business? You will lose access to all reviews and data associated with it.")
+    }
+
     const deleteABusiness = (e, id) => {
         e.preventDefault();
+
+
         dispatch(deleteBusinessThunk(id))
         return setTimeout(function () { history.push('/businesses'); }, 10);
     }
@@ -176,6 +185,7 @@ const BusinessDetails = () => {
                             <button
                                 className="business-delete-button"
                                 onClick={(event) => deleteABusiness(event, businessId)}
+                                // onClick={(event) => confirmDelete(event)}
                             >
                                 {" "}
                                 Delete Business{" "}
