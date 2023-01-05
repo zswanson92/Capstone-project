@@ -1,13 +1,21 @@
  .business-detail{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: row; */
     justify-content: center;
+    align-items: center;
+    width: 40em;
+    /* height: 25em; */
 }
 
 .details-image-div{
     display: flex;
     justify-content: center;
     /* flex-direction: column; */
+    padding-right: 1.5em;
+}
+
+.total-business-count-div{
+    /* margin-right: 20em; */
 }
 
 .business-list-info-div{
@@ -18,16 +26,16 @@
 
 .main-container-div-all-businesses{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     /* margin-left: 300px; */
     padding-top: 1em;
 }
 
 .first-sub-container-businesses{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
 }
 
 .businesses-h1-div{
@@ -47,10 +55,41 @@
     font-size: 2em;
 }
 
+
 .business-id-tags-p{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    /* text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; */
 }
+
+.business-id-name-p-name{
+    font-weight: bold;
+    font-size: 1.5em
+}
+
+/* .testtextdiv{
+    border: 1px solid;
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 6em;
+    width: 30em;
+
+} */
+
+.testtextdiv{
+    width: 30em;
+    height: 3.5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /* <integer> values */
+    -webkit-line-clamp: 3;
+}
+
 
 .business-links{
     color: black;
@@ -63,6 +102,37 @@
 } */
 
 .businesses-hr{
-    margin-bottom: 20px;
-    width: 120em;
+    /* margin-bottom: 20px;  */
+    width: 40em;
+}
+
+.business-prev-img{
+    width: 15em;
+    height: 12em;
+    padding-bottom: 10px;
+    object-fit: contain;
+}
+
+.more-link-on-businesses{
+    text-decoration: none;
+    color: rgba(2,122,151,1);
+    font-weight: bold;
+}
+
+.mapped-tag-buttons-businesses{
+    border: none;
+    /* padding: 5px; */
+    /* display: flex; */
+    /* gap: 3em; */
+    font-weight: bold;
+    color: rgb(70, 68, 68);
+    border-radius: 5px;
+
+}
+
+.mapped-tag-buttons-businesses-div{
+    display: flex;
+    gap: 3em;
+    padding-right: 10px;
+
 }

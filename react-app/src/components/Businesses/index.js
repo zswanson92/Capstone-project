@@ -18,6 +18,10 @@ const Businesses = () => {
         return state
     })
 
+    // const businessInfoObj = useSelector((state) => {
+    //     return state.businessReducer.businesses[businessId];
+    // });
+
     const aBusiness = Object.values(businessesObj.businessReducer.businesses)
 
     const lastPostIndex = currentPage * postPerPage;
@@ -43,39 +47,97 @@ const Businesses = () => {
         return null
     }
 
+    const dollarNumChecker = (price) => {
+        let dollar;
+
+        if (price === 1) {
+            dollar = "$"
+        }
+        if (price === 2) {
+            dollar = "$$"
+        }
+        if (price === 3) {
+            dollar = "$$$"
+        }
+        if (price === 4) {
+            dollar = "$$$$"
+        }
+        if (price === 5) {
+            dollar = "$$$$$"
+        }
+        return dollar
+    }
+
+    const starNumChecker = (stars) => {
+        let abc;
+
+        if (stars === 1.00 || (stars > 0 && stars < 2)) {
+            abc = "⭐"
+        }
+        if (stars === 2.00 || (stars > 1 && stars < 3)) {
+            abc = "⭐⭐"
+        }
+        if (stars === 3.00 || (stars > 2 && stars < 4)) {
+            abc = "⭐⭐⭐"
+        }
+        if (stars === 4.00 || (stars > 3 && stars < 5)) {
+            abc = "⭐⭐⭐⭐"
+        }
+        if (stars == 5.00) {
+            abc = "⭐⭐⭐⭐⭐"
+        }
+        return abc
+    }
+
+    let newArr = []
+    let sum = 0
+
+    // const eachReviewStarsArr = businessInfoObj?.reviews.forEach(obj => newArr.push(obj.stars))
+
+    // const reviewStarArrReduce = newArr?.reduce((accum, currVal) => accum + currVal, sum)
+
+    // const reviewStarAvg = (reviewStarArrReduce / businessInfoObj?.reviews.length).toFixed(2)
+
 
     return (
-        <div className='main-container-div-all-businesses'>
+        <>
             <div className='total-business-count-div'>
                 <h2>{aBusiness?.length} Businesses</h2>
             </div>
-            {/* <div className='businesses-h1-div'>
-                <h1>Businesses</h1>
-            </div> */}
-            <div className='first-sub-container-businesses'>
-                {aBusiness.map((obj) => {
-                    return (
-                        <div key={obj?.id} className="business-detail">
-                            <div className="details-image-div">
-                                <Link to={`/businesses/${obj?.id}`}>
-                                {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' style={{height: '9em', width: '19em'}}/> : ""}
-                                </Link>
-                            </div>
-                            <div className='business-list-info-div'>
-                            <Link className='business-links' to={`/businesses/${obj?.id}`} style={{ textDecoration: 'none' }} >
-                                <p className='business-id-name-p'>{obj?.id}. {obj.name}</p>
-                                <p className='business-id-tags-p'>Tags: {obj?.tags} / Address: {obj?.address}</p>
-                                <hr className='businesses-hr' />
-                            </Link>
-                            {/* <div className="line-4"> */}
+            <div className='main-container-div-all-businesses'>
 
-                            {/* </div> */}
+                <div className='first-sub-container-businesses'>
+                    {aBusiness.map((obj) => {
+                        return (
+                            <div key={obj?.id} className="business-detail">
+                                <div className="details-image-div">
+                                    <Link to={`/businesses/${obj?.id}`}>
+                                        {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' /> : ""}
+                                    </Link>
+                                </div>
+                                {/* <div className='business-list-info-div'> */}
+                                <Link className='business-links' to={`/businesses/${obj?.id}`} style={{ textDecoration: 'none' }} >
+                                    <p className='business-id-name-p-name'>{obj?.id}. {obj.name}</p>
+                                    <p className='business-id-tags-p'>{obj?.tags.split(',').map((tag) => {
+
+                                        return (
+
+                                            <div className='mapped-tag-buttons-businesses-div'>
+                                            <button className='mapped-tag-buttons-businesses'>{tag}</button>
+                                            {/* {"$$$$$$$$$$$", console.log(tag)} */}
+                                            </div>
+                                        )
+                                    })} {dollarNumChecker(obj?.price)}</p>
+                                    <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1].body} </p><Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
+                                    <hr className='businesses-hr' />
+                                </Link>
+                                {/* </div> */}
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

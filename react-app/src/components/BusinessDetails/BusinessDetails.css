@@ -21,7 +21,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    /* position: relative; */
+    /* -webkit-box-shadow: inset 0 0 10px 10px #000;
+      -moz-box-shadow: inset 0 0 10px 10px #000; */
+    box-shadow: inset 0 0 300px #000;
 }
 
 .business-name-h1{
