@@ -136,7 +136,7 @@ const BusinessForm = () => {
         return i
     }
 
-    function isValidTime(time){
+    function isValidTime(time) {
         let regexp = /^[aAmMpP0-9---:]+$/;
         return regexp.test(time)
     }
@@ -145,11 +145,11 @@ const BusinessForm = () => {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    function validImageUrl(url){
+    function validImageUrl(url) {
         let falseycheck;
         let lastThree = url.split('').slice(url.length - 3)
         // console.log(lastThree.join(''))
-        if(lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg'){
+        if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
             falseycheck = true
         } else {
             falseycheck = false
@@ -163,43 +163,46 @@ const BusinessForm = () => {
         if (name.length < 6) {
             err.push("Business name must be at least 6 characters long.")
         }
+        if (name.length > 50) {
+            err.push("Business must be less than 50 characters long. You can include further naming needs within your business description")
+        }
         if (isValidPhone(phone_number) !== 12) {
             err.push("Must be a valid formatted phone number.")
         }
-        if(address.length < 15){
+        if (address.length < 15) {
             err.push("Address must be at least 15 characters long")
         }
-        if((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))  ){
+        if ((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))) {
             err.push("Must be valid time format for Monday.")
         }
-        if((tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length !== 15) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))){
+        if ((tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length !== 15) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))) {
             err.push("Must be valid time format for Tuesday.")
         }
-        if((wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length !== 15) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))){
+        if ((wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length !== 15) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))) {
             err.push("Must be valid time format for Wednesday.")
         }
-        if((thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length !== 15) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))){
+        if ((thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length !== 15) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))) {
             err.push("Must be valid time format for Thursday.")
         }
-        if((friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length !== 15) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))){
+        if ((friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length !== 15) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))) {
             err.push("Must be valid time format for Friday.")
         }
-        if((saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length !== 15) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))){
+        if ((saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length !== 15) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))) {
             err.push("Must be valid time format for Saturday.")
         }
-        if((sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length !== 15) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))){
+        if ((sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length !== 15) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))) {
             err.push("Must be valid time format for Sunday.")
         }
-        if(!isValidEmail(email)){
+        if (!isValidEmail(email)) {
             err.push("Must be a valid Email address")
         }
-        if(price < 1 || price > 5){
+        if (price < 1 || price > 5) {
             err.push("Price must be between 1 and 5.")
         }
-        if(about_us.length < 30){
+        if (about_us.length < 30) {
             err.push("Description must be at least 30 characters.")
         }
-        if(preview_img.length > 0 && !validImageUrl(preview_img)){
+        if (preview_img.length > 0 && !validImageUrl(preview_img)) {
             err.push("must be valid image url")
         }
         setErrors(err)
@@ -230,13 +233,14 @@ const BusinessForm = () => {
                 <div className="business-form-name-input-div">
                     <input
                         required={true}
-                        className={name.length ? "business-form-name-input" : "falsey-business-form-name-input"}
+                        className={(name.length < 6 || name.length > 50) ? "falsey-business-form-name-input" : "business-form-name-input"}
                         type='text'
                         name='name'
                         onChange={nameSet}
                         value={name}
                         placeholder="Business Name"></input>
-                        {name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
+                    {name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
+                    {name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
                 </div>
                 <div className="business-form-previmg-input-div">
                     <input
@@ -260,7 +264,7 @@ const BusinessForm = () => {
                             type='text'
                             onChange={monSet}
                             value={monday_hours}
-                            >
+                        >
                         </input>
                         {mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                     </div>
@@ -282,7 +286,7 @@ const BusinessForm = () => {
                             type='text'
                             onChange={tuesSet}
                             value={tuesday_hours}
-                            >
+                        >
 
                         </input>
                         {tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Tuesday. </div> : ""}
@@ -423,7 +427,7 @@ const BusinessForm = () => {
                         type='text'
                         onChange={emailSet}
                         value={email}></input>
-                        {!isValidEmail(email) ? <div className="error-below-inputs-divs"> Must be a valid Email address. </div> : ""}
+                    {!isValidEmail(email) ? <div className="error-below-inputs-divs"> Must be a valid Email address. </div> : ""}
 
                 </div>
                 <div className="business-form-address-input-div">
@@ -435,7 +439,7 @@ const BusinessForm = () => {
                         type='text'
                         onChange={addressSet}
                         value={address}></input>
-                        {address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
+                    {address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
 
                 </div>
                 <div className="business-form-phone-input-div">
@@ -448,7 +452,7 @@ const BusinessForm = () => {
                         type='text'
                         onChange={phoneSet}
                         value={phone_number}></input>
-                        {isValidPhone(phone_number) !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : "" }
+                    {isValidPhone(phone_number) !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : ""}
                 </div>
                 <div className="business-form-website-input-div">
                     <input
@@ -471,7 +475,7 @@ const BusinessForm = () => {
                         onChange={(e) => setAbout(e.target.value)}
                         value={about_us}>
                     </textarea>
-                    {about_us.length < 30 ? <div className="error-below-inputs-divs"> Description must be at least 30 characters. </div> : "" }
+                    {about_us.length < 30 ? <div className="error-below-inputs-divs"> Description must be at least 30 characters. </div> : ""}
                 </div>
                 <div className="business-form-price-input-div">
                     <input

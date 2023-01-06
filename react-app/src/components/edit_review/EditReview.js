@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
 import { editReviewThunk, deleteReviewThunk } from "../../store/review";
 import './EditReview.css'
@@ -10,8 +10,19 @@ const EditReviewButton = () => {
     const dispatch = useDispatch()
     const { reviewId, businessId } = useParams()
 
-    const [body, setBody] = useState("")
-    const [stars, setStars] = useState("")
+    const currentBiz = useSelector(state => state.businessReducer.businesses[businessId])
+
+    const revFilter = currentBiz?.reviews.filter(obj => obj.id === +reviewId)
+
+    let editValOne;
+    let editValTwo;
+
+    const workAround = revFilter ? editValOne = revFilter[0]?.body : ""
+    const workAroundTwo = revFilter ? editValTwo = revFilter[0]?.stars : ""
+
+
+    const [body, setBody] = useState(editValOne ? editValOne : "")
+    const [stars, setStars] = useState(editValTwo ? editValTwo : "")
     const [image_url, setImage_Url] = useState("")
     // const [submitted, setSubmitted] = useState(false)
     const [starOne, setStarOne] = useState(false)
@@ -20,6 +31,12 @@ const EditReviewButton = () => {
     const [starFour, setStarFour] = useState(false)
     const [starFive, setStarFive] = useState(false)
     const [errors, setErrors] = useState([])
+
+    // console.log("CURRENT BIZ", stars)
+    // setStars(editValTwo)
+
+
+
 
 
     // const currBusiness = useSelector(state => {
@@ -50,7 +67,7 @@ const EditReviewButton = () => {
     useEffect(() => {
         const err = []
 
-        if (body.length < 10) {
+        if (body?.length < 10) {
             err.push("Review must be at least 10 characters long.")
         }
         if (stars < 1 || stars > 5) {
@@ -184,11 +201,11 @@ const EditReviewButton = () => {
         return history.push(`/businesses/${businessId}`)
     }
 
-    function validImageUrl(url){
+    function validImageUrl(url) {
         let falseycheck;
         let lastThree = url.split('').slice(url.length - 3)
         // console.log(lastThree.join(''))
-        if(lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg'){
+        if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
             falseycheck = true
         } else {
             falseycheck = false
@@ -211,13 +228,13 @@ const EditReviewButton = () => {
                     <div className="edit-review-text-area-div">
                         <textarea
                             placeholder="Review"
-                            className={body.length < 10 ? "falsey-create-review-inputfield" : "edit-review-text-area"}
+                            className={body?.length < 10 ? "falsey-create-review-inputfield" : "edit-review-text-area"}
                             type='text'
                             name='review-body'
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
                         ></textarea>
-                        {body.length < 10 ? <div className="falsey-review-form-body-input">Review must be at least 10 characters long.</div> : ""}
+                        {body?.length < 10 ? <div className="falsey-review-form-body-input">Review must be at least 10 characters long.</div> : ""}
                     </div>
                     <div className="stars-edit-review-input-div">
                         <button className="star-buttons" type='button' onClick={starOneClick}

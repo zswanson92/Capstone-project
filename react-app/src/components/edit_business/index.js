@@ -177,11 +177,11 @@ const EditBusiness = () => {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    function validImageUrl(url){
+    function validImageUrl(url) {
         let falseycheck;
         let lastThree = url.split('').slice(url.length - 3)
         // console.log(lastThree.join(''))
-        if(lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg'){
+        if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
             falseycheck = true
         } else {
             falseycheck = false
@@ -233,6 +233,9 @@ const EditBusiness = () => {
         const err = [];
         if (name.length < 6) {
             err.push("Business name must be at least 6 characters long.")
+        }
+        if (name.length > 50) {
+            err.push("Business must be less than 50 characters long. You can include further naming needs within your business description")
         }
         if (isValidPhone(phone_number) !== 12) {
             err.push("Must be a valid formatted phone number.")
@@ -298,13 +301,14 @@ const EditBusiness = () => {
                     <h1>Edit Business Information</h1>
                     <div className="edit-business-name-div">
                         <input
-                            className={name.length ? "business-form-name-input" : "falsey-business-form-name-input"}
+                            className={(name.length < 6 || name.length > 50) ? "falsey-business-form-name-input" : "business-form-name-input"}
                             type='text'
                             name='name'
                             onChange={nameSet}
                             value={name}
                             placeholder="Business Name"></input>
-                            {name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
+                        {name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
+                        {name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
                     </div>
                     <div className="edit-business-previewimage-div">
                         <input
@@ -471,7 +475,7 @@ const EditBusiness = () => {
                             type='text'
                             onChange={emailSet}
                             value={email}></input>
-                             {!isValidEmail(email) ? <div className="error-below-inputs-divs"> Must be a valid Email address. </div> : ""}
+                        {!isValidEmail(email) ? <div className="error-below-inputs-divs"> Must be a valid Email address. </div> : ""}
                     </div>
                     <div className="edit-business-address-div">
                         <input
@@ -480,7 +484,7 @@ const EditBusiness = () => {
                             type='text'
                             onChange={addressSet}
                             value={address}></input>
-                            {address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
+                        {address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
                     </div>
                     <div className="edit-business-phone-div">
                         <input
@@ -489,7 +493,7 @@ const EditBusiness = () => {
                             type='text'
                             onChange={phoneSet}
                             value={phone_number}></input>
-                            {isValidPhone(phone_number) !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : "" }
+                        {isValidPhone(phone_number) !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : ""}
                     </div>
                     <div className="edit-business-website-div">
                         <input
@@ -510,7 +514,7 @@ const EditBusiness = () => {
                             onChange={(e) => setAbout(e.target.value)}
                             value={about_us}>
                         </textarea>
-                        {about_us.length < 30 ? <div className="error-below-inputs-divs"> Description must be at least 30 characters. </div> : "" }
+                        {about_us.length < 30 ? <div className="error-below-inputs-divs"> Description must be at least 30 characters. </div> : ""}
                     </div>
                     <div className="edit-business-price-input-div">
                         <input

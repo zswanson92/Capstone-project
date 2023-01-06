@@ -154,6 +154,13 @@
     width: 10em;
 }
 
+.error-below-too-long-name{
+    color: red;
+    font-size: .8em;
+    width: 25em;
+    padding-top: 1em;
+}
+
 .business-form-button-close{
     background: none;
     background-color: #c41200;
