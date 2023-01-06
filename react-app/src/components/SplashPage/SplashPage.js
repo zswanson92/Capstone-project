@@ -87,14 +87,14 @@ const SplashPage = () => {
             <hr className='post-mapped-sugg-business-hr'></hr>
             <h2 className='splash-page-categories-h2'>Categories</h2>
             <div className='main-categories-div'>
-                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Restaurants</p> <i class="fa fa-cutlery" aria-hidden="true"></i></div></Link>
-                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Shopping</p> <i class="fa fa-shopping-cart" aria-hidden="true"></i></div></Link>
-                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Nightlife</p><i class="fa fa-moon-o" aria-hidden="true"></i></div></Link>
-                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Active Life</p> <i class="fa fa-bicycle" aria-hidden="true"></i></div></Link>
-                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Beauty & Spas</p> <i class="fa fa-scissors" aria-hidden="true"></i></div></Link>
-                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Automotive</p> <i class="fa fa-car" aria-hidden="true"></i></div></Link>
-                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Home Services</p> <i class="fa fa-home" aria-hidden="true"></i></div></Link>
-                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>More</p> <i class="fa fa-expand" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Restaurants</p> <i className="fa fa-cutlery" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Shopping</p> <i className="fa fa-shopping-cart" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Nightlife</p><i className="fa fa-moon-o" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Active Life</p> <i className="fa fa-bicycle" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Beauty & Spas</p> <i className="fa fa-scissors" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Automotive</p> <i className="fa fa-car" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Home Services</p> <i className="fa fa-home" aria-hidden="true"></i></div></Link>
+                <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>More</p> <i className="fa fa-expand" aria-hidden="true"></i></div></Link>
             </div>
             <footer className='splash-footer'>
                 <p>© 2022 Zelp Corp</p>

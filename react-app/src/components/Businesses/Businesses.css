@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     width: 43em;
+    height: 13em;
     border-bottom: 1px solid gray;
     padding: 0 55px
     /* height: 25em; */
@@ -73,7 +74,8 @@
 
 .business-id-name-p-name{
     font-weight: bold;
-    font-size: 1.5em
+    font-size: 1.45em;
+    padding-top: .7em;
 }
 
 /* .testtextdiv{
@@ -89,12 +91,12 @@
 
 .testtextdiv{
     width: 30em;
-    height: 3.5em;
+    height: 2.4em;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     /* <integer> values */
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
 }
 
 
@@ -141,7 +143,7 @@
     position: relative;
     /* top: 20px; */
     /* left: 1500px; */
-    top: 55px;
+    top: 57px;
 }
 
 .more-link-on-businesses:hover{

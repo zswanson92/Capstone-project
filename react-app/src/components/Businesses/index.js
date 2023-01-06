@@ -1,12 +1,12 @@
-// import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
-// import { getAllBusinessesThunk } from '../../store/business';
+import { getAllBusinessesThunk } from '../../store/business';
 import './Businesses.css'
 // import logo from '../../assets/yelp_logo.PNG'
 
 const Businesses = () => {
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     // const history = useHistory()
     // const [currentPage, setCurrentPage] = useState(1)
     // const [postPerPage, setPosts] = useState([])
@@ -38,10 +38,10 @@ const Businesses = () => {
     // console.log("@@@@@@@@@@ BIZZ OBJ", businessesObj)
     // console.log("@@@@@@@@@@ AAA BISSSS", aBusiness)
 
-    // useEffect(() => {
-    //     setPosts(dispatch(getAllBusinessesThunk()))
+    useEffect(() => {
+        dispatch(getAllBusinessesThunk())
 
-    // }, [dispatch, currentPage])
+    }, [dispatch])
 
 
     if (!aBusiness.length) {
@@ -90,6 +90,17 @@ const Businesses = () => {
         return abc
     }
 
+    const avgFinder = (arr) => {
+        let sum = 0
+        arr.forEach((obj) => {
+            sum += obj.stars
+        })
+        if (arr.length > 0) {
+            return sum / arr.length
+        }
+        return sum
+    }
+
     // let newArr = []
     // let sum = 0
 
@@ -100,9 +111,9 @@ const Businesses = () => {
     // const reviewStarAvg = (reviewStarArrReduce / businessInfoObj?.reviews.length).toFixed(2)
     const fillerImg = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
 
-    function addDefaultSrc(ev){
+    function addDefaultSrc(ev) {
         ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
-      }
+    }
 
     return (
         <>
@@ -116,26 +127,27 @@ const Businesses = () => {
                         return (
                             <div key={obj?.id} className="business-detail">
                                 {/* <div className="details-div-image"> */}
-                                    {/* <Link className="details-div-image" to={`/businesses/${obj?.id}`}> */}
-                                        {/* {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' /> : ""} */}
-                                    {/* </Link> */}
+                                {/* <Link className="details-div-image" to={`/businesses/${obj?.id}`}> */}
+                                {/* {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' /> : ""} */}
+                                {/* </Link> */}
                                 {/* </div> */}
                                 {/* <div className='business-list-info-div'> */}
                                 <Link className='business-links' to={`/businesses/${obj?.id}`} style={{ textDecoration: 'none' }} >
-                                {obj?.preview_img ? <img className='business-prev-img' onError={addDefaultSrc} src={obj?.preview_img} alt='https://cdn-icons-png.flaticon.com/512/168/168812.png' /> : <img className='business-prev-img' src={fillerImg} alt={fillerImg} />}
+                                    {obj?.preview_img ? <img className='business-prev-img' onError={addDefaultSrc} src={obj?.preview_img} alt='https://cdn-icons-png.flaticon.com/512/168/168812.png' /> : <img className='business-prev-img' src={fillerImg} alt={fillerImg} />}
                                     <div>
-                                    <p className='business-id-name-p-name'>{obj?.id}. {obj.name}</p>
-                                    <p className='business-id-tags-p'>{obj?.tags.split(',').map((tag) => {
+                                        <div className='business-id-name-p-name'>{obj?.id}. {obj.name}</div>
+                                        <p>{starNumChecker(avgFinder(obj?.reviews))} {obj?.reviews.length} Reviews</p>
+                                        <div className='business-id-tags-p'>{obj?.tags.split(',').map((tag) => {
 
-                                        return (
+                                            return (
 
-                                            <div className='mapped-tag-buttons-businesses-div'>
-                                            {obj?.tags ? <button className='mapped-tag-buttons-businesses'>{tag}</button> : ""}
-                                            {/* {"$$$$$$$$$$$", console.log(tag)} */}
-                                            </div>
-                                        )
-                                    })} {dollarNumChecker(obj?.price)}</p>
-                                    <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1]?.body} </p>
+                                                <div className='mapped-tag-buttons-businesses-div'>
+                                                    {obj?.tags ? <button className='mapped-tag-buttons-businesses'>{tag}</button> : ""}
+                                                    {/* {"$$$$$$$$$$$", console.log(tag)} */}
+                                                </div>
+                                            )
+                                        })} {dollarNumChecker(obj?.price)}</div>
+                                        <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1]?.body} </p>
                                     </div>
                                     {/* <hr className='businesses-hr' /> */}
                                 </Link>
