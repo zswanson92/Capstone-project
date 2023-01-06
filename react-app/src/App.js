@@ -15,6 +15,7 @@ import EditBusiness from './components/edit_business';
 import EditReviewButton from './components/edit_review/EditReview';
 import SplashPage from './components/SplashPage/SplashPage';
 // import Pagination from './components/Pagination/Pagination';
+import UserProfile from './components/UserProfile/UserProfile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +39,7 @@ function App() {
   // const currBusinesses = aBusiness.slice(firstPostIndex, lastPostIndex)
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -47,6 +48,7 @@ function App() {
   if (!loaded) {
     return null;
   }
+
 
   return (
     <BrowserRouter>
@@ -59,20 +61,20 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/create' exact={true}>
-        <BusinessForm />
+          <BusinessForm />
         </Route>
         <Route path='/businesses' exact={true}>
-        <Businesses />
-        {/* <Pagination totalPosts={aBusiness.length} postsPerPage={postPerPage}/> */}
+          <Businesses />
+          {/* <Pagination totalPosts={aBusiness.length} postsPerPage={postPerPage}/> */}
         </Route>
         <Route path='/businesses/:businessId' exact={true}>
-        <BusinessDetails />
+          <BusinessDetails />
         </Route>
         <Route exact={true} path="/edit/businesses/:businessId">
           <EditBusiness />
@@ -85,6 +87,9 @@ function App() {
         </Route>
         <Route path='/production'>
           <h1>Implementation not complete, coming soon.</h1>
+        </Route>
+        <Route path='/userprofile'>
+          <UserProfile />
         </Route>
       </Switch>
     </BrowserRouter>

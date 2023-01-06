@@ -141,7 +141,7 @@ const Businesses = () => {
 
                                             return (
 
-                                                <div className='mapped-tag-buttons-businesses-div'>
+                                                <div key={tag} className='mapped-tag-buttons-businesses-div'>
                                                     {obj?.tags ? <button className='mapped-tag-buttons-businesses'>{tag}</button> : ""}
                                                     {/* {"$$$$$$$$$$$", console.log(tag)} */}
                                                 </div>

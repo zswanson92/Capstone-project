@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 // import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 import logo from '../assets/yelp_logo.PNG'
@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from './SearchBar/SearchBar';
 import { logout } from '../store/session'
 import './auth/LogoutButton.css'
+import UserProfile from './UserProfile/UserProfile';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -38,7 +39,7 @@ const NavBar = () => {
       </div>
       <div>
         <NavLink to='/businesses' exact={true} activeClassName='active' className='viewbusiness-navlink'>
-          View Businesses
+          Businesses
         </NavLink>
       </div>
       {sessionUser ? "" :
@@ -67,25 +68,41 @@ const NavBar = () => {
         </div> : ""}
 
       {sessionUser ?
-        <div>
+        <div className='testing-navbar-div'>
           {/* <LogoutButton /> */}
           <button className='profile-dropdown-button' onClick={openMenu}><i className="fa-regular fa-circle-user fa-2x"></i></button>
+          {showMenu && (sessionUser ?
+          (
+            <div className="profile-dropdown-div">
+              {/* <ul className="profile-dropdown"> */}
+                <div className='profile-dropdown-div-link'><Link className='link-inside-of-profile-dropdown' to={'/userprofile'}><i className="fa fa-user" aria-hidden="true"> &nbsp; </i> About Me</Link></div>
+                <hr className='profile-dropdown-hr'></hr>
+                <div className="logout-li">
+                  <button className='logout-button' onClick={onLogout}><i className="fa fa-sign-out" aria-hidden="true"></i> Log Out</button>
+                </div>
+              {/* </ul> */}
+            </div>) : "")}
         </div> : ""}
 
-      {showMenu && (sessionUser ?
-        (
-          <div className="profile-dropdown-div">
-            <ul className="profile-dropdown">
-              <li className="fullname-li">Full Name: {sessionUser.fullname}</li>
-              <li className="username-li">Username: {sessionUser.username}</li>
-              <li className="useremail-li">User email: {sessionUser.email}</li>
-              <li className="logout-li">
-                {/* <button className="the-logout-button" onClick={logout}>Log Out</button> */}
-                {/* <LogoutButton /> */}
-                <button className='logout-button' onClick={onLogout}>Log Out</button>
-              </li>
-            </ul>
-          </div>) : "")}
+
+
+      {/* <div className='testing-navbar-div'> */}
+        {/* {showMenu && (sessionUser ?
+          (
+            <div className="profile-dropdown-div">
+              <ul className="profile-dropdown">
+                <li><Link>About Me</Link></li> */}
+                {/* <li className="fullname-li">Full Name: {sessionUser.fullname}</li> */}
+                {/* <li className="username-li">Username: {sessionUser.username}</li> */}
+                {/* <li className="useremail-li">User email: {sessionUser.email}</li> */}
+                {/* <li className="logout-li"> */}
+                  {/* <button className="the-logout-button" onClick={logout}>Log Out</button> */}
+                  {/* <LogoutButton /> */}
+                  {/* <button className='logout-button' onClick={onLogout}>Log Out</button>
+                </li>
+              </ul>
+            </div>) : "")} */}
+      {/* </div> */}
     </nav>
   );
 }

@@ -100,10 +100,9 @@ const SignUpForm = () => {
       setErrors([])
     }
     setFullname(e.target.value)
-
   }
 
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <div className='signupform-main-container'>

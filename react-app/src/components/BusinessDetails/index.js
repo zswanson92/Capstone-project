@@ -302,13 +302,13 @@ const BusinessDetails = () => {
                 <h2 className="contact-info-h2">Contact Information</h2>
                 <hr />
                 <ul className="contact-info-ul">
-                    <li className="contact-info-li">  <Link to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i class="fa fa-share" aria-hidden="true"></i></li>
+                    <li className="contact-info-li">  <Link to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i className="fa fa-share" aria-hidden="true"></i></li>
                     <hr className="contact-info-ul-hr" />
-                    <li className="contact-info-li"> {businessInfoObj?.phone_number} &nbsp; &nbsp; &nbsp;  <i class="fa fa-phone" aria-hidden="true"></i></li>
+                    <li className="contact-info-li"> {businessInfoObj?.phone_number} &nbsp; &nbsp; &nbsp;  <i className="fa fa-phone" aria-hidden="true"></i></li>
                     <hr className="contact-info-ul-hr" />
-                    <li className="contact-info-li">  {businessInfoObj?.email} &nbsp; &nbsp; &nbsp;  <i class="fa fa-envelope-o" aria-hidden="true"></i></li>
+                    <li className="contact-info-li">  {businessInfoObj?.email} &nbsp; &nbsp; &nbsp;  <i className="fa fa-envelope-o" aria-hidden="true"></i></li>
                     <hr className="contact-info-ul-hr" />
-                    <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                    <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i className="fa fa-map-marker" aria-hidden="true"></i></li>
                 </ul>
             </div>
 
@@ -329,20 +329,20 @@ const BusinessDetails = () => {
                 <div className="testing-review-location">
                     {businessInfoObj?.reviews.map((reviewObj) => {
                         return (
-                            <>
-                                <div className="move-around-reviews-li-div">
+                            <div key={reviewObj.id}>
+                                <div  className="move-around-reviews-li-div">
                                     {/* {userComponents(reviewObj.user_id)} */}
                                     <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
                                     {reviewObj ? <p>{reviewObj?.updated_at.split('').slice(0, 16).join('')}</p> : <p>{reviewObj?.created_at.split('').slice(0, 16).join('')}</p>}
-                                    <li className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</li>
-                                    <li key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; </li>
-                                    {console.log("!!!!!!!!!!!!!!!!", reviewObj)}
+                                    <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</div>
+                                    <div key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; </div>
+                                    {/* {console.log("!!!!!!!!!!!!!!!!", reviewObj)} */}
                                 </div>
                                 {reviewObj?.image_url ? <li className="business-details-reviews-li"><img className="review-prev-img" src={reviewObj?.image_url} alt="" /></li> : ""}
                                 {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
                                     <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
                                 ) : null}
-                            </>
+                            </div>
                         )
                         // {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
                     })}

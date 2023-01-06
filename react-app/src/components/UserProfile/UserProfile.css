@@ -1,0 +1,13 @@
+.initial-state-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    /* font-size: 4em; */
+}
+
+.initial-state-div-inside-divs{
+    font-size: 2em;
+}
