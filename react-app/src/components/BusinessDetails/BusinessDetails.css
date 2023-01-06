@@ -121,6 +121,28 @@
     flex-direction: column; */
 }
 
+.potential-map-location{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 50px;
+    top: 5px;
+    margin-left: -15em;
+    padding-top: 4em;
+    padding-right: 100px;
+    /* padding-bottom: 5em; */
+    height: 8em;
+    width: 8em;
+    box-shadow: inset 0 0 300px #000;
+}
+
+.maps-p{
+    color: white;
+    font-weight: bold;
+    margin-left: 4em;
+    width: 8em;
+}
+
 .contact-info-ul{
     list-style: none;
     display: flex;
@@ -203,15 +225,10 @@
     /* align-items: flex-end; */
     /* height: 10px; */
     font-weight: bold;
-    margin-top: 15em;
+    padding-top: 15em;
 }
 
-.potential-map-location{
-    display: flex;
-    margin-left: -15em;
-    padding-top: 5em;
-    padding-right: 100px;
-}
+
 
 .hours-li{
     font-weight: bold;

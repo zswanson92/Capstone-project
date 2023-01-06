@@ -219,9 +219,12 @@ const BusinessDetails = () => {
                 <div className="address-single-div">
                     {businessInfoObj?.address}
                 </div>
-                <span className="potential-map-location">
-                    This is where Map will be!
-                </span>
+                <div className="potential-map-location" style={{backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)'}}>
+                    {/* <div className="not-another-div-brother"> */}
+                    {/* <img className="potential-map-img" src={'https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg'} alt='https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg' /> */}
+                    {/* </div> */}
+                    <p className="maps-p">Maps API implementation coming soon.</p>
+                </div>
                 {/* <div className="hours-info-ul">
 
                     {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
