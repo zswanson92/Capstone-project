@@ -39,41 +39,42 @@ const LoginForm = () => {
 
   return (
     <div className='main-login-form-div'>
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        {/* <label htmlFor='email'>Email</label> */}
-        <input
-          className='loginform-inputs-one'
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-          required={true}
-        />
-      </div>
-      <div>
-        {/* <label htmlFor='password'>Password</label> */}
-        <input
-          className='loginform-inputs'
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-          required={true}
-        />
-        <div className='two-loginform-buttons'>
-        <button type='submit' className='login-form-login-button'>Login</button>
-        <button type='submit' onClick={setDemoUser} className='login-form-login-demo-button'>Login as Demo User</button>
+      <form onSubmit={onLogin}>
+
+        <div>
+          {/* <label htmlFor='email'>Email</label> */}
+          <input
+            className='loginform-inputs-one'
+            name='email'
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={updateEmail}
+            required={true}
+          />
         </div>
-      </div>
-    </form>
+        <div>
+          {/* <label htmlFor='password'>Password</label> */}
+          <input
+            className='loginform-inputs'
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={updatePassword}
+            required={true}
+          />
+          <div className='login-form-error-map-div'>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <div className='two-loginform-buttons'>
+            <button type='submit' className='login-form-login-button'>Login</button>
+            <button type='submit' onClick={setDemoUser} className='login-form-login-demo-button'>Login as Demo User</button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

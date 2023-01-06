@@ -48,3 +48,10 @@
     margin-left: 8em;
     margin-bottom: 1em;
 }
+
+.login-form-error-map-div{
+    color: red;
+    font-weight: bold;
+    padding-top: 1em;
+    padding-left: 3.5em;
+}

@@ -21,6 +21,9 @@
 
 .signupform-input-div{
     padding-bottom: .8em;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
 }
 
 .signupform-inputs{
@@ -28,4 +31,30 @@
     height: 1.2em;
     width: 15em;
     border-radius: 3px;
+}
+
+.falsey-signupform-inputs{
+    padding: .3em;
+    height: 1.2em;
+    width: 15em;
+    border-radius: 3px;
+    border-color: red;
+}
+
+.error-message-signupform-divs{
+    color: red;
+    font-weight: bold;
+    font-size: .8em;
+    padding-top: .5em;
+    padding-left: 2.8em;
+}
+
+.error-message-signupform-divs-repeat{
+    color: red;
+    font-weight: bold;
+    font-size: .8em;
+    padding-top: .5em;
+    /* padding-right: 2.8em; */
+    /* margin-right: 2em; */
+    margin-left: -2.5em;
 }

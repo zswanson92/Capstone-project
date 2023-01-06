@@ -42,7 +42,12 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    print("!!!!!!!!!!!", form.errors)
+    # newerrmsg = {'Error': ['Email or Password is incorrect, please try again.']}
+    newerrmsg = ['Email or Password is incorrect, please try again.']
+
+    # return {'errors': validation_errors_to_error_messages(newerrmsg)}, 401
+    return {'errors': newerrmsg}, 401
 
 
 @auth_routes.route('/logout')
