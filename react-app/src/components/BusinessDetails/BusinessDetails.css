@@ -253,13 +253,16 @@
     padding-top: -4em;
 }
 
-.business-details-reviews-li{
+.business-details-reviews-div{
     padding-bottom: 3em;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    /* width: 20em; */
-    /* margin-left: 20em; */
+
+    overflow-wrap: break-word;
+    /* overflow: visible; */
+    /* height: 5em; */
+    /* width: 5em; */
+    /* word-wrap: break-all; */
+    /* white-space:wrap; */
+    /* border: 1px solid black; */
 }
 
 .business-details-reviews-stars-li{
@@ -341,4 +344,9 @@
     padding-bottom: 4em;
     width: 40em;
     padding-left: 22em;
+}
+
+.business-details-reviews-li-image-holder{
+    display: flex;
+    justify-content: center;
 }

@@ -91,6 +91,9 @@ function App() {
         <Route path='/userprofile'>
           <UserProfile />
         </Route>
+        <Route>
+          <h1>PAGE NOT FOUND</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

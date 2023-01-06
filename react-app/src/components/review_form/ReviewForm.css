@@ -16,8 +16,12 @@
     height: 8em;
     width: 25em;
     border-radius: 8px;
+    /* overflow-wrap: break-word; */
     /* margin-left: 15em; */
     /* margin-right: 2em; */
+    overflow-wrap: break-all;
+    /* height: 5em; */
+    word-wrap: break-all;
 }
 
 .falsey-create-review-inputfield{

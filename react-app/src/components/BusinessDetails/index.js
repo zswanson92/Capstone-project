@@ -335,10 +335,11 @@ const BusinessDetails = () => {
                                     <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
                                     {reviewObj ? <p>{reviewObj?.updated_at.split('').slice(0, 16).join('')}</p> : <p>{reviewObj?.created_at.split('').slice(0, 16).join('')}</p>}
                                     <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</div>
-                                    <div key={reviewObj.id} className="business-details-reviews-li">"{reviewObj?.body}"  &nbsp; &nbsp; &nbsp; </div>
+                                    <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
                                     {/* {console.log("!!!!!!!!!!!!!!!!", reviewObj)} */}
+
                                 </div>
-                                {reviewObj?.image_url ? <li className="business-details-reviews-li"><img className="review-prev-img" src={reviewObj?.image_url} alt="" /></li> : ""}
+                                {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
                                 {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
                                     <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
                                 ) : null}
