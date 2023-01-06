@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 import { getAllBusinessesThunk } from '../../store/business';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './SplashPage.css'
 import logo from '../../assets/githublogo.png'
 
 const SplashPage = () => {
-    const sessionUser = useSelector(state => state.session.user)
+    // const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch();
 
     const businessesObj = useSelector(state => {
@@ -15,7 +15,6 @@ const SplashPage = () => {
 
     const aBusiness = Object.values(businessesObj.businessReducer.businesses)
 
-    // console.log(aBusiness)
 
     let imgs = ['https://burst.shopifycdn.com/photos/flatlay-iron-skillet-with-meat-and-other-food.jpg?width=1200&format=pjpg&exif=1&iptc=1',
 'https://img.freepik.com/premium-photo/concept-indian-cuisine-baked-chicken-wings-legs-honey-mustard-sauce-serving-dishes-restaurant-black-plate-indian-spices-wooden-table-background-image_127425-18.jpg?w=2000',
@@ -34,7 +33,6 @@ const SplashPage = () => {
         return imgs.push(business.preview_img)
     })
 
-    // console.log("@@@@@@@@@@@", imgs)
 
     useEffect(() => {
         dispatch(getAllBusinessesThunk());
@@ -45,7 +43,7 @@ const SplashPage = () => {
     const shuffle = useCallback(() => {
         const index = Math.floor(Math.random() * imgs.length);
         setArrTitles(imgs[index]);
-    }, []);
+    }, [imgs]);
 
     useEffect(() => {
         const intervalID = setInterval(shuffle, 5000);
@@ -64,22 +62,22 @@ const SplashPage = () => {
             <div className='mapped-suggest-businesses-div'>
                 {aBusiness?.map((business) => {
                     return (
-                        <Link to={`/businesses/${business.id}`} className='suggested-reviews-links'>
+                        <Link key={business.id} to={`/businesses/${business.id}`} className='suggested-reviews-links'>
                             <div className='suggested-reviews-div'>
                                 <div className='abcdef-div'><img className='suggested-reviews-img' src={business.preview_img} alt='https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' /></div>
                                 <div className='agddgaddga-div'>
                                     <p className='sugg-review-business-name'>{business.name}</p>
                                     <p>Do you recommend this business?</p>
                                     <button className="star-buttons-sugg-review" type='button'
-                                    > <i class="fa fa-star-o" aria-hidden="true"></i> 1</button>
+                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 1</button>
                                     <button className="star-buttons-sugg-review" type='button'
-                                    > <i class="fa fa-star-o" aria-hidden="true"></i> 2</button>
+                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 2</button>
                                     <button className="star-buttons-sugg-review" type='button'
-                                    > <i class="fa fa-star-o" aria-hidden="true"></i> 3</button>
+                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 3</button>
                                     <button className="star-buttons-sugg-review" type='button'
-                                    > <i class="fa fa-star-o" aria-hidden="true"></i> 4</button>
+                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 4</button>
                                     <button className="star-buttons-sugg-review" type='button'
-                                    > <i class="fa fa-star-o" aria-hidden="true"></i> 5</button>
+                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 5</button>
                                 </div>
                             </div>
                         </Link>

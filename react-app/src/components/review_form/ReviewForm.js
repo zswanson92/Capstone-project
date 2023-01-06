@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./ReviewForm.css";
 import { createReviewThunk } from "../../store/review";
 import { getBusinessByIdThunk } from "../../store/business";
@@ -8,7 +8,7 @@ import { getBusinessByIdThunk } from "../../store/business";
 
 const ReviewFormButton = () => {
   const dispatch = useDispatch();
-  let history = useHistory();
+  // let history = useHistory();
   const sessionUser = useSelector(state => state.session.user)
   const { businessId } = useParams()
 

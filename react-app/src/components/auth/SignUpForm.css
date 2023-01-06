@@ -58,3 +58,19 @@
     /* margin-right: 2em; */
     margin-left: -2.5em;
 }
+
+
+.error-message-signupform-divs-username{
+    color: red;
+    font-weight: bold;
+    font-size: .8em;
+    padding-top: .5em;
+    /* padding-right: 3em; */
+}
+
+.error-message-signupform-divs-emailinuse{
+    color: red;
+    font-weight: bold;
+    font-size: .8em;
+    padding-top: .5em;
+}

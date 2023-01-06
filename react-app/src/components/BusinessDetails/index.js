@@ -1,14 +1,14 @@
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getBusinessByIdThunk, deleteBusinessThunk } from "../../store/business";
+import { getBusinessByIdThunk } from "../../store/business";
 import './BusinessDetails.css'
 import ReviewFormButton from "../review_form/ReviewForm";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 
 
 const BusinessDetails = () => {
-    const history = useHistory();
+    // const history = useHistory();
     const dispatch = useDispatch();
     const { businessId } = useParams();
 
@@ -43,13 +43,13 @@ const BusinessDetails = () => {
         setConfirm(true)
     }
 
-    const deleteABusiness = (e, id) => {
-        e.preventDefault();
+    // const deleteABusiness = (e, id) => {
+    //     e.preventDefault();
 
 
-        dispatch(deleteBusinessThunk(id))
-        return setTimeout(function () { history.push('/businesses'); }, 10);
-    }
+    //     dispatch(deleteBusinessThunk(id))
+    //     return setTimeout(function () { history.push('/businesses'); }, 10);
+    // }
 
     let monCheck = false
     let tuesCheck = false

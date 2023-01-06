@@ -25,13 +25,13 @@ const SignUpForm = () => {
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  // const updateUsername = (e) => {
+  //   setUsername(e.target.value);
+  // };
 
-  const updateFullname = (e) => {
-    setFullname(e.target.value)
-  }
+  // const updateFullname = (e) => {
+  //   setFullname(e.target.value)
+  // }
 
   // const updateEmail = (e) => {
   //   setEmail(e.target.value);
@@ -41,9 +41,9 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  // const updateRepeatPassword = (e) => {
+  //   setRepeatPassword(e.target.value);
+  // };
 
   if (user) {
     return <Redirect to='/' />;
@@ -103,6 +103,8 @@ const SignUpForm = () => {
 
   }
 
+  console.log(errors)
+
   return (
     <div className='signupform-main-container'>
       <form onSubmit={onSignUp}>
@@ -112,38 +114,35 @@ const SignUpForm = () => {
           ))}
         </div> */}
         <div className='first-signupform-input-div'>
-          {/* <label>User Name</label> */}
           <input
             required={true}
             className={(username.length > 0 && username.length < 26) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
             placeholder='User Name'
             type='text'
             name='username'
-            onChange={updateUsername}
+            onChange={userNameHandleChange}
             value={username}
           ></input>
-          {username.length > 25 ? <div className='error-message-signupform-divs'>Username cannot exceed 25 characters.</div> : ""}
+          {username.length > 25 ? <div className='error-message-signupform-divs-username'>Username cannot exceed 25 characters.</div> : ""}
           {!username.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
         </div>
         <div className='signupform-input-div'>
-          {/* <label>Full Name</label> */}
           <input
             required={true}
             className={(fullname.length > 0 && fullname.length < 41) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
             placeholder='Full Name'
             type='text'
             name='fullname'
-            onChange={updateFullname}
+            onChange={fullNameHandleChange}
             value={fullname}
           ></input>
           {fullname.length > 40 ? <div className='error-message-signupform-divs'>Full name cannot exceed 40 characters.</div> : ""}
           {!fullname.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
         </div>
         <div className='signupform-input-div'>
-          {/* <label>Email</label> */}
           <input
             required={true}
-            className={isValidEmail(email) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
+            className={(isValidEmail(email) && !errors.includes('email : Email address is already in use.')) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
             placeholder='Email'
             type='text'
             name='email'
@@ -151,9 +150,9 @@ const SignUpForm = () => {
             value={email}
           ></input>
           {!isValidEmail(email) ? <div className='error-message-signupform-divs'>Not a valid Email address.</div> : ""}
+          {errors.includes('email : Email address is already in use.') ? <div className='error-message-signupform-divs-emailinuse'>That email address is already in use.</div> : ""}
         </div>
         <div className='signupform-input-div'>
-          {/* <label>Password</label> */}
           <input
             required={true}
             className={!password.length ? 'falsey-signupform-inputs' : 'signupform-inputs'}
@@ -166,7 +165,6 @@ const SignUpForm = () => {
           {!password.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
         </div>
         <div className='signupform-input-div'>
-          {/* <label>Repeat Password</label> */}
           <input
             className={repeatPassword !== password ? 'falsey-signupform-inputs' : 'signupform-inputs'}
             placeholder='Repeat Password'

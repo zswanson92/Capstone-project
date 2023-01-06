@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { getAllBusinessesThunk } from '../../store/business';
+// import { getAllBusinessesThunk } from '../../store/business';
 import './Businesses.css'
-import logo from '../../assets/yelp_logo.PNG'
+// import logo from '../../assets/yelp_logo.PNG'
 
 const Businesses = () => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     // const history = useHistory()
-    const [currentPage, setCurrentPage] = useState(1)
-    const [postPerPage, setPosts] = useState([])
+    // const [currentPage, setCurrentPage] = useState(1)
+    // const [postPerPage, setPosts] = useState([])
 
     // const [postPerPage, setPostsPerPage] = useState(8)
 
@@ -25,23 +25,23 @@ const Businesses = () => {
 
     const aBusiness = Object.values(businessesObj.businessReducer.businesses)
 
-    const lastPostIndex = currentPage * postPerPage;
+    // const lastPostIndex = currentPage * postPerPage;
 
-    const firstPostIndex = lastPostIndex - postPerPage
+    // const firstPostIndex = lastPostIndex - postPerPage
 
-    aBusiness.slice(firstPostIndex, lastPostIndex)
+    // aBusiness.slice(firstPostIndex, lastPostIndex)
 
-    const nextPage = () => setCurrentPage(prev => prev + 1)
+    // const nextPage = () => setCurrentPage(prev => prev + 1)
 
-    const prevPage = () => setCurrentPage(prev => prev - 1)
+    // const prevPage = () => setCurrentPage(prev => prev - 1)
 
     // console.log("@@@@@@@@@@ BIZZ OBJ", businessesObj)
     // console.log("@@@@@@@@@@ AAA BISSSS", aBusiness)
 
-    useEffect(() => {
-        setPosts(dispatch(getAllBusinessesThunk()))
+    // useEffect(() => {
+    //     setPosts(dispatch(getAllBusinessesThunk()))
 
-    }, [dispatch, currentPage])
+    // }, [dispatch, currentPage])
 
 
     if (!aBusiness.length) {
@@ -90,8 +90,8 @@ const Businesses = () => {
         return abc
     }
 
-    let newArr = []
-    let sum = 0
+    // let newArr = []
+    // let sum = 0
 
     // const eachReviewStarsArr = businessInfoObj?.reviews.forEach(obj => newArr.push(obj.stars))
 
@@ -135,10 +135,11 @@ const Businesses = () => {
                                             </div>
                                         )
                                     })} {dollarNumChecker(obj?.price)}</p>
-                                    <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1]?.body} </p><Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
+                                    <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1]?.body} </p>
                                     </div>
                                     {/* <hr className='businesses-hr' /> */}
                                 </Link>
+                                <Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
                                 {/* </div> */}
 
                             </div>
