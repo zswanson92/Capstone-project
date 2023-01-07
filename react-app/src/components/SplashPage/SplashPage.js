@@ -50,6 +50,10 @@ const SplashPage = () => {
         return () => clearInterval(intervalID);
     }, [shuffle])
 
+    function addDefaultSrc(ev) {
+        ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
+    }
+
     return (
         <div className='main-splashpage-div'>
             <div className='splash-image-div'>
@@ -64,7 +68,7 @@ const SplashPage = () => {
                     return (
                         <Link key={business.id} to={`/businesses/${business.id}`} className='suggested-reviews-links'>
                             <div className='suggested-reviews-div'>
-                                <div className='abcdef-div'><img className='suggested-reviews-img' src={business.preview_img} alt='https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' /></div>
+                                <div className='abcdef-div'><img onError={addDefaultSrc} className='suggested-reviews-img' src={business.preview_img} alt='https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' /></div>
                                 <div className='agddgaddga-div'>
                                     <p className='sugg-review-business-name'>{business.name}</p>
                                     <p>Do you recommend this business?</p>

@@ -159,9 +159,10 @@
     grid-column: auto auto;
     /* grid-row: auto auto; */
     padding-left: 400px;
-    margin-top: -250px;
+    /* margin-top: -250px; */
     /* justify-content: center; */
     width: 25em;
+    height: 40em;
 }
 
 .abcd-test-div{
@@ -171,10 +172,10 @@
     /* align-items: center; */
     font-weight: bold;
     /* margin-top: 100px; */
-    padding-bottom: .5em;
+    /* padding-bottom: .5em; */
     /* display: flex; */
     /* flex-direction: row; */
-    width: 20em;
+    width: 17em;
     list-style: none;
 }
 
