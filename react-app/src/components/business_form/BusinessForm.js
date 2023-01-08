@@ -26,6 +26,13 @@ const BusinessForm = () => {
     const [saturday_hours_two, setSatHoursTwo] = useState("");
     const [sunday_hours, setSunHours] = useState("");
     const [sunday_hours_two, setSunHoursTwo] = useState("");
+    const [monCheck, setMonCheck] = useState(false)
+    const [tueCheck, setTueCheck] = useState(false)
+    const [wedCheck, setWedCheck] = useState(false)
+    const [thuCheck, setThuCheck] = useState(false)
+    const [friCheck, setFriCheck] = useState(false)
+    const [satCheck, setSatCheck] = useState(false)
+    const [sunCheck, setSunCheck] = useState(false)
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [phone_number, setPhone] = useState("");
@@ -172,6 +179,9 @@ const BusinessForm = () => {
         if (address.length < 15) {
             err.push("Address must be at least 15 characters long")
         }
+        if (address.length > 100) {
+            err.push("Address cannot exceed 100 characters")
+        }
         if ((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))) {
             err.push("Must be valid time format for Monday.")
         }
@@ -220,6 +230,33 @@ const BusinessForm = () => {
     let sat_falsey_check = (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length !== 15) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))
     let sun_falsey_check = (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length !== 15) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))
 
+    const monCheckBox = () => {
+        setMonCheck(!monCheck)
+    }
+
+    const tueCheckBox = () => {
+        setTueCheck(!tueCheck)
+    }
+
+    const wedCheckBox = () => {
+        setWedCheck(!wedCheck)
+    }
+
+    const thuCheckBox = () => {
+        setThuCheck(!thuCheck)
+    }
+
+    const friCheckBox = () => {
+        setFriCheck(!friCheck)
+    }
+
+    const satCheckBox = () => {
+        setSatCheck(!satCheck)
+    }
+
+    const sunCheckBox = () => {
+        setSunCheck(!sunCheck)
+    }
 
     return (
         <div className="main-business-form-div">
@@ -267,8 +304,14 @@ const BusinessForm = () => {
                         >
                         </input>
                         {mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {(monday_hours === 'Closed' || monday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Monday hours.</label>
+                            <input
+                                className='extra-day-input-checkbox'
+                                type='checkbox'
+                                onClick={monCheckBox}>
+                            </input></div>}
                     </div>
-                    <div className="secondary-hours-input-div">
+                    {monCheck ? <div className="secondary-hours-input-div">
                         <input
                             className="business-form-hours-input"
                             placeholder="Secondary Monday Hours of Operation"
@@ -277,7 +320,7 @@ const BusinessForm = () => {
                             onChange={(e) => setMonHoursTwo(e.target.value)}
                             value={monday_hours_two}>
                         </input>
-                    </div>
+                    </div> : ""}
                     <div>
                         <input
                             className={tues_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
@@ -287,11 +330,16 @@ const BusinessForm = () => {
                             onChange={tuesSet}
                             value={tuesday_hours}
                         >
-
                         </input>
                         {tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Tuesday. </div> : ""}
+                        {(tuesday_hours === 'Closed' || tuesday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Tuesday hours.</label>
+                            <input
+                                className='extra-day-input-checkbox'
+                                type='checkbox'
+                                onClick={tueCheckBox}>
+                            </input></div>}
                     </div>
-                    <div className="secondary-hours-input-div">
+                    {tueCheck ? <div className="secondary-hours-input-div">
                         <input
                             className="business-form-hours-input"
                             placeholder="Secondary Tuesday Hours of Operation"
@@ -300,8 +348,7 @@ const BusinessForm = () => {
                             onChange={(e) => setTuesHoursTwo(e.target.value)}
                             value={tuesday_hours_two}>
                         </input>
-
-                    </div>
+                    </div> : ""}
                     <div>
                         <input
                             required={true}
@@ -311,11 +358,16 @@ const BusinessForm = () => {
                             type='text'
                             onChange={wedsSet}
                             value={wednesday_hours}>
-
                         </input>
                         {weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Wednesday. </div> : ""}
+                        {(wednesday_hours === 'Closed' || wednesday_hours === 'closed') ? "" :<div className='div-containing-secondary-check'><label>Click checkbox for secondary Wednesday hours.</label>
+                            <input
+                                className='extra-day-input-checkbox'
+                                type='checkbox'
+                                onClick={wedCheckBox}>
+                            </input></div>}
                     </div>
-                    <div className="secondary-hours-input-div">
+                    {wedCheck ? <div className="secondary-hours-input-div">
                         <input
                             className="business-form-hours-input"
                             placeholder="Secondary Wednesday Hours of Operation"
@@ -324,7 +376,7 @@ const BusinessForm = () => {
                             onChange={(e) => setWedsHoursTwo(e.target.value)}
                             value={wednesday_hours_two}>
                         </input>
-                    </div>
+                    </div> : ""}
                     <div>
                         <input
                             required={true}
@@ -337,8 +389,14 @@ const BusinessForm = () => {
 
                         </input>
                         {thurs_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Thursday. </div> : ""}
+                        {(thursday_hours === 'Closed' || thursday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Thursday hours.</label>
+                            <input
+                                className='extra-day-input-checkbox'
+                                type='checkbox'
+                                onClick={thuCheckBox}>
+                            </input></div>}
                     </div>
-                    <div className="secondary-hours-input-div">
+                    {thuCheck ? <div className="secondary-hours-input-div">
                         <input
                             className="business-form-hours-input"
                             placeholder="Secondary Thursday Hours of Operation"
@@ -347,7 +405,7 @@ const BusinessForm = () => {
                             onChange={(e) => setThursHoursTwo(e.target.value)}
                             value={thursday_hours_two}>
                         </input>
-                    </div>
+                    </div> : ""}
                     <div>
                         <input
                             required={true}
@@ -360,8 +418,14 @@ const BusinessForm = () => {
 
                         </input>
                         {fri_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Friday. </div> : ""}
+                        {(friday_hours === 'Closed' || friday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Friday hours.</label>
+                            <input
+                                className='extra-day-input-checkbox'
+                                type='checkbox'
+                                onClick={friCheckBox}>
+                            </input></div>}
                     </div>
-                    <div className="secondary-hours-input-div">
+                    {friCheck ? <div className="secondary-hours-input-div">
                         <input
                             className="business-form-hours-input"
                             placeholder="Secondary Friday Hours of Operation"
@@ -370,7 +434,7 @@ const BusinessForm = () => {
                             onChange={(e) => setFriHoursTwo(e.target.value)}
                             value={friday_hours_two}>
                         </input>
-                    </div>
+                    </div> : ""}
                     <div>
                         <input
                             required={true}
@@ -383,8 +447,14 @@ const BusinessForm = () => {
 
                         </input>
                         {sat_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Saturday. </div> : ""}
+                        {(saturday_hours === 'Closed' || saturday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Saturday hours.</label>
+                            <input
+                                className='extra-day-input-checkbox'
+                                type='checkbox'
+                                onClick={satCheckBox}>
+                            </input></div>}
                     </div>
-                    <div className="secondary-hours-input-div">
+                    {satCheck ? <div className="secondary-hours-input-div">
                         <input
                             className="business-form-hours-input"
                             placeholder="Secondary Saturday Hours of Operation"
@@ -393,7 +463,7 @@ const BusinessForm = () => {
                             onChange={(e) => setSatHoursTwo(e.target.value)}
                             value={saturday_hours_two}>
                         </input>
-                    </div>
+                    </div> : ""}
                     <div>
                         <input
                             required={true}
@@ -406,8 +476,14 @@ const BusinessForm = () => {
 
                         </input>
                         {sun_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Sunday. </div> : ""}
+                        {(sunday_hours === 'Closed' || sunday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Sunday hours.</label>
+                            <input
+                                className='extra-day-input-checkbox'
+                                type='checkbox'
+                                onClick={sunCheckBox}>
+                            </input></div>}
                     </div>
-                    <div className="secondary-hours-input-div">
+                    {sunCheck ? <div className="secondary-hours-input-div">
                         <input
                             className="business-form-hours-input"
                             placeholder="Secondary Sunday Hours of Operation"
@@ -416,7 +492,7 @@ const BusinessForm = () => {
                             onChange={(e) => setSunHoursTwo(e.target.value)}
                             value={sunday_hours_two}>
                         </input>
-                    </div>
+                    </div> : ""}
                 </div>
                 <div className="business-form-email-input-div">
                     <input
@@ -434,13 +510,13 @@ const BusinessForm = () => {
                     <input
                         required={true}
                         placeholder="Business Address"
-                        className={address.length < 15 ? "falsey-business-form-address-input" : "business-form-address-input"}
+                        className={(address.length < 15 || address.length > 100) ? "falsey-business-form-address-input" : "business-form-address-input"}
                         name='address'
                         type='text'
                         onChange={addressSet}
                         value={address}></input>
                     {address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
-
+                    {address.length > 100 ? <div className="error-below-inputs-divs"> Address cannot exceed 100 characters. </div> : ""}
                 </div>
                 <div className="business-form-phone-input-div">
                     <label className="phone-num-input-label">Please enter in "xxx-xxx-xxxx" format.</label>

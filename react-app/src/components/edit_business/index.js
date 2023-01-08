@@ -243,6 +243,9 @@ const EditBusiness = () => {
         if (address.length < 15) {
             err.push("Address must be at least 15 characters long")
         }
+        if (address.length > 100) {
+            err.push("Address must not exceed 100 characters.")
+        }
         if ((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))) {
             err.push("Must be valid time format for Monday.")
         }
@@ -479,12 +482,13 @@ const EditBusiness = () => {
                     </div>
                     <div className="edit-business-address-div">
                         <input
-                            className={address.length < 15 ? "falsey-business-form-address-input" : "business-form-address-input"}
+                            className={(address.length < 15 || address.length > 100) ? "falsey-business-form-address-input" : "business-form-address-input"}
                             name='address'
                             type='text'
                             onChange={addressSet}
                             value={address}></input>
                         {address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
+                        {address.length > 100 ? <div className="error-below-inputs-divs"> Address cannot exceed 100 characters. </div> : ""}
                     </div>
                     <div className="edit-business-phone-div">
                         <input
