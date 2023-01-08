@@ -334,7 +334,7 @@ const BusinessDetails = () => {
                     </div>
                     <div className="testing-review-location">
                         <div className="overall-rating-div-above-reviews">Overall rating
-                        <div>{reviewStarAvg} • {starNumChecker(reviewStarAvg)}</div>
+                        {businessInfoObj.reviews.length > 0 ? <div>{reviewStarAvg} • {starNumChecker(reviewStarAvg)}</div> : ""}
                         <div>{businessInfoObj?.reviews.length} review(s)</div>
                         </div>
                         {businessInfoObj?.reviews.map((reviewObj) => {

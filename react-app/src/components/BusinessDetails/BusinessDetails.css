@@ -347,18 +347,22 @@
 .about-biz-h2{
     font-weight: bold;
     font-size: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .about-the-biz-div{
     padding-top: 20em;
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     /* justify-content: center; */
     align-items: center;
     /* padding-top: -8em; */
     width: 40em;
     padding-left: 22em;
+    overflow-wrap: break-word;
 }
+
 
 .business-details-reviews-li-image-holder{
     display: flex;
