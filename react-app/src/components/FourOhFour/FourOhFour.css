@@ -1,0 +1,11 @@
+.fourohfour-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fourohfour-img{
+    height: 50em;
+    width: 50em;
+}

@@ -16,27 +16,13 @@ import EditReviewButton from './components/edit_review/EditReview';
 import SplashPage from './components/SplashPage/SplashPage';
 // import Pagination from './components/Pagination/Pagination';
 import UserProfile from './components/UserProfile/UserProfile';
+// import logo from './assets/blinkyguy.gif'
+import FourOhFour from './components/FourOhFour/FourOhFour';
+import InProd from './components/InProduction/InProd';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const [postPerPage, setPostsPerPage] = useState(8)
-
-
-
-  // const businessesObj = useSelector(state => {
-  //     return state
-  // })
-
-  // const aBusiness = Object.values(businessesObj.businessReducer.businesses)
-
-  // const lastPostIndex = currentPage * postPerPage;
-
-  // const firstPostIndex = lastPostIndex - postPerPage
-
-  // const currBusinesses = aBusiness.slice(firstPostIndex, lastPostIndex)
 
   useEffect(() => {
     (async () => {
@@ -86,13 +72,13 @@ function App() {
           <SplashPage />
         </Route>
         <Route path='/production'>
-          <h1>Implementation not complete, coming soon.</h1>
+          <InProd />
         </Route>
         <Route path='/userprofile'>
           <UserProfile />
         </Route>
         <Route>
-          <h1>PAGE NOT FOUND</h1>
+          <FourOhFour />
         </Route>
       </Switch>
     </BrowserRouter>
