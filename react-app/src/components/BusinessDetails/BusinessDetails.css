@@ -95,7 +95,7 @@
     top: 5px;
     /* padding-bottom: 100px; */
     /* padding-bottom: -500px; */
-    margin-top: -18em;
+    margin-top: -26em;
     /* padding-bottom: 100px; */
     /* z-index: 1; */
     /* display:flex;
@@ -127,7 +127,7 @@
     position: relative;
     bottom: 50px;
     top: 5px;
-    margin-left: -15em;
+    margin-left: -16.5em;
     padding-top: 4em;
     padding-right: 100px;
     /* padding-bottom: 5em; */
@@ -184,8 +184,10 @@
 } */
 
 .contact-info-li{
-    padding-right: 1em;
+    padding-right: 1.8em;
     font-size: .92em;
+    width: 18em;
+    overflow-wrap: break-word;
 }
 
 .contact-info-h2{
@@ -210,7 +212,13 @@
     display: flex;
     /* flex-direction: row; */
     align-items: center;
-    width: 40em;
+    /* justify-content: center; */
+    width: 30em;
+    padding-right: 400px;
+    position: relative;
+    top: 220px;
+    overflow-wrap: break-word;
+    /* margin-top: 500px; */
     /* justify-content: center; */
     /* height: 100vh; */
     /* flex-direction: row-reverse; */
@@ -222,11 +230,14 @@
 }
 
 .address-single-div{
+    overflow-wrap: break-word;
     display: flex;
     /* align-items: flex-end; */
     /* height: 10px; */
     font-weight: bold;
     padding-top: 15em;
+
+    width: 19.4em;
 }
 
 
@@ -350,4 +361,53 @@
 .business-details-reviews-li-image-holder{
     display: flex;
     justify-content: center;
+}
+
+.new-scratch-div-for-hours{
+    /* padding: 1em; */
+    height: 23em;
+    width: 9em;
+}
+
+.two-piece-hours-div{
+    width: 9em;
+    padding-bottom: 1em;
+    font-weight: bold;
+}
+
+.beta-container-test{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -13em;
+    overflow-wrap: break-word;
+}
+
+.another-holder-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 10em;
+}
+
+.hours-divs-inside-new-scratch{
+    font-weight: bold;
+}
+
+.container-divs-inside-new-scratch{
+    font-weight: bold;
+}
+
+.business-website-link-link{
+    font-weight: bold;
+    color: rgba(2,122,151,1);
+    text-decoration: none;
+    overflow-wrap: break-word;
+    width: 1em;
+}
+
+.business-website-link-link:hover{
+    text-decoration: underline;
 }

@@ -172,6 +172,7 @@ const BusinessDetails = () => {
 
     return (
         <div className='omega-main-container'>
+
             {/* <div className="main-container-business-details"> */}
             <div className="delete-edit-business-buttons-div">
                 <div>
@@ -213,18 +214,21 @@ const BusinessDetails = () => {
 
 
             {/* <div className="contact-info-div"> */}
-
-            <div className="daily-hours-div">
-                {/* <h2>Location & Hours</h2> */}
-                <div className="address-single-div">
-                    {businessInfoObj?.address}
+            <div className="beta-container-test">
+                {/* <div className="another-holder-div"> */}
+                <div className="daily-hours-div">
+                    {/* <h2>Location & Hours</h2> */}
+                    <div className="address-single-div">
+                        {businessInfoObj?.address}
+                    </div>
+                    <div className="potential-map-location" style={{ backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)' }}>
+                        {/* <div className="not-another-div-brother"> */}
+                        {/* <img className="potential-map-img" src={'https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg'} alt='https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg' /> */}
+                        {/* </div> */}
+                        <p className="maps-p">Maps API implementation coming soon.</p>
+                    </div>
                 </div>
-                <div className="potential-map-location" style={{backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)'}}>
-                    {/* <div className="not-another-div-brother"> */}
-                    {/* <img className="potential-map-img" src={'https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg'} alt='https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg' /> */}
-                    {/* </div> */}
-                    <p className="maps-p">Maps API implementation coming soon.</p>
-                </div>
+                {/* </div> */}
                 {/* <div className="hours-info-ul">
 
                     {monCheck ? <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li> : <li className="hours-li">Mon &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours}</li>}
@@ -243,8 +247,8 @@ const BusinessDetails = () => {
                     {sunCheck ? <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours.split(',')[1]}</li> : ""}
                     <br></br>
                 </div> */}
-            </div>
-            {/* <div className="hours-info-ul">
+
+                {/* <div className="hours-info-ul">
 
                 {monCheck ? <li className="abcd-test-div"><li className="hours-li">Mon &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[0]}</li>
                 <li className="hours-li">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.monday_hours.split(',')[1]}</li>
@@ -275,17 +279,17 @@ const BusinessDetails = () => {
                 </li> : <li className="hours-li">Sun&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{businessInfoObj?.sunday_hours}</li>}
             </div> */}
 
-            <div className="new-scratch-div-for-hours">
-                <div>{businessInfoObj?.monday_hours.split(',').length > 1 ? <div> {businessInfoObj?.monday_hours.split(',')[0]} {businessInfoObj?.monday_hours.split(',')[1]} </div> : businessInfoObj?.monday_hours.split(',')[0]}</div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+                <div className="new-scratch-div-for-hours">
+                    <div className="container-divs-inside-new-scratch">Mon: {businessInfoObj?.monday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.monday_hours.split(',')[0]} {businessInfoObj?.monday_hours.split(',')[1]} </div> : businessInfoObj?.monday_hours.split(',')[0]}</div>
+                    <div className="container-divs-inside-new-scratch">Tue: {businessInfoObj?.tuesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]} {businessInfoObj?.tuesday_hours.split(',')[1]} </div> : businessInfoObj?.tuesday_hours.split(',')[0]}</div>
+                    <div className="container-divs-inside-new-scratch">Wed: {businessInfoObj?.wednesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.wednesday_hours.split(',')[0]} {businessInfoObj?.wednesday_hours.split(',')[1]} </div> : businessInfoObj?.wednesday_hours.split(',')[0]}</div>
+                    <div className="container-divs-inside-new-scratch">Thu: {businessInfoObj?.thursday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]} {businessInfoObj?.thursday_hours.split(',')[1]} </div> : businessInfoObj?.thursday_hours.split(',')[0]}</div>
+                    <div className="container-divs-inside-new-scratch">Fri: {businessInfoObj?.friday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]} {businessInfoObj?.friday_hours.split(',')[1]} </div> : businessInfoObj?.friday_hours.split(',')[0]}</div>
+                    <div className="container-divs-inside-new-scratch">Sat: {businessInfoObj?.saturday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} {businessInfoObj?.saturday_hours.split(',')[1]} </div> : businessInfoObj?.saturday_hours.split(',')[0]}</div>
+                    <div className="container-divs-inside-new-scratch">Sun: {businessInfoObj?.sunday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.sunday_hours.split(',')[0]} {businessInfoObj?.sunday_hours.split(',')[1]} </div> : businessInfoObj?.sunday_hours.split(',')[0]}</div>
+                </div>
 
-            {/* <div className="details-contact-info-div">
+                {/* <div className="details-contact-info-div">
                         <h2 className="contact-info-h2">Contact Information</h2>
                         <hr />
                         <ul className="contact-info-ul">
@@ -299,59 +303,56 @@ const BusinessDetails = () => {
                         </ul>
                     </div> */}
 
-            <div className={monCheck ? 'details-contact-info-div-two' : "details-contact-info-div"}>
-                <h2 className="contact-info-h2">Contact Information</h2>
-                <hr />
-                <ul className="contact-info-ul">
-                    <li className="contact-info-li">  <Link to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i className="fa fa-share" aria-hidden="true"></i></li>
-                    <hr className="contact-info-ul-hr" />
-                    <li className="contact-info-li"> {businessInfoObj?.phone_number} &nbsp; &nbsp; &nbsp;  <i className="fa fa-phone" aria-hidden="true"></i></li>
-                    <hr className="contact-info-ul-hr" />
-                    <li className="contact-info-li">  {businessInfoObj?.email} &nbsp; &nbsp; &nbsp;  <i className="fa fa-envelope-o" aria-hidden="true"></i></li>
-                    <hr className="contact-info-ul-hr" />
-                    <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i className="fa fa-map-marker" aria-hidden="true"></i></li>
-                </ul>
-            </div>
-
-
-
-
-            <div className="where-reviews-will-go-probably">
-            <div className="about-the-biz-div">
-                <hr className="about-biz-hr-sep"></hr>
-                <h2 className="about-biz-h2">About the Business</h2>
-                {businessInfoObj?.about_us}
-                <hr className="about-biz-hr-sep-two"></hr>
-            </div>
-                <div className="leave-review-button-div">
-                    {sessionUser && reviewFilter?.length < 1 && (sessionUser.id !== businessInfoObj?.user_id ? <ReviewFormButton /> : null)}
-                    {/* {console.log("@@@@", businessInfoObj)} */}
+                {/* <div className={monCheck ? 'details-contact-info-div-two' : "details-contact-info-div"}> */}
+                <div className="details-contact-info-div">
+                    <h2 className="contact-info-h2">Contact Information</h2>
+                    <hr />
+                    <ul className="contact-info-ul">
+                        <li className="contact-info-li">  <Link className="business-website-link-link" to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i className="fa fa-share" aria-hidden="true"></i></li>
+                        <hr className="contact-info-ul-hr" />
+                        <li className="contact-info-li"> {businessInfoObj?.phone_number} &nbsp; &nbsp; &nbsp;  <i className="fa fa-phone" aria-hidden="true"></i></li>
+                        <hr className="contact-info-ul-hr" />
+                        <li className="contact-info-li">  {businessInfoObj?.email} &nbsp; &nbsp; &nbsp;  <i className="fa fa-envelope-o" aria-hidden="true"></i></li>
+                        <hr className="contact-info-ul-hr" />
+                        <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i className="fa fa-map-marker" aria-hidden="true"></i></li>
+                    </ul>
                 </div>
-                <div className="testing-review-location">
-                    {businessInfoObj?.reviews.map((reviewObj) => {
-                        return (
-                            <div key={reviewObj.id}>
-                                <div  className="move-around-reviews-li-div">
-                                    {/* {userComponents(reviewObj.user_id)} */}
-                                    <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
-                                    {reviewObj ? <p>{reviewObj?.updated_at.split('').slice(0, 16).join('')}</p> : <p>{reviewObj?.created_at.split('').slice(0, 16).join('')}</p>}
-                                    <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</div>
-                                    <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
-                                    {/* {console.log("!!!!!!!!!!!!!!!!", reviewObj)} */}
 
+
+
+
+                <div className="where-reviews-will-go-probably">
+                    <div className="about-the-biz-div">
+                        <hr className="about-biz-hr-sep"></hr>
+                        <h2 className="about-biz-h2">About the Business</h2>
+                        {businessInfoObj?.about_us}
+                        <hr className="about-biz-hr-sep-two"></hr>
+                    </div>
+                    <div className="leave-review-button-div">
+                        {sessionUser && reviewFilter?.length < 1 && (sessionUser.id !== businessInfoObj?.user_id ? <ReviewFormButton /> : null)}
+                    </div>
+                    <div className="testing-review-location">
+                        {businessInfoObj?.reviews.map((reviewObj) => {
+                            return (
+                                <div key={reviewObj.id}>
+                                    <div className="move-around-reviews-li-div">
+                                        <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
+                                        {reviewObj ? <p>{reviewObj?.updated_at.split('').slice(0, 16).join('')}</p> : <p>{reviewObj?.created_at.split('').slice(0, 16).join('')}</p>}
+                                        <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</div>
+                                        <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
+
+                                    </div>
+                                    {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
+                                    {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
+                                        <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
+                                    ) : null}
                                 </div>
-                                {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
-                                {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
-                                    <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
-                                ) : null}
-                            </div>
-                        )
-                        // {sessionUser && (sessionUser?.id === review?.User?.id ? <button className='remove-review-button' id={review.id} onClick={deleteAReview}>Remove Review</button> : null)}
-                    })}
+                            )
+                        })}
+                    </div>
+
                 </div>
-
             </div>
-
         </div>
     )
 }
