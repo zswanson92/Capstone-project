@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { getAllBusinessesThunk } from '../../store/business';
 import './Businesses.css'
 // import logo from '../../assets/yelp_logo.PNG'
+import logo from '../../assets/githublogo.png'
 
 const Businesses = () => {
     const dispatch = useDispatch()
@@ -159,6 +160,10 @@ const Businesses = () => {
                     })}
                 </div>
             </div>
+            <footer className='splash-footer'>
+                <p>© 2022 Zelp Corp</p>
+                <a className='splash-github-link' href='https://github.com/zswanson92'> <img src={logo} alt='Logo' className='splash-logo-img'></img> Zack Swanson</a>
+            </footer>
         </>
     )
 }

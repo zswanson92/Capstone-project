@@ -5,6 +5,7 @@ import { getBusinessByIdThunk } from "../../store/business";
 import './BusinessDetails.css'
 import ReviewFormButton from "../review_form/ReviewForm";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
+import logo from '../../assets/githublogo.png'
 
 
 const BusinessDetails = () => {
@@ -308,8 +309,8 @@ const BusinessDetails = () => {
                     <h2 className="contact-info-h2">Contact Information</h2>
                     <hr />
                     <ul className="contact-info-ul">
-                        <li className="contact-info-li">  <Link className="business-website-link-link" to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i className="fa fa-share" aria-hidden="true"></i></li>
-                        <hr className="contact-info-ul-hr" />
+                        {businessInfoObj?.business_website ? <li className="contact-info-li">  <Link className="business-website-link-link" to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i className="fa fa-share" aria-hidden="true"></i></li> : ""}
+                        {businessInfoObj?.business_website ? <hr className="contact-info-ul-hr" /> : ""}
                         <li className="contact-info-li"> {businessInfoObj?.phone_number} &nbsp; &nbsp; &nbsp;  <i className="fa fa-phone" aria-hidden="true"></i></li>
                         <hr className="contact-info-ul-hr" />
                         <li className="contact-info-li">  {businessInfoObj?.email} &nbsp; &nbsp; &nbsp;  <i className="fa fa-envelope-o" aria-hidden="true"></i></li>
@@ -332,13 +333,20 @@ const BusinessDetails = () => {
                         {sessionUser && reviewFilter?.length < 1 && (sessionUser.id !== businessInfoObj?.user_id ? <ReviewFormButton /> : null)}
                     </div>
                     <div className="testing-review-location">
+                        <div className="overall-rating-div-above-reviews">Overall rating
+                        <div>{reviewStarAvg} • {starNumChecker(reviewStarAvg)}</div>
+                        <div>{businessInfoObj?.reviews.length} review(s)</div>
+                        </div>
                         {businessInfoObj?.reviews.map((reviewObj) => {
                             return (
                                 <div key={reviewObj.id}>
                                     <div className="move-around-reviews-li-div">
                                         <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
-                                        {reviewObj ? <p>{reviewObj?.updated_at.split('').slice(0, 16).join('')}</p> : <p>{reviewObj?.created_at.split('').slice(0, 16).join('')}</p>}
-                                        <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)}</div>
+                                        {/* {reviewObj ? <p>{reviewObj?.updated_at.split('').slice(0, 16).join('')}</p> : <p>{reviewObj?.created_at.split('').slice(0, 16).join('')}</p>} */}
+                                        {/* {<p>{reviewObj?.updated_at.split('').slice(0, 16).join('')}</p>} */}
+                                        {/* {<p><p>{reviewObj?.created_at.split('').slice(0, 16).join('')}</p></p>} */}
+
+                                        <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)} &nbsp; {reviewObj?.created_at.split('').slice(0, 16).join('')}</div>
                                         <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
 
                                     </div>
@@ -353,6 +361,10 @@ const BusinessDetails = () => {
 
                 </div>
             </div>
+            <footer className='splash-footer'>
+                <p>© 2022 Zelp Corp</p>
+                <a className='splash-github-link' href='https://github.com/zswanson92'> <img src={logo} alt='Logo' className='splash-logo-img'></img> Zack Swanson</a>
+            </footer>
         </div>
     )
 }
