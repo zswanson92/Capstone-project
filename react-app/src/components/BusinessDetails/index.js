@@ -170,6 +170,10 @@ const BusinessDetails = () => {
         setConfirm(false)
     }
 
+    function addDefaultSrc(ev) {
+        ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
+    }
+
 
     return (
         <div className='omega-main-container'>
@@ -350,7 +354,7 @@ const BusinessDetails = () => {
                                         <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
 
                                     </div>
-                                    {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
+                                    {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img onError={addDefaultSrc} className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
                                     {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
                                         <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
                                     ) : null}
