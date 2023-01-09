@@ -1,9 +1,15 @@
-# Flask React Project
+# Zelp!
 
-This is the starter for the Flask React project.
+## About
 
-## Getting started
-1. Clone this repository (only this branch)
+Zelp! is my attempt at a rough clone of the Yelp! website, primarily focused on restaraunts as opposed to all businesses. Users will be able to signup, create business pages that will list details about their business and provide a forum for their businesses to be reviewed and advertised online by their peers. There will be implementation for User profiles to store reviews and interact with other Users who frequent the same businesses and a like system where reviews can be prioritized based on how the general populace feels about them.
+
+In the future I hope to also implement maps as well as a search bar to further enable people to find things that are popular near them and potentially find some hiddens gems as well as let their own feelings be known to business owners. It's been a lot of fun trying to recreate this highly intricate site that has a ton of very cool functionality and styling, I look forward to see how much more I can implement.
+
+To use the app you can either select the live link, or by downloading from the repository and following the steps listed out in the 'Getting Zelp! started' section below
+
+## Getting Zelp! started
+1. Clone this repository and open the file.
 
 2. Install dependencies
 
@@ -42,107 +48,54 @@ This is the starter for the Flask React project.
 7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 
-## Deployment through Render.com
+## Wiki Links
+The links here will provide more details on the Database Schema, Features List, and User Stories for the Zelp! site.
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+[Database Schema](https://github.com/zswanson92/Capstone-project/wiki/Database-Schema)
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+[Features List](https://github.com/zswanson92/Capstone-project/wiki/Features-List)
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+[User Stories](https://github.com/zswanson92/Capstone-project/wiki/User-Stories)
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+[WireFrames](https://github.com/zswanson92/Capstone-project/wiki/Wireframes)
 
-### Part A: Configure the Start and Build Commands
 
-Start by giving your application a name.
+## Stack
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+Languages, Frameworks, Platforms, and Libraries used:
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+>  Python, Flask, Alembic, SQLAlchemy, PyPI, HTML5, CSS3, Node.js, React, Redux
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+Hosting:
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+>  Render
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+Host Database:
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+>  PostgreSQL
 
-Now, add your start command in the Start field:
 
-```shell
-# start script
-gunicorn app:app
-```
+## Yelp Home Page 1 ![image](https://user-images.githubusercontent.com/68711430/211254472-6a197c36-a5ab-4f58-afb9-fe9c8e4c86cb.png)
 
-_If you are using websockets, use the following start command instead for increased performance:_
 
-`gunicorn --worker-class eventlet -w 1 app:app`
+## Yelp Home Page 2 ![image](https://user-images.githubusercontent.com/68711430/211254503-4b600f57-5f06-44b5-8ba1-0727f8648f53.png)
 
-### Part B: Add the Environment Variables
+## Yelp Businesses List ![image](https://user-images.githubusercontent.com/68711430/211254566-6c3cfd25-5145-42f1-908c-873a71457fca.png)
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
+## Top of Yelp Business Page ![image](https://user-images.githubusercontent.com/68711430/211254636-4a6c219b-4ca6-4bc6-b45f-be6d8f1e83e6.png)
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
+## Yelp Review Start ![image](https://user-images.githubusercontent.com/68711430/211254679-8b0ab7a8-8ada-4547-997b-d5360a2cf2f8.png)
 
-Add the following keys and values in the Render GUI form:
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
+## Zelp Home Page 1 ![image](https://user-images.githubusercontent.com/68711430/211254764-d645dcad-8244-4a0e-8e32-d5e65154cfa6.png)
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+## Zelp Home Page 2 ![image](https://user-images.githubusercontent.com/68711430/211254808-6fd86240-72c3-4d6d-9d60-199387912d77.png)
 
-Add the following keys and values:
+## Zelp Businesses List ![image](https://user-images.githubusercontent.com/68711430/211254849-d7c83231-c3c7-4678-a08c-e3525b2c80fa.png)
 
-- DATABASE_URL (copy value from Internal Database URL field)
+## Top of Zelp Business Page ![image](https://user-images.githubusercontent.com/68711430/211254910-c2b901de-d76a-46fb-88a7-15cea914cb0e.png)
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
+## Zelp Review Start ![image](https://user-images.githubusercontent.com/68711430/211255050-64a0bdb5-e879-4373-aeb7-070dff8cae02.png)
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
 
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/# Capstone-project
