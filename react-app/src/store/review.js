@@ -1,6 +1,8 @@
 const ADD_REVIEW = 'add/NEW_REVIEW'
 const DELETE_REVIEW = 'delete/REVIEW'
 const EDIT_REVIEW = 'edit/REVIEW'
+const GET_REVIEWS = 'get/REVIEWS'
+const GET_BUSINESS_REVIEWS = 'get/BUSINESS_REVIEWS'
 
 
 const addReview = (review) => ({
@@ -18,7 +20,39 @@ const editReview = (review) => ({
     payload: review
 })
 
+const getAllReviews = (review) => ({
+    type: GET_REVIEWS,
+    payload: review
+})
 
+const getReviewsByBusinessId = (review) => ({
+    type: GET_BUSINESS_REVIEWS,
+    payload: review
+})
+
+
+
+
+export const getAllReviewsThunk = () => async dispatch => {
+    const response = await fetch('/api/reviews')
+
+    if(response.ok){
+        const review = await response.json()
+        dispatch(getAllReviews(review))
+        return review
+    }
+}
+
+
+// export const getReviewsByBusinessIdThunk = (businessId) => async dispatch => {
+//     const response = await fetch(`/api/businesses/${businessId}`)
+
+//     if(response.ok){
+//         const review = await response.json()
+//         dispatch(getReviewsByBusinessId(review))
+//         return review
+//     }
+// }
 
 export const editReviewThunk = (payload) => async dispatch => {
     const { reviewId, body, stars, image_url } = payload
@@ -104,6 +138,22 @@ const reviewsReducer = (state = initialState, action) => {
                 return newState
             }
             break
+        }
+
+        case GET_REVIEWS: {
+            const newState = Object.assign({}, state)
+            newState.allReviews = {}
+            const review = (action.payload)
+            newState.allReviews = review
+            return newState
+        }
+
+        case GET_BUSINESS_REVIEWS: {
+            const newState = { ...state }
+            newState.allReviews = {}
+            const reviews = action.payload
+            newState.allReviews = reviews
+            return newState
         }
 
         case DELETE_REVIEW: {

@@ -17,10 +17,21 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+@review_routes.route("", methods=["GET"])
+def get_all_reviews():
+    reviews = Review.query.all()
+
+    return { review.id: review.to_dict() for review in reviews}
 # @review_routes.route("", methods=["POST"])
 # @login_required
 # def add_review():
 
+
+# @review_routes.route("/businesses/<int:id>", methods=["GET"])
+# def get_business_reviews(id):
+#     reviews = Review.query.get(id)
+
+#     return {reviews.id: review.to_dict()}
 #     """
 #     Presents a form to create a review
 #     """
