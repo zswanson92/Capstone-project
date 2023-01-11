@@ -22,6 +22,18 @@ def get_all_reviews():
     reviews = Review.query.all()
 
     return { review.id: review.to_dict() for review in reviews}
+
+
+@review_routes.route('/<int:id>', methods=["GET"])
+def get_business_reviews(id):
+    reviews = Review.query.filter_by(business_id=id).all()
+    print("!!!!!!!!!!!", reviews)
+
+    return {review.id: review.to_dict() for review in reviews}
+
+
+@review_routes.route('/<int:id>/useful')
+
 # @review_routes.route("", methods=["POST"])
 # @login_required
 # def add_review():

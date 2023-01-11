@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getBusinessByIdThunk } from "../../store/business";
-// import { getReviewsByBusinessIdThunk } from "../../store/review";
+import { getReviewsByBusinessIdThunk } from "../../store/review";
 import './BusinessDetails.css'
 import ReviewFormButton from "../review_form/ReviewForm";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
@@ -24,6 +24,14 @@ const BusinessDetails = () => {
     });
     // console.log("@@@@@@@", businessInfoObj)
 
+    const reviewObj = useSelector(state => {
+        return state
+    })
+
+    const reviewsArr = Object.values(reviewObj.reviewsReducer.allReviews)
+
+    console.log("@@@@@@@@@@@", reviewsArr)
+
     let newArr = []
     let sum = 0
 
@@ -37,7 +45,7 @@ const BusinessDetails = () => {
 
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId));
-        // dispatch(getReviewsByBusinessIdThunk(businessId));
+        dispatch(getReviewsByBusinessIdThunk(businessId));
     }, [dispatch, businessId]);
 
 
@@ -343,7 +351,29 @@ const BusinessDetails = () => {
                             {businessInfoObj?.reviews.length > 0 ? <div>{reviewStarAvg} • {starNumChecker(reviewStarAvg)}</div> : ""}
                             <div>{businessInfoObj?.reviews.length} review(s)</div>
                         </div>
-                        {businessInfoObj?.reviews.map((reviewObj) => {
+
+                        {/* {businessInfoObj?.reviews.map((reviewObj) => {
+                            return (
+                                <div key={reviewObj.id}>
+                                    <div className="move-around-reviews-li-div">
+                                        <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
+                                        <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)} &nbsp; {reviewObj?.created_at.split('').slice(0, 16).join('')}</div>
+                                        <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
+                                    </div>
+                                    {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img onError={addDefaultSrc} className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
+                                    {sessionUser?.id !== reviewObj?.user_id ?
+                                        <div className="three-review-buttons-div">
+                                            <button className='review-voting-buttons'>💡 Useful</button>
+                                            <button className='review-voting-buttons'>😁 Funny</button>
+                                            <button className='review-voting-buttons'>😎 Cool</button>
+                                        </div> : ""}
+                                    {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
+                                        <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
+                                    ) : null}
+                                </div>
+                            )
+                        })} */}
+                        {reviewsArr.map((reviewObj) => {
                             return (
                                 <div key={reviewObj.id}>
                                     <div className="move-around-reviews-li-div">
@@ -357,7 +387,7 @@ const BusinessDetails = () => {
 
                                     </div>
                                     {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img onError={addDefaultSrc} className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
-                                    {sessionUser.id !== reviewObj.user_id ?
+                                    {sessionUser?.id !== reviewObj?.user_id ?
                                         <div className="three-review-buttons-div">
                                             <button className='review-voting-buttons'>💡 Useful</button>
                                             <button className='review-voting-buttons'>😁 Funny</button>

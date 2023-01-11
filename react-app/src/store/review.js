@@ -3,6 +3,7 @@ const DELETE_REVIEW = 'delete/REVIEW'
 const EDIT_REVIEW = 'edit/REVIEW'
 const GET_REVIEWS = 'get/REVIEWS'
 const GET_BUSINESS_REVIEWS = 'get/BUSINESS_REVIEWS'
+const ADD_USEFUL = 'add/USEFUL'
 
 
 const addReview = (review) => ({
@@ -30,6 +31,34 @@ const getReviewsByBusinessId = (review) => ({
     payload: review
 })
 
+const addUseful = (useful) => ({
+    type: ADD_USEFUL,
+    payload: useful
+})
+
+
+
+
+
+
+
+export const addUsefulThunk = (reviewid, userId) => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewid}/useful`)
+
+    if(response.ok){
+        const useful = await response.json()
+        dispatch(addUseful(useful))
+        return useful
+    }
+}
+
+export const addFunnyThunk = (reviewid, userId) => async dispatch => {
+
+}
+
+export const addCoolThunk = (reviewid, userId) => async dispatch => {
+
+}
 
 
 
@@ -44,15 +73,15 @@ export const getAllReviewsThunk = () => async dispatch => {
 }
 
 
-// export const getReviewsByBusinessIdThunk = (businessId) => async dispatch => {
-//     const response = await fetch(`/api/businesses/${businessId}`)
+export const getReviewsByBusinessIdThunk = (businessId) => async dispatch => {
+    const response = await fetch(`/api/reviews/${businessId}`)
 
-//     if(response.ok){
-//         const review = await response.json()
-//         dispatch(getReviewsByBusinessId(review))
-//         return review
-//     }
-// }
+    if(response.ok){
+        const review = await response.json()
+        dispatch(getReviewsByBusinessId(review))
+        return review
+    }
+}
 
 export const editReviewThunk = (payload) => async dispatch => {
     const { reviewId, body, stars, image_url } = payload

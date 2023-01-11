@@ -1,6 +1,35 @@
 from .db import db, SCHEMA, environment, add_prefix_for_prod
 import datetime
 
+useful = db.Table(
+    "useful",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))),
+    db.Column("review_id", db.Integer, db.ForeignKey(add_prefix_for_prod("reviews.id")))
+)
+
+if environment == "production":
+    upvotes.schema = SCHEMA
+
+funny = db.Table(
+    "funny",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))),
+    db.Column("review_id", db.Integer, db.ForeignKey(add_prefix_for_prod("reviews.id")))
+)
+
+if environment == "production":
+    upvotes.schema = SCHEMA
+
+cool = db.Table(
+    "useful",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))),
+    db.Column("review_id", db.Integer, db.ForeignKey(add_prefix_for_prod("reviews.id")))
+)
+
+if environment == "production":
+    upvotes.schema = SCHEMA
 
 class Review(db.Model):
     __tablename__ = "reviews"
@@ -18,6 +47,9 @@ class Review(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
     review_business = db.relationship("Business", back_populates="business_review")
+    review_useful = db.relationship("User", secondary=useful, back_populates="user_useful", cascade="all, delete")
+    review_funny = db.relationship("User", secondary=funny, back_populates="user_funny", cascade="all, delete")
+    review_cool = db.relationship("User", secondary=cool, back_populates="user_cool", cascade="all, delete")
 
     def to_dict(self):
         return {
