@@ -4,6 +4,8 @@ const EDIT_REVIEW = 'edit/REVIEW'
 const GET_REVIEWS = 'get/REVIEWS'
 const GET_BUSINESS_REVIEWS = 'get/BUSINESS_REVIEWS'
 const ADD_USEFUL = 'add/USEFUL'
+const ADD_FUNNY = 'add/FUNNY'
+const ADD_COOL = 'add/COOL'
 
 
 const addReview = (review) => ({
@@ -36,6 +38,15 @@ const addUseful = (useful) => ({
     payload: useful
 })
 
+const addFunny = (funny) => ({
+    type: ADD_FUNNY,
+    payload: funny
+})
+
+const addCool = (cool) => ({
+    type: ADD_COOL,
+    payload: cool
+})
 
 
 
@@ -52,12 +63,26 @@ export const addUsefulThunk = (reviewid, userId) => async dispatch => {
     }
 }
 
-export const addFunnyThunk = (reviewid, userId) => async dispatch => {
 
+export const addFunnyThunk = (reviewid, userId) => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewid}/funny`)
+
+    if(response.ok){
+        const funny = await response.json()
+        dispatch(addFunny(funny))
+        return funny
+    }
 }
 
-export const addCoolThunk = (reviewid, userId) => async dispatch => {
 
+export const addCoolThunk = (reviewid, userId) => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewid}/cool`)
+
+    if(response.ok){
+        const cool = await response.json()
+        dispatch(addCool(cool))
+        return cool
+    }
 }
 
 

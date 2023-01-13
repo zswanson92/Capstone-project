@@ -9,7 +9,7 @@ useful = db.Table(
 )
 
 if environment == "production":
-    upvotes.schema = SCHEMA
+    useful.schema = SCHEMA
 
 funny = db.Table(
     "funny",
@@ -19,20 +19,27 @@ funny = db.Table(
 )
 
 if environment == "production":
-    upvotes.schema = SCHEMA
+    funny.schema = SCHEMA
 
 cool = db.Table(
-    "useful",
+    "cool",
     db.Model.metadata,
     db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))),
     db.Column("review_id", db.Integer, db.ForeignKey(add_prefix_for_prod("reviews.id")))
 )
 
 if environment == "production":
-    upvotes.schema = SCHEMA
+    cool.schema = SCHEMA
+
+
 
 class Review(db.Model):
+
+    __table_args__ = {'extend_existing': True}
+
     __tablename__ = "reviews"
+
+
 
     if environment == "production":
         __table_args__ = { "schema": SCHEMA }
@@ -60,5 +67,8 @@ class Review(db.Model):
             "stars": self.stars,
             "image_url": self.image_url,
             "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "updated_at": self.updated_at,
+            "useful": len(self.review_useful),
+            "funny": len(self.review_funny),
+            "cool": len(self.review_cool)
         }
