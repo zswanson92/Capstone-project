@@ -7,6 +7,7 @@ import './BusinessDetails.css'
 import ReviewFormButton from "../review_form/ReviewForm";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 import logo from '../../assets/githublogo.png'
+// import NavBar from "../NavBar";
 
 
 const BusinessDetails = () => {
@@ -183,9 +184,11 @@ const BusinessDetails = () => {
     }
 
 
+
+
     return (
         <div className='omega-main-container'>
-
+            {/* <div><NavBar /></div> */}
             <div className="delete-edit-business-buttons-div">
                 <div>
                     {sessionUser &&
@@ -307,9 +310,9 @@ const BusinessDetails = () => {
                                     {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img onError={addDefaultSrc} className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
                                     {sessionUser?.id !== reviewObj?.user_id ?
                                         <div className="three-review-buttons-div">
-                                            <button className='review-voting-buttons' onClick={(e) => createUseful(e, reviewObj.id)}>💡 Useful {reviewObj?.useful}</button>
-                                            <button className='review-voting-buttons' onClick={(e) => createFunny(e, reviewObj.id)}>😁 Funny {reviewObj?.funny}</button>
-                                            <button className='review-voting-buttons' onClick={(e) => createCool(e, reviewObj.id)}>😎 Cool {reviewObj?.cool}</button>
+                                            <button className='review-voting-buttons' disabled={sessionUser ? false : true} onClick={(e) => createUseful(e, reviewObj.id)}>💡 Useful {reviewObj?.useful}</button>
+                                            <button className='review-voting-buttons' disabled={sessionUser ? false : true} onClick={(e) => createFunny(e, reviewObj.id)}>😁 Funny {reviewObj?.funny}</button>
+                                            <button className='review-voting-buttons' disabled={sessionUser ? false : true} onClick={(e) => createCool(e, reviewObj.id)}>😎 Cool {reviewObj?.cool}</button>
                                         </div> : ""}
                                     {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
                                         <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>

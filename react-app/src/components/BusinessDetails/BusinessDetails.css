@@ -354,6 +354,13 @@
     border: .5px solid rgb(177, 168, 168);
 }
 
+.review-voting-buttons:hover{
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgb(45, 46, 47);
+    box-shadow: none;
+}
+
+
 .three-review-buttons-div{
     display: flex;
     gap: .8em;
