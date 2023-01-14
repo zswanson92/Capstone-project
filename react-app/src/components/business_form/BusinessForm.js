@@ -121,14 +121,17 @@ const BusinessForm = () => {
             tags
         };
 
-        await dispatch(createBusinessThunk(createdBusiness));
+        const addedBiz = await dispatch(createBusinessThunk(createdBusiness));
 
-        let path = `/businesses`;
-        await history.push(path);
+        // let path = ;
+
+        // if(addedBiz){
+        history.push(`/businesses/${addedBiz?.id}`);
+        // }
     };
 
     const onClose = () => {
-        history.push('/');
+        history.push(`/`);
     }
 
     function isValidPhone(phone) {

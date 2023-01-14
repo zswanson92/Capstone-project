@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: ac351752a6b8
+Revision ID: 1cf2ff511adf
 Revises:
-Create Date: 2023-01-12 18:14:56.248288
+Create Date: 2023-01-13 18:09:09.313617
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'ac351752a6b8'
+revision = '1cf2ff511adf'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -66,6 +66,26 @@ def upgrade():
         op.execute(f"ALTER TABLE businesses SET SCHEMA {SCHEMA};")
 
 
+    op.create_table('menus',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('business_id', sa.Integer(), nullable=False),
+    sa.Column('category', sa.Text(), nullable=False),
+    sa.Column('item_name', sa.Text(), nullable=False),
+    sa.Column('description', sa.Text(), nullable=False),
+    sa.Column('price', sa.Integer(), nullable=False),
+    sa.Column('menu_image', sa.Text(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.ForeignKeyConstraint(['business_id'], ['businesses.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE menus SET SCHEMA {SCHEMA};")
+
+
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -94,6 +114,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE cool SET SCHEMA {SCHEMA};")
 
+
     op.create_table('funny',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('review_id', sa.Integer(), nullable=True),
@@ -104,6 +125,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE funny SET SCHEMA {SCHEMA};")
 
+
     op.create_table('useful',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('review_id', sa.Integer(), nullable=True),
@@ -113,7 +135,6 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE useful SET SCHEMA {SCHEMA};")
-
     # ### end Alembic commands ###
 
 
@@ -123,6 +144,7 @@ def downgrade():
     op.drop_table('funny')
     op.drop_table('cool')
     op.drop_table('reviews')
+    op.drop_table('menus')
     op.drop_table('businesses')
     op.drop_table('users')
     # ### end Alembic commands ###
