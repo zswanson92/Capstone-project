@@ -9,9 +9,9 @@ const CreateMenu = () => {
     let history = useHistory();
 
     const [category, setCategory] = useState("")
-    const [item_name, setItemName] = useState("")
-    const [description, setDescription] = useState("")
-    const [price, setPrice] = useState("")
+    // const [item_name, setItemName] = useState("")
+    // const [description, setDescription] = useState("")
+    // const [price, setPrice] = useState("")
     const [menu_image, setMenuImage] = useState("")
     const [errors, setErrors] = useState([])
 

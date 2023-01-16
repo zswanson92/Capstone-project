@@ -2,8 +2,8 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 import datetime
 
 
-class Menu(db.Model):
-    __tablename__ = "menus"
+class MenuItem(db.Model):
+    __tablename__ = "menuitems"
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -11,20 +11,25 @@ class Menu(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     business_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('businesses.id')), nullable=False)
-    category = db.Column(db.Text, nullable=False)
-    menu_image = db.Column(db.Text, nullable=True)
+    menu_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('menus.id')), nullable=False)
+    item_name = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    menu_item_image = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
-    menu_business = db.relationship("Business", back_populates="business_menu")
-    menu_menu_item = db.relationship("MenuItem", back_populates='menu_item_menu', cascade='all, delete-orphan')
+    menu_item_menu = db.relationship("Menu", back_populates="menu_menu_item")
 
     def to_dict(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
             "business_id": self.business_id,
-            "category": self.category,
-            "menu_image": self.menu_image,
-            "menu_items": [menu_item.to_dict() for menu in self.menu_menu_item]
+            "menu_id": self.menu_id,
+            "item_name": self.item_name,
+            "description": self.description,
+            "price": self.price,
+            "menu_item_image": self.menu_item_image,
+            "menu_image": self.menu_image
         }

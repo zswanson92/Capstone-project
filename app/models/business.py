@@ -32,6 +32,7 @@ class Business(db.Model):
     business_review = db.relationship("Review", back_populates="review_business", cascade="all, delete-orphan")
     business_user = db.relationship("User", back_populates="user_business")
     business_menu = db.relationship("Menu", back_populates="menu_business", cascade="all, delete-orphan")
+    # business_menu_item = db.relationship("MenuItem", back_populates="menu_item_business", cascade="all, delete-orphan")
 
 
     def to_dict(self):

@@ -4,3 +4,4 @@ from .db import environment, SCHEMA
 from .business import Business
 from .review import Review
 from .menu import Menu
+from .menuitem import MenuItem
