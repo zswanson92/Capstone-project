@@ -10,7 +10,7 @@ class MenuItem(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    business_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('businesses.id')), nullable=False)
+    # business_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('businesses.id')), nullable=False)
     menu_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('menus.id')), nullable=False)
     item_name = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text, nullable=False)
@@ -25,11 +25,11 @@ class MenuItem(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "business_id": self.business_id,
+            # "business_id": self.business_id,
             "menu_id": self.menu_id,
             "item_name": self.item_name,
             "description": self.description,
             "price": self.price,
             "menu_item_image": self.menu_item_image,
-            "menu_image": self.menu_image
+            # "menu_image": self.menu_image
         }

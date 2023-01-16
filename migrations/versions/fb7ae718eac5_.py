@@ -1,12 +1,13 @@
 """empty message
 
-Revision ID: 80f78d2401e1
+Revision ID: fb7ae718eac5
 Revises:
-Create Date: 2023-01-16 14:22:09.030781
+Create Date: 2023-01-16 16:37:30.595338
 
 """
 from alembic import op
 import sqlalchemy as sa
+
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -14,7 +15,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '80f78d2401e1'
+revision = 'fb7ae718eac5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -64,6 +65,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE businesses SET SCHEMA {SCHEMA};")
 
+
     op.create_table('menus',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -79,7 +81,6 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE menus SET SCHEMA {SCHEMA};")
-
 
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -122,7 +123,6 @@ def upgrade():
     op.create_table('menuitems',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('business_id', sa.Integer(), nullable=False),
     sa.Column('menu_id', sa.Integer(), nullable=False),
     sa.Column('item_name', sa.Text(), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
@@ -130,7 +130,6 @@ def upgrade():
     sa.Column('menu_item_image', sa.Text(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
-    sa.ForeignKeyConstraint(['business_id'], ['businesses.id'], ),
     sa.ForeignKeyConstraint(['menu_id'], ['menus.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -138,6 +137,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE menuitems SET SCHEMA {SCHEMA};")
+
 
     op.create_table('useful',
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -148,6 +148,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE useful SET SCHEMA {SCHEMA};")
+
 
     # ### end Alembic commands ###
 

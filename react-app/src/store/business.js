@@ -3,6 +3,8 @@ const GET_BUSINESSES = 'get/BUSINESSES'
 const GET_BUSINESS = 'get/BUSINESS'
 const DELETE_BUSINESS = 'delete/BUSINESS'
 const EDIT_BUSINESS = 'edit/BUSINESS'
+const ADD_MENU = 'add/MENU'
+const ADD_MENU_ITEM = 'add/MENUITEM'
 
 
 const addBusiness = (business) => ({
@@ -29,6 +31,55 @@ const editBusiness = (business) => ({
     type: EDIT_BUSINESS,
     payload: business
 })
+
+const addMenu = (menu) => ({
+    type: ADD_MENU,
+    payload: menu
+})
+
+const addMenuItem = (menuitem) => ({
+    type: ADD_MENU_ITEM,
+    payload: menuitem
+})
+
+
+
+export const createMenuItemThunk = (payload) => async dispatch => {
+    const { userId, menuId, item_name, description, price, menu_item_image } = payload
+
+    const response = await fetch(`/api/create/menu/${menuId}`, {
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId, menuId, item_name, description, price, menu_item_image})
+    })
+
+    if(response.ok){
+        const menuitem = await response.json()
+        dispatch(addMenuItem(menuitem))
+        return menuitem
+    }
+}
+
+
+export const createMenuThunk = (payload) => async dispatch => {
+    const { userId, businessId, category, menu_image} = payload
+
+    const response = await fetch(`/api/create/${businessId}/menu`, {
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId, businessId, category, menu_image})
+    })
+
+    if(response.ok){
+        const menu = await response.json()
+        dispatch(addMenu(menu))
+        return menu
+    }
+}
 
 
 

@@ -214,6 +214,16 @@ const BusinessDetails = () => {
                         ) : null)}
                     {confirm ? <ConfirmDelete confirm={confirm} setconfirm={theSetConfirm} /> : ""}
                 </div>
+                <div>
+                    {sessionUser &&
+                        (sessionUser.id === businessInfoObj?.user_id && (
+                            <Link exact="true" to={`/create/${businessId}/menu`}>
+                                <button className="edit-business-button">
+                                    Add Menu
+                                </button>
+                            </Link>
+                        ))}
+                </div>
 
             </div>
 

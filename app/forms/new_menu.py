@@ -8,4 +8,4 @@ class MenuForm(FlaskForm):
     # item_name = StringField("Item Name", validators=[DataRequired()])
     # description = TextAreaField("Description", validators=[DataRequired()])
     # price = IntegerField("Price", validators=[DataRequired()])
-    menu_image = StringField("Menu Image", validators=[DataRequired()])
+    menu_image = StringField("Menu Image")

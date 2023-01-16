@@ -26,5 +26,5 @@ class Menu(db.Model):
             "business_id": self.business_id,
             "category": self.category,
             "menu_image": self.menu_image,
-            "menu_items": [menu_item.to_dict() for menu in self.menu_menu_item]
+            "menu_items": [menu_item.to_dict() for menu_item in self.menu_menu_item]
         }

@@ -7,3 +7,4 @@ class MenuItemForm(FlaskForm):
     item_name = StringField("Item Name", validators=[DataRequired()])
     description = TextAreaField("Description", validators=[DataRequired()])
     price = IntegerField("Price", validators=[DataRequired()])
+    menu_item_image = StringField("Menu Item Image")
