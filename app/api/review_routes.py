@@ -17,10 +17,92 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+@review_routes.route("", methods=["GET"])
+def get_all_reviews():
+    reviews = Review.query.all()
+
+    return { review.id: review.to_dict() for review in reviews}
+
+
+@review_routes.route('/<int:id>', methods=["GET"])
+def get_business_reviews(id):
+    reviews = Review.query.filter_by(business_id=id).all()
+    print("!!!!!!!!!!!", reviews)
+
+    return {review.id: review.to_dict() for review in reviews}
+
+
+@review_routes.route('/<int:id>/useful', methods=["GET"])
+@login_required
+def adduseful(id):
+    user = User.query.get(current_user.id)
+
+    review = Review.query.get(id)
+
+    for x in review.review_useful:
+        # print("!!!!!!!!!!!!!", x.id)
+        if user.id == x.id:
+            review.review_useful.remove(user)
+            db.session.commit()
+            return review.to_dict()
+
+
+
+    review.review_useful.append(user)
+    db.session.commit()
+    return review.to_dict()
+
+@review_routes.route('/<int:id>/funny', methods=["GET"])
+@login_required
+def addfunny(id):
+    user = User.query.get(current_user.id)
+
+    review = Review.query.get(id)
+
+    for x in review.review_funny:
+        # print("!!!!!!!!!!!!!", x.id)
+        if user.id == x.id:
+            review.review_funny.remove(user)
+            db.session.commit()
+            return review.to_dict()
+
+
+
+    review.review_funny.append(user)
+    db.session.commit()
+    return review.to_dict()
+
+@review_routes.route('/<int:id>/cool', methods=["GET"])
+@login_required
+def addcool(id):
+    user = User.query.get(current_user.id)
+
+    review = Review.query.get(id)
+
+    for x in review.review_cool:
+        # print("!!!!!!!!!!!!!", x.id)
+        if user.id == x.id:
+            review.review_cool.remove(user)
+            db.session.commit()
+            return review.to_dict()
+
+
+
+    review.review_cool.append(user)
+    db.session.commit()
+    return review.to_dict()
+
+
 # @review_routes.route("", methods=["POST"])
 # @login_required
 # def add_review():
 
+
+# @review_routes.route("/businesses/<int:id>", methods=["GET"])
+# def get_business_reviews(id):
+#     reviews = Review.query.get(id)
+
+#     return {reviews.id: review.to_dict()}
 #     """
 #     Presents a form to create a review
 #     """

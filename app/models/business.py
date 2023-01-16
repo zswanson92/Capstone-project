@@ -31,6 +31,8 @@ class Business(db.Model):
 
     business_review = db.relationship("Review", back_populates="review_business", cascade="all, delete-orphan")
     business_user = db.relationship("User", back_populates="user_business")
+    business_menu = db.relationship("Menu", back_populates="menu_business", cascade="all, delete-orphan")
+    # business_menu_item = db.relationship("MenuItem", back_populates="menu_item_business", cascade="all, delete-orphan")
 
 
     def to_dict(self):
@@ -54,5 +56,6 @@ class Business(db.Model):
             'price': self.price,
             'tags': self.tags,
             "user_business": self.business_user.to_dict(),
-            "reviews": [review.to_dict() for review in self.business_review]
+            "reviews": [review.to_dict() for review in self.business_review],
+            "menus": [menu.to_dict() for menu in self.business_menu]
         }

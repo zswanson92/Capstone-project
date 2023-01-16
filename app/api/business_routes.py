@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Business, db, Review
-from app.forms import BusinessForm, ReviewForm
+from app.models import Business, db, Review, Menu, MenuItem
+from app.forms import BusinessForm, ReviewForm, MenuForm, MenuItemForm
+
 
 business_routes = Blueprint("businesses", __name__)
 create_business_route = Blueprint("create", __name__)
@@ -191,4 +192,54 @@ def add_review(id):
         return review.to_dict()
 
     print("REVIEW FORM ERRORS!@!", form.errors)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@create_business_route.route("/<int:id>/menu", methods=["POST"])
+@login_required
+def add_menu(id):
+    form = MenuForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        menu = Menu(
+            business_id = id,
+            user_id = current_user.id,
+            category = form.data['category'],
+            menu_image = form.data['menu_image']
+        )
+
+        db.session.add(menu)
+        db.session.commit()
+        return menu.to_dict()
+
+    print("MENU FORM ERRORS!@@", form.errors)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@create_business_route.route("/menu/<int:id>", methods=["POST"])
+@login_required
+def add_menu_item(id):
+
+    form = MenuItemForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print("FORM DATA??? ", form['item_name'])
+    if form.validate_on_submit():
+        menuitem = MenuItem(
+            # business_id = id,
+            menu_id = id,
+            user_id = current_user.id,
+            item_name = form.data['item_name'],
+            description = form.data['description'],
+            price = form.data['price'],
+            menu_item_image = form.data['menu_item_image']
+        )
+
+        db.session.add(menuitem)
+        db.session.commit()
+        return menuitem.to_dict()
+
+    print("MENU ITEM FORM ERRORS!@", form.errors)
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

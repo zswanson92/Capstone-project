@@ -10,8 +10,7 @@
     color: white;
     border: none;
     height: 3em;
-    width: 5em;
-    margin-left: 5.8em;
+    width: 16em;
 }
 
 .first-signupform-input-div{
@@ -21,9 +20,6 @@
 
 .signupform-input-div{
     padding-bottom: .8em;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
 }
 
 .signupform-inputs{
@@ -38,11 +34,11 @@
     height: 1.2em;
     width: 15em;
     border-radius: 3px;
-    border-color: red;
+    border-color: #c41200;
 }
 
 .error-message-signupform-divs{
-    color: red;
+    color: #c41200;
     font-weight: bold;
     font-size: .8em;
     padding-top: .5em;
@@ -50,27 +46,52 @@
 }
 
 .error-message-signupform-divs-repeat{
-    color: red;
+    color: #c41200;
     font-weight: bold;
     font-size: .8em;
     padding-top: .5em;
-    /* padding-right: 2.8em; */
-    /* margin-right: 2em; */
     margin-left: -2.5em;
 }
 
 
 .error-message-signupform-divs-username{
-    color: red;
+    color: #c41200;
     font-weight: bold;
     font-size: .8em;
     padding-top: .5em;
-    /* padding-right: 3em; */
 }
 
 .error-message-signupform-divs-emailinuse{
-    color: red;
+    color: #c41200;
     font-weight: bold;
     font-size: .8em;
     padding-top: .5em;
+}
+
+.signup-form-form{
+    margin-top: -7em;
+}
+
+.signup-image-div{
+    padding-top: 8.7em;
+}
+
+.signup-h2{
+    font-weight: bold;
+    color: #c41200;
+}
+
+.already-on-div{
+    padding-top: 1em;
+    color: #999;
+    padding-left: 2.4em;
+}
+
+.signupform-login-link{
+    text-decoration: none;
+    color: #0073bb;
+}
+
+.signupform-login-link:hover{
+    text-decoration: underline;
 }

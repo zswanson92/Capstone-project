@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css'
+import logo from '../../assets/signup_illustration.png'
+import logotwo from '../../assets/githublogo.png'
 
 
 const SignUpForm = () => {
@@ -67,7 +69,7 @@ const SignUpForm = () => {
   };
 
   const repeatPasswordHandleChange = e => {
-    if(repeatPassword !== password){
+    if (repeatPassword !== password) {
       let errArr = []
       errArr.push('Your repeat password does not match the original.')
       setErrors(errArr)
@@ -79,24 +81,24 @@ const SignUpForm = () => {
   }
 
   const userNameHandleChange = e => {
-    if(username.length > 25){
+    if (username.length > 25) {
       let arr = []
       arr.push("Your username must be less than 25 characters long.")
       setErrors(arr)
     }
-    else{
+    else {
       setErrors([])
     }
     setUsername(e.target.value)
   }
 
   const fullNameHandleChange = e => {
-    if(fullname.length > 40){
+    if (fullname.length > 40) {
       let newArr = []
       newArr.push("Full name cannot exceed 40 characters long.")
       setErrors(newArr)
     }
-    else{
+    else {
       setErrors([])
     }
     setFullname(e.target.value)
@@ -105,80 +107,158 @@ const SignUpForm = () => {
   // console.log(errors)
 
   return (
-    <div className='signupform-main-container'>
-      <form onSubmit={onSignUp}>
-        {/* <div>
-          {errors?.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div> */}
-        <div className='first-signupform-input-div'>
-          <input
-            required={true}
-            className={(username.length > 0 && username.length < 26) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
-            placeholder='User Name'
-            type='text'
-            name='username'
-            onChange={userNameHandleChange}
-            value={username}
-          ></input>
-          {username.length > 25 ? <div className='error-message-signupform-divs-username'>Username cannot exceed 25 characters.</div> : ""}
-          {!username.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
+    // <div className='signupform-main-container'>
+    //   <form onSubmit={onSignUp}>
+    //     <div className='first-signupform-input-div'>
+    //       <input
+    //         required={true}
+    //         className={(username.length > 0 && username.length < 26) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
+    //         placeholder='User Name'
+    //         type='text'
+    //         name='username'
+    //         onChange={userNameHandleChange}
+    //         value={username}
+    //       ></input>
+    //       {username.length > 25 ? <div className='error-message-signupform-divs-username'>Username cannot exceed 25 characters.</div> : ""}
+    //       {!username.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
+    //     </div>
+    //     <div className='signupform-input-div'>
+    //       <input
+    //         required={true}
+    //         className={(fullname.length > 0 && fullname.length < 41) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
+    //         placeholder='Full Name'
+    //         type='text'
+    //         name='fullname'
+    //         onChange={fullNameHandleChange}
+    //         value={fullname}
+    //       ></input>
+    //       {fullname.length > 40 ? <div className='error-message-signupform-divs'>Full name cannot exceed 40 characters.</div> : ""}
+    //       {!fullname.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
+    //     </div>
+    //     <div className='signupform-input-div'>
+    //       <input
+    //         required={true}
+    //         className={(isValidEmail(email) && !errors.includes('email : Email address is already in use.')) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
+    //         placeholder='Email'
+    //         type='text'
+    //         name='email'
+    //         onChange={handleChange}
+    //         value={email}
+    //       ></input>
+    //       {!isValidEmail(email) ? <div className='error-message-signupform-divs'>Not a valid Email address.</div> : ""}
+    //       {errors.includes('email : Email address is already in use.') ? <div className='error-message-signupform-divs-emailinuse'>That email address is already in use.</div> : ""}
+    //     </div>
+    //     <div className='signupform-input-div'>
+    //       <input
+    //         required={true}
+    //         className={!password.length ? 'falsey-signupform-inputs' : 'signupform-inputs'}
+    //         placeholder='Password'
+    //         type='password'
+    //         name='password'
+    //         onChange={updatePassword}
+    //         value={password}
+    //       ></input>
+    //       {!password.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
+    //     </div>
+    //     <div className='signupform-input-div'>
+    //       <input
+    //         className={repeatPassword !== password ? 'falsey-signupform-inputs' : 'signupform-inputs'}
+    //         placeholder='Repeat Password'
+    //         type='password'
+    //         name='repeat_password'
+    //         onChange={repeatPasswordHandleChange}
+    //         value={repeatPassword}
+    //         required={true}
+    //       ></input>
+    //       {repeatPassword !== password ? <div className='error-message-signupform-divs-repeat'>Your repeat password does not match the original.</div> : ""}
+    //     </div>
+    //     <button className='sign-up-button' type='submit'>Sign Up</button>
+    //   </form>
+    // </div>
+
+    <>
+
+      <div className='main-login-form-div'>
+        <div className='signup-image-div'><img src={logo} /></div>
+        <div className='login-form-div-container'>
+          <h2 className='signup-h2'>Sign up for Zelp!</h2>
+          <div style={{fontWeight: 'bold'}}>Connect with great local businesses</div>
+          {/* <h4>New to Yelp? <Link className='loginform-signup-link' to={'/sign-up'}>Sign Up</Link></h4> */}
+          <form className='signup-form-form' onSubmit={onSignUp}>
+            <div className='first-signupform-input-div'>
+              <input
+                required={true}
+                className={(username.length > 0 && username.length < 26) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
+                placeholder='User Name'
+                type='text'
+                name='username'
+                onChange={userNameHandleChange}
+                value={username}
+              ></input>
+              {username.length > 25 ? <div className='error-message-signupform-divs-username'>Username cannot exceed 25 characters.</div> : ""}
+              {!username.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
+            </div>
+            <div className='signupform-input-div'>
+              <input
+                required={true}
+                className={(fullname.length > 0 && fullname.length < 41) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
+                placeholder='Full Name'
+                type='text'
+                name='fullname'
+                onChange={fullNameHandleChange}
+                value={fullname}
+              ></input>
+              {fullname.length > 40 ? <div className='error-message-signupform-divs'>Full name cannot exceed 40 characters.</div> : ""}
+              {!fullname.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
+            </div>
+            <div className='signupform-input-div'>
+              <input
+                required={true}
+                className={(isValidEmail(email) && !errors.includes('email : Email address is already in use.')) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
+                placeholder='Email'
+                type='text'
+                name='email'
+                onChange={handleChange}
+                value={email}
+              ></input>
+              {!isValidEmail(email) ? <div className='error-message-signupform-divs'>Not a valid Email address.</div> : ""}
+              {errors.includes('email : Email address is already in use.') ? <div className='error-message-signupform-divs-emailinuse'>That email address is already in use.</div> : ""}
+            </div>
+            <div className='signupform-input-div'>
+              <input
+                required={true}
+                className={!password.length ? 'falsey-signupform-inputs' : 'signupform-inputs'}
+                placeholder='Password'
+                type='password'
+                name='password'
+                onChange={updatePassword}
+                value={password}
+              ></input>
+              {!password.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
+            </div>
+            <div className='signupform-input-div'>
+              <input
+                className={repeatPassword !== password ? 'falsey-signupform-inputs' : 'signupform-inputs'}
+                placeholder='Repeat Password'
+                type='password'
+                name='repeat_password'
+                onChange={repeatPasswordHandleChange}
+                value={repeatPassword}
+                required={true}
+              ></input>
+              {repeatPassword !== password ? <div className='error-message-signupform-divs-repeat'>Your repeat password does not match the original.</div> : ""}
+            </div>
+            <button className='sign-up-button' type='submit'>Sign Up</button>
+            <div className='already-on-div'>Already on Zelp? <Link className='signupform-login-link' to={'/login'}>Log In</Link></div>
+          </form>
         </div>
-        <div className='signupform-input-div'>
-          <input
-            required={true}
-            className={(fullname.length > 0 && fullname.length < 41) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
-            placeholder='Full Name'
-            type='text'
-            name='fullname'
-            onChange={fullNameHandleChange}
-            value={fullname}
-          ></input>
-          {fullname.length > 40 ? <div className='error-message-signupform-divs'>Full name cannot exceed 40 characters.</div> : ""}
-          {!fullname.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
-        </div>
-        <div className='signupform-input-div'>
-          <input
-            required={true}
-            className={(isValidEmail(email) && !errors.includes('email : Email address is already in use.')) ? 'signupform-inputs' : 'falsey-signupform-inputs'}
-            placeholder='Email'
-            type='text'
-            name='email'
-            onChange={handleChange}
-            value={email}
-          ></input>
-          {!isValidEmail(email) ? <div className='error-message-signupform-divs'>Not a valid Email address.</div> : ""}
-          {errors.includes('email : Email address is already in use.') ? <div className='error-message-signupform-divs-emailinuse'>That email address is already in use.</div> : ""}
-        </div>
-        <div className='signupform-input-div'>
-          <input
-            required={true}
-            className={!password.length ? 'falsey-signupform-inputs' : 'signupform-inputs'}
-            placeholder='Password'
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-          {!password.length ? <div className='error-message-signupform-divs'>This is a required field.</div> : ""}
-        </div>
-        <div className='signupform-input-div'>
-          <input
-            className={repeatPassword !== password ? 'falsey-signupform-inputs' : 'signupform-inputs'}
-            placeholder='Repeat Password'
-            type='password'
-            name='repeat_password'
-            onChange={repeatPasswordHandleChange}
-            value={repeatPassword}
-            required={true}
-          ></input>
-          {repeatPassword !== password ? <div className='error-message-signupform-divs-repeat'>Your repeat password does not match the original.</div> : ""}
-        </div>
-        {/* {} */}
-        <button className='sign-up-button' type='submit'>Sign Up</button>
-      </form>
-    </div>
+
+      </div>
+      <footer className='login-footer'>
+        <p>© 2022 Zelp Corp</p>
+        <a className='splash-github-link' href='https://github.com/zswanson92'> <img src={logotwo} alt='Logo' className='splash-logo-img'></img> Zack Swanson</a>
+      </footer>
+    </>
   );
 };
 

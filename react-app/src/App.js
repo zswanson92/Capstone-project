@@ -19,6 +19,8 @@ import UserProfile from './components/UserProfile/UserProfile';
 // import logo from './assets/blinkyguy.gif'
 import FourOhFour from './components/FourOhFour/FourOhFour';
 import InProd from './components/InProduction/InProd';
+import CreateMenu from './components/CreateMenu/CreateMenu';
+import CreateMenuItem from './components/CreateMenuItem/CreateMenuItem';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,9 +54,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/create' exact={true}>
+        <ProtectedRoute path='/create' exact={true}>
           <BusinessForm />
-        </Route>
+        </ProtectedRoute>
         <Route path='/businesses' exact={true}>
           <Businesses />
           {/* <Pagination totalPosts={aBusiness.length} postsPerPage={postPerPage}/> */}
@@ -62,12 +64,18 @@ function App() {
         <Route path='/businesses/:businessId' exact={true}>
           <BusinessDetails />
         </Route>
-        <Route exact={true} path="/edit/businesses/:businessId">
+        <ProtectedRoute exact={true} path="/edit/businesses/:businessId">
           <EditBusiness />
-        </Route>
-        <Route exact={true} path="/edit/:businessId/reviews/:reviewId">
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/edit/:businessId/reviews/:reviewId">
           <EditReviewButton />
+        </ProtectedRoute>
+        <Route exact={true} path="/create/menu/:menuId">
+          <CreateMenuItem />
         </Route>
+        <ProtectedRoute exact={true} path="/create/:businessId/menu">
+          <CreateMenu />
+        </ProtectedRoute>
         <Route path='/' exact={true} >
           <SplashPage />
         </Route>
