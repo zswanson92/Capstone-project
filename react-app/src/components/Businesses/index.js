@@ -5,14 +5,13 @@ import { getAllBusinessesThunk } from '../../store/business';
 import './Businesses.css'
 // import logo from '../../assets/yelp_logo.PNG'
 import logo from '../../assets/githublogo.png'
+import HomeMap from '../MapsApi';
+
 
 const Businesses = () => {
     const dispatch = useDispatch()
     // const history = useHistory()
-    // const [currentPage, setCurrentPage] = useState(1)
-    // const [postPerPage, setPosts] = useState([])
 
-    // const [postPerPage, setPostsPerPage] = useState(8)
 
 
 
@@ -20,24 +19,10 @@ const Businesses = () => {
         return state
     })
 
-    // const businessInfoObj = useSelector((state) => {
-    //     return state.businessReducer.businesses[businessId];
-    // });
+
 
     const aBusiness = Object.values(businessesObj.businessReducer.businesses)
 
-    // const lastPostIndex = currentPage * postPerPage;
-
-    // const firstPostIndex = lastPostIndex - postPerPage
-
-    // aBusiness.slice(firstPostIndex, lastPostIndex)
-
-    // const nextPage = () => setCurrentPage(prev => prev + 1)
-
-    // const prevPage = () => setCurrentPage(prev => prev - 1)
-
-    // console.log("@@@@@@@@@@ BIZZ OBJ", businessesObj)
-    // console.log("@@@@@@@@@@ AAA BISSSS", aBusiness)
 
     useEffect(() => {
         dispatch(getAllBusinessesThunk())
@@ -120,9 +105,10 @@ const Businesses = () => {
         <>
             <div className='total-business-count-div'>
                 <h2>{aBusiness?.length} Businesses</h2>
+                {/* <div className='a-map-div'> <HomeMap /> </div> */}
             </div>
             <div className='main-container-div-all-businesses'>
-
+                <div className='a-map-div'> <HomeMap /> </div>
                 <div className='first-sub-container-businesses'>
                     {aBusiness.map((obj) => {
                         return (
@@ -154,7 +140,7 @@ const Businesses = () => {
                                 </Link>
                                 <Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
                                 {/* </div> */}
-
+                                {/*  */}
                             </div>
                         )
                     })}

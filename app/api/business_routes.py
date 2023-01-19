@@ -224,10 +224,8 @@ def add_menu_item(id):
     form = MenuItemForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print("FORM DATA??? ", form['item_name'])
     if form.validate_on_submit():
         menuitem = MenuItem(
-            # business_id = id,
             menu_id = id,
             user_id = current_user.id,
             item_name = form.data['item_name'],

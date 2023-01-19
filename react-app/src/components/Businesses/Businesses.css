@@ -2,7 +2,9 @@
     display: flex;
     /* flex-direction: row; */
     justify-content: center;
+    /* gap: 10em; */
     align-items: center;
+
     width: 43em;
     height: 13em;
     border-bottom: 1px solid gray;
@@ -34,7 +36,7 @@
 
 .main-container-div-all-businesses{
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: row-reverse;
     justify-content: center;
     /* margin-left: 300px; */
     padding-top: 1em;
@@ -44,6 +46,7 @@
     /* display: flex; */
     /* justify-content: center; */
     /* flex-direction: column; */
+    padding-right: 2em;
 }
 
 .businesses-h1-div{
@@ -166,4 +169,14 @@
     gap: 3em;
     padding-right: 10px;
 
+}
+
+
+.a-map-div{
+    height: 105vh;
+    width: 50%;
+    padding-left: 6em;
+    margin-right: .5em;
+    position: sticky;
+    top: .1em;
 }
