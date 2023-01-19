@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 import Geocode from "react-geocode";
 // import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import React, { useEffect, useState } from 'react'
@@ -10,6 +10,15 @@ const HomeMap = () => {
   Geocode.setApiKey("AIzaSyCyXndDAAzF_I8RQZ2B4zkJk8PLkqa2U8Y");
 
   const [locations, setLocations] = useState([])
+  const [showInfo, setShowInfo] = useState(false)
+  const [clickedMark, setClickedMark] = useState(null);
+
+  const handleClickedMark = (marker) => {
+    if (marker === clickedMark) {
+      return;
+    }
+    setClickedMark(marker);
+  };
 
   const businessesObj = useSelector(state => {
     return state
@@ -66,12 +75,18 @@ const HomeMap = () => {
         mapContainerStyle={mapStyles}
         zoom={13}
         center={defaultCenter}
-        // onClick={onClick}
+        onClick={() => setClickedMark(null)}
       >
         {/* <Marker key={'pips'} position={pipsCenter} /> */}
-        {locations?.map((item) => {
+        {locations?.map((item, index) => {
           return (
-            <Marker key={item.name} position={item.location} />
+            <Marker key={index} position={item.location} clickable={true} onClick={() => handleClickedMark(index)}>
+              {clickedMark === index ? (
+            <InfoWindow onCloseClick={() => setClickedMark(null)}>
+              <div>{item.name}</div>
+            </InfoWindow>
+          ) : null}
+            </Marker>
           )
         })}
       </GoogleMap>

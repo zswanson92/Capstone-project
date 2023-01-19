@@ -74,41 +74,41 @@ const BusinessDetails = () => {
     }
 
 
-    let monCheck = false
-    let tuesCheck = false
-    let wedsCheck = false
-    let thursCheck = false
-    let friCheck = false
-    let satCheck = false
-    let sunCheck = false
+    // let monCheck = false
+    // let tuesCheck = false
+    // let wedsCheck = false
+    // let thursCheck = false
+    // let friCheck = false
+    // let satCheck = false
+    // let sunCheck = false
 
-    if (businessInfoObj?.monday_hours.split('').includes(',')) {
-        monCheck = true
-    }
+    // if (businessInfoObj?.monday_hours.split('').includes(',')) {
+    //     monCheck = true
+    // }
 
-    if (businessInfoObj?.tuesday_hours.split('').includes(',')) {
-        tuesCheck = true
-    }
+    // if (businessInfoObj?.tuesday_hours.split('').includes(',')) {
+    //     tuesCheck = true
+    // }
 
-    if (businessInfoObj?.wednesday_hours.split('').includes(',')) {
-        wedsCheck = true
-    }
+    // if (businessInfoObj?.wednesday_hours.split('').includes(',')) {
+    //     wedsCheck = true
+    // }
 
-    if (businessInfoObj?.thursday_hours.split('').includes(',')) {
-        thursCheck = true
-    }
+    // if (businessInfoObj?.thursday_hours.split('').includes(',')) {
+    //     thursCheck = true
+    // }
 
-    if (businessInfoObj?.friday_hours.split('').includes(',')) {
-        friCheck = true
-    }
+    // if (businessInfoObj?.friday_hours.split('').includes(',')) {
+    //     friCheck = true
+    // }
 
-    if (businessInfoObj?.saturday_hours.split('').includes(',')) {
-        satCheck = true
-    }
+    // if (businessInfoObj?.saturday_hours.split('').includes(',')) {
+    //     satCheck = true
+    // }
 
-    if (businessInfoObj?.sunday_hours.split('').includes(',')) {
-        sunCheck = true
-    }
+    // if (businessInfoObj?.sunday_hours.split('').includes(',')) {
+    //     sunCheck = true
+    // }
 
 
 
@@ -188,7 +188,6 @@ const BusinessDetails = () => {
 
     return (
         <div className='omega-main-container'>
-            {/* <div><NavBar /></div> */}
             <div className="delete-edit-business-buttons-div">
                 <div>
                     {sessionUser &&
@@ -235,6 +234,11 @@ const BusinessDetails = () => {
                 <div className="business-name-h2-two">{dollarNumChecker(businessInfoObj?.price)} &nbsp; &nbsp; • &nbsp; &nbsp; {businessInfoObj?.tags}  </div>
             </div>
 
+            <div>
+                <div>
+
+                </div>
+            </div>
 
             <div className="beta-container-test">
                 <div className="daily-hours-div">
@@ -249,13 +253,52 @@ const BusinessDetails = () => {
 
                 {/* change class name on 2nd div in condition */}
                 <div className="new-scratch-div-for-hours">
-                    <div className="container-divs-inside-new-scratch">Mon: {businessInfoObj?.monday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.monday_hours.split(',')[0]} {businessInfoObj?.monday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.monday_hours.split(',')[0]}    </div>                               }</div>
-                    <div className="container-divs-inside-new-scratch">Tue: {businessInfoObj?.tuesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]} {businessInfoObj?.tuesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]}    </div>                           }</div>
-                    <div className="container-divs-inside-new-scratch">Wed: {businessInfoObj?.wednesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.wednesday_hours.split(',')[0]} {businessInfoObj?.wednesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.wednesday_hours.split(',')[0]}  </div>                     }</div>
-                    <div className="container-divs-inside-new-scratch">Thu: {businessInfoObj?.thursday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]} {businessInfoObj?.thursday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]}  </div>                         }</div>
-                    <div className="container-divs-inside-new-scratch">Fri: {businessInfoObj?.friday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]} {businessInfoObj?.friday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]}    </div>                                }</div>
-                    <div className="container-divs-inside-new-scratch">Sat: {businessInfoObj?.saturday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} {businessInfoObj?.saturday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} </div>                          }</div>
-                    <div className="container-divs-inside-new-scratch">Sun: {businessInfoObj?.sunday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.sunday_hours.split(',')[0]} {businessInfoObj?.sunday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div">   {businessInfoObj?.sunday_hours.split(',')[0]} </div>                 }</div>
+                    {/* <div className="container-divs-inside-new-scratch">Mon {businessInfoObj?.monday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.monday_hours.split(',')[0]} {businessInfoObj?.monday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.monday_hours.split(',')[0]}    </div>                               }</div>
+                    <div className="container-divs-inside-new-scratch">Tue {businessInfoObj?.tuesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]} {businessInfoObj?.tuesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]}    </div>                           }</div>
+                    <div className="container-divs-inside-new-scratch">Wed {businessInfoObj?.wednesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.wednesday_hours.split(',')[0]} {businessInfoObj?.wednesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.wednesday_hours.split(',')[0]}  </div>                     }</div>
+                    <div className="container-divs-inside-new-scratch">Thu {businessInfoObj?.thursday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]} {businessInfoObj?.thursday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]}  </div>                         }</div>
+                    <div className="container-divs-inside-new-scratch">Fri {businessInfoObj?.friday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]} {businessInfoObj?.friday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]}    </div>                                }</div>
+                    <div className="container-divs-inside-new-scratch">Sat {businessInfoObj?.saturday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} {businessInfoObj?.saturday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} </div>                          }</div>
+                    <div className="container-divs-inside-new-scratch">Sun {businessInfoObj?.sunday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.sunday_hours.split(',')[0]} {businessInfoObj?.sunday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div">   {businessInfoObj?.sunday_hours.split(',')[0]} </div>                 }</div> */}
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Mon </th>
+                                <td>{businessInfoObj?.monday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.monday_hours.split(',')[0]} {businessInfoObj?.monday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.monday_hours.split(',')[0]}</div>}</td>
+                            </tr>
+                            <tr className="spacing-row"></tr>
+                            <tr>
+                                <th>Tue </th>
+                                <td>{businessInfoObj?.tuesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]} {businessInfoObj?.tuesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.tuesday_hours.split(',')[0]}</div>}</td>
+                            </tr>
+                            <tr className="spacing-row"></tr>
+                            <tr>
+                                <th>Wed </th>
+                                <td>{businessInfoObj?.wednesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.wednesday_hours.split(',')[0]} {businessInfoObj?.wednesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.wednesday_hours.split(',')[0]}</div>}</td>
+                            </tr>
+                            <tr className="spacing-row"></tr>
+                            <tr>
+                                <th>Thu </th>
+                                <td>{businessInfoObj?.thursday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]} {businessInfoObj?.thursday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.thursday_hours.split(',')[0]}</div>}</td>
+                            </tr>
+                            <tr className="spacing-row"></tr>
+                            <tr>
+                                <th>Fri </th>
+                                <td>{businessInfoObj?.friday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]} {businessInfoObj?.friday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.friday_hours.split(',')[0]}</div>}</td>
+                            </tr>
+                            <tr className="spacing-row"></tr>
+                            <tr>
+                                <th>Sat </th>
+                                <td>{businessInfoObj?.saturday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} {businessInfoObj?.saturday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.saturday_hours.split(',')[0]}</div>}</td>
+                            </tr>
+                            <tr className="spacing-row"></tr>
+                            <tr>
+                                <th>Sun </th>
+                                <td>{businessInfoObj?.sunday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.sunday_hours.split(',')[0]} {businessInfoObj?.sunday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.sunday_hours.split(',')[0]}</div>}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </div>
 
                 <div className="details-contact-info-div">

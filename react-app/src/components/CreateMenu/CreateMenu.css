@@ -1,0 +1,32 @@
+.main-menu-form-container{
+    display: flex;
+    justify-content: center;
+}
+
+.menu-category-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 20em;
+    border-radius: 3px;
+    padding: .5em;
+}
+
+.menu-form-divs{
+    padding-bottom: 2em;
+}
+
+
+.create-menu-return-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2em;
+    width: 10em;
+}
+
+.create-menu-two-buttons-div{
+    display: flex;
+    gap: 1em;
+}

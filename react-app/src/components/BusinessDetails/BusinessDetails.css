@@ -297,7 +297,7 @@
 
 .two-piece-hours-div{
     width: 9em;
-    padding-bottom: .3em;
+    /* padding-bottom: .1em; */
     font-weight: bold;
 }
 
@@ -323,9 +323,13 @@
 }
 
 .container-divs-inside-new-scratch{
+    display: flex;
+    gap: 1em;
+    /* justify-content: center; */
+    align-items: center;
     font-weight: bold;
     width: 15em;
-    padding-bottom: 1em;
+    padding-bottom: .5em;
 }
 
 .business-website-link-link{
@@ -365,4 +369,16 @@
     display: flex;
     gap: .8em;
     padding-top: 1em;
+}
+
+th{
+    text-align: left;
+    padding-right: 1em;
+    /* padding-bottom: 1em; */
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.spacing-row{
+    height: 8px;
 }

@@ -47,49 +47,52 @@ const CreateMenuItem = () => {
     }
 
     return (
-        <div>
-            <h1>HI TESTT SURPRISE</h1>
+        <div className='main-menuitem-creation-container'>
+            <h1>Add an item to your menu</h1>
             <form onSubmit={onSubmit}>
-                <h1>Create a Menu</h1>
-                <div>
+                <div className="menu-form-divs">
                     <input
                     required={true}
                     type='text'
                     onChange={(e) => setItemName(e.target.value)}
                     value={item_name}
                     placeholder="Name of Menu Item"
+                    className="menu-category-input"
                     />
                 </div>
-                <div>
+                <div className="menu-form-divs">
                     <textarea
                     required={true}
                     type='text'
                     onChange={(e) => setDescription(e.target.value)}
                     value={description}
                     placeholder="Description of Menu Item"
+                    className="menuitem-description-ta"
                     />
                 </div>
-                <div>
+                <div className="menu-form-divs">
                     <input
                     required={true}
                     type='number'
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
                     placeholder="Item Price"
+                    className="menuitem-price-input"
                     />
                 </div>
-                <div>
+                <div className="menu-form-divs">
                     <input
                     // required={true}
                     type='text'
                     onChange={(e) => setMenuItemImage(e.target.value)}
                     value={menu_item_image}
                     placeholder="Optional URL image for Menu Item"
+                    className="menu-category-input"
                     />
                 </div>
-                <div>
-                {errors.length ? "" : <button type='submit'>Submit Menu Item</button>}
-                <button onClick={onClose}>Return to Business</button>
+                <div className="create-menu-two-buttons-div">
+                {errors.length ? "" : <button className='create-menu-return-button' type='submit'>Submit Menu Item</button>}
+                <button className='create-menu-return-button' onClick={onClose}>Return to Business</button>
                 </div>
             </form>
         </div>
