@@ -21,6 +21,7 @@ import FourOhFour from './components/FourOhFour/FourOhFour';
 import InProd from './components/InProduction/InProd';
 import CreateMenu from './components/CreateMenu/CreateMenu';
 import CreateMenuItem from './components/CreateMenuItem/CreateMenuItem';
+import HomeMap from './components/MapsApi';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,6 +43,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/map' exact={true}>
+        <HomeMap />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>

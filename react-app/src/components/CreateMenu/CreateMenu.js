@@ -40,30 +40,31 @@ const CreateMenu = () => {
 
 
     return (
-        <div>
+        <div className="main-menu-form-container">
             <form onSubmit={onSubmit}>
                 <h1>Create a Menu</h1>
-                <div>
+                <div className="menu-form-divs">
                     <input
                     required={true}
                     type='text'
                     onChange={(e) => setCategory(e.target.value)}
                     value={category}
                     placeholder="Name of Menu Category"
+                    className="menu-category-input"
                     />
                 </div>
-                <div>
+                <div className="menu-form-divs">
                     <input
-                    // required={true}
                     type='text'
                     onChange={(e) => setMenuImage(e.target.value)}
                     value={menu_image}
                     placeholder="Optional URL image for Menu Category"
+                    className="menu-category-input"
                     />
                 </div>
-                <div>
-                {errors.length ? "" : <button type='submit' className="submit-edited-review-button">Submit Menu</button>}
-                <button onClick={onClose}>Return to Business</button>
+                <div className="create-menu-two-buttons-div">
+                {errors.length ? "" : <button type='submit' className="create-menu-return-button">Submit Menu</button>}
+                <button className="create-menu-return-button" onClick={onClose}>Return to Business</button>
                 </div>
             </form>
         </div>

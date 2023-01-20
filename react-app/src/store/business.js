@@ -166,7 +166,9 @@ export const createBusinessThunk = (payload) => async dispatch => {
         const business = await response.json()
 
         dispatch(addBusiness(business))
+        return business
     }
+    // return
 }
 
 

@@ -1,0 +1,21 @@
+.main-menuitem-creation-container{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.menuitem-price-input{
+    padding: .3em;
+    height: 1.2em;
+    width: 8em;
+    border-radius: 3px;
+    padding: .5em;
+}
+
+.menuitem-description-ta{
+    resize: none;
+    height: 5em;
+    width: 20em;
+    padding: .5em;
+}

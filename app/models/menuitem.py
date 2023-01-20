@@ -14,7 +14,7 @@ class MenuItem(db.Model):
     menu_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('menus.id')), nullable=False)
     item_name = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text, nullable=False)
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Float, nullable=False)
     menu_item_image = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)

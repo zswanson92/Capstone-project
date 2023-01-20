@@ -217,7 +217,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 10em;
+    padding-top: 6em;
+    padding-bottom: 10em;
     width: 45em;
     padding-left: 30em;
 }
@@ -277,7 +278,7 @@
 }
 
 .about-the-biz-div{
-    padding-top: 20em;
+    padding-top: 8em;
     align-items: center;
     width: 40em;
     padding-left: 22em;
@@ -297,7 +298,7 @@
 
 .two-piece-hours-div{
     width: 9em;
-    padding-bottom: 1em;
+    /* padding-bottom: .1em; */
     font-weight: bold;
 }
 
@@ -323,9 +324,13 @@
 }
 
 .container-divs-inside-new-scratch{
+    display: flex;
+    gap: 1em;
+    /* justify-content: center; */
+    align-items: center;
     font-weight: bold;
     width: 15em;
-    padding-bottom: 1em;
+    padding-bottom: .5em;
 }
 
 .business-website-link-link{
@@ -365,4 +370,16 @@
     display: flex;
     gap: .8em;
     padding-top: 1em;
+}
+
+th{
+    text-align: left;
+    padding-right: 1em;
+    /* padding-bottom: 1em; */
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.spacing-row{
+    height: 8px;
 }

@@ -121,13 +121,13 @@ const BusinessForm = () => {
             tags
         };
 
-        const addedBiz = await dispatch(createBusinessThunk(createdBusiness));
+        const addedBiz = await dispatch(createBusinessThunk(createdBusiness))
 
         // let path = ;
 
-        // if(addedBiz){
-        history.push(`/businesses/${addedBiz?.id}`);
-        // }
+        if(addedBiz){
+            await history.push(`/businesses/${addedBiz?.id}`);
+        }
     };
 
     const onClose = () => {
