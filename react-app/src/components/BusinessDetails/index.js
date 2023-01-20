@@ -262,8 +262,9 @@ const BusinessDetails = () => {
                         {businessInfoObj?.address}
                     </div>
                     <div className="potential-map-location" style={{ backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)' }}>
-
+                    {/* style={{ backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)' }} */}
                         <p className="maps-p">Maps API implementation coming soon.</p>
+                        {/* <HomeMap addy={businessInfoObj?.address} /> */}
                     </div>
                 </div>
 

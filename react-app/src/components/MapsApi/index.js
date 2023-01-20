@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllBusinessesThunk } from '../../store/business';
 
-const HomeMap = () => {
+const HomeMap = ( { addy }) => {
   const dispatch = useDispatch()
 
   Geocode.setApiKey('AIzaSyCyXndDAAzF_I8RQZ2B4zkJk8PLkqa2U8Y');
@@ -28,7 +28,17 @@ const HomeMap = () => {
 
   const aBusiness = Object.values(businessesObj.businessReducer.businesses)
   // console.log("@@@@@", aBusiness)
-
+  console.log(Geocode.fromAddress(addy).then(
+    (response) => {
+      const { lat, lng } = response.results[0].geometry.location;
+      // console.log("TESTTESTESTEST!!!!!!", lat, lng);
+      // geoTestArr.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
+      // locations.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
+    },
+    (error) => {
+      console.error(error);
+    }
+  ));
   useEffect(() => {
     dispatch(getAllBusinessesThunk())
 
@@ -62,12 +72,34 @@ const HomeMap = () => {
   };
 
   const defaultCenter = {
-    lat: 45.5152, lng: -122.6784
+      lat: 45.5152, lng: -122.6784
+  }
+
+  const defaultCenterFinder = (addy) => {
+    // let abc
+
+    if(addy){
+     Geocode.fromAddress(addy).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        // console.log("TESTTESTESTEST!!!!!!", lat, lng);
+        // geoTestArr.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
+        // locations.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
+        return { lat, lng }
+      },
+      (error) => {
+        console.error(error);
+      }
+
+    )
+    }
+    else return defaultCenter
   }
 
   // const pipsCenter = {
   //   lat: 45.5483793, lng: -122.6138045
   // }
+
 
   return (
     <LoadScript
