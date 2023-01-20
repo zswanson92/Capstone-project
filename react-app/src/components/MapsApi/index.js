@@ -7,8 +7,9 @@ import { getAllBusinessesThunk } from '../../store/business';
 
 const HomeMap = () => {
   const dispatch = useDispatch()
-  Geocode.setApiKey("AIzaSyCyXndDAAzF_I8RQZ2B4zkJk8PLkqa2U8Y");
 
+  Geocode.setApiKey('AIzaSyCyXndDAAzF_I8RQZ2B4zkJk8PLkqa2U8Y');
+  // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
   const [locations, setLocations] = useState([])
   const [showInfo, setShowInfo] = useState(false)
   const [clickedMark, setClickedMark] = useState(null);

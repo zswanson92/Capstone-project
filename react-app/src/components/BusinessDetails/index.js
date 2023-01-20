@@ -8,6 +8,7 @@ import ReviewFormButton from "../review_form/ReviewForm";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 import logo from '../../assets/githublogo.png'
 // import NavBar from "../NavBar";
+import HomeMap from "../MapsApi";
 
 
 const BusinessDetails = () => {
@@ -22,6 +23,8 @@ const BusinessDetails = () => {
     const businessInfoObj = useSelector((state) => {
         return state.businessReducer.businesses[businessId];
     });
+
+    console.log("biz info obj", businessInfoObj)
 
 
     const reviewObj = useSelector(state => {
@@ -234,14 +237,27 @@ const BusinessDetails = () => {
                 <div className="business-name-h2-two">{dollarNumChecker(businessInfoObj?.price)} &nbsp; &nbsp; • &nbsp; &nbsp; {businessInfoObj?.tags}  </div>
             </div>
 
-            <div>
-                <div>
 
-                </div>
-            </div>
 
             <div className="beta-container-test">
+                {/* start of menu div */}
+                {/* <div>
+                    <hr className="about-biz-hr-sep-two"></hr>
+                    <div>
+                        <h3>Menu</h3>
+                        <span>popular dishes</span>
+
+                        {businessInfoObj?.menus.map((menu) => {
+                            return menu.menu_items.map((menuitems) => {
+                                return <div>{menuitems.item_name}, {menuitems.price} </div>
+                                // <img src={menuitems.menu_item_image}/>
+                            })
+                        })}
+                    </div>
+                    <hr className="about-biz-hr-sep-two"></hr>
+                </div> */}
                 <div className="daily-hours-div">
+
                     <div className="address-single-div">
                         {businessInfoObj?.address}
                     </div>
@@ -314,6 +330,10 @@ const BusinessDetails = () => {
                         <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i className="fa fa-map-marker" aria-hidden="true"></i></li>
                     </ul>
                 </div>
+
+
+
+
 
                 <div className="where-reviews-will-go-probably">
                     <div className="about-the-biz-div">
