@@ -22,6 +22,8 @@ import InProd from './components/InProduction/InProd';
 import CreateMenu from './components/CreateMenu/CreateMenu';
 import CreateMenuItem from './components/CreateMenuItem/CreateMenuItem';
 import HomeMap from './components/MapsApi';
+import AddMenuItem from './components/AddMenuItem/AddMenuItem';
+import DeleteMenu from './components/DeleteMenu/DeleteMenu';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -73,6 +75,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact={true} path="/edit/:businessId/reviews/:reviewId">
           <EditReviewButton />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/businesses/:businessId/menuadd">
+          <AddMenuItem />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/businesses/:businessId/deletemenu">
+          <DeleteMenu />
         </ProtectedRoute>
         <Route exact={true} path="/create/menu/:menuId">
           <CreateMenuItem />

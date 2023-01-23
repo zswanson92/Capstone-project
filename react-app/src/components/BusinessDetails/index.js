@@ -241,28 +241,14 @@ const BusinessDetails = () => {
 
             <div className="beta-container-test">
                 {/* start of menu div */}
-                {/* <div>
-                    <hr className="about-biz-hr-sep-two"></hr>
-                    <div>
-                        <h3>Menu</h3>
-                        <span>popular dishes</span>
 
-                        {businessInfoObj?.menus.map((menu) => {
-                            return menu.menu_items.map((menuitems) => {
-                                return <div>{menuitems.item_name}, {menuitems.price} </div>
-                                // <img src={menuitems.menu_item_image}/>
-                            })
-                        })}
-                    </div>
-                    <hr className="about-biz-hr-sep-two"></hr>
-                </div> */}
                 <div className="daily-hours-div">
 
                     <div className="address-single-div">
                         {businessInfoObj?.address}
                     </div>
                     <div className="potential-map-location" style={{ backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)' }}>
-                    {/* style={{ backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)' }} */}
+                        {/* style={{ backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)' }} */}
                         <p className="maps-p">Maps API implementation coming soon.</p>
                         {/* <HomeMap addy={businessInfoObj?.address} /> */}
                     </div>
@@ -318,6 +304,37 @@ const BusinessDetails = () => {
                     </table>
                 </div>
 
+                <div className="menu-pop-items-div">
+                    <hr className="about-biz-hr-sep-two"></hr>
+                    <p>Menu</p>
+                    <span>popular dishes</span>
+                    <div className="actual-menu-items-div">
+
+                        {businessInfoObj?.menus.map((menu) => {
+                            return menu.menu_items.map((menuitems) => {
+                                return <div className="menu-items-map-divs">
+                                    <img className="menu-item-image" onError={addDefaultSrc} src={menuitems.menu_item_image} />
+                                    {menuitems.item_name},
+                                    &nbsp; ${menuitems.price}
+                                </div>
+                            })
+                        })}
+
+                    </div>
+                    {/* <hr className="about-biz-hr-sep-two"></hr> */}
+                    <Link to={`/businesses/${businessId}/fullmenu`}>
+                        <button className="fullmenu-button">Full Menu</button>
+                    </Link>
+                    <Link to={`/businesses/${businessId}/menuadd`}>
+                        <button>Add Item to Menu</button>
+                    </Link>
+                    <Link to={`/businesses/${businessId}/deletemenu`}>
+                        <button>Delete A Menu</button>
+                    </Link>
+                    <hr className="about-biz-hr-sep"></hr>
+                </div>
+
+
                 <div className="details-contact-info-div">
                     <h2 className="contact-info-h2">Contact Information</h2>
                     <hr />
@@ -338,7 +355,7 @@ const BusinessDetails = () => {
 
                 <div className="where-reviews-will-go-probably">
                     <div className="about-the-biz-div">
-                        <hr className="about-biz-hr-sep"></hr>
+                        {/* <hr className="about-biz-hr-sep"></hr> */}
                         <h2 className="about-biz-h2">About the Business</h2>
                         {businessInfoObj?.about_us}
                         <hr className="about-biz-hr-sep-two"></hr>

@@ -245,3 +245,13 @@ def add_menu_item(id):
     print("MENU ITEM FORM ERRORS!@", form.errors)
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@business_routes.route('/menu/<int:id>', methods=["DELETE"])
+@login_required
+def delete_menu(id):
+
+    menu = Menu.query.get(id)
+    db.session.delete(menu)
+    db.session.commit()
+    return {"message": "Delete Successful"}
