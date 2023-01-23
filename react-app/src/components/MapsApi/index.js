@@ -5,11 +5,11 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllBusinessesThunk } from '../../store/business';
 
-const HomeMap = ( { addy }) => {
+const HomeMap = ({ addy }) => {
   const dispatch = useDispatch()
 
-  Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-  // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+  const apiKey = useSelector(state => state.mapReducer.key)
+  Geocode.setApiKey(apiKey);
   const [locations, setLocations] = useState([])
   const [showInfo, setShowInfo] = useState(false)
   const [clickedMark, setClickedMark] = useState(null);
@@ -27,18 +27,19 @@ const HomeMap = ( { addy }) => {
 
 
   const aBusiness = Object.values(businessesObj.businessReducer.businesses)
-  // console.log("@@@@@", aBusiness)
-  console.log(Geocode.fromAddress(addy).then(
-    (response) => {
-      const { lat, lng } = response.results[0].geometry.location;
-      // console.log("TESTTESTESTEST!!!!!!", lat, lng);
-      // geoTestArr.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
-      // locations.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
-    },
-    (error) => {
-      console.error(error);
-    }
-  ));
+
+
+  // console.log(Geocode.fromAddress(addy).then(
+  //   (response) => {
+  //     const { lat, lng } = response.results[0].geometry.location;
+
+  //   },
+  //   (error) => {
+  //     console.error(error);
+  //   }
+  // ));
+
+
   useEffect(() => {
     dispatch(getAllBusinessesThunk())
 
@@ -49,15 +50,13 @@ const HomeMap = ( { addy }) => {
 
   aBusiness.forEach(obj => addressArr.push({ name: `${obj.name}`, location: `${obj.address}` }))
 
-  // console.log("ADDY ARRAY", addressArr)
 
   addressArr.forEach((ele) => {
     Geocode.fromAddress(ele?.location).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
-        // console.log("TESTTESTESTEST!!!!!!", lat, lng);
-        // geoTestArr.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
-        locations.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
+
+        locations.push({ 'name': ele.name, location: { 'lat': lat, 'lng': lng } })
       },
       (error) => {
         console.error(error);
@@ -72,53 +71,47 @@ const HomeMap = ( { addy }) => {
   };
 
   const defaultCenter = {
-      lat: 45.5152, lng: -122.6784
+    lat: 45.5152, lng: -122.6784
   }
 
-  const defaultCenterFinder = (addy) => {
-    // let abc
+  // const defaultCenterFinder = (addy) => {
 
-    if(addy){
-     Geocode.fromAddress(addy).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        // console.log("TESTTESTESTEST!!!!!!", lat, lng);
-        // geoTestArr.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
-        // locations.push({'name': ele.name, location: {'lat': lat, 'lng': lng }})
-        return { lat, lng }
-      },
-      (error) => {
-        console.error(error);
-      }
+  //   if (addy) {
+  //     Geocode.fromAddress(addy).then(
+  //       (response) => {
+  //         const { lat, lng } = response.results[0].geometry.location;
 
-    )
-    }
-    else return defaultCenter
-  }
+  //         return { lat, lng }
+  //       },
+  //       (error) => {
+  //         console.error(error);
+  //       }
 
-  // const pipsCenter = {
-  //   lat: 45.5483793, lng: -122.6138045
+  //     )
+  //   }
+  //   else return defaultCenter
   // }
+
+
 
 
   return (
     <LoadScript
-      googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+      googleMapsApiKey={apiKey}>
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={13}
         center={defaultCenter}
         onClick={() => setClickedMark(null)}
       >
-        {/* <Marker key={'pips'} position={pipsCenter} /> */}
         {locations?.map((item, index) => {
           return (
             <Marker key={index} position={item.location} clickable={true} onClick={() => handleClickedMark(index)}>
               {clickedMark === index ? (
-            <InfoWindow onCloseClick={() => setClickedMark(null)}>
-              <div>{item.name}</div>
-            </InfoWindow>
-          ) : null}
+                <InfoWindow onCloseClick={() => setClickedMark(null)}>
+                  <div>{item.name}</div>
+                </InfoWindow>
+              ) : null}
             </Marker>
           )
         })}

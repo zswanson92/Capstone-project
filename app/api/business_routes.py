@@ -165,6 +165,10 @@ def edit_business(id):
     print("ERRORS!!!!!!", form.errors)
     return business.to_dict()
 
+# @business_routes.route('', methods=["POST"])
+# def load_map_key():
+#     key = os.environ.get('REACT_APP_GOOGLE_MAPS_API_KEY')
+#     return {'googleMapsAPIKey': key}
 
 @create_business_route.route("/<int:id>/reviews", methods=["POST"])
 @login_required

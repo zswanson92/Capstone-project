@@ -5,10 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import './SplashPage.css'
 import logo from '../../assets/githublogo.png'
+import { getKey } from '../../store/map'
 
 const SplashPage = () => {
     // const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch();
+
+
 
     const businessesObj = useSelector(state => {
         return state
@@ -38,6 +41,8 @@ const SplashPage = () => {
     useEffect(() => {
         dispatch(getAllBusinessesThunk());
         dispatch(getAllReviewsThunk());
+        dispatch(getKey())
+
     }, [dispatch]);
 
     const [arrTitles, setArrTitles] = useState("https://images4.alphacoders.com/150/1506.jpg");

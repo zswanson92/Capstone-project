@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.business_routes import business_routes, create_business_route
 from .api.review_routes import review_routes, edit_route
+from .api.map_routes import map_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -34,6 +35,7 @@ app.register_blueprint(business_routes, url_prefix='/api/businesses')
 app.register_blueprint(create_business_route, url_prefix='/api/create')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(edit_route, url_prefix='/api/edit/businessId/reviews')
+app.register_blueprint(map_routes, url_prefix='/api')
 db.init_app(app)
 Migrate(app, db)
 
@@ -78,6 +80,10 @@ def api_help():
                     for rule in app.url_map.iter_rules() if rule.endpoint != 'static' }
     return route_list
 
+@app.route('/api', methods=['POST'])
+def load_map_key():
+    key = os.environ.get('REACT_APP_GOOGLE_MAPS_API_KEY')
+    return {'googleMapsAPIKey': key}
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
