@@ -53,7 +53,9 @@ const RemoveMenuItem = () => {
                 return menu.menu_items?.map((menuitem) => {
                     {console.log("MENU ITEM", menuitem)}
                     return <div>
-                        {menuitem.item_name}, {menuitem.description} - ${menuitem.price} <button onClick={(event => onClick(event, menuitem.id))}>Delete</button> <button>Edit Item</button>
+                        {menuitem.item_name}, {menuitem.description} - ${menuitem.price}
+                        <button onClick={(event => onClick(event, menuitem.id))}>Delete</button>
+                        <Link to={`/menuedit/item/${menuitem.id}`}><button>Edit Item</button></Link>
                     </div>
                 })
                 // <Link key={menu.id} to={`/create/menu/${menu.id}`}><div><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} /> {menu.category}

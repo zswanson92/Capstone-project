@@ -27,6 +27,7 @@ import DeleteMenu from './components/DeleteMenu/DeleteMenu';
 import RemoveMenuItem from './components/RemoveMenuItem/RemoveMenuItem';
 import FullMenu from './components/FullMenu/FullMenu';
 import EditMenu from './components/EditMenu/EditMenu';
+import EditMenuItem from './components/EditMenuItem/EditMenuItem';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -93,6 +94,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact={true} path="/menuedit/:menuId">
         <EditMenu />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/menuedit/item/:menuItemId">
+          <EditMenuItem />
         </ProtectedRoute>
         <Route exact={true} path="/create/menu/:menuId">
           <CreateMenuItem />

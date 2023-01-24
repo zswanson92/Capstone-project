@@ -302,3 +302,39 @@ def edit_menu_name(id):
 
     print("MENU FORM ERRORS!@@", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@menu_edits.route('/item/<int:id>', methods=["PUT"])
+@login_required
+def edit_menuitem(id):
+
+    # print("THIS IS ID", id)
+    menuitem = MenuItem.query.get(id)
+
+    form = MenuItemForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+            # business_id = id,
+            # user_id = current_user.id,
+        # menu_id = id,
+        # user_id = current_user.id,
+        new_item_name = form.data['item_name'],
+        new_description = form.data['description'],
+        new_price = form.data['price'],
+        new_menu_item_image = form.data['menu_item_image']
+
+        menuitem.item_name = new_item_name[0]
+        menuitem.description = new_description[0]
+        menuitem.price = new_price[0]
+        menuitem.menu_item_image = new_menu_item_image
+
+
+        db.session.add(menuitem)
+        db.session.commit()
+        return menuitem.to_dict()
+
+    print("MENU FORM ERRORS!@@", form.errors)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

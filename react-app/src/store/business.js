@@ -89,13 +89,13 @@ export const deleteMenuThunk = (menuId) => async dispatch => {
 }
 
 export const editMenuItemThunk = (payload) => async dispatch => {
-    const { userId, menuId, item_name, description, price, menu_item_image } = payload
-    const response = await fetch(`/api/menuedit/menuitem/${menuId}`, {
+    const { menuItemId, item_name, description, price, menu_item_image } = payload
+    const response = await fetch(`/api/menuedit/item/${menuItemId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userId, menuId, item_name, description, price, menu_item_image })
+        body: JSON.stringify({ item_name, description, price, menu_item_image })
     })
 
     if(response.ok){

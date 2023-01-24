@@ -2,13 +2,13 @@ import './EditMenuItem.css'
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-// import { createMenuItemThunk } from '../../store/business';
+import { editMenuItemThunk } from '../../store/business';
 
 const EditMenuItem = () => {
     const dispatch = useDispatch();
     let history = useHistory();
 
-    const { menuId } = useParams();
+    const { menuItemId } = useParams();
     // const sessionUser = useSelector((state) => state.session.user);
 
     // let userId = sessionUser.id
@@ -26,17 +26,18 @@ const EditMenuItem = () => {
         const editedMenuItem = {
             // userId,
             // businessId,
-            menuId,
+            // menuId,
+            menuItemId,
             item_name,
             description,
             price,
             menu_item_image
         }
 
-        const theEditedMenuItem = await dispatch()
+        const theEditedMenuItem = await dispatch(editMenuItemThunk(editedMenuItem))
 
         // history.push(`/businesses/${businessId}`)
-        if(theNewMenuItem){
+        if(theEditedMenuItem){
             history.push(`/businesses`)
         }
     }
