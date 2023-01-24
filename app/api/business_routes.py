@@ -255,3 +255,12 @@ def delete_menu(id):
     db.session.delete(menu)
     db.session.commit()
     return {"message": "Delete Successful"}
+
+@business_routes.route('/menu/items/<int:id>', methods=["DELETE"])
+@login_required
+def delete_menu_item(id):
+
+    menuitem = MenuItem.query.get(id)
+    db.session.delete(menuitem)
+    db.session.commit()
+    return {"message": "Delete Successful"}

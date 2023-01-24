@@ -29,11 +29,16 @@ const AddMenuItem = () => {
 
     return (
         <div>
-        <h1>Which menu would you like to add items to?</h1>
-        {menuArr?.map((menu) => {
-            return <Link key={menu.id} to={`/create/menu/${menu.id}`}><div><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} /> {menu.category}</div></Link>
-        }
-        )}
+            <h1>Which menu would you like to edit?</h1>
+            {menuArr?.map((menu) => {
+                return <Link key={menu.id} ><div><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} /> {menu.category}
+                    <Link to={`/create/menu/${menu.id}`}><button>Add Items</button></Link>
+
+                    <Link to={`/businesses/${businessId}/menu/items/${menu.id}`}><button>Remove Items</button></Link></div>
+                </Link>
+            }
+            )}
+
         </div>
     )
 }

@@ -6,6 +6,7 @@ const EDIT_BUSINESS = 'edit/BUSINESS'
 const ADD_MENU = 'add/MENU'
 const ADD_MENU_ITEM = 'add/MENUITEM'
 const DELETE_MENU = 'delete/MENU'
+const DELETE_MENUITEM = 'delete/MENUITEM'
 
 
 const addBusiness = (business) => ({
@@ -47,6 +48,22 @@ const deleteMenu = (menu) => ({
     type: DELETE_MENU,
     payload: menu
 })
+
+const deleteMenuItem = (menuitem) => ({
+    type: DELETE_MENUITEM,
+    payload: menuitem
+})
+
+
+export const deleteMenuItemThunk = (menuItemId) => async dispatch => {
+    const response = await fetch(`/api/businesses/menu/items/${menuItemId}`, {
+        method: 'DELETE'
+    })
+
+    if(response.ok){
+        dispatch(deleteMenuItem(menuItemId))
+    }
+}
 
 
 export const deleteMenuThunk = (menuId) => async dispatch => {

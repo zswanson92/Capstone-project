@@ -24,6 +24,8 @@ import CreateMenuItem from './components/CreateMenuItem/CreateMenuItem';
 import HomeMap from './components/MapsApi';
 import AddMenuItem from './components/AddMenuItem/AddMenuItem';
 import DeleteMenu from './components/DeleteMenu/DeleteMenu';
+import RemoveMenuItem from './components/RemoveMenuItem/RemoveMenuItem';
+import FullMenu from './components/FullMenu/FullMenu';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -81,6 +83,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact={true} path="/businesses/:businessId/deletemenu">
           <DeleteMenu />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/businesses/:businessId/menu/items/:menuId">
+        <RemoveMenuItem />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/businesses/:businessId/fullmenu">
+          <FullMenu />
         </ProtectedRoute>
         <Route exact={true} path="/create/menu/:menuId">
           <CreateMenuItem />

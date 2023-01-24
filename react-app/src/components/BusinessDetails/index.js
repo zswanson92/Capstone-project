@@ -326,7 +326,7 @@ const BusinessDetails = () => {
                         <button className="fullmenu-button">Full Menu</button>
                     </Link>
                     <Link to={`/businesses/${businessId}/menuadd`}>
-                        <button>Add Item to Menu</button>
+                        <button>Edit Menu</button>
                     </Link>
                     <Link to={`/businesses/${businessId}/deletemenu`}>
                         <button>Delete A Menu</button>
