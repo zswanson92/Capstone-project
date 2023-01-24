@@ -32,13 +32,14 @@ const AddMenuItem = () => {
             <h1>Which menu would you like to edit?</h1>
             {menuArr?.map((menu) => {
                 return <Link key={menu.id} ><div><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} /> {menu.category}
-                    <Link to={`/create/menu/${menu.id}`}><button>Add Items</button></Link>
+                    <Link to={`/create/menu/${menu.id}`}><button>Add Item</button></Link>
 
-                    <Link to={`/businesses/${businessId}/menu/items/${menu.id}`}><button>Remove Items</button></Link></div>
+                    <Link to={`/businesses/${businessId}/menu/items/${menu.id}`}><button>Edit/Remove Items</button></Link>
+                    <Link to={`/menuedit/${menu.id}`}><button>Edit Menu</button></Link>
+                </div>
                 </Link>
             }
             )}
-
         </div>
     )
 }

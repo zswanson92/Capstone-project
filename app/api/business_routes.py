@@ -7,6 +7,7 @@ from app.forms import BusinessForm, ReviewForm, MenuForm, MenuItemForm
 business_routes = Blueprint("businesses", __name__)
 create_business_route = Blueprint("create", __name__)
 # another_business_route = Blueprint("")
+menu_edits = Blueprint("menuedit", __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -264,3 +265,40 @@ def delete_menu_item(id):
     db.session.delete(menuitem)
     db.session.commit()
     return {"message": "Delete Successful"}
+
+@menu_edits.route('/<int:id>', methods=["PUT"])
+@login_required
+def edit_menu_name(id):
+
+    print("THIS IS ID", id)
+    menu = Menu.query.get(id)
+
+    form = MenuForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    # print("!!!!!!!!", form.data['category'])
+    if form.validate_on_submit():
+
+            # business_id = id,
+            # user_id = current_user.id,
+        new_category = form.data['category'],
+        new_menu_image = form.data['menu_image']
+
+        # print("^^^^^^^^^^^^^", new_category[0])
+
+        menu.category = new_category[0]
+
+        if(new_menu_image):
+            menu.menu_image = new_menu_image
+
+
+
+
+
+        db.session.add(menu)
+        db.session.commit()
+        return menu.to_dict()
+
+    print("MENU FORM ERRORS!@@", form.errors)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

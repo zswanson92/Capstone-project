@@ -7,6 +7,8 @@ const ADD_MENU = 'add/MENU'
 const ADD_MENU_ITEM = 'add/MENUITEM'
 const DELETE_MENU = 'delete/MENU'
 const DELETE_MENUITEM = 'delete/MENUITEM'
+const EDIT_MENU = 'edit/MENU'
+const EDIT_MENUITEM = 'edit/MENUITEM'
 
 
 const addBusiness = (business) => ({
@@ -54,6 +56,16 @@ const deleteMenuItem = (menuitem) => ({
     payload: menuitem
 })
 
+const editMenu = (menu) => ({
+    type: EDIT_MENU,
+    payload: menu
+})
+
+const editMenuItem = (menuitem) => ({
+    type: EDIT_MENUITEM,
+    payload: menuitem
+})
+
 
 export const deleteMenuItemThunk = (menuItemId) => async dispatch => {
     const response = await fetch(`/api/businesses/menu/items/${menuItemId}`, {
@@ -76,6 +88,23 @@ export const deleteMenuThunk = (menuId) => async dispatch => {
     }
 }
 
+export const editMenuItemThunk = (payload) => async dispatch => {
+    const { userId, menuId, item_name, description, price, menu_item_image } = payload
+    const response = await fetch(`/api/menuedit/menuitem/${menuId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId, menuId, item_name, description, price, menu_item_image })
+    })
+
+    if(response.ok){
+        const editedMenuItem = await response.json()
+        dispatch(editMenuItem(editedMenuItem))
+        return editedMenuItem
+    }
+}
+
 export const createMenuItemThunk = (payload) => async dispatch => {
     const { userId, menuId, item_name, description, price, menu_item_image } = payload
 
@@ -94,6 +123,24 @@ export const createMenuItemThunk = (payload) => async dispatch => {
     }
 }
 
+
+export const editMenuThunk = (payload) => async dispatch => {
+    const {category, menu_image, menuId} = payload
+
+    const response = await fetch(`/api/menuedit/${menuId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({category, menu_image, menuId})
+    })
+
+    if(response.ok){
+        const editedMenu = await response.json()
+        dispatch(editMenu(editedMenu))
+        return editedMenu
+    }
+}
 
 export const createMenuThunk = (payload) => async dispatch => {
     const { userId, businessId, category, menu_image} = payload
