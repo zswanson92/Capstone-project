@@ -47,15 +47,17 @@ const RemoveMenuItem = () => {
     }
 
     return (
-        <div>
+        <div className='menu-item-edit-main-container'>
             <h1>Which menu item would you like to edit?</h1>
             {specificMenuArr?.map((menu) => {
                 return menu.menu_items?.map((menuitem) => {
                     {console.log("MENU ITEM", menuitem)}
-                    return <div>
-                        {menuitem.item_name}, {menuitem.description} - ${menuitem.price}
-                        <button onClick={(event => onClick(event, menuitem.id))}>Delete</button>
-                        <Link to={`/menuedit/item/${menuitem.id}`}><button>Edit Item</button></Link>
+                    return <div className='mapped-menuitems-div'>
+                        <div className='prefix-label-div'>Name:</div> {menuitem.item_name}  &nbsp;<div className='prefix-label-div'>Description:</div> {menuitem.description}   &nbsp;<div className='prefix-label-div'>Price:</div> ${menuitem.price}
+                        <div className='two-buttons-div-menuitems'>
+                        <button className='delete-item-button' onClick={(event => onClick(event, menuitem.id))}>Delete</button>
+                        <Link to={`/menuedit/item/${menuitem.id}`}><button className='edit-item-button'>Edit Item</button></Link>
+                        </div>
                     </div>
                 })
                 // <Link key={menu.id} to={`/create/menu/${menu.id}`}><div><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} /> {menu.category}

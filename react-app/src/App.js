@@ -89,9 +89,9 @@ function App() {
         <ProtectedRoute exact={true} path="/businesses/:businessId/menu/items/:menuId">
         <RemoveMenuItem />
         </ProtectedRoute>
-        <ProtectedRoute exact={true} path="/businesses/:businessId/fullmenu">
+        <Route exact={true} path="/businesses/:businessId/fullmenu">
           <FullMenu />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute exact={true} path="/menuedit/:menuId">
         <EditMenu />
         </ProtectedRoute>

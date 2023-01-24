@@ -322,16 +322,20 @@ const BusinessDetails = () => {
 
                     </div>
                     {/* <hr className="about-biz-hr-sep-two"></hr> */}
-                    <Link to={`/businesses/${businessId}/fullmenu`}>
-                        <button className="fullmenu-button">Full Menu</button>
-                    </Link>
-                    <Link to={`/businesses/${businessId}/menuadd`}>
-                        <button>Edit Menu</button>
+                    <div className="three-menu-button-divs">
+                        <Link to={`/businesses/${businessId}/fullmenu`}>
+                            <button className="fullmenu-button">Full Menu</button>
+                        </Link>
+                        {sessionUser &&
+                            (sessionUser.id === businessInfoObj?.user_id ? (
+                        <div className="two-inside-three-buttons"><Link to={`/businesses/${businessId}/menuadd`}>
+                        <button className="edit-menu-button">Edit a Menu</button>
                     </Link>
                     <Link to={`/businesses/${businessId}/deletemenu`}>
-                        <button>Delete A Menu</button>
-                    </Link>
-                    <hr className="about-biz-hr-sep"></hr>
+                        <button className="delete-menu-button">Delete a Menu</button>
+                    </Link> </div>) : null)}
+                    </div>
+                    <hr className="bottom-menu-hr"></hr>
                 </div>
 
 
