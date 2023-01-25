@@ -1,0 +1,10 @@
+.submit-edit-menu-item-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2em;
+    width: 12em;
+    /* margin-bottom: 3em; */
+}

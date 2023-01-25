@@ -59,6 +59,8 @@ const EditMenuItem = () => {
                     placeholder="Name of Menu Item"
                     className="menu-category-input"
                     />
+                    {item_name && (item_name.length < 3 ? <div>Menu item name must be longer than 3 characters.</div> : "")}
+                    {item_name && (item_name.length > 25 ? <div>Menu item name cannot exceed 25 characters.</div> : "")}
                 </div>
                 <div className="menu-form-divs">
                     <textarea
@@ -91,7 +93,7 @@ const EditMenuItem = () => {
                     />
                 </div>
                 <div className="create-menu-two-buttons-div">
-                {errors.length ? "" : <button className='create-menu-return-button' type='submit'>Submit Menu Item Edit</button>}
+                {errors.length ? "" : <button className='submit-edit-menu-item-button' type='submit'>Submit Menu Item Edit</button>}
                 <button className='create-menu-return-button' onClick={onClose}>Return to Business</button>
                 </div>
             </form>

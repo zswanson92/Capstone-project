@@ -13,7 +13,12 @@ const AddMenuItem = () => {
     });
 
 
-    const menuArr = Object.values(businessInfoObj?.menus)
+    let menuArr;
+
+
+    if(businessInfoObj){
+        menuArr = Object.values(businessInfoObj?.menus)
+    }
 
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId));

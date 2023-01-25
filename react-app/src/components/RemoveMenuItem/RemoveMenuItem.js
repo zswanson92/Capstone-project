@@ -18,12 +18,24 @@ const RemoveMenuItem = () => {
     });
 
 
-    let menuArr = Object.values(businessInfoObj?.menus)
+    let menuArr;
 
-    let specificMenuArr = menuArr.filter((submenu) => {
-        console.log("SUBMENU", submenu)
-        return submenu.id === +menuId
-    })
+    if(businessInfoObj){
+        menuArr = Object.values(businessInfoObj?.menus)
+    }
+
+
+
+
+    let specificMenuArr
+
+    if(menuArr){
+        specificMenuArr = menuArr.filter((submenu) => {
+            // console.log("SUBMENU", submenu)
+            return submenu.id === +menuId
+        })
+    }
+
 
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId));
@@ -31,8 +43,8 @@ const RemoveMenuItem = () => {
 
 
 
-    console.log(menuArr)
-    console.log("SPECIFIC MENU ARR", specificMenuArr)
+    // console.log(menuArr)
+    // console.log("SPECIFIC MENU ARR", specificMenuArr)
 
     function addDefaultSrc(ev) {
         ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'

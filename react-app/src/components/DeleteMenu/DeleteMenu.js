@@ -15,7 +15,12 @@ const DeleteMenu = () => {
     });
 
 
-    let menuArr = Object.values(businessInfoObj?.menus)
+    let menuArr
+
+    if(businessInfoObj){
+        menuArr = Object.values(businessInfoObj?.menus)
+    }
+
 
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId));
@@ -23,7 +28,7 @@ const DeleteMenu = () => {
 
 
 
-    console.log(menuArr)
+    // console.log(menuArr)
 
     function addDefaultSrc(ev) {
         ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
