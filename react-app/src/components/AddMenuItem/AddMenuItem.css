@@ -1,0 +1,37 @@
+.additemtomenu-img{
+    height: 2em;
+    width: 2em;
+}
+
+.primary-container-menuedit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mapped-menuedit-div{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding-top: 1em;
+}
+
+.add-item-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2.5em;
+    width: 6em;
+}
+
+.edit-remove-item-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2.5em;
+    width: 11em;
+}

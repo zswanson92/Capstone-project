@@ -22,6 +22,12 @@ import InProd from './components/InProduction/InProd';
 import CreateMenu from './components/CreateMenu/CreateMenu';
 import CreateMenuItem from './components/CreateMenuItem/CreateMenuItem';
 import HomeMap from './components/MapsApi';
+import AddMenuItem from './components/AddMenuItem/AddMenuItem';
+import DeleteMenu from './components/DeleteMenu/DeleteMenu';
+import RemoveMenuItem from './components/RemoveMenuItem/RemoveMenuItem';
+import FullMenu from './components/FullMenu/FullMenu';
+import EditMenu from './components/EditMenu/EditMenu';
+import EditMenuItem from './components/EditMenuItem/EditMenuItem';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -73,6 +79,24 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact={true} path="/edit/:businessId/reviews/:reviewId">
           <EditReviewButton />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/businesses/:businessId/menuadd">
+          <AddMenuItem />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/businesses/:businessId/deletemenu">
+          <DeleteMenu />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/businesses/:businessId/menu/items/:menuId">
+        <RemoveMenuItem />
+        </ProtectedRoute>
+        <Route exact={true} path="/businesses/:businessId/fullmenu">
+          <FullMenu />
+        </Route>
+        <ProtectedRoute exact={true} path="/menuedit/:menuId">
+        <EditMenu />
+        </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/menuedit/item/:menuItemId">
+          <EditMenuItem />
         </ProtectedRoute>
         <Route exact={true} path="/create/menu/:menuId">
           <CreateMenuItem />

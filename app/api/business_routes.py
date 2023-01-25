@@ -7,6 +7,7 @@ from app.forms import BusinessForm, ReviewForm, MenuForm, MenuItemForm
 business_routes = Blueprint("businesses", __name__)
 create_business_route = Blueprint("create", __name__)
 # another_business_route = Blueprint("")
+menu_edits = Blueprint("menuedit", __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -165,6 +166,10 @@ def edit_business(id):
     print("ERRORS!!!!!!", form.errors)
     return business.to_dict()
 
+# @business_routes.route('', methods=["POST"])
+# def load_map_key():
+#     key = os.environ.get('REACT_APP_GOOGLE_MAPS_API_KEY')
+#     return {'googleMapsAPIKey': key}
 
 @create_business_route.route("/<int:id>/reviews", methods=["POST"])
 @login_required
@@ -240,4 +245,96 @@ def add_menu_item(id):
 
     print("MENU ITEM FORM ERRORS!@", form.errors)
 
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@business_routes.route('/menu/<int:id>', methods=["DELETE"])
+@login_required
+def delete_menu(id):
+
+    menu = Menu.query.get(id)
+    db.session.delete(menu)
+    db.session.commit()
+    return {"message": "Delete Successful"}
+
+@business_routes.route('/menu/items/<int:id>', methods=["DELETE"])
+@login_required
+def delete_menu_item(id):
+
+    menuitem = MenuItem.query.get(id)
+    db.session.delete(menuitem)
+    db.session.commit()
+    return {"message": "Delete Successful"}
+
+@menu_edits.route('/<int:id>', methods=["PUT"])
+@login_required
+def edit_menu_name(id):
+
+    print("THIS IS ID", id)
+    menu = Menu.query.get(id)
+
+    form = MenuForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    # print("!!!!!!!!", form.data['category'])
+    if form.validate_on_submit():
+
+            # business_id = id,
+            # user_id = current_user.id,
+        new_category = form.data['category'],
+        new_menu_image = form.data['menu_image']
+
+        # print("^^^^^^^^^^^^^", new_category[0])
+
+        menu.category = new_category[0]
+
+        if(new_menu_image):
+            menu.menu_image = new_menu_image
+
+
+
+
+
+        db.session.add(menu)
+        db.session.commit()
+        return menu.to_dict()
+
+    print("MENU FORM ERRORS!@@", form.errors)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@menu_edits.route('/item/<int:id>', methods=["PUT"])
+@login_required
+def edit_menuitem(id):
+
+    # print("THIS IS ID", id)
+    menuitem = MenuItem.query.get(id)
+
+    form = MenuItemForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+            # business_id = id,
+            # user_id = current_user.id,
+        # menu_id = id,
+        # user_id = current_user.id,
+        new_item_name = form.data['item_name'],
+        new_description = form.data['description'],
+        new_price = form.data['price'],
+        new_menu_item_image = form.data['menu_item_image']
+
+        menuitem.item_name = new_item_name[0]
+        menuitem.description = new_description[0]
+        menuitem.price = new_price[0]
+        menuitem.menu_item_image = new_menu_item_image
+
+
+        db.session.add(menuitem)
+        db.session.commit()
+        return menuitem.to_dict()
+
+    print("MENU FORM ERRORS!@@", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

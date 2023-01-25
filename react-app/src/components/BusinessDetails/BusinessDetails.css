@@ -1,14 +1,15 @@
-.where-reviews-will-go-probably{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-right: 700px;
-    padding-top: 7em;
-}
+
 
 .main-container-business-details{
     height: 100%;
 }
+
+/* .omega-main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} */
+
 
 .bannerimage{
     width: 100%;
@@ -84,6 +85,7 @@
     position: sticky;
     top: 5px;
     margin-top: -26em;
+    border-radius: 10px;
 }
 
 .details-contact-info-div-two{
@@ -94,6 +96,7 @@
     top: 5px;
     margin-top: -38em;
     margin-bottom: 260px;
+
 }
 
 .potential-map-location{
@@ -109,6 +112,44 @@
     height: 8em;
     width: 8em;
     box-shadow: inset 0 0 300px #000;
+}
+
+
+.menu-pop-items-div{
+    /* padding-top: 10em; */
+    margin-right: 22em;
+    /* display: flex; */
+    overflow: hidden;
+    margin-bottom: 1em;
+    /* width: 15em; */
+    /* border: 1px solid black; */
+    width: 40em;
+    height: 20em;
+    /* padding-bottom: 3em; */
+    border-top: 1px solid black;
+}
+
+.actual-menu-items-div{
+    display: flex;
+    gap: 1em;
+    /* flex-direction: column; */
+}
+
+.menu-item-image{
+    height: 6em;
+    width: 6em;
+    object-fit: contain;
+}
+
+.three-menu-button-divs{
+    padding-top: 1.5em;
+    /* padding-bottom: 2.5em; */
+}
+
+.menu-items-map-divs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .maps-p{
@@ -171,6 +212,7 @@
     position: relative;
     top: 220px;
     overflow-wrap: break-word;
+    /* padding-bottom: 10em; */
 }
 
 .contact-info-div{
@@ -278,11 +320,21 @@
 }
 
 .about-the-biz-div{
-    padding-top: 8em;
+    /* padding-top: 1em; */
     align-items: center;
     width: 40em;
-    padding-left: 22em;
+    margin-left: 22em;
     overflow-wrap: break-word;
+    /* margin-top: 3em; */
+    border-top: 1px solid black;
+}
+
+.where-reviews-will-go-probably{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 700px;
+    margin-top: 10em;
 }
 
 
@@ -382,4 +434,38 @@ th{
 
 .spacing-row{
     height: 8px;
+}
+
+.fullmenu-button{
+    background: none;
+    border-radius: 3px;
+    height: 2.5em;
+    width: 8em;
+    margin-bottom: 1em;
+}
+
+.edit-menu-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2.5em;
+    width: 8em;
+    /* padding-right: .5em; */
+}
+
+.delete-menu-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2.5em;
+    width: 8em;
+}
+
+.two-inside-three-buttons{
+    display: flex;
+    gap: 1.5em;
 }
