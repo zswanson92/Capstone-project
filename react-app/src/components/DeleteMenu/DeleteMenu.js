@@ -38,11 +38,11 @@ const DeleteMenu = () => {
     }
 
     return (
-        <div>
+        <div className='deletemenu-main-container'>
             <h1>Which menu would you like to delete?</h1>
             {menuArr?.map((menu) => {
-                return <Link key={menu.id} to={`/create/menu/${menu.id}`}><div><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} /> {menu.category}
-                <button onClick={(event) => onClick(event, menu.id)}>Delete</button></div></Link>
+                return <div className='deletemenu-div'><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} /> {menu.category}
+                <button className='menu-delete-button' onClick={(event) => onClick(event, menu.id)}>Delete</button></div>
             }
             )}
         </div>

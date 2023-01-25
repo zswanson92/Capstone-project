@@ -304,8 +304,8 @@ const BusinessDetails = () => {
                     </table>
                 </div>
 
-                <div className="menu-pop-items-div">
-                    <hr className="about-biz-hr-sep-two"></hr>
+                {businessInfoObj?.menus.length ? <div className="menu-pop-items-div">
+                    {/* <hr className="about-biz-hr-sep-two"></hr> */}
                     <p>Menu</p>
                     <span>popular dishes</span>
                     <div className="actual-menu-items-div">
@@ -335,8 +335,8 @@ const BusinessDetails = () => {
                         <button className="delete-menu-button">Delete a Menu</button>
                     </Link> </div>) : null)}
                     </div>
-                    <hr className="bottom-menu-hr"></hr>
-                </div>
+                    {/* <hr className="bottom-menu-hr"></hr> */}
+                </div> : ""}
 
 
                 <div className="details-contact-info-div">
@@ -352,10 +352,6 @@ const BusinessDetails = () => {
                         <li className="contact-info-li">  {businessInfoObj?.address} &nbsp; &nbsp; &nbsp; <i className="fa fa-map-marker" aria-hidden="true"></i></li>
                     </ul>
                 </div>
-
-
-
-
 
                 <div className="where-reviews-will-go-probably">
                     <div className="about-the-biz-div">

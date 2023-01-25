@@ -131,7 +131,8 @@
     /* border: 1px solid black; */
     width: 40em;
     height: 20em;
-    padding-bottom: 5em;
+    padding-bottom: 3em;
+    border-top: 1px solid black;
 }
 
 .actual-menu-items-div{
@@ -217,6 +218,7 @@
     position: relative;
     top: 220px;
     overflow-wrap: break-word;
+    /* padding-bottom: 10em; */
 }
 
 .contact-info-div{
@@ -327,8 +329,10 @@
     /* padding-top: 1em; */
     align-items: center;
     width: 40em;
-    padding-left: 22em;
+    margin-left: 22em;
     overflow-wrap: break-word;
+    margin-top: 12em;
+    border-top: 1px solid black;
 }
 
 

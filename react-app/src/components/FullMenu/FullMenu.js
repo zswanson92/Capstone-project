@@ -33,19 +33,19 @@ const FullMenu = () => {
 
 
     return (
-        <div>
-            <h1>Menu for <Link to={`/businesses/${businessInfoObj?.id}`}>{businessInfoObj?.name}</Link></h1>
+        <div className='full-menu-primary-container'>
+            <h1>Menu for <Link className='biz-name-link' to={`/businesses/${businessInfoObj?.id}`}>{businessInfoObj?.name}</Link></h1>
             {menuArr?.map((menu) => {
-                return <div>
-                    <p>{menu.category}</p>
+                return <div className='outer-fullmenu-div'>
+                    <p className='outer-category'>{menu.category}</p>
                     {menu.menu_items?.map((menuitem) => {
                         { console.log("MENU ITEM", menuitem) }
-                        return <div>{menuitem.item_name}, {menuitem.description}, ${menuitem.price}</div>
+                        return <div className='inner-fullmenu-div'>{menuitem.item_name}, {menuitem.description}, ${menuitem.price}</div>
                     })}
                 </div>
             }
             )}
-            <div><Link to={`/businesses/${businessInfoObj?.id}`}><button>Return to business</button> </Link></div>
+            <div><Link to={`/businesses/${businessInfoObj?.id}`}><button className='return-biz-button'>Return to business</button> </Link></div>
         </div>
     )
 }
