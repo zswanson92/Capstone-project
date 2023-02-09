@@ -64,7 +64,7 @@
     border-radius: 3px;
     color: white;
     border: none;
-    height: 4em;
+    height: 3em;
     width: 10em;
 }
 
@@ -74,7 +74,7 @@
     border-radius: 3px;
     color: white;
     border: none;
-    height: 4em;
+    height: 3em;
     width: 8em;
 }
 
@@ -84,7 +84,7 @@
     margin-left: 85em;
     position: sticky;
     top: 5px;
-    margin-top: -26em;
+    margin-top: -47em;
     border-radius: 10px;
 }
 
@@ -94,9 +94,17 @@
     margin-left: 85em;
     position: sticky;
     top: 5px;
-    margin-top: -38em;
-    margin-bottom: 260px;
+    margin-top: -48em;
+    border-radius: 10px;
 
+}
+
+.no-menu-p{
+    display: flex;
+    justify-content: center;
+    padding-top: 6em;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .potential-map-location{
@@ -334,7 +342,7 @@
     flex-direction: column;
     align-items: center;
     padding-right: 700px;
-    margin-top: 10em;
+    margin-top: 35em;
 }
 
 

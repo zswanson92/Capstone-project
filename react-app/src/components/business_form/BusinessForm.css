@@ -34,9 +34,9 @@
     border-radius: 3px;
 }
 
-.business-form-hours-inputs-div{
-    padding-bottom: 1.5em;
-}
+/* .business-form-hours-inputs-div{
+    padding-bottom: .5em;
+} */
 
 .business-form-hours-input{
     padding: .3em;
@@ -228,5 +228,5 @@
 } */
 
 .div-containing-secondary-check{
-    padding-bottom: .5em;
+    padding-bottom: 2em;
 }

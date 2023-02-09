@@ -191,7 +191,9 @@ const BusinessDetails = () => {
 
     return (
         <div className='omega-main-container'>
+
             <div className="delete-edit-business-buttons-div">
+
                 <div>
                     {sessionUser &&
                         (sessionUser.id === businessInfoObj?.user_id && (
@@ -216,6 +218,7 @@ const BusinessDetails = () => {
                         ) : null)}
                     {confirm ? <ConfirmDelete confirm={confirm} setconfirm={theSetConfirm} /> : ""}
                 </div>
+
                 <div>
                     {sessionUser &&
                         (sessionUser.id === businessInfoObj?.user_id && (
@@ -229,6 +232,7 @@ const BusinessDetails = () => {
 
             </div>
 
+
             <div className="bannerimage" style={{ backgroundImage: `url(${businessInfoObj?.preview_img})` }}>
                 <div className="business-name-h1"> {businessInfoObj?.name} </div>
                 <div className="business-name-h2"> {reviewStarAvg > 0 ?
@@ -236,6 +240,7 @@ const BusinessDetails = () => {
                     : ""}</div>
                 <div className="business-name-h2-two">{dollarNumChecker(businessInfoObj?.price)} &nbsp; &nbsp; • &nbsp; &nbsp; {businessInfoObj?.tags}  </div>
             </div>
+
 
 
 
@@ -321,25 +326,27 @@ const BusinessDetails = () => {
                         })}
 
                     </div>
-                    {/* <hr className="about-biz-hr-sep-two"></hr> */}
                     <div className="three-menu-button-divs">
                         <Link to={`/businesses/${businessId}/fullmenu`}>
                             <button className="fullmenu-button">Full Menu</button>
                         </Link>
                         {sessionUser &&
                             (sessionUser.id === businessInfoObj?.user_id ? (
-                        <div className="two-inside-three-buttons"><Link to={`/businesses/${businessId}/menuadd`}>
-                        <button className="edit-menu-button">Edit a Menu</button>
-                    </Link>
-                    <Link to={`/businesses/${businessId}/deletemenu`}>
-                        <button className="delete-menu-button">Delete a Menu</button>
-                    </Link> </div>) : null)}
+                                <div className="two-inside-three-buttons"><Link to={`/businesses/${businessId}/menuadd`}>
+                                    <button className="edit-menu-button">Edit a Menu</button>
+                                </Link>
+                                    <Link to={`/businesses/${businessId}/deletemenu`}>
+                                        <button className="delete-menu-button">Delete a Menu</button>
+                                    </Link> </div>) : null)}
                     </div>
-                    {/* <hr className="bottom-menu-hr"></hr> */}
-                </div> : ""}
+                </div> : <div className="menu-pop-items-div">
+                    &nbsp;
+                    <p className='no-menu-p'>This location does not have a menu yet.</p>
+
+                    </div>}
 
 
-                <div className="details-contact-info-div">
+                <div className={businessInfoObj?.menus.length > 0 ? "details-contact-info-div-two" : "details-contact-info-div"}>
                     <h2 className="contact-info-h2">Contact Information</h2>
                     <hr />
                     <ul className="contact-info-ul">
