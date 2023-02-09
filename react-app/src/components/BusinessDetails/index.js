@@ -8,7 +8,7 @@ import ReviewFormButton from "../review_form/ReviewForm";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 import logo from '../../assets/githublogo.png'
 // import NavBar from "../NavBar";
-import HomeMap from "../MapsApi";
+// import HomeMap from "../MapsApi";
 
 
 const BusinessDetails = () => {
@@ -24,7 +24,7 @@ const BusinessDetails = () => {
         return state.businessReducer.businesses[businessId];
     });
 
-    console.log("biz info obj", businessInfoObj)
+    // console.log("biz info obj", businessInfoObj)
 
 
     const reviewObj = useSelector(state => {
@@ -173,9 +173,9 @@ const BusinessDetails = () => {
 
 
 
-    let abcdef = []
+    let userInfoArr = []
     const userComponents = users?.map((user) => {
-        return abcdef.push(user.id + user.fullname)
+        return userInfoArr.push(user.id + user.fullname)
     });
 
     const theSetConfirm = () => {
@@ -318,7 +318,7 @@ const BusinessDetails = () => {
                         {businessInfoObj?.menus.map((menu) => {
                             return menu.menu_items.map((menuitems) => {
                                 return <div className="menu-items-map-divs">
-                                    <img className="menu-item-image" onError={addDefaultSrc} src={menuitems.menu_item_image} />
+                                    <img className="menu-item-image" onError={addDefaultSrc} src={menuitems.menu_item_image} alt='Loading...' />
                                     {menuitems.item_name},
                                     &nbsp; ${menuitems.price}
                                 </div>
@@ -401,7 +401,7 @@ const BusinessDetails = () => {
                             return (
                                 <div key={reviewObj.id}>
                                     <div className="move-around-reviews-li-div">
-                                        <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
+                                        <p className="reviewer-name-p">{userInfoArr[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
                                         <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)} &nbsp; {reviewObj?.created_at.split('').slice(0, 16).join('')}</div>
                                         <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
                                     </div>

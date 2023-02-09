@@ -273,7 +273,7 @@ const BusinessForm = () => {
                 <div className="business-form-name-input-div">
                     <input
                         required={true}
-                        className={(name.length && name.length < 6 || name.length && name.length > 50) ? "falsey-business-form-name-input" : "business-form-name-input"}
+                        className={((name.length && name.length < 6) || (name.length && name.length > 50)) ? "falsey-business-form-name-input" : "business-form-name-input"}
                         type='text'
                         name='name'
                         onChange={nameSet}
@@ -513,7 +513,7 @@ const BusinessForm = () => {
                     <input
                         required={true}
                         placeholder="Business Address"
-                        className={(address.length && address.length < 15 || address.length && address.length > 100) ? "falsey-business-form-address-input" : "business-form-address-input"}
+                        className={((address.length && address.length < 15) || (address.length && address.length > 100)) ? "falsey-business-form-address-input" : "business-form-address-input"}
                         name='address'
                         type='text'
                         onChange={addressSet}
@@ -560,13 +560,13 @@ const BusinessForm = () => {
                     <input
                         required={true}
                         placeholder="Price (1-5, represented by $'s)"
-                        className={(price.length && price < 1 || price.length && price > 5) ? "falsey-business-form-price-input" : "business-form-price-input"}
+                        className={((price.length && price < 1) || (price.length && price > 5)) ? "falsey-business-form-price-input" : "business-form-price-input"}
                         type='number'
                         name='price'
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}>
                     </input>
-                    {(price.length && price < 1 || price.length && price > 5) ? <div className="error-below-inputs-divs"> Price must be between 1 and 5. </div> : ""}
+                    {((price.length && price < 1) || (price.length && price > 5)) ? <div className="error-below-inputs-divs"> Price must be between 1 and 5. </div> : ""}
                 </div>
                 <div className="business-form-tags-input-div">
                     <input

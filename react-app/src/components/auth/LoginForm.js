@@ -44,7 +44,7 @@ const LoginForm = () => {
     <>
 
     <div className='main-login-form-div'>
-      <div><img src={logo} /></div>
+      <div><img src={logo} alt='Loading...'/></div>
       <div className='login-form-div-container'>
         <h2 className='login-h2'>Login to Zelp!</h2>
         <h4>New to Zelp? <Link className='loginform-signup-link' to={'/sign-up'}>Sign Up</Link></h4>

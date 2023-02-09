@@ -179,7 +179,7 @@ const SignUpForm = () => {
     <>
 
       <div className='main-login-form-div'>
-        <div className='signup-image-div'><img src={logo} /></div>
+        <div className='signup-image-div'><img src={logo} alt='Loading...' /></div>
         <div className='login-form-div-container'>
           <h2 className='signup-h2'>Sign up for Zelp!</h2>
           <div style={{fontWeight: 'bold'}}>Connect with great local businesses</div>

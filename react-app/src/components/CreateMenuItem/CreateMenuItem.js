@@ -55,7 +55,7 @@ const CreateMenuItem = () => {
         }
 
         setErrors(err)
-    }, [menu_item_image])
+    }, [menu_item_image, errors])
 
     function validImageUrl(url) {
         let falseycheck;

@@ -36,7 +36,7 @@ const AddMenuItem = () => {
         <div className='primary-container-menuedit'>
             <h1>Which menu would you like to edit?</h1>
             {menuArr?.map((menu) => {
-                return <div className='mapped-menuedit-div' key={menu.id} ><div className='mapped-menuedit-div'><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} /> {menu.category}
+                return <div className='mapped-menuedit-div' key={menu.id} ><div className='mapped-menuedit-div'><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} alt='Loading...'/> {menu.category}
                     <Link to={`/create/menu/${menu.id}`}><button className='add-item-button'>Add Item</button></Link>
 
                     <Link to={`/businesses/${businessId}/menu/items/${menu.id}`}><button className='edit-remove-item-button'>Edit/Remove Items</button></Link>

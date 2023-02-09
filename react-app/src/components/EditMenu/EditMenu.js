@@ -14,6 +14,9 @@ const EditMenu = () => {
 
     let userId = sessionUser.id
 
+    // const menuObj = useSelector((state) => state.businessReducer.businesses[menuId].menus)
+    // console.log(menuObj)
+
     const [category, setCategory] = useState("")
     const [menu_image, setMenuImage] = useState("")
     const [errors, setErrors] = useState([])

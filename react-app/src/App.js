@@ -95,7 +95,7 @@ function App() {
         <ProtectedRoute exact={true} path="/menuedit/:menuId">
         <EditMenu />
         </ProtectedRoute>
-        <ProtectedRoute exact={true} path="/menuedit/item/:menuItemId">
+        <ProtectedRoute exact={true} path="/businesses/:businessId/menuedit/item/:menuItemId">
           <EditMenuItem />
         </ProtectedRoute>
         <Route exact={true} path="/create/menu/:menuId">

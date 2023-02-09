@@ -8,14 +8,27 @@ const EditMenuItem = () => {
     const dispatch = useDispatch();
     let history = useHistory();
 
-    const { menuItemId } = useParams();
+    const { businessId, menuItemId } = useParams();
     // const sessionUser = useSelector((state) => state.session.user);
 
     // let userId = sessionUser.id
 
-    const [item_name, setItemName] = useState("")
-    const [price, setPrice] = useState("")
-    const [description, setDescription] = useState("")
+    const menuItemState = useSelector(state => state.businessReducer.businesses[businessId].menus[0].menu_items)
+    console.log("!!!!!", menuItemState)
+
+    const menuItemFilter = menuItemState?.filter(obj => obj.id === +menuItemId)
+
+    let editValOne;
+    let editValTwo;
+    let editValThree;
+
+    const editValOneAssign = menuItemFilter ? editValOne = menuItemFilter[0]?.item_name : ""
+    const editValTwoAssign = menuItemFilter ? editValTwo = menuItemFilter[0]?.price : ""
+    const editValThreeAssign = menuItemFilter ? editValThree = menuItemFilter[0]?.description : ""
+
+    const [item_name, setItemName] = useState(editValOne ? editValOne : "")
+    const [price, setPrice] = useState(editValTwo ? editValTwo : "")
+    const [description, setDescription] = useState(editValThree ? editValThree : "")
     const [menu_item_image, setMenuItemImage] = useState("")
     const [errors, setErrors] = useState([])
 
@@ -34,16 +47,16 @@ const EditMenuItem = () => {
             menu_item_image
         }
 
-        const theEditedMenuItem = await dispatch(editMenuItemThunk(editedMenuItem))
+        await dispatch(editMenuItemThunk(editedMenuItem))
 
         // history.push(`/businesses/${businessId}`)
-        if(theEditedMenuItem){
-            history.push(`/businesses`)
-        }
+        // if(theEditedMenuItem){
+        history.push(`/businesses/${businessId}`)
+        // }
     }
 
     const onClose = () => {
-        history.push(`/businesses`);
+        history.push(`/businesses/${businessId}`);
     }
 
     return (
