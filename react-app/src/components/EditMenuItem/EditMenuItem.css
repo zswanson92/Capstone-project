@@ -8,3 +8,7 @@
     width: 12em;
     /* margin-bottom: 3em; */
 }
+
+.submit-edit-menu-item-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
+}

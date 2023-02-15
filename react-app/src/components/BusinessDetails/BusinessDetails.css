@@ -82,6 +82,10 @@
     width: 10em;
 }
 
+.business-delete-button:hover {
+    box-shadow: 0 0 30px rgba(24, 23, 23, 0.2);
+}
+
 .edit-business-button{
     background: none;
     background-color: #c41200;
@@ -90,6 +94,10 @@
     border: none;
     height: 3em;
     width: 8em;
+}
+
+.edit-business-button:hover {
+    box-shadow: 0 0 30px rgba(24, 23, 23, 0.2);
 }
 
 .details-contact-info-div{
@@ -466,6 +474,11 @@ th{
     margin-bottom: 1em;
 }
 
+.fullmenu-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
+}
+
+
 .edit-menu-button{
     background: none;
     background-color: #c41200;
@@ -477,6 +490,10 @@ th{
     /* padding-right: .5em; */
 }
 
+.edit-menu-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
+}
+
 .delete-menu-button{
     background: none;
     background-color: #c41200;
@@ -485,6 +502,10 @@ th{
     border: none;
     height: 2.5em;
     width: 8em;
+}
+
+.delete-menu-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
 }
 
 .two-inside-three-buttons{

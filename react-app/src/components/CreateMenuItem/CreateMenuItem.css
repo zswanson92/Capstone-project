@@ -19,3 +19,7 @@
     width: 20em;
     padding: .5em;
 }
+
+.create-menu-return-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
+}
