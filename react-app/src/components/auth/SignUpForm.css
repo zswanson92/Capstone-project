@@ -95,3 +95,7 @@
 .signupform-login-link:hover{
     text-decoration: underline;
 }
+
+.signup-form-footer{
+    padding-top: 10em;
+}

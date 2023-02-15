@@ -10,6 +10,20 @@
     justify-content: space-between;
 } */
 
+.splash-footer-div{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 98em;
+}
+
+.href-div{
+    padding-top: 1em;
+}
+
+.corp-div{
+    padding-left: 1.5em;
+}
 
 .bannerimage{
     width: 100%;
@@ -24,7 +38,7 @@
 
 .business-name-h1{
     color: white;
-    padding-top: 180px;
+    padding-top: 160px;
     display: flex;
     justify-content: center;
     font-size: 50px;
@@ -94,7 +108,7 @@
     margin-left: 85em;
     position: sticky;
     top: 5px;
-    margin-top: -48em;
+    margin-top: -47em;
     border-radius: 10px;
 
 }
@@ -477,3 +491,8 @@ th{
     display: flex;
     gap: 1.5em;
 }
+
+.foot-name-div{
+    display: flex;
+    align-items: center;
+  }

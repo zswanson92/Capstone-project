@@ -343,7 +343,7 @@ const BusinessDetails = () => {
                     &nbsp;
                     <p className='no-menu-p'>This location does not have a menu yet.</p>
 
-                    </div>}
+                </div>}
 
 
                 <div className={businessInfoObj?.menus.length > 0 ? "details-contact-info-div-two" : "details-contact-info-div"}>
@@ -423,8 +423,14 @@ const BusinessDetails = () => {
                 </div>
             </div>
             <footer className='splash-footer'>
-                <p>© 2022 Zelp Corp</p>
-                <a className='splash-github-link' href='https://github.com/zswanson92'> <img src={logo} alt='Logo' className='splash-logo-img'></img> Zack Swanson</a>
+                <div className="splash-footer-div">
+                    <div className="corp-div">© 2022 Zelp Corp</div>
+                    <div className='foot-name-div'>
+
+                        <div className='href-div'><a className='splash-github-link' href='https://github.com/zswanson92'>  Zack Swanson</a></div>
+                        <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
+                    </div>
+                </div>
             </footer>
         </div>
     )

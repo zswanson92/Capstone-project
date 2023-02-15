@@ -112,3 +112,7 @@
 .loginform-signup-link:hover{
     text-decoration: underline;
 }
+
+.login-form-footer-div{
+    padding-top: 24em;
+}
