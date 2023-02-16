@@ -1,13 +1,12 @@
 """empty message
 
-Revision ID: fb7ae718eac5
+Revision ID: ad255745532e
 Revises:
-Create Date: 2023-01-16 16:37:30.595338
+Create Date: 2023-02-16 14:24:42.040648
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -15,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'fb7ae718eac5'
+revision = 'ad255745532e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -66,6 +65,18 @@ def upgrade():
         op.execute(f"ALTER TABLE businesses SET SCHEMA {SCHEMA};")
 
 
+    op.create_table('images',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('url', sa.String(), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
+
+
     op.create_table('menus',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -81,6 +92,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE menus SET SCHEMA {SCHEMA};")
+
 
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -110,6 +122,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE cool SET SCHEMA {SCHEMA};")
 
+
     op.create_table('funny',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('review_id', sa.Integer(), nullable=True),
@@ -120,13 +133,14 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE funny SET SCHEMA {SCHEMA};")
 
+
     op.create_table('menuitems',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('menu_id', sa.Integer(), nullable=False),
     sa.Column('item_name', sa.Text(), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
-    sa.Column('price', sa.Integer(), nullable=False),
+    sa.Column('price', sa.Float(), nullable=False),
     sa.Column('menu_item_image', sa.Text(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
@@ -161,6 +175,7 @@ def downgrade():
     op.drop_table('cool')
     op.drop_table('reviews')
     op.drop_table('menus')
+    op.drop_table('images')
     op.drop_table('businesses')
     op.drop_table('users')
     # ### end Alembic commands ###

@@ -5,3 +5,4 @@ from .business import Business
 from .review import Review
 from .menu import Menu
 from .menuitem import MenuItem
+from .image import Image

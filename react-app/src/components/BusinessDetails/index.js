@@ -9,6 +9,7 @@ import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 import logo from '../../assets/githublogo.png'
 // import NavBar from "../NavBar";
 // import HomeMap from "../MapsApi";
+import UploadPicture from "../UploadPicture/UploadPicture";
 
 
 const BusinessDetails = () => {
@@ -242,7 +243,7 @@ const BusinessDetails = () => {
             </div>
 
 
-
+            <UploadPicture />
 
             <div className="beta-container-test">
                 {/* start of menu div */}

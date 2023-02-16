@@ -142,14 +142,21 @@ export const deleteReviewThunk = (reviewId) => async dispatch => {
 
 
 export const createReviewThunk = (payload) => async dispatch => {
-    const { businessId, user_id, body, stars, image_url } = payload
+    // console.log("!!!!!!!", payload)
+    // for (var key of payload.entries()) {
+    //     console.log("FRONT END PAYLOAD TWO", key[0] + ', ' + key[1]);
+    // }
+    // let businessId = payload.businessId
+    // console.log("!!!!!!!", businessId)
+    const { businessId, user_id, body, stars, image } = payload
 
     const response = await fetch(`/api/create/${businessId}/reviews`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ businessId, user_id, body, stars, image_url })
+        body: JSON.stringify({ businessId, user_id, body, stars, image })
+        // body: payload
     })
 
     if (response.ok) {

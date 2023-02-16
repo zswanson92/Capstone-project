@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
 from app.models import Business, db, Review, Menu, MenuItem
 from app.forms import BusinessForm, ReviewForm, MenuForm, MenuItemForm
+# from app.s3_helpers import (
+#     upload_file_to_s3, allowed_file, get_unique_filename)
 
 
 business_routes = Blueprint("businesses", __name__)
@@ -178,10 +180,35 @@ def add_review(id):
     """
     Presents a form to create a review
     """
-
     form = ReviewForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    # print("@@@@@", request)
+    # print("request form!!!!!", request.form.getlist('image_url'))
+    # print("request files", request.files)
+
+
+    # if "image_url" not in request.files:
+    #     return {"errors": "image required"}, 400
+
+    # image = request.files["image_url"]
+
+    # if not allowed_file(image.filename):
+    #     return {"errors": "file type not permitted"}, 400
+
+    # image.filename = get_unique_filename(image.filename)
+
+    # upload = upload_file_to_s3(image)
+
+    # if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        # return upload, 400
+
+    # url = upload["url"]
+
 
     if form.validate_on_submit():
         review = Review(
@@ -189,14 +216,15 @@ def add_review(id):
         user_id = current_user.id,
         body = form.data['body'],
         stars = form.data['stars'],
-        image_url = form.data['image_url']
+        # image_url = form.data['image_url']
+        # image_url = url
         )
 
         db.session.add(review)
         db.session.commit()
         return review.to_dict()
 
-    print("REVIEW FORM ERRORS!@!", form.errors)
+    # print("REVIEW FORM ERRORS!@!", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
