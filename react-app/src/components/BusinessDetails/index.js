@@ -243,7 +243,7 @@ const BusinessDetails = () => {
             </div>
 
 
-            <UploadPicture />
+            {/* <UploadPicture /> */}
 
             <div className="beta-container-test">
                 {/* start of menu div */}

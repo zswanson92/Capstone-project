@@ -15,7 +15,7 @@ const ReviewFormButton = () => {
 
   const [body, setBody] = useState("");
   const [stars, setStars] = useState(0);
-  const [image, setImage] = useState("");
+  const [image_url, setImage_url] = useState("");
   const [showReviewForm, setReviewForm] = useState(false)
   const [starOne, setStarOne] = useState(false)
   const [starTwo, setStarTwo] = useState(false)
@@ -31,29 +31,43 @@ const ReviewFormButton = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (errors.length > 0) return
-    const payload = new FormData();
-    // payload.append("businessId", businessId);
-    // payload.append("user_id", sessionUser.id);
-    // payload.append("body", body);
-    // payload.append("stars", stars);
-    payload.append("image", image);
 
-    // console.log("FRONT END PAYLOAD", payload.businessId)
-  //   for (var key of payload.entries()) {
-  //     console.log("FRONT END PAYLOAD TWO", key[0] + ', ' + key[1]);
-  // }
     const newReview = {
       businessId,
       user_id: sessionUser.id,
       body,
       stars,
-      image: payload
+      // image_url: imageOne
+
     };
 
-    await dispatch(createReviewThunk(payload, businessId));
+    const theCreatedRev = await dispatch(createReviewThunk(newReview));
     setBody('');
     setReviewForm(false)
+
     await dispatch(getBusinessByIdThunk(businessId))
+    let imageOne;
+    const formData = new FormData();
+
+    console.log("AGGDADGDGADGAGD", theCreatedRev?.id)
+    formData.append("image_url", image_url);
+    formData.append("review_id", theCreatedRev?.id)
+
+
+    const res = await fetch('/api/images', {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      imageOne = await res.json();
+      return imageOne
+    }
+    else {
+      console.log("error");
+    }
+
+
+    // await dispatch(getBusinessByIdThunk(businessId))
   };
 
   const starOneClick = () => {
@@ -179,8 +193,8 @@ const ReviewFormButton = () => {
 
   const updateImage = (e) => {
     const file = e.target.files[0];
-    console.log("FILE!!", file)
-    setImage(file);
+    // console.log("FILE!!", file)
+    setImage_url(file);
   }
 
   return (
@@ -228,14 +242,14 @@ const ReviewFormButton = () => {
                   onChange={(e) => setImage_url(e.target.value)}
                   placeholder="Optional Image URL"
                 /> */}
-                {/* <input
+                <input
                   type="file"
                   name='image'
                   accept="image/*"
                   onChange={updateImage}
 
-                /> */}
-                <UploadPicture />
+                />
+                {/* <UploadPicture /> */}
                 {/* {image_url.length > 0 && !validImageUrl(image_url) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
               </div>
               <div className="two-review-form-button-div">

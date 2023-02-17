@@ -7,15 +7,18 @@ class Image(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    review_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     url = db.Column(db.String, nullable=False)
 
     user = db.relationship("User", back_populates="images")
+    # review = db.relationship("Review", back_populates="review_images")
 
     def to_dict(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "review_id": self.review_id,
             "url": self.url,
         }
 

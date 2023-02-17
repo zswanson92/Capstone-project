@@ -22,10 +22,10 @@ def validation_errors_to_error_messages(validation_errors):
 @image_routes.route("", methods=["POST"])
 @login_required
 def upload_image():
-    if "image" not in request.files:
+    if "image_url" not in request.files:
         return {"errors": "image required"}, 400
 
-    image = request.files["image"]
+    image = request.files["image_url"]
     print("THIS IS IMAGE", image)
 
     if not allowed_file(image.filename):
@@ -48,3 +48,9 @@ def upload_image():
     db.session.add(new_image)
     db.session.commit()
     return {"url": url}
+
+
+@image_routes.route('/<int:id>', methods=['GET'])
+def get_one_image(id):
+    image = Image.query.get(id)
+    return ({image.id: image.to_dict()})

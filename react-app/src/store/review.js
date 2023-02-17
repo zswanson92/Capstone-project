@@ -148,14 +148,14 @@ export const createReviewThunk = (payload) => async dispatch => {
     // }
     // let businessId = payload.businessId
     // console.log("!!!!!!!", businessId)
-    const { businessId, user_id, body, stars, image } = payload
+    const { businessId, user_id, body, stars, image_url } = payload
 
     const response = await fetch(`/api/create/${businessId}/reviews`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ businessId, user_id, body, stars, image })
+        body: JSON.stringify({ businessId, user_id, body, stars, image_url })
         // body: payload
     })
 
