@@ -119,11 +119,36 @@ export const editReviewThunk = (payload) => async dispatch => {
         body: JSON.stringify({ body, stars, image_url })
     })
 
-    if (response.ok) {
-        const review = await response.json()
+    if (image_url) {
+        if (response.ok) {
+            const editedReview = await response.json()
 
-        dispatch(editReview(review))
+            const formData = new FormData()
+
+            formData.append("image_url", image_url)
+            formData.append("review_id", editedReview.id)
+
+            const imageRes = await fetch('/api/images/review/edit', {
+                method: "POST",
+                body: formData,
+            });
+
+            if(imageRes.ok){
+                const editImage = await imageRes.json()
+                editedReview.image_url = editImage.url
+                dispatch(editReview(editedReview))
+            }
+
+        }
+
     }
+
+    else if(response.ok){
+        const editedReview = await response.json()
+         dispatch(editReview(editedReview))
+         return editedReview
+    }
+
 }
 
 
@@ -142,12 +167,7 @@ export const deleteReviewThunk = (reviewId) => async dispatch => {
 
 
 export const createReviewThunk = (payload) => async dispatch => {
-    // console.log("!!!!!!!", payload)
-    // for (var key of payload.entries()) {
-    //     console.log("FRONT END PAYLOAD TWO", key[0] + ', ' + key[1]);
-    // }
-    // let businessId = payload.businessId
-    // console.log("!!!!!!!", businessId)
+
     const { businessId, user_id, body, stars, image_url } = payload
 
     const response = await fetch(`/api/create/${businessId}/reviews`, {
@@ -158,8 +178,6 @@ export const createReviewThunk = (payload) => async dispatch => {
         body: JSON.stringify({ businessId, user_id, body, stars })
         // body: payload
     })
-    console.log("ARE WE MAKING IT aggddgagddgadg???")
-
 
     if (response.ok) {
         const review = await response.json()
@@ -167,7 +185,7 @@ export const createReviewThunk = (payload) => async dispatch => {
         const formData = new FormData()
 
         formData.append("image_url", image_url)
-        console.log("FORM DATA", review.id)
+        // console.log("FORM DATA", review.id)
         formData.append("review_id", review.id)
 
         const imageRes = await fetch('/api/images', {
@@ -175,22 +193,19 @@ export const createReviewThunk = (payload) => async dispatch => {
             body: formData,
         });
 
-        console.log("ARE WE MAKING IT HERE???")
+        // console.log("ARE WE MAKING IT HERE???")
         if (imageRes.ok) {
             const image = await imageRes.json()
-            console.log("THIS IS REVIEW", review)
+            // console.log("THIS IS REVIEW", review)
             review.image_url = image.url
-            console.log("WAT THAT IMG URL BE", review.image_url)
-            console.log("THIS IS IMAGE,", image)
-
+            // console.log("WAT THAT IMG URL BE", review.image_url)
+            // console.log("THIS IS IMAGE,", image)
             // formData.append("image_url", image_url)
             // formData.append("review_id", review.id)
-            console.log("IS THIS BEING HIT????")
+            // console.log("IS THIS BEING HIT????")
             dispatch(addReview(review))
             // return review
         }
-
-        // dispatch(addReview(review))
     }
 }
 

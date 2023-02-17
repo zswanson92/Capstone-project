@@ -18,12 +18,12 @@ const EditReviewButton = () => {
     let editValTwo;
 
     const workAround = revFilter ? editValOne = revFilter[0]?.body : ""
-    const workAroundTwo = revFilter ? editValTwo = revFilter[0]?.stars : ""
+    const workAroundTwo = revFilter ? editValTwo = +revFilter[0]?.stars : ""
 
 
     const [body, setBody] = useState(editValOne ? editValOne : "")
-    const [stars, setStars] = useState(editValTwo ? editValTwo : "")
-    const [image_url, setImage_Url] = useState("")
+    const [stars, setStars] = useState(editValTwo ? editValTwo : 1)
+    const [image_url, setImage_url] = useState("")
     // const [submitted, setSubmitted] = useState(false)
     const [starOne, setStarOne] = useState(false)
     const [starTwo, setStarTwo] = useState(false)
@@ -184,7 +184,7 @@ const EditReviewButton = () => {
         }
 
         await dispatch(editReviewThunk(editedReview))
-
+        // await dispatch(getReviewsByBusinessIdThunk(businessId))
         return history.push(`/businesses/${businessId}`)
     }
 
@@ -214,6 +214,12 @@ const EditReviewButton = () => {
         return falseycheck
     }
 
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        console.log("FILE!!", file)
+        setImage_url(file);
+    }
+
     return (
         <div className="edit-review-container-div">
             <form onSubmit={editCurrReview} className="edit-review-form">
@@ -238,26 +244,32 @@ const EditReviewButton = () => {
                     </div>
                     <div className="stars-edit-review-input-div">
                         <button className="star-buttons" type='button' onClick={starOneClick}
-                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starOne ? "yellow" : "" }}></i> 1</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: (starOne || stars >= 1) ? "yellow" : "" }}></i> 1</button>
                         <button className="star-buttons" type='button' onClick={starTwoClick}
-                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starTwo ? "yellow" : "" }}></i> 2</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: (starTwo || stars >= 2) ? "yellow" : "" }}></i> 2</button>
                         <button className="star-buttons" type='button' onClick={starThreeClick}
-                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starThree ? "yellow" : "" }}></i> 3</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: (starThree || stars >= 3) ? "yellow" : "" }}></i> 3</button>
                         <button className="star-buttons" type='button' onClick={starFourClick}
-                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFour ? "yellow" : "" }}></i> 4</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: (starFour || stars >= 4) ? "yellow" : "" }}></i> 4</button>
                         <button className="star-buttons" type='button' onClick={starFiveClick}
-                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFive ? "yellow" : "" }}></i> 5</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: (starFive || stars === 5) ? "yellow" : "" }}></i> 5</button>
                         {stars < 1 || stars > 5 ? <div className="falsey-review-form-stars-input">Must click on a star value.</div> : ""}
                     </div>
                     <div className="image-url-edit-review-input-div">
-                        <input
+                        {/* <input
                             placeholder="Image URL (optional)"
                             type='text'
                             className="image-url-edit-review-input"
                             value={image_url}
                             onChange={(e) => setImage_Url(e.target.value)}
                         />
-                        {image_url.length > 0 && !validImageUrl(image_url) ? <div className="error-below-inputs-divs-review-edit">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""}
+                        {image_url.length > 0 && !validImageUrl(image_url) ? <div className="error-below-inputs-divs-review-edit">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
+                        <input
+                            type="file"
+                            name='image'
+                            accept="image/*"
+                            onChange={updateImage}
+                        />
                     </div>
                 </div>
                 <div className="edit-review-button-duo">

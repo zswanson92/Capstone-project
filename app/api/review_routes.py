@@ -139,11 +139,11 @@ def edit_review(id):
     if form.validate_on_submit():
         new_body = form.data['body']
         new_stars = form.data['stars']
-        new_image_url = form.data['image_url']
+        # new_image_url = form.data['image_url']
 
         review.body = new_body
         review.stars = new_stars
-        review.image_url = new_image_url
+        # review.image_url = new_image_url
 
         db.session.commit()
     print("REVIEW EDIT FORM ERRS!", form.errors)

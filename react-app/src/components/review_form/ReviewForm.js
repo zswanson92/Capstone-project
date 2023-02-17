@@ -248,7 +248,6 @@ const ReviewFormButton = () => {
                   name='image'
                   accept="image/*"
                   onChange={updateImage}
-
                 />
                 {/* <UploadPicture /> */}
                 {/* {image_url.length > 0 && !validImageUrl(image_url) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
