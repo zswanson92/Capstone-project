@@ -238,15 +238,15 @@ const EditReviewButton = () => {
                     </div>
                     <div className="stars-edit-review-input-div">
                         <button className="star-buttons" type='button' onClick={starOneClick}
-                        > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starOne ? "yellow" : "" }}></i> 1</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starOne ? "yellow" : "" }}></i> 1</button>
                         <button className="star-buttons" type='button' onClick={starTwoClick}
-                        > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starTwo ? "yellow" : "" }}></i> 2</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starTwo ? "yellow" : "" }}></i> 2</button>
                         <button className="star-buttons" type='button' onClick={starThreeClick}
-                        > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starThree ? "yellow" : "" }}></i> 3</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starThree ? "yellow" : "" }}></i> 3</button>
                         <button className="star-buttons" type='button' onClick={starFourClick}
-                        > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFour ? "yellow" : "" }}></i> 4</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFour ? "yellow" : "" }}></i> 4</button>
                         <button className="star-buttons" type='button' onClick={starFiveClick}
-                        > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFive ? "yellow" : "" }}></i> 5</button>
+                        > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFive ? "yellow" : "" }}></i> 5</button>
                         {stars < 1 || stars > 5 ? <div className="falsey-review-form-stars-input">Must click on a star value.</div> : ""}
                     </div>
                     <div className="image-url-edit-review-input-div">

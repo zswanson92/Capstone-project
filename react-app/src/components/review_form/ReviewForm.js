@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./ReviewForm.css";
-import { createReviewThunk } from "../../store/review";
+import { createReviewThunk, getReviewsByBusinessIdThunk } from "../../store/review";
 import { getBusinessByIdThunk } from "../../store/business";
 import UploadPicture from "../UploadPicture/UploadPicture";
 
@@ -37,34 +37,35 @@ const ReviewFormButton = () => {
       user_id: sessionUser.id,
       body,
       stars,
-      // image_url: imageOne
-
+      image_url
     };
 
-    const theCreatedRev = await dispatch(createReviewThunk(newReview));
+    await dispatch(createReviewThunk(newReview));
     setBody('');
     setReviewForm(false)
 
-    await dispatch(getBusinessByIdThunk(businessId))
-    let imageOne;
-    const formData = new FormData();
+    // await dispatch(getBusinessByIdThunk(businessId))
+    await dispatch(getReviewsByBusinessIdThunk(businessId))
+    // let imageOne;
+    // let theRvId = +theCreatedRev.id
+    // const formData = new FormData();
 
-    console.log("AGGDADGDGADGAGD", theCreatedRev?.id)
-    formData.append("image_url", image_url);
-    formData.append("review_id", theCreatedRev?.id)
+    // console.log("AGGDADGDGADGAGD", theRvId)
+    // await formData.append("image_url", image_url);
+    // await formData.append("review_id", theRvId)
 
 
-    const res = await fetch('/api/images', {
-      method: "POST",
-      body: formData,
-    });
-    if (res.ok) {
-      imageOne = await res.json();
-      return imageOne
-    }
-    else {
-      console.log("error");
-    }
+    // const res = await fetch('/api/images', {
+    //   method: "POST",
+    //   body: formData,
+    // });
+    // if (res.ok) {
+    //   imageOne = await res.json();
+    //   return imageOne
+    // }
+    // else {
+    //   console.log("error");
+    // }
 
 
     // await dispatch(getBusinessByIdThunk(businessId))
@@ -193,7 +194,7 @@ const ReviewFormButton = () => {
 
   const updateImage = (e) => {
     const file = e.target.files[0];
-    // console.log("FILE!!", file)
+    console.log("FILE!!", file)
     setImage_url(file);
   }
 
@@ -223,15 +224,15 @@ const ReviewFormButton = () => {
               </div>
               <div className="create-review-stars-input-div">
                 <button className="star-buttons" type='button' onClick={starOneClick}
-                > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starOne ? "yellow" : "" }}></i> 1</button>
+                > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starOne ? "yellow" : "" }}></i> 1</button>
                 <button className="star-buttons" type='button' onClick={starTwoClick}
-                > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starTwo ? "yellow" : "" }}></i> 2</button>
+                > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starTwo ? "yellow" : "" }}></i> 2</button>
                 <button className="star-buttons" type='button' onClick={starThreeClick}
-                > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starThree ? "yellow" : "" }}></i> 3</button>
+                > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starThree ? "yellow" : "" }}></i> 3</button>
                 <button className="star-buttons" type='button' onClick={starFourClick}
-                > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFour ? "yellow" : "" }}></i> 4</button>
+                > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFour ? "yellow" : "" }}></i> 4</button>
                 <button className="star-buttons" type='button' onClick={starFiveClick}
-                > <i class="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFive ? "yellow" : "" }}></i> 5</button>
+                > <i className="fa fa-star-o" aria-hidden="true" style={{ backgroundColor: starFive ? "yellow" : "" }}></i> 5</button>
                 {stars < 1 || stars > 5 ? <div className="falsey-review-form-stars-input">Must click on a star value.</div> : ""}
               </div>
               <div>

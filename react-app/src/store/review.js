@@ -56,7 +56,7 @@ const addCool = (cool) => ({
 export const addUsefulThunk = (reviewid, userId) => async dispatch => {
     const response = await fetch(`/api/reviews/${reviewid}/useful`)
 
-    if(response.ok){
+    if (response.ok) {
         const useful = await response.json()
         dispatch(addUseful(useful))
         return useful
@@ -67,7 +67,7 @@ export const addUsefulThunk = (reviewid, userId) => async dispatch => {
 export const addFunnyThunk = (reviewid, userId) => async dispatch => {
     const response = await fetch(`/api/reviews/${reviewid}/funny`)
 
-    if(response.ok){
+    if (response.ok) {
         const funny = await response.json()
         dispatch(addFunny(funny))
         return funny
@@ -78,7 +78,7 @@ export const addFunnyThunk = (reviewid, userId) => async dispatch => {
 export const addCoolThunk = (reviewid, userId) => async dispatch => {
     const response = await fetch(`/api/reviews/${reviewid}/cool`)
 
-    if(response.ok){
+    if (response.ok) {
         const cool = await response.json()
         dispatch(addCool(cool))
         return cool
@@ -90,7 +90,7 @@ export const addCoolThunk = (reviewid, userId) => async dispatch => {
 export const getAllReviewsThunk = () => async dispatch => {
     const response = await fetch('/api/reviews')
 
-    if(response.ok){
+    if (response.ok) {
         const review = await response.json()
         dispatch(getAllReviews(review))
         return review
@@ -101,7 +101,7 @@ export const getAllReviewsThunk = () => async dispatch => {
 export const getReviewsByBusinessIdThunk = (businessId) => async dispatch => {
     const response = await fetch(`/api/reviews/${businessId}`)
 
-    if(response.ok){
+    if (response.ok) {
         const review = await response.json()
         dispatch(getReviewsByBusinessId(review))
         return review
@@ -119,7 +119,7 @@ export const editReviewThunk = (payload) => async dispatch => {
         body: JSON.stringify({ body, stars, image_url })
     })
 
-    if(response.ok){
+    if (response.ok) {
         const review = await response.json()
 
         dispatch(editReview(review))
@@ -133,7 +133,7 @@ export const deleteReviewThunk = (reviewId) => async dispatch => {
         method: 'DELETE'
     })
 
-    if(response.ok){
+    if (response.ok) {
         const review = await response.json()
 
         dispatch(deleteReview(review))
@@ -155,15 +155,42 @@ export const createReviewThunk = (payload) => async dispatch => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ businessId, user_id, body, stars, image_url })
+        body: JSON.stringify({ businessId, user_id, body, stars })
         // body: payload
     })
+    console.log("ARE WE MAKING IT aggddgagddgadg???")
+
 
     if (response.ok) {
         const review = await response.json()
 
-        dispatch(addReview(review))
-        return review
+        const formData = new FormData()
+
+        formData.append("image_url", image_url)
+        console.log("FORM DATA", review.id)
+        formData.append("review_id", review.id)
+
+        const imageRes = await fetch('/api/images', {
+            method: "POST",
+            body: formData,
+        });
+
+        console.log("ARE WE MAKING IT HERE???")
+        if (imageRes.ok) {
+            const image = await imageRes.json()
+            console.log("THIS IS REVIEW", review)
+            review.image_url = image.url
+            console.log("WAT THAT IMG URL BE", review.image_url)
+            console.log("THIS IS IMAGE,", image)
+
+            // formData.append("image_url", image_url)
+            // formData.append("review_id", review.id)
+            console.log("IS THIS BEING HIT????")
+            dispatch(addReview(review))
+            // return review
+        }
+
+        // dispatch(addReview(review))
     }
 }
 
@@ -183,10 +210,11 @@ export const createReviewThunk = (payload) => async dispatch => {
 
 const initialState = { allReviews: {} }
 const reviewsReducer = (state = initialState, action) => {
-    switch (action.type){
-        case ADD_REVIEW:{
+    switch (action.type) {
+        case ADD_REVIEW: {
 
-            if(!state[action.id]){
+            if (!state[action.id]) {
+                console.log("ACTION.PAYLOAD!!", action.payload)
                 const newState = {
                     ...state,
                     [action.payload.id]: {
@@ -218,7 +246,7 @@ const reviewsReducer = (state = initialState, action) => {
         }
 
         case DELETE_REVIEW: {
-            const newState = { ...state, allReviews: { ...state.allReviews}}
+            const newState = { ...state, allReviews: { ...state.allReviews } }
             delete newState.allReviews[action.payload]
             return newState;
         }

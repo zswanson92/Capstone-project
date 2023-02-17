@@ -7,7 +7,7 @@ class Image(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    review_id = db.Column(db.Integer)
+    review_id = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     url = db.Column(db.String, nullable=False)
 

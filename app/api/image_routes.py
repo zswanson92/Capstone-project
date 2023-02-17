@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Image
+from app.models import db, Image, Review
 from flask_login import current_user, login_required
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -26,7 +26,6 @@ def upload_image():
         return {"errors": "image required"}, 400
 
     image = request.files["image_url"]
-    print("THIS IS IMAGE", image)
 
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
@@ -34,19 +33,24 @@ def upload_image():
     image.filename = get_unique_filename(image.filename)
 
     upload = upload_file_to_s3(image)
-    print("!!!!!", upload)
+
 
     if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
+
         return upload, 400
 
     url = upload["url"]
-    # flask_login allows us to get the current user from the request
-    new_image = Image(user_id=current_user.id, url=url)
+
+    new_image = Image(user_id=current_user.id, url=url, review_id=request.values['review_id'])
     db.session.add(new_image)
     db.session.commit()
+
+    review = Review.query.filter_by(id=new_image.review_id).first()
+    print("can you hear me now??", review)
+    review.image_url = new_image.url
+    db.session.add(review)
+    db.session.commit()
+
     return {"url": url}
 
 

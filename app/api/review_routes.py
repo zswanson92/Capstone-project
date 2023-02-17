@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Review, db, User
+from app.models import Review, db, User, Image
 from app.forms import ReviewForm
 
 review_routes = Blueprint("reviews", __name__)
@@ -153,6 +153,10 @@ def edit_review(id):
 @login_required
 def delete_review(id):
   review = Review.query.get(id)
+
   db.session.delete(review)
+  imageDel = Image.query.filter_by(review_id=id).first()
+  if imageDel:
+    db.session.delete(imageDel)
   db.session.commit()
   return {'message': 'Delete Successful'}

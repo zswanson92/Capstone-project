@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Business, db, Review, Menu, MenuItem
+from app.models import Business, db, Review, Menu, MenuItem, Image
 from app.forms import BusinessForm, ReviewForm, MenuForm, MenuItemForm
 # from app.s3_helpers import (
 #     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -186,7 +186,7 @@ def add_review(id):
 
     # print("@@@@@", request)
     # print("request form!!!!!", request.form.getlist('image_url'))
-    # print("request files", request.files)
+    # print("request files", request.files["image_url"])
 
 
     # if "image_url" not in request.files:
@@ -202,13 +202,17 @@ def add_review(id):
     # upload = upload_file_to_s3(image)
 
     # if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        # return upload, 400
+    #     return upload, 400
 
     # url = upload["url"]
+    print("AAAAAAA", form.data['body'])
+    print("ZZZZZZZ", form.data['image_url'])
 
+    # print("BBBBBBBBBB", request.form['image_url'])
+    print("VVVVVVVVVV", request.json)
+    # print("PPPPPPPPPPPPPPP", request.values['image_url'])
+    # print("GGHGHHHHHHHHH", request.files['image_url'])
+    # image = Image.query.get(id)
 
     if form.validate_on_submit():
         review = Review(
@@ -216,16 +220,28 @@ def add_review(id):
         user_id = current_user.id,
         body = form.data['body'],
         stars = form.data['stars'],
-        # image_url = form.data['image_url']
-        # image_url = url
+
         )
 
         db.session.add(review)
         db.session.commit()
+
         return review.to_dict()
 
-    # print("REVIEW FORM ERRORS!@!", form.errors)
+
+    # print("DOES THIS VAL EXIST?", review.id)
+    # image = Image.query.filter_by(review_id=review.id).first()
+    # print("DIS DA IMAGE STR", image)
+    # if image:
+    #     review.image_url = image.url
+    # db.session.add(review)
+    # db.session.commit()
+
+    # return review.to_dict()
+    print("REVIEW FORM ERRORS!@!", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
 
 
 @create_business_route.route("/<int:id>/menu", methods=["POST"])
