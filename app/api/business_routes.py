@@ -75,6 +75,13 @@ def get_specific_business(id):
 def delete_business(id):
     business = Business.query.get(id)
     db.session.delete(business)
+
+    imageDel = Image.query.filter_by(business_id=id).all()
+    print("THIS IS IMAGEDEL", imageDel)
+    if imageDel:
+        for x in imageDel:
+            db.session.delete(x)
+
     db.session.commit()
     return {"message": "Delete Successful"}
 
@@ -95,7 +102,7 @@ def add_business():
         business = Business(
             user_id = current_user.id,
             name = form.data['name'],
-            preview_img = form.data['preview_img'],
+            # preview_img = form.data['preview_img'],
             monday_hours = form.data['monday_hours'],
             tuesday_hours = form.data['tuesday_hours'],
             wednesday_hours = form.data['wednesday_hours'],
@@ -131,7 +138,7 @@ def edit_business(id):
 
     if form.validate_on_submit():
         new_name = form.data['name']
-        new_preview_img = form.data['preview_img']
+        # new_preview_img = form.data['preview_img']
         new_monday_hours = form.data['monday_hours']
         new_tuesday_hours = form.data['tuesday_hours']
         new_wednesday_hours = form.data['wednesday_hours']
@@ -148,7 +155,7 @@ def edit_business(id):
         new_tags = form.data['tags']
 
         business.name = new_name
-        business.preview_img = new_preview_img
+        # business.preview_img = new_preview_img
         business.monday_hours = new_monday_hours
         business.tuesday_hours = new_tuesday_hours
         business.wednesday_hours = new_wednesday_hours
@@ -205,11 +212,11 @@ def add_review(id):
     #     return upload, 400
 
     # url = upload["url"]
-    print("AAAAAAA", form.data['body'])
-    print("ZZZZZZZ", form.data['image_url'])
+    # print("AAAAAAA", form.data['body'])
+    # print("ZZZZZZZ", form.data['image_url'])
 
     # print("BBBBBBBBBB", request.form['image_url'])
-    print("VVVVVVVVVV", request.json)
+    # print("VVVVVVVVVV", request.json)
     # print("PPPPPPPPPPPPPPP", request.values['image_url'])
     # print("GGHGHHHHHHHHH", request.files['image_url'])
     # image = Image.query.get(id)

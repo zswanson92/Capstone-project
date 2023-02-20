@@ -155,8 +155,11 @@ def delete_review(id):
   review = Review.query.get(id)
 
   db.session.delete(review)
-  imageDel = Image.query.filter_by(review_id=id).first()
+  imageDel = Image.query.filter_by(review_id=id).all()
+
   if imageDel:
-    db.session.delete(imageDel)
+    for x in imageDel:
+        db.session.delete(x)
+
   db.session.commit()
   return {'message': 'Delete Successful'}

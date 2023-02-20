@@ -46,9 +46,9 @@ const BusinessForm = () => {
         setName(e.target.value)
     }
 
-    const imageSet = (e) => {
-        setPreviewImage(e.target.value)
-    }
+    // const imageSet = (e) => {
+    //     setPreviewImage(e.target.value)
+    // }
 
     const monSet = (e) => {
         setMonHours(e.target.value)
@@ -125,13 +125,13 @@ const BusinessForm = () => {
 
         // let path = ;
 
-        if(addedBiz){
+        if (addedBiz) {
             await history.push(`/businesses/${addedBiz?.id}`);
         }
     };
 
     const onClose = () => {
-        history.push(`/`);
+        history.goBack();
     }
 
     function isValidPhone(phone) {
@@ -155,18 +155,18 @@ const BusinessForm = () => {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    function validImageUrl(url) {
-        let falseycheck;
-        let lastThree = url.split('').slice(url.length - 3)
-        // console.log(lastThree.join(''))
-        if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-            falseycheck = true
-        } else {
-            falseycheck = false
-        }
-        // console.log(falseycheck)
-        return falseycheck
-    }
+    // function validImageUrl(url) {
+    //     let falseycheck;
+    //     let lastThree = url.split('').slice(url.length - 3)
+    //     // console.log(lastThree.join(''))
+    //     if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
+    //         falseycheck = true
+    //     } else {
+    //         falseycheck = false
+    //     }
+    //     // console.log(falseycheck)
+    //     return falseycheck
+    // }
 
     useEffect(() => {
         const err = [];
@@ -215,9 +215,9 @@ const BusinessForm = () => {
         if (about_us.length < 30) {
             err.push("Description must be at least 30 characters.")
         }
-        if (preview_img.length > 0 && !validImageUrl(preview_img)) {
-            err.push("must be valid image url")
-        }
+        // if (preview_img.length > 0 && !validImageUrl(preview_img)) {
+        //     err.push("must be valid image url")
+        // }
         setErrors(err)
     }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
         thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us, preview_img])
@@ -261,6 +261,12 @@ const BusinessForm = () => {
         setSunCheck(!sunCheck)
     }
 
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        // console.log("FILE!!", file)
+        setPreviewImage(file);
+    }
+
     return (
         <div className="main-business-form-div">
             <form onSubmit={onSubmit}>
@@ -283,7 +289,7 @@ const BusinessForm = () => {
                     {name.length && name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
                 </div>
                 <div className="business-form-previmg-input-div">
-                    <input
+                    {/* <input
                         placeholder="Preview image link - must be a png or jpg format"
                         className="business-form-previmg-input"
                         type='text'
@@ -291,7 +297,14 @@ const BusinessForm = () => {
                         onChange={imageSet}
                         value={preview_img}
                     ></input>
-                    {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""}
+                    {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
+                    Upload a preview image for your business.
+                    <input
+                        type="file"
+                        name='image'
+                        accept="image/*"
+                        onChange={updateImage}
+                    />
                 </div>
                 <div className="business-form-hours-inputs-div">
                     <div>
@@ -363,7 +376,7 @@ const BusinessForm = () => {
                             value={wednesday_hours}>
                         </input>
                         {wednesday_hours.length && weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Wednesday. </div> : ""}
-                        {(wednesday_hours === 'Closed' || wednesday_hours === 'closed') ? "" :<div className='div-containing-secondary-check'><label>Click checkbox for secondary Wednesday hours.</label>
+                        {(wednesday_hours === 'Closed' || wednesday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Wednesday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
                                 type='checkbox'

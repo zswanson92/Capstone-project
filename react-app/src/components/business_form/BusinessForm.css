@@ -25,6 +25,9 @@
 
 .business-form-previmg-input-div{
     padding-bottom: .8em;
+    display:flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .business-form-previmg-input{

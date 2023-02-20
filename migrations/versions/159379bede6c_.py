@@ -1,22 +1,20 @@
 """empty message
 
-Revision ID: ad87a19f6cfc
+Revision ID: 159379bede6c
 Revises:
-Create Date: 2023-02-17 10:47:00.218014
+Create Date: 2023-02-20 17:15:39.470061
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
-
 # revision identifiers, used by Alembic.
-revision = 'ad87a19f6cfc'
+revision = '159379bede6c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -67,10 +65,10 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE businesses SET SCHEMA {SCHEMA};")
 
-
     op.create_table('images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('review_id', sa.Integer(), nullable=True),
+    sa.Column('business_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('url', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -126,7 +124,6 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE cool SET SCHEMA {SCHEMA};")
 
-
     op.create_table('funny',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('review_id', sa.Integer(), nullable=True),
@@ -166,7 +163,6 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE useful SET SCHEMA {SCHEMA};")
-
 
     # ### end Alembic commands ###
 

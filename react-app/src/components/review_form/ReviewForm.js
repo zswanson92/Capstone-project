@@ -179,18 +179,18 @@ const ReviewFormButton = () => {
     setErrors(err)
   }, [body, stars])
 
-  function validImageUrl(url) {
-    let falseycheck;
-    let lastThree = url.split('').slice(url.length - 3)
-    // console.log(lastThree.join(''))
-    if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-      falseycheck = true
-    } else {
-      falseycheck = false
-    }
-    // console.log(falseycheck)
-    return falseycheck
-  }
+  // function validImageUrl(url) {
+  //   let falseycheck;
+  //   let lastThree = url.split('').slice(url.length - 3)
+  //   // console.log(lastThree.join(''))
+  //   if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
+  //     falseycheck = true
+  //   } else {
+  //     falseycheck = false
+  //   }
+  //   // console.log(falseycheck)
+  //   return falseycheck
+  // }
 
   const updateImage = (e) => {
     const file = e.target.files[0];

@@ -206,6 +206,8 @@ export const createReviewThunk = (payload) => async dispatch => {
             dispatch(addReview(review))
             // return review
         }
+
+        dispatch(addReview(review))
     }
 }
 
