@@ -6,7 +6,8 @@ import './Businesses.css'
 // import logo from '../../assets/yelp_logo.PNG'
 import logo from '../../assets/githublogo.png'
 import HomeMap from '../MapsApi';
-// import { getKey } from '../../store/map'
+import { getKey } from '../../store/map'
+
 
 
 const Businesses = () => {
@@ -27,6 +28,7 @@ const Businesses = () => {
     useEffect(() => {
         dispatch(getAllBusinessesThunk())
         // dispatch()
+        dispatch(getKey())
     }, [dispatch])
 
 

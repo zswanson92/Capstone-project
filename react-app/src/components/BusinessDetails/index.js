@@ -6,10 +6,10 @@ import { getReviewsByBusinessIdThunk, addUsefulThunk, addCoolThunk, addFunnyThun
 import './BusinessDetails.css'
 import ReviewFormButton from "../review_form/ReviewForm";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
-import logo from '../../assets/githublogo.png'
+// import logo from '../../assets/githublogo.png'
 // import NavBar from "../NavBar";
 // import HomeMap from "../MapsApi";
-import UploadPicture from "../UploadPicture/UploadPicture";
+// import UploadPicture from "../UploadPicture/UploadPicture";
 
 
 const BusinessDetails = () => {
@@ -48,7 +48,16 @@ const BusinessDetails = () => {
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId));
         dispatch(getReviewsByBusinessIdThunk(businessId));
-    }, [dispatch, businessId]);
+    }, [dispatch]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch(`/api/users/`);
+            const responseData = await response.json();
+            setUsers(responseData.users);
+        }
+        fetchData();
+    }, []);
 
 
     const confirmDelete = (e) => {
@@ -163,14 +172,7 @@ const BusinessDetails = () => {
         return dollar
     }
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch(`/api/users/`);
-            const responseData = await response.json();
-            setUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
+
 
 
 

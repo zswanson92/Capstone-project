@@ -59,7 +59,7 @@ const HomeMap = ({ addy }) => {
         locations.push({ 'name': ele.name, location: { 'lat': lat, 'lng': lng } })
       },
       (error) => {
-        console.error(error);
+        console.error(`address for ${ele?.name} cannot be found.`);
       }
     );
   })
