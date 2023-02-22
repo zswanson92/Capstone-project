@@ -13,7 +13,7 @@ const EditMenuItem = () => {
 
     // let userId = sessionUser.id
 
-    const menuItemState = useSelector(state => state.businessReducer.businesses[businessId].menus[0].menu_items)
+    const menuItemState = useSelector(state => state.businessReducer.businesses[businessId]?.menus[0].menu_items)
     console.log("!!!!!", menuItemState)
 
     const menuItemFilter = menuItemState?.filter(obj => obj.id === +menuItemId)
@@ -59,6 +59,11 @@ const EditMenuItem = () => {
         history.push(`/businesses/${businessId}`);
     }
 
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setMenuItemImage(file);
+    }
+
     return (
         <div className='main-menuitem-creation-container'>
             <h1>Edit item on your menu</h1>
@@ -96,13 +101,11 @@ const EditMenuItem = () => {
                     />
                 </div>
                 <div className="menu-form-divs">
-                    <input
-                    // required={true}
-                    type='text'
-                    onChange={(e) => setMenuItemImage(e.target.value)}
-                    value={menu_item_image}
-                    placeholder="Optional URL image for Menu Item"
-                    className="menu-category-input"
+                <input
+                        type="file"
+                        name='image'
+                        accept="image/*"
+                        onChange={updateImage}
                     />
                 </div>
                 <div className="create-menu-two-buttons-div">

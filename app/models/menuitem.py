@@ -12,6 +12,7 @@ class MenuItem(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     # business_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('businesses.id')), nullable=False)
     menu_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('menus.id')), nullable=False)
+    menuitem_id = db.Column(db.Integer, nullable=True)
     item_name = db.Column(db.Text, nullable=False)
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
@@ -27,6 +28,7 @@ class MenuItem(db.Model):
             "user_id": self.user_id,
             # "business_id": self.business_id,
             "menu_id": self.menu_id,
+            "menuitem_id": self.menuitem_id,
             "item_name": self.item_name,
             "description": self.description,
             "price": self.price,

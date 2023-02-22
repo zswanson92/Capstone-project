@@ -320,8 +320,9 @@ const BusinessDetails = () => {
 
                         {businessInfoObj?.menus.map((menu) => {
                             return menu.menu_items.map((menuitems) => {
+                                // {console.log("@@@@@@", menuitems)}
                                 return <div className="menu-items-map-divs">
-                                    <img className="menu-item-image" onError={addDefaultSrc} src={menuitems.menu_item_image} alt='Loading...' />
+                                    <img className="menu-item-image" onError={addDefaultSrc} src={menuitems?.menu_item_image} alt='Loading...' />
                                     {menuitems.item_name},
                                     &nbsp; ${menuitems.price}
                                 </div>

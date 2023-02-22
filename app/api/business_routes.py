@@ -287,7 +287,7 @@ def add_menu_item(id):
             item_name = form.data['item_name'],
             description = form.data['description'],
             price = form.data['price'],
-            menu_item_image = form.data['menu_item_image']
+            # menu_item_image = form.data['menu_item_image']
         )
 
         db.session.add(menuitem)
@@ -321,6 +321,13 @@ def delete_menu_item(id):
 
     menuitem = MenuItem.query.get(id)
     db.session.delete(menuitem)
+
+    imageDel = Image.query.filter_by(menuitem_id=id).all()
+
+    if imageDel:
+        for x in imageDel:
+            db.session.delete(x)
+
     db.session.commit()
     return {"message": "Delete Successful"}
 
@@ -341,14 +348,14 @@ def edit_menu_name(id):
             # business_id = id,
             # user_id = current_user.id,
         new_category = form.data['category'],
-        new_menu_image = form.data['menu_image']
+        # new_menu_image = form.data['menu_image']
 
         # print("^^^^^^^^^^^^^", new_category[0])
 
         menu.category = new_category[0]
 
-        if(new_menu_image):
-            menu.menu_image = new_menu_image
+        # if(new_menu_image):
+        #     menu.menu_image = new_menu_image
 
 
 
@@ -382,12 +389,12 @@ def edit_menuitem(id):
         new_item_name = form.data['item_name'],
         new_description = form.data['description'],
         new_price = form.data['price'],
-        new_menu_item_image = form.data['menu_item_image']
+        # new_menu_item_image = form.data['menu_item_image']
 
         menuitem.item_name = new_item_name[0]
         menuitem.description = new_description[0]
         menuitem.price = new_price[0]
-        menuitem.menu_item_image = new_menu_item_image
+        # menuitem.menu_item_image = new_menu_item_image
 
 
         db.session.add(menuitem)
