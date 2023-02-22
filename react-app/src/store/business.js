@@ -135,7 +135,31 @@ export const editMenuThunk = (payload) => async dispatch => {
         body: JSON.stringify({ category, menu_image, menuId })
     })
 
-    if (response.ok) {
+    if(menu_image){
+        if (response.ok) {
+            const editedMenu = await response.json()
+
+            const formData = new FormData()
+
+            formData.append("menu_image", menu_image)
+            formData.append("menu_id", editedMenu.id)
+
+            const imageRes = await fetch('/api/images/menu/edit', {
+                method: "POST",
+                body: formData,
+            });
+
+            if (imageRes.ok) {
+                const editImage = await imageRes.json()
+
+                editedMenu.menu_image = editImage.url
+                dispatch(editMenu(editedMenu))
+            }
+        }
+    }
+
+
+    else if (response.ok) {
         const editedMenu = await response.json()
         dispatch(editMenu(editedMenu))
         return editedMenu
@@ -155,6 +179,27 @@ export const createMenuThunk = (payload) => async dispatch => {
 
     if (response.ok) {
         const menu = await response.json()
+
+        const formData = new FormData()
+
+        formData.append("menu_image", menu_image)
+        formData.append("menu_id", menu.id)
+
+
+        const imageRes = await fetch('/api/images/menu', {
+            method: "POST",
+            body: formData
+        });
+
+        if (imageRes.ok) {
+            const image = await imageRes.json()
+
+            menu.menu_image = image.url
+
+            dispatch(addMenu(menu))
+        }
+
+
         dispatch(addMenu(menu))
         return menu
     }

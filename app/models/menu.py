@@ -9,6 +9,7 @@ class Menu(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    menu_id = db.Column(db.Integer, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     business_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('businesses.id')), nullable=False)
     category = db.Column(db.Text, nullable=False)
@@ -22,6 +23,7 @@ class Menu(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "menu_id": self.menu_id,
             "user_id": self.user_id,
             "business_id": self.business_id,
             "category": self.category,

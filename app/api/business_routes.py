@@ -263,7 +263,7 @@ def add_menu(id):
             business_id = id,
             user_id = current_user.id,
             category = form.data['category'],
-            menu_image = form.data['menu_image']
+            # menu_image = form.data['menu_image']
         )
 
         db.session.add(menu)
@@ -305,6 +305,13 @@ def delete_menu(id):
 
     menu = Menu.query.get(id)
     db.session.delete(menu)
+
+    imageDel = Image.query.filter_by(menu_id=id).all()
+
+    if imageDel:
+        for x in imageDel:
+            db.session.delete(x)
+
     db.session.commit()
     return {"message": "Delete Successful"}
 

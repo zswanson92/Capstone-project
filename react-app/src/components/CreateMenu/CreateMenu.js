@@ -38,28 +38,33 @@ const CreateMenu = () => {
         history.push(`/businesses/${businessId}`);
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        let err = [];
+    //     let err = [];
 
-        if (menu_image.length > 0 && !validImageUrl(menu_image)) {
-            errors.push("Please submit as jpg, jpeg, or png.")
-        }
+    //     if (menu_image.length > 0 && !validImageUrl(menu_image)) {
+    //         errors.push("Please submit as jpg, jpeg, or png.")
+    //     }
 
-        setErrors(err)
-    }, [menu_image, errors])
+    //     setErrors(err)
+    // }, [menu_image, errors])
 
-    function validImageUrl(url) {
-        let falseycheck;
-        let lastThree = url.split('').slice(url.length - 3)
-        // console.log(lastThree.join(''))
-        if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-            falseycheck = true
-        } else {
-            falseycheck = false
-        }
-        // console.log(falseycheck)
-        return falseycheck
+    // function validImageUrl(url) {
+    //     let falseycheck;
+    //     let lastThree = url.split('').slice(url.length - 3)
+    //     // console.log(lastThree.join(''))
+    //     if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
+    //         falseycheck = true
+    //     } else {
+    //         falseycheck = false
+    //     }
+    //     // console.log(falseycheck)
+    //     return falseycheck
+    // }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setMenuImage(file);
     }
 
 
@@ -79,14 +84,20 @@ const CreateMenu = () => {
                     {category.length > 40 ? <div>Name of menu must be less than 40 characters.</div> : ""}
                 </div>
                 <div className="menu-form-divs">
-                    <input
+                    {/* <input
                         type='text'
                         onChange={(e) => setMenuImage(e.target.value)}
                         value={menu_image}
                         placeholder="Optional URL image for Menu Category"
                         className="menu-category-input"
                     />
-                    {menu_image.length > 0 && !validImageUrl(menu_image) ? <div>If submitting an image, it must be jpg, jpeg, or png format.</div> : ""}
+                    {menu_image.length > 0 && !validImageUrl(menu_image) ? <div>If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
+                    <input
+                        type="file"
+                        name='image'
+                        accept="image/*"
+                        onChange={updateImage}
+                    />
                 </div>
                 <div className="create-menu-two-buttons-div">
                     {errors.length ? "" : <button type='submit' className="create-menu-return-button">Submit Menu</button>}

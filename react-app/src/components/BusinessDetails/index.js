@@ -314,8 +314,8 @@ const BusinessDetails = () => {
 
                 {businessInfoObj?.menus.length ? <div className="menu-pop-items-div">
                     {/* <hr className="about-biz-hr-sep-two"></hr> */}
-                    <p>Menu</p>
-                    <span>popular dishes</span>
+                    {/* <p>Menu</p> */}
+                    <p>Popular Dishes:</p>
                     <div className="actual-menu-items-div">
 
                         {businessInfoObj?.menus.map((menu) => {

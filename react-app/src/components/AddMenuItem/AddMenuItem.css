@@ -43,3 +43,7 @@
 .edit-remove-item-button:hover{
     box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
 }
+
+.return-to-biz-button-div{
+    padding-top: 5em;
+}

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 159379bede6c
+Revision ID: 206c1137e93e
 Revises:
-Create Date: 2023-02-20 17:15:39.470061
+Create Date: 2023-02-22 14:50:50.367419
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '159379bede6c'
+revision = '206c1137e93e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,7 +35,6 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
 
     op.create_table('businesses',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -69,6 +68,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('review_id', sa.Integer(), nullable=True),
     sa.Column('business_id', sa.Integer(), nullable=True),
+    sa.Column('menu_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('url', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -81,6 +81,7 @@ def upgrade():
 
     op.create_table('menus',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('menu_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('business_id', sa.Integer(), nullable=False),
     sa.Column('category', sa.Text(), nullable=False),
@@ -124,6 +125,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE cool SET SCHEMA {SCHEMA};")
 
+
     op.create_table('funny',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('review_id', sa.Integer(), nullable=True),
@@ -163,6 +165,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE useful SET SCHEMA {SCHEMA};")
+
 
     # ### end Alembic commands ###
 

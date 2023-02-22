@@ -9,6 +9,7 @@ class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     review_id = db.Column(db.Integer, nullable=True)
     business_id = db.Column(db.Integer, nullable=True)
+    menu_id = db.Column(db.Integer, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     url = db.Column(db.String, nullable=False)
 
@@ -21,6 +22,7 @@ class Image(db.Model):
             "user_id": self.user_id,
             "review_id": self.review_id,
             "business_id": self.business_id,
+            "menu_id": self.menu_id,
             "url": self.url
         }
 

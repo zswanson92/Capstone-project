@@ -46,7 +46,7 @@ const DeleteMenu = () => {
         <div className='deletemenu-main-container'>
             <h1>Which menu would you like to delete?</h1>
             {menuArr?.map((menu) => {
-                return <div className='deletemenu-div'><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} alt='Loading...' /> {menu.category}
+                return <div key={menu.id} className='deletemenu-div'><img onError={addDefaultSrc} className='additemtomenu-img' src={menu.menu_image} alt='Loading...' /> {menu.category}
                 <button className='menu-delete-button' onClick={(event) => onClick(event, menu.id)}>Delete</button></div>
             }
             )}

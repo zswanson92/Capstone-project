@@ -46,16 +46,16 @@ const CreateMenuItem = () => {
         history.push(`/businesses`);
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        let err = [];
+    //     let err = [];
 
-        if (menu_item_image.length > 0 && !validImageUrl(menu_item_image)) {
-            errors.push("Please submit as jpg, jpeg, or png.")
-        }
+    //     if (menu_item_image.length > 0 && !validImageUrl(menu_item_image)) {
+    //         errors.push("Please submit as jpg, jpeg, or png.")
+    //     }
 
-        setErrors(err)
-    }, [menu_item_image, errors])
+    //     setErrors(err)
+    // }, [menu_item_image, errors])
 
     function validImageUrl(url) {
         let falseycheck;

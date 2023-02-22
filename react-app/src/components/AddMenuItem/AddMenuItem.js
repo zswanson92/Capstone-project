@@ -45,6 +45,9 @@ const AddMenuItem = () => {
                 </div>
             }
             )}
+            <div className='return-to-biz-button-div'>
+            <Link to={`/businesses/${businessId}`}><button className='edit-remove-item-button'>Go back to business</button></Link>
+            </div>
         </div>
     )
 }
