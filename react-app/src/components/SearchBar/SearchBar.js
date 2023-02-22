@@ -29,6 +29,7 @@ const SearchBar = () => {
           className="search-bar"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
+          required={true}
         />
 
         <select
@@ -39,9 +40,9 @@ const SearchBar = () => {
           required
         >
           <option disabled>Filters:</option>
-          <option value={"name"}>By Business Name</option>
-          <option value={"location"}>By Location</option>
-          <option value={"tags"}>By Tags</option>
+          <option value={"name"}>Name</option>
+          <option value={"location"}>Location</option>
+          <option value={"tags"}>Tags</option>
         </select>
 
         <button type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>

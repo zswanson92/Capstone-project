@@ -132,13 +132,11 @@ const Businesses = () => {
 
                                                 <div key={tag} className='mapped-tag-buttons-businesses-div'>
                                                     {obj?.tags ? <button className='mapped-tag-buttons-businesses'>{tag}</button> : ""}
-                                                    {/* {"$$$$$$$$$$$", console.log(tag)} */}
                                                 </div>
                                             )
                                         })} {dollarNumChecker(obj?.price)}</div>
                                         <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1]?.body} </p>
                                     </div>
-                                    {/* <hr className='businesses-hr' /> */}
                                 </Link>
                                 <Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
                                 {/* </div> */}
