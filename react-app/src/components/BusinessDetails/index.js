@@ -6,9 +6,10 @@ import { getReviewsByBusinessIdThunk, addUsefulThunk, addCoolThunk, addFunnyThun
 import './BusinessDetails.css'
 import ReviewFormButton from "../review_form/ReviewForm";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
-import logo from '../../assets/githublogo.png'
+// import logo from '../../assets/githublogo.png'
 // import NavBar from "../NavBar";
-import HomeMap from "../MapsApi";
+// import HomeMap from "../MapsApi";
+// import UploadPicture from "../UploadPicture/UploadPicture";
 
 
 const BusinessDetails = () => {
@@ -24,7 +25,7 @@ const BusinessDetails = () => {
         return state.businessReducer.businesses[businessId];
     });
 
-    console.log("biz info obj", businessInfoObj)
+    // console.log("biz info obj", businessInfoObj)
 
 
     const reviewObj = useSelector(state => {
@@ -47,7 +48,16 @@ const BusinessDetails = () => {
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId));
         dispatch(getReviewsByBusinessIdThunk(businessId));
-    }, [dispatch, businessId]);
+    }, [dispatch]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch(`/api/users/`);
+            const responseData = await response.json();
+            setUsers(responseData.users);
+        }
+        fetchData();
+    }, []);
 
 
     const confirmDelete = (e) => {
@@ -162,20 +172,13 @@ const BusinessDetails = () => {
         return dollar
     }
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch(`/api/users/`);
-            const responseData = await response.json();
-            setUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
 
 
 
-    let abcdef = []
+
+    let userInfoArr = []
     const userComponents = users?.map((user) => {
-        return abcdef.push(user.id + user.fullname)
+        return userInfoArr.push(user.id + user.fullname)
     });
 
     const theSetConfirm = () => {
@@ -191,7 +194,9 @@ const BusinessDetails = () => {
 
     return (
         <div className='omega-main-container'>
+
             <div className="delete-edit-business-buttons-div">
+
                 <div>
                     {sessionUser &&
                         (sessionUser.id === businessInfoObj?.user_id && (
@@ -216,6 +221,7 @@ const BusinessDetails = () => {
                         ) : null)}
                     {confirm ? <ConfirmDelete confirm={confirm} setconfirm={theSetConfirm} /> : ""}
                 </div>
+
                 <div>
                     {sessionUser &&
                         (sessionUser.id === businessInfoObj?.user_id && (
@@ -229,6 +235,7 @@ const BusinessDetails = () => {
 
             </div>
 
+
             <div className="bannerimage" style={{ backgroundImage: `url(${businessInfoObj?.preview_img})` }}>
                 <div className="business-name-h1"> {businessInfoObj?.name} </div>
                 <div className="business-name-h2"> {reviewStarAvg > 0 ?
@@ -238,6 +245,7 @@ const BusinessDetails = () => {
             </div>
 
 
+            {/* <UploadPicture /> */}
 
             <div className="beta-container-test">
                 {/* start of menu div */}
@@ -306,14 +314,15 @@ const BusinessDetails = () => {
 
                 {businessInfoObj?.menus.length ? <div className="menu-pop-items-div">
                     {/* <hr className="about-biz-hr-sep-two"></hr> */}
-                    <p>Menu</p>
-                    <span>popular dishes</span>
+                    {/* <p>Menu</p> */}
+                    <p>Popular Dishes:</p>
                     <div className="actual-menu-items-div">
 
                         {businessInfoObj?.menus.map((menu) => {
                             return menu.menu_items.map((menuitems) => {
+                                // {console.log("@@@@@@", menuitems)}
                                 return <div className="menu-items-map-divs">
-                                    <img className="menu-item-image" onError={addDefaultSrc} src={menuitems.menu_item_image} />
+                                    <img className="menu-item-image" onError={addDefaultSrc} src={menuitems?.menu_item_image} alt='Loading...' />
                                     {menuitems.item_name},
                                     &nbsp; ${menuitems.price}
                                 </div>
@@ -321,25 +330,27 @@ const BusinessDetails = () => {
                         })}
 
                     </div>
-                    {/* <hr className="about-biz-hr-sep-two"></hr> */}
                     <div className="three-menu-button-divs">
                         <Link to={`/businesses/${businessId}/fullmenu`}>
                             <button className="fullmenu-button">Full Menu</button>
                         </Link>
                         {sessionUser &&
                             (sessionUser.id === businessInfoObj?.user_id ? (
-                        <div className="two-inside-three-buttons"><Link to={`/businesses/${businessId}/menuadd`}>
-                        <button className="edit-menu-button">Edit a Menu</button>
-                    </Link>
-                    <Link to={`/businesses/${businessId}/deletemenu`}>
-                        <button className="delete-menu-button">Delete a Menu</button>
-                    </Link> </div>) : null)}
+                                <div className="two-inside-three-buttons"><Link to={`/businesses/${businessId}/menuadd`}>
+                                    <button className="edit-menu-button">Edit a Menu</button>
+                                </Link>
+                                    <Link to={`/businesses/${businessId}/deletemenu`}>
+                                        <button className="delete-menu-button">Delete a Menu</button>
+                                    </Link> </div>) : null)}
                     </div>
-                    {/* <hr className="bottom-menu-hr"></hr> */}
-                </div> : ""}
+                </div> : <div className="menu-pop-items-div">
+                    &nbsp;
+                    <p className='no-menu-p'>This location does not have a menu yet.</p>
+
+                </div>}
 
 
-                <div className="details-contact-info-div">
+                <div className={businessInfoObj?.menus.length > 0 ? "details-contact-info-div-two" : "details-contact-info-div"}>
                     <h2 className="contact-info-h2">Contact Information</h2>
                     <hr />
                     <ul className="contact-info-ul">
@@ -394,7 +405,7 @@ const BusinessDetails = () => {
                             return (
                                 <div key={reviewObj.id}>
                                     <div className="move-around-reviews-li-div">
-                                        <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
+                                        <p className="reviewer-name-p">{userInfoArr[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
                                         <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)} &nbsp; {reviewObj?.created_at.split('').slice(0, 16).join('')}</div>
                                         <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
                                     </div>
@@ -416,8 +427,14 @@ const BusinessDetails = () => {
                 </div>
             </div>
             <footer className='splash-footer'>
-                <p>© 2022 Zelp Corp</p>
-                <a className='splash-github-link' href='https://github.com/zswanson92'> <img src={logo} alt='Logo' className='splash-logo-img'></img> Zack Swanson</a>
+                <div className="splash-footer-div">
+                    <div className="corp-div">© 2022 Zelp Corp</div>
+                    <div className='foot-name-div'>
+
+                        <div className='href-div'><a className='splash-github-link' href='https://github.com/zswanson92'>  Zack Swanson</a></div>
+                        <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
+                    </div>
+                </div>
             </footer>
         </div>
     )

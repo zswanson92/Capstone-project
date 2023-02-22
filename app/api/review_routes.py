@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Review, db, User
+from app.models import Review, db, User, Image
 from app.forms import ReviewForm
 
 review_routes = Blueprint("reviews", __name__)
@@ -139,11 +139,11 @@ def edit_review(id):
     if form.validate_on_submit():
         new_body = form.data['body']
         new_stars = form.data['stars']
-        new_image_url = form.data['image_url']
+        # new_image_url = form.data['image_url']
 
         review.body = new_body
         review.stars = new_stars
-        review.image_url = new_image_url
+        # review.image_url = new_image_url
 
         db.session.commit()
     print("REVIEW EDIT FORM ERRS!", form.errors)
@@ -153,6 +153,13 @@ def edit_review(id):
 @login_required
 def delete_review(id):
   review = Review.query.get(id)
+
   db.session.delete(review)
+  imageDel = Image.query.filter_by(review_id=id).all()
+
+  if imageDel:
+    for x in imageDel:
+        db.session.delete(x)
+
   db.session.commit()
   return {'message': 'Delete Successful'}

@@ -7,10 +7,10 @@ import { getBusinessByIdThunk } from '../../store/business';
 
 const FullMenu = () => {
     const dispatch = useDispatch();
-    const { businessId, menuId } = useParams();
-    const history = useHistory();
+    const { businessId } = useParams();
+    // const history = useHistory();
 
-    console.log(businessId, menuId)
+    // console.log(businessId, menuId)
 
 
     const businessInfoObj = useSelector((state) => {
@@ -31,20 +31,20 @@ const FullMenu = () => {
 
 
 
-    function addDefaultSrc(ev) {
-        ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
-    }
+    // function addDefaultSrc(ev) {
+    //     ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
+    // }
 
 
     return (
         <div className='full-menu-primary-container'>
             <h1>Menu for <Link className='biz-name-link' to={`/businesses/${businessInfoObj?.id}`}>{businessInfoObj?.name}</Link></h1>
             {menuArr?.map((menu) => {
-                return <div className='outer-fullmenu-div'>
+                return <div className='outer-fullmenu-div' key={menu.id}>
                     <p className='outer-category'>{menu.category}</p>
                     {menu.menu_items?.map((menuitem) => {
-                        { console.log("MENU ITEM", menuitem) }
-                        return <div className='inner-fullmenu-div'>{menuitem.item_name}, {menuitem.description}, ${menuitem.price}</div>
+                        // { console.log("MENU ITEM", menuitem) }
+                        return <div key={menuitem.id} className='inner-fullmenu-div'> {menuitem.item_name}, {menuitem.description}, ${menuitem.price}</div>
                     })}
                 </div>
             }
@@ -55,3 +55,6 @@ const FullMenu = () => {
 }
 
 export default FullMenu;
+
+
+{/* <img src={menuitem.menu_item_image} /> */}

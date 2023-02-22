@@ -78,7 +78,7 @@
     display: flex;
     justify-content: space-between;
     /* position: absolute; */
-    margin-top: 361px;
+    margin-top: 375px;
     /* align-items: center; */
 }
 
@@ -111,4 +111,8 @@
 
 .loginform-signup-link:hover{
     text-decoration: underline;
+}
+
+.login-form-footer-div{
+    padding-top: 24em;
 }

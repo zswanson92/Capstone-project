@@ -72,7 +72,7 @@ export const deleteMenuItemThunk = (menuItemId) => async dispatch => {
         method: 'DELETE'
     })
 
-    if(response.ok){
+    if (response.ok) {
         dispatch(deleteMenuItem(menuItemId))
     }
 }
@@ -83,7 +83,7 @@ export const deleteMenuThunk = (menuId) => async dispatch => {
         method: 'DELETE'
     })
 
-    if(response.ok){
+    if (response.ok) {
         dispatch(deleteMenu(menuId))
     }
 }
@@ -98,7 +98,30 @@ export const editMenuItemThunk = (payload) => async dispatch => {
         body: JSON.stringify({ item_name, description, price, menu_item_image })
     })
 
-    if(response.ok){
+    if(menu_item_image){
+        if (response.ok) {
+            const editedMenuItem = await response.json()
+
+            const formData = new FormData()
+
+            formData.append("menu_item_image", menu_item_image)
+            formData.append("menuitem_id", editedMenuItem.id)
+
+            const imageRes = await fetch('/api/images/menuitem/edit', {
+                method: "POST",
+                body: formData,
+            });
+
+            if (imageRes.ok) {
+                const editImage = await imageRes.json()
+
+                editedMenuItem.menu_item_image = editImage.url
+                dispatch(editMenu(editedMenuItem))
+            }
+        }
+    }
+
+    else if (response.ok) {
         const editedMenuItem = await response.json()
         dispatch(editMenuItem(editedMenuItem))
         return editedMenuItem
@@ -110,14 +133,33 @@ export const createMenuItemThunk = (payload) => async dispatch => {
 
     const response = await fetch(`/api/create/menu/${menuId}`, {
         method: "POST",
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId, menuId, item_name, description, price, menu_item_image})
+        body: JSON.stringify({ userId, menuId, item_name, description, price, menu_item_image })
     })
 
-    if(response.ok){
+    if (response.ok) {
         const menuitem = await response.json()
+
+        const formData = new FormData()
+
+        formData.append("menu_item_image", menu_item_image)
+        formData.append("menuitem_id", menuitem.id)
+
+        const imageRes = await fetch('/api/images/menuitem', {
+            method: "POST",
+            body: formData
+        });
+
+        if (imageRes.ok) {
+            const image = await imageRes.json()
+
+            menuitem.menu_item_image = image.url
+
+            dispatch(addMenuItem(menuitem))
+        }
+
         dispatch(addMenuItem(menuitem))
         return menuitem
     }
@@ -125,17 +167,41 @@ export const createMenuItemThunk = (payload) => async dispatch => {
 
 
 export const editMenuThunk = (payload) => async dispatch => {
-    const {category, menu_image, menuId} = payload
+    const { category, menu_image, menuId } = payload
 
     const response = await fetch(`/api/menuedit/${menuId}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({category, menu_image, menuId})
+        body: JSON.stringify({ category, menu_image, menuId })
     })
 
-    if(response.ok){
+    if(menu_image){
+        if (response.ok) {
+            const editedMenu = await response.json()
+
+            const formData = new FormData()
+
+            formData.append("menu_image", menu_image)
+            formData.append("menu_id", editedMenu.id)
+
+            const imageRes = await fetch('/api/images/menu/edit', {
+                method: "POST",
+                body: formData,
+            });
+
+            if (imageRes.ok) {
+                const editImage = await imageRes.json()
+
+                editedMenu.menu_image = editImage.url
+                dispatch(editMenu(editedMenu))
+            }
+        }
+    }
+
+
+    else if (response.ok) {
         const editedMenu = await response.json()
         dispatch(editMenu(editedMenu))
         return editedMenu
@@ -143,18 +209,39 @@ export const editMenuThunk = (payload) => async dispatch => {
 }
 
 export const createMenuThunk = (payload) => async dispatch => {
-    const { userId, businessId, category, menu_image} = payload
+    const { userId, businessId, category, menu_image } = payload
 
     const response = await fetch(`/api/create/${businessId}/menu`, {
         method: "POST",
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId, businessId, category, menu_image})
+        body: JSON.stringify({ userId, businessId, category, menu_image })
     })
 
-    if(response.ok){
+    if (response.ok) {
         const menu = await response.json()
+
+        const formData = new FormData()
+
+        formData.append("menu_image", menu_image)
+        formData.append("menu_id", menu.id)
+
+
+        const imageRes = await fetch('/api/images/menu', {
+            method: "POST",
+            body: formData
+        });
+
+        if (imageRes.ok) {
+            const image = await imageRes.json()
+
+            menu.menu_image = image.url
+
+            dispatch(addMenu(menu))
+        }
+
+
         dispatch(addMenu(menu))
         return menu
     }
@@ -172,18 +259,43 @@ export const editBusinessThunk = (payload) => async dispatch => {
     // console.log("@@@@@@@@@@", businessId)
     const response = await fetch(`/api/businesses/${businessId}`, {
         method: 'PUT',
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, preview_img,
+        body: JSON.stringify({
+            name, preview_img,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-            saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags })
+            saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags
+        })
     })
 
-    if(response.ok){
-        const business = await response.json()
-        dispatch(editBusiness(business))
-        return business
+
+    if (preview_img) {
+        if (response.ok) {
+            const editedBusiness = await response.json()
+
+            const formData = new FormData()
+
+            formData.append("preview_img", preview_img)
+            formData.append("business_id", editedBusiness.id)
+
+            const imageRes = await fetch('/api/images/business/edit', {
+                method: "POST",
+                body: formData,
+            });
+
+            if (imageRes.ok) {
+                const editImage = await imageRes.json()
+                editedBusiness.preview_img = editImage.url
+                dispatch(editBusiness(editedBusiness))
+            }
+        }
+    }
+
+    else if (response.ok) {
+        const editedBusiness = await response.json()
+        dispatch(editBusiness(editedBusiness))
+        return editedBusiness
     }
 }
 
@@ -193,7 +305,7 @@ export const deleteBusinessThunk = (businessId) => async dispatch => {
         method: 'DELETE'
     })
 
-    if(response.ok){
+    if (response.ok) {
         dispatch(deleteBusiness(businessId))
     }
 }
@@ -204,7 +316,7 @@ export const deleteBusinessThunk = (businessId) => async dispatch => {
 export const getBusinessByIdThunk = (businessId) => async dispatch => {
     const response = await fetch(`/api/businesses/${businessId}`)
 
-    if(response.ok){
+    if (response.ok) {
         const business = await response.json()
         dispatch(getBusinessById(business))
         return business
@@ -216,7 +328,7 @@ export const getBusinessByIdThunk = (businessId) => async dispatch => {
 export const getAllBusinessesThunk = () => async dispatch => {
     const response = await fetch('/api/businesses');
 
-    if(response.ok){
+    if (response.ok) {
         const data = await response.json()
         dispatch(allBusinesses(data))
         return data
@@ -236,13 +348,34 @@ export const createBusinessThunk = (payload) => async dispatch => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, preview_img,
+        body: JSON.stringify({
+            name, preview_img,
             monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
-            saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags })
+            saturday_hours, sunday_hours, email, address, phone_number, business_website, about_us, price, tags
+        })
     })
 
-    if(response.ok){
+    if (response.ok) {
         const business = await response.json()
+
+        const formData = new FormData()
+
+        formData.append("preview_img", preview_img)
+        formData.append("business_id", business.id)
+
+
+        const imageRes = await fetch('/api/images/business', {
+            method: "POST",
+            body: formData
+        });
+
+        if (imageRes.ok) {
+            const image = await imageRes.json()
+
+            business.preview_img = image.url
+
+            dispatch(addBusiness(business))
+        }
 
         dispatch(addBusiness(business))
         return business
@@ -256,34 +389,34 @@ export const createBusinessThunk = (payload) => async dispatch => {
 const initialState = { businesses: {} }
 
 const businessReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
 
         case ADD_BUSINESS: {
             // console.log("THIS IS ACTION", action)
             // if(!state[action.id]){
-                const newState = {
-                    ...state,
-                    [action.payload.id]: {
-                        name: action.payload.name,
-                        previewImage: action.payload.preview_img,
-                        services: action.payload.services,
-                        monHours: action.payload.monday_hours,
-                        tuesHours: action.payload.tuesday_hours,
-                        wedsHours: action.payload.wednesday_hours,
-                        thursHours: action.payload.thursday_hours,
-                        friHours: action.payload.friday_hours,
-                        satHours: action.payload.saturday_hours,
-                        sunHours: action.payload.sunday_hours,
-                        email: action.payload.email,
-                        address: action.payload.address,
-                        phone: action.payload.phone_number,
-                        website: action.payload.business_website,
-                        about_us: action.payload.about_us,
-                        price: action.payload.price,
-                        tags: action.payload.tags
-                    }
+            const newState = {
+                ...state,
+                [action.payload.id]: {
+                    name: action.payload.name,
+                    previewImage: action.payload.preview_img,
+                    services: action.payload.services,
+                    monHours: action.payload.monday_hours,
+                    tuesHours: action.payload.tuesday_hours,
+                    wedsHours: action.payload.wednesday_hours,
+                    thursHours: action.payload.thursday_hours,
+                    friHours: action.payload.friday_hours,
+                    satHours: action.payload.saturday_hours,
+                    sunHours: action.payload.sunday_hours,
+                    email: action.payload.email,
+                    address: action.payload.address,
+                    phone: action.payload.phone_number,
+                    website: action.payload.business_website,
+                    about_us: action.payload.about_us,
+                    price: action.payload.price,
+                    tags: action.payload.tags
                 }
-                return newState
+            }
+            return newState
             // }
             // break
         }
@@ -312,8 +445,8 @@ const businessReducer = (state = initialState, action) => {
 
         case EDIT_BUSINESS:
             return {
-            ...state,
-            [action.payload.id]: action.payload
+                ...state,
+                [action.payload.id]: action.payload
             }
 
 

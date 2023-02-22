@@ -164,3 +164,24 @@
     width: 9.2em;
     /* padding-top: 1em; */
 }
+
+.viewbusiness-navlink:hover{
+    text-decoration: underline;
+}
+
+.login-navlink:hover{
+    text-decoration: underline;
+}
+
+.signup-navlink:hover{
+    text-decoration: underline;
+}
+
+.createbusiness-navlink:hover{
+    text-decoration: underline;
+}
+
+.profile-dropdown-button:hover{
+    background-color: rgb(209, 204, 204);
+    border-radius: 30px;
+}

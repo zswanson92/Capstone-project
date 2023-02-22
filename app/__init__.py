@@ -4,14 +4,16 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User
+from .models import db, User, Business
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.business_routes import business_routes, create_business_route, menu_edits
 from .api.review_routes import review_routes, edit_route
 from .api.map_routes import map_routes
+from .api.image_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
+
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -37,6 +39,7 @@ app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(edit_route, url_prefix='/api/edit/businessId/reviews')
 app.register_blueprint(map_routes, url_prefix='/api')
 app.register_blueprint(menu_edits, url_prefix='/api/menuedit')
+app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 
@@ -102,3 +105,29 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+@app.route('/api/search', methods=['GET'])
+def search():
+    arg = request.args
+    args = arg.to_dict()
+    params1 = args['business']
+    params2 = args[' filter']
+    if params2 == 'name':
+        business_query = Business.query.filter(Business.name.like(f"%{params1}%"))
+        print("BIZ Q", business_query)
+        search_results={}
+        for business in business_query:
+         search_results[business.id] = business.to_dict()
+    elif params2 == 'location':
+        business_query = Business.query.filter(Business.address.like(f"%{params1}%"))
+        search_results={}
+        for business in business_query:
+         search_results[business.id] = business.to_dict()
+    elif params2 == 'tags':
+        business_query = Business.query.filter(Business.tags.like(f"%{params1}%"))
+        search_results={}
+        for business in business_query:
+         search_results[business.id] = business.to_dict()
+
+    return search_results

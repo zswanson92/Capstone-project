@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Business, db, Review, Menu, MenuItem
+from app.models import Business, db, Review, Menu, MenuItem, Image
 from app.forms import BusinessForm, ReviewForm, MenuForm, MenuItemForm
+# from app.s3_helpers import (
+#     upload_file_to_s3, allowed_file, get_unique_filename)
 
 
 business_routes = Blueprint("businesses", __name__)
@@ -73,6 +75,13 @@ def get_specific_business(id):
 def delete_business(id):
     business = Business.query.get(id)
     db.session.delete(business)
+
+    imageDel = Image.query.filter_by(business_id=id).all()
+    print("THIS IS IMAGEDEL", imageDel)
+    if imageDel:
+        for x in imageDel:
+            db.session.delete(x)
+
     db.session.commit()
     return {"message": "Delete Successful"}
 
@@ -93,7 +102,7 @@ def add_business():
         business = Business(
             user_id = current_user.id,
             name = form.data['name'],
-            preview_img = form.data['preview_img'],
+            # preview_img = form.data['preview_img'],
             monday_hours = form.data['monday_hours'],
             tuesday_hours = form.data['tuesday_hours'],
             wednesday_hours = form.data['wednesday_hours'],
@@ -129,7 +138,7 @@ def edit_business(id):
 
     if form.validate_on_submit():
         new_name = form.data['name']
-        new_preview_img = form.data['preview_img']
+        # new_preview_img = form.data['preview_img']
         new_monday_hours = form.data['monday_hours']
         new_tuesday_hours = form.data['tuesday_hours']
         new_wednesday_hours = form.data['wednesday_hours']
@@ -146,7 +155,7 @@ def edit_business(id):
         new_tags = form.data['tags']
 
         business.name = new_name
-        business.preview_img = new_preview_img
+        # business.preview_img = new_preview_img
         business.monday_hours = new_monday_hours
         business.tuesday_hours = new_tuesday_hours
         business.wednesday_hours = new_wednesday_hours
@@ -178,10 +187,39 @@ def add_review(id):
     """
     Presents a form to create a review
     """
-
     form = ReviewForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    # print("@@@@@", request)
+    # print("request form!!!!!", request.form.getlist('image_url'))
+    # print("request files", request.files["image_url"])
+
+
+    # if "image_url" not in request.files:
+    #     return {"errors": "image required"}, 400
+
+    # image = request.files["image_url"]
+
+    # if not allowed_file(image.filename):
+    #     return {"errors": "file type not permitted"}, 400
+
+    # image.filename = get_unique_filename(image.filename)
+
+    # upload = upload_file_to_s3(image)
+
+    # if "url" not in upload:
+    #     return upload, 400
+
+    # url = upload["url"]
+    # print("AAAAAAA", form.data['body'])
+    # print("ZZZZZZZ", form.data['image_url'])
+
+    # print("BBBBBBBBBB", request.form['image_url'])
+    # print("VVVVVVVVVV", request.json)
+    # print("PPPPPPPPPPPPPPP", request.values['image_url'])
+    # print("GGHGHHHHHHHHH", request.files['image_url'])
+    # image = Image.query.get(id)
 
     if form.validate_on_submit():
         review = Review(
@@ -189,15 +227,28 @@ def add_review(id):
         user_id = current_user.id,
         body = form.data['body'],
         stars = form.data['stars'],
-        image_url = form.data['image_url']
+
         )
 
         db.session.add(review)
         db.session.commit()
+
         return review.to_dict()
 
+
+    # print("DOES THIS VAL EXIST?", review.id)
+    # image = Image.query.filter_by(review_id=review.id).first()
+    # print("DIS DA IMAGE STR", image)
+    # if image:
+    #     review.image_url = image.url
+    # db.session.add(review)
+    # db.session.commit()
+
+    # return review.to_dict()
     print("REVIEW FORM ERRORS!@!", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
 
 
 @create_business_route.route("/<int:id>/menu", methods=["POST"])
@@ -212,7 +263,7 @@ def add_menu(id):
             business_id = id,
             user_id = current_user.id,
             category = form.data['category'],
-            menu_image = form.data['menu_image']
+            # menu_image = form.data['menu_image']
         )
 
         db.session.add(menu)
@@ -236,7 +287,7 @@ def add_menu_item(id):
             item_name = form.data['item_name'],
             description = form.data['description'],
             price = form.data['price'],
-            menu_item_image = form.data['menu_item_image']
+            # menu_item_image = form.data['menu_item_image']
         )
 
         db.session.add(menuitem)
@@ -254,6 +305,13 @@ def delete_menu(id):
 
     menu = Menu.query.get(id)
     db.session.delete(menu)
+
+    imageDel = Image.query.filter_by(menu_id=id).all()
+
+    if imageDel:
+        for x in imageDel:
+            db.session.delete(x)
+
     db.session.commit()
     return {"message": "Delete Successful"}
 
@@ -263,6 +321,13 @@ def delete_menu_item(id):
 
     menuitem = MenuItem.query.get(id)
     db.session.delete(menuitem)
+
+    imageDel = Image.query.filter_by(menuitem_id=id).all()
+
+    if imageDel:
+        for x in imageDel:
+            db.session.delete(x)
+
     db.session.commit()
     return {"message": "Delete Successful"}
 
@@ -283,14 +348,14 @@ def edit_menu_name(id):
             # business_id = id,
             # user_id = current_user.id,
         new_category = form.data['category'],
-        new_menu_image = form.data['menu_image']
+        # new_menu_image = form.data['menu_image']
 
         # print("^^^^^^^^^^^^^", new_category[0])
 
         menu.category = new_category[0]
 
-        if(new_menu_image):
-            menu.menu_image = new_menu_image
+        # if(new_menu_image):
+        #     menu.menu_image = new_menu_image
 
 
 
@@ -324,12 +389,12 @@ def edit_menuitem(id):
         new_item_name = form.data['item_name'],
         new_description = form.data['description'],
         new_price = form.data['price'],
-        new_menu_item_image = form.data['menu_item_image']
+        # new_menu_item_image = form.data['menu_item_image']
 
         menuitem.item_name = new_item_name[0]
         menuitem.description = new_description[0]
         menuitem.price = new_price[0]
-        menuitem.menu_item_image = new_menu_item_image
+        # menuitem.menu_item_image = new_menu_item_image
 
 
         db.session.add(menuitem)

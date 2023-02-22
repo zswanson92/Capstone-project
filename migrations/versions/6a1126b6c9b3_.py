@@ -1,13 +1,12 @@
 """empty message
 
-Revision ID: fb7ae718eac5
+Revision ID: 6a1126b6c9b3
 Revises:
-Create Date: 2023-01-16 16:37:30.595338
+Create Date: 2023-02-22 15:54:25.403334
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -15,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'fb7ae718eac5'
+revision = '6a1126b6c9b3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,6 +35,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
 
     op.create_table('businesses',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -66,8 +66,25 @@ def upgrade():
         op.execute(f"ALTER TABLE businesses SET SCHEMA {SCHEMA};")
 
 
+    op.create_table('images',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('review_id', sa.Integer(), nullable=True),
+    sa.Column('business_id', sa.Integer(), nullable=True),
+    sa.Column('menu_id', sa.Integer(), nullable=True),
+    sa.Column('menuitem_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('url', sa.String(), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
+
+
     op.create_table('menus',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('menu_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('business_id', sa.Integer(), nullable=False),
     sa.Column('category', sa.Text(), nullable=False),
@@ -81,6 +98,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE menus SET SCHEMA {SCHEMA};")
+
 
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -110,6 +128,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE cool SET SCHEMA {SCHEMA};")
 
+
     op.create_table('funny',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('review_id', sa.Integer(), nullable=True),
@@ -120,13 +139,15 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE funny SET SCHEMA {SCHEMA};")
 
+
     op.create_table('menuitems',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('menu_id', sa.Integer(), nullable=False),
+    sa.Column('menuitem_id', sa.Integer(), nullable=True),
     sa.Column('item_name', sa.Text(), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
-    sa.Column('price', sa.Integer(), nullable=False),
+    sa.Column('price', sa.Float(), nullable=False),
     sa.Column('menu_item_image', sa.Text(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
@@ -149,7 +170,6 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE useful SET SCHEMA {SCHEMA};")
 
-
     # ### end Alembic commands ###
 
 
@@ -161,6 +181,7 @@ def downgrade():
     op.drop_table('cool')
     op.drop_table('reviews')
     op.drop_table('menus')
+    op.drop_table('images')
     op.drop_table('businesses')
     op.drop_table('users')
     # ### end Alembic commands ###

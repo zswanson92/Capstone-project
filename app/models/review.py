@@ -57,6 +57,7 @@ class Review(db.Model):
     review_useful = db.relationship("User", secondary=useful, back_populates="user_useful", cascade="all, delete")
     review_funny = db.relationship("User", secondary=funny, back_populates="user_funny", cascade="all, delete")
     review_cool = db.relationship("User", secondary=cool, back_populates="user_cool", cascade="all, delete")
+    # review_images = db.relationship("Image", back_populates="review", cascade="all, delete")
 
     def to_dict(self):
         return {

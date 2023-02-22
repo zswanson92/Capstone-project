@@ -8,6 +8,10 @@
     width: 6em;
 }
 
+.edit-item-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
+}
+
 .delete-item-button{
     background: none;
     background-color: #c41200;
@@ -16,6 +20,10 @@
     border: none;
     height: 2.5em;
     width: 6em;
+}
+
+.delete-item-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
 }
 
 .mapped-menuitems-div{

@@ -59,9 +59,9 @@ const EditBusiness = () => {
         setName(e.target.value)
     }
 
-    const imageSet = (e) => {
-        setPreviewImage(e.target.value)
-    }
+    // const imageSet = (e) => {
+    //     setPreviewImage(e.target.value)
+    // }
 
     // const serviceSet = (e) => {
     //     setServices(e.target.value)
@@ -177,18 +177,18 @@ const EditBusiness = () => {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    function validImageUrl(url) {
-        let falseycheck;
-        let lastThree = url.split('').slice(url.length - 3)
-        // console.log(lastThree.join(''))
-        if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-            falseycheck = true
-        } else {
-            falseycheck = false
-        }
-        // console.log(falseycheck)
-        return falseycheck
-    }
+    // function validImageUrl(url) {
+    //     let falseycheck;
+    //     let lastThree = url.split('').slice(url.length - 3)
+    //     // console.log(lastThree.join(''))
+    //     if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
+    //         falseycheck = true
+    //     } else {
+    //         falseycheck = false
+    //     }
+    //     // console.log(falseycheck)
+    //     return falseycheck
+    // }
 
     // useEffect(() => {
     //     const err = [];
@@ -276,9 +276,9 @@ const EditBusiness = () => {
         if (about_us.length < 30) {
             err.push("Description must be at least 30 characters.")
         }
-        if (preview_img.length > 0 && !validImageUrl(preview_img)) {
-            err.push("must be valid image url")
-        }
+        // if (preview_img.length > 0 && !validImageUrl(preview_img)) {
+        //     err.push("must be valid image url")
+        // }
         setErrors(err)
     }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
         thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us, preview_img])
@@ -291,6 +291,14 @@ const EditBusiness = () => {
     let fri_falsey_check = (friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length !== 15) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))
     let sat_falsey_check = (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length !== 15) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))
     let sun_falsey_check = (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length !== 15) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))
+
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        // console.log("FILE!!", file)
+        setPreviewImage(file);
+    }
+
 
     return (
         <div className="edit-business-main-container">
@@ -314,14 +322,21 @@ const EditBusiness = () => {
                         {name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
                     </div>
                     <div className="edit-business-previewimage-div">
-                        <input
+                        {/* <input
                             className="business-form-previmg-input"
                             type='text'
                             name='preview_image'
                             onChange={imageSet}
                             value={preview_img}
                         ></input>
-                        {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""}
+                        {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
+                        Upload a preview image for your business.
+                        <input
+                            type="file"
+                            name='image'
+                            accept="image/*"
+                            onChange={updateImage}
+                        />
 
                     </div>
                     <div className="edit-business-hours-div">

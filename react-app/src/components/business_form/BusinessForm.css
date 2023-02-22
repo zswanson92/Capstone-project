@@ -25,6 +25,9 @@
 
 .business-form-previmg-input-div{
     padding-bottom: .8em;
+    display:flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 .business-form-previmg-input{
@@ -34,9 +37,9 @@
     border-radius: 3px;
 }
 
-.business-form-hours-inputs-div{
-    padding-bottom: 1.5em;
-}
+/* .business-form-hours-inputs-div{
+    padding-bottom: .5em;
+} */
 
 .business-form-hours-input{
     padding: .3em;
@@ -228,5 +231,5 @@
 } */
 
 .div-containing-secondary-check{
-    padding-bottom: .5em;
+    padding-bottom: 2em;
 }

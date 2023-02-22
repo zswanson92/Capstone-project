@@ -46,9 +46,9 @@ const BusinessForm = () => {
         setName(e.target.value)
     }
 
-    const imageSet = (e) => {
-        setPreviewImage(e.target.value)
-    }
+    // const imageSet = (e) => {
+    //     setPreviewImage(e.target.value)
+    // }
 
     const monSet = (e) => {
         setMonHours(e.target.value)
@@ -124,14 +124,14 @@ const BusinessForm = () => {
         const addedBiz = await dispatch(createBusinessThunk(createdBusiness))
 
         // let path = ;
-
-        if(addedBiz){
+        console.log(addedBiz?.id)
+        if (addedBiz) {
             await history.push(`/businesses/${addedBiz?.id}`);
         }
     };
 
     const onClose = () => {
-        history.push(`/`);
+        history.goBack();
     }
 
     function isValidPhone(phone) {
@@ -155,18 +155,18 @@ const BusinessForm = () => {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    function validImageUrl(url) {
-        let falseycheck;
-        let lastThree = url.split('').slice(url.length - 3)
-        // console.log(lastThree.join(''))
-        if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-            falseycheck = true
-        } else {
-            falseycheck = false
-        }
-        // console.log(falseycheck)
-        return falseycheck
-    }
+    // function validImageUrl(url) {
+    //     let falseycheck;
+    //     let lastThree = url.split('').slice(url.length - 3)
+    //     // console.log(lastThree.join(''))
+    //     if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
+    //         falseycheck = true
+    //     } else {
+    //         falseycheck = false
+    //     }
+    //     // console.log(falseycheck)
+    //     return falseycheck
+    // }
 
     useEffect(() => {
         const err = [];
@@ -215,9 +215,9 @@ const BusinessForm = () => {
         if (about_us.length < 30) {
             err.push("Description must be at least 30 characters.")
         }
-        if (preview_img.length > 0 && !validImageUrl(preview_img)) {
-            err.push("must be valid image url")
-        }
+        // if (preview_img.length > 0 && !validImageUrl(preview_img)) {
+        //     err.push("must be valid image url")
+        // }
         setErrors(err)
     }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
         thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us, preview_img])
@@ -261,6 +261,12 @@ const BusinessForm = () => {
         setSunCheck(!sunCheck)
     }
 
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        // console.log("FILE!!", file)
+        setPreviewImage(file);
+    }
+
     return (
         <div className="main-business-form-div">
             <form onSubmit={onSubmit}>
@@ -273,17 +279,17 @@ const BusinessForm = () => {
                 <div className="business-form-name-input-div">
                     <input
                         required={true}
-                        className={(name.length < 6 || name.length > 50) ? "falsey-business-form-name-input" : "business-form-name-input"}
+                        className={((name.length && name.length < 6) || (name.length && name.length > 50)) ? "falsey-business-form-name-input" : "business-form-name-input"}
                         type='text'
                         name='name'
                         onChange={nameSet}
                         value={name}
                         placeholder="Business Name"></input>
-                    {name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
-                    {name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
+                    {name.length && name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
+                    {name.length && name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
                 </div>
                 <div className="business-form-previmg-input-div">
-                    <input
+                    {/* <input
                         placeholder="Preview image link - must be a png or jpg format"
                         className="business-form-previmg-input"
                         type='text'
@@ -291,14 +297,21 @@ const BusinessForm = () => {
                         onChange={imageSet}
                         value={preview_img}
                     ></input>
-                    {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""}
+                    {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
+                    Upload a preview image for your business.
+                    <input
+                        type="file"
+                        name='image'
+                        accept="image/*"
+                        onChange={updateImage}
+                    />
                 </div>
                 <div className="business-form-hours-inputs-div">
                     <div>
                         <p>Business Hours &#40;Preferred format xx:xxam/pm-yy:yyam/pm, or "Closed"&#41;.</p>
                         <input
                             required={true}
-                            className={mon_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
+                            className={monday_hours.length && mon_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Monday Hours of Operation"
                             name='hours'
                             type='text'
@@ -306,7 +319,7 @@ const BusinessForm = () => {
                             value={monday_hours}
                         >
                         </input>
-                        {mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {monday_hours.length && mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
                         {(monday_hours === 'Closed' || monday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Monday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -326,7 +339,7 @@ const BusinessForm = () => {
                     </div> : ""}
                     <div>
                         <input
-                            className={tues_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
+                            className={tuesday_hours.length && tues_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Tuesday Hours of Operation"
                             name='hours'
                             type='text'
@@ -334,7 +347,7 @@ const BusinessForm = () => {
                             value={tuesday_hours}
                         >
                         </input>
-                        {tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Tuesday. </div> : ""}
+                        {tuesday_hours.length && tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Tuesday. </div> : ""}
                         {(tuesday_hours === 'Closed' || tuesday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Tuesday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -355,15 +368,15 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className={weds_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
+                            className={wednesday_hours.length && weds_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Wedsnesday Hours of Operation"
                             name='hours'
                             type='text'
                             onChange={wedsSet}
                             value={wednesday_hours}>
                         </input>
-                        {weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Wednesday. </div> : ""}
-                        {(wednesday_hours === 'Closed' || wednesday_hours === 'closed') ? "" :<div className='div-containing-secondary-check'><label>Click checkbox for secondary Wednesday hours.</label>
+                        {wednesday_hours.length && weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Wednesday. </div> : ""}
+                        {(wednesday_hours === 'Closed' || wednesday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Wednesday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
                                 type='checkbox'
@@ -383,7 +396,7 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className={thurs_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
+                            className={thursday_hours.length && thurs_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Thursday Hours of Operation"
                             name='hours'
                             type='text'
@@ -391,7 +404,7 @@ const BusinessForm = () => {
                             value={thursday_hours}>
 
                         </input>
-                        {thurs_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Thursday. </div> : ""}
+                        {thursday_hours.length && thurs_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Thursday. </div> : ""}
                         {(thursday_hours === 'Closed' || thursday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Thursday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -412,7 +425,7 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className={fri_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
+                            className={friday_hours.length && fri_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Friday Hours of Operation"
                             name='hours'
                             type='text'
@@ -420,7 +433,7 @@ const BusinessForm = () => {
                             value={friday_hours}>
 
                         </input>
-                        {fri_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Friday. </div> : ""}
+                        {friday_hours.length && fri_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Friday. </div> : ""}
                         {(friday_hours === 'Closed' || friday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Friday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -441,7 +454,7 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className={sat_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
+                            className={saturday_hours.length && sat_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Saturday Hours of Operation"
                             name='hours'
                             type='text'
@@ -449,7 +462,7 @@ const BusinessForm = () => {
                             value={saturday_hours}>
 
                         </input>
-                        {sat_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Saturday. </div> : ""}
+                        {saturday_hours.length && sat_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Saturday. </div> : ""}
                         {(saturday_hours === 'Closed' || saturday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Saturday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -470,7 +483,7 @@ const BusinessForm = () => {
                     <div>
                         <input
                             required={true}
-                            className={sun_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
+                            className={sunday_hours.length && sun_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Sunday Hours of Operation"
                             name='hours'
                             type='text'
@@ -478,7 +491,7 @@ const BusinessForm = () => {
                             value={sunday_hours}>
 
                         </input>
-                        {sun_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Sunday. </div> : ""}
+                        {sunday_hours.length && sun_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Sunday. </div> : ""}
                         {(sunday_hours === 'Closed' || sunday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Sunday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -501,37 +514,37 @@ const BusinessForm = () => {
                     <input
                         required={true}
                         placeholder="Email Address"
-                        className={!isValidEmail(email) ? "falsey-business-form-email-input" : "business-form-email-input"}
+                        className={email.length && !isValidEmail(email) ? "falsey-business-form-email-input" : "business-form-email-input"}
                         name='email'
                         type='text'
                         onChange={emailSet}
                         value={email}></input>
-                    {!isValidEmail(email) ? <div className="error-below-inputs-divs"> Must be a valid Email address. </div> : ""}
+                    {email.length && !isValidEmail(email) ? <div className="error-below-inputs-divs"> Must be a valid Email address. </div> : ""}
 
                 </div>
                 <div className="business-form-address-input-div">
                     <input
                         required={true}
                         placeholder="Business Address"
-                        className={(address.length < 15 || address.length > 100) ? "falsey-business-form-address-input" : "business-form-address-input"}
+                        className={((address.length && address.length < 15) || (address.length && address.length > 100)) ? "falsey-business-form-address-input" : "business-form-address-input"}
                         name='address'
                         type='text'
                         onChange={addressSet}
                         value={address}></input>
-                    {address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
-                    {address.length > 100 ? <div className="error-below-inputs-divs"> Address cannot exceed 100 characters. </div> : ""}
+                    {address.length && address.length < 15 ? <div className="error-below-inputs-divs"> Address must be at least 15 characters long. </div> : ""}
+                    {address.length && address.length > 100 ? <div className="error-below-inputs-divs"> Address cannot exceed 100 characters. </div> : ""}
                 </div>
                 <div className="business-form-phone-input-div">
                     <label className="phone-num-input-label">Please enter in "xxx-xxx-xxxx" format.</label>
                     <input
                         required={true}
                         placeholder="Business Phone Number"
-                        className={isValidPhone(phone_number) !== 12 ? "falsey-business-form-phone-input" : "business-form-phone-input"}
+                        className={phone_number.length && isValidPhone(phone_number) !== 12 ? "falsey-business-form-phone-input" : "business-form-phone-input"}
                         name='phone_number'
                         type='text'
                         onChange={phoneSet}
                         value={phone_number}></input>
-                    {isValidPhone(phone_number) !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : ""}
+                    {phone_number.length && isValidPhone(phone_number) !== 12 ? <div className="error-below-inputs-divs"> Must be a valid formatted phone number. </div> : ""}
                 </div>
                 <div className="business-form-website-input-div">
                     <input
@@ -548,25 +561,25 @@ const BusinessForm = () => {
                     <textarea
                         required={true}
                         placeholder="Description of your business and offerings."
-                        className={about_us.length < 30 ? "falsey-business-form-aboutus-input" : "business-form-aboutus-input"}
+                        className={about_us.length && about_us.length < 30 ? "falsey-business-form-aboutus-input" : "business-form-aboutus-input"}
                         type='text'
                         name='aboutus'
                         onChange={(e) => setAbout(e.target.value)}
                         value={about_us}>
                     </textarea>
-                    {about_us.length < 30 ? <div className="error-below-inputs-divs"> Description must be at least 30 characters. </div> : ""}
+                    {about_us.length && about_us.length < 30 ? <div className="error-below-inputs-divs"> Description must be at least 30 characters. </div> : ""}
                 </div>
                 <div className="business-form-price-input-div">
                     <input
                         required={true}
-                        placeholder="1-5 (Will be represented by $'s)"
-                        className={(price < 1 || price > 5) ? "falsey-business-form-price-input" : "business-form-price-input"}
+                        placeholder="Price (1-5, represented by $'s)"
+                        className={((price.length && price < 1) || (price.length && price > 5)) ? "falsey-business-form-price-input" : "business-form-price-input"}
                         type='number'
                         name='price'
                         onChange={(e) => setPrice(e.target.value)}
                         value={price}>
                     </input>
-                    {(price < 1 || price > 5) ? <div className="error-below-inputs-divs"> Price must be between 1 and 5. </div> : ""}
+                    {((price.length && price < 1) || (price.length && price > 5)) ? <div className="error-below-inputs-divs"> Price must be between 1 and 5. </div> : ""}
                 </div>
                 <div className="business-form-tags-input-div">
                     <input

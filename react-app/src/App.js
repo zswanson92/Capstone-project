@@ -28,6 +28,7 @@ import RemoveMenuItem from './components/RemoveMenuItem/RemoveMenuItem';
 import FullMenu from './components/FullMenu/FullMenu';
 import EditMenu from './components/EditMenu/EditMenu';
 import EditMenuItem from './components/EditMenuItem/EditMenuItem';
+import Results from './components/SearchBar/Results';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -95,7 +96,7 @@ function App() {
         <ProtectedRoute exact={true} path="/menuedit/:menuId">
         <EditMenu />
         </ProtectedRoute>
-        <ProtectedRoute exact={true} path="/menuedit/item/:menuItemId">
+        <ProtectedRoute exact={true} path="/businesses/:businessId/menuedit/item/:menuItemId">
           <EditMenuItem />
         </ProtectedRoute>
         <Route exact={true} path="/create/menu/:menuId">
@@ -112,6 +113,9 @@ function App() {
         </Route>
         <Route path='/userprofile'>
           <UserProfile />
+        </Route>
+        <Route path='/search'>
+          <Results />
         </Route>
         <Route>
           <FourOhFour />

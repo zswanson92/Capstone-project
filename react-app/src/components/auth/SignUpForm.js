@@ -179,10 +179,10 @@ const SignUpForm = () => {
     <>
 
       <div className='main-login-form-div'>
-        <div className='signup-image-div'><img src={logo} /></div>
+        <div className='signup-image-div'><img src={logo} alt='Loading...' /></div>
         <div className='login-form-div-container'>
           <h2 className='signup-h2'>Sign up for Zelp!</h2>
-          <div style={{fontWeight: 'bold'}}>Connect with great local businesses</div>
+          <div style={{ fontWeight: 'bold' }}>Connect with great local businesses</div>
           {/* <h4>New to Yelp? <Link className='loginform-signup-link' to={'/sign-up'}>Sign Up</Link></h4> */}
           <form className='signup-form-form' onSubmit={onSignUp}>
             <div className='first-signupform-input-div'>
@@ -254,10 +254,18 @@ const SignUpForm = () => {
         </div>
 
       </div>
-      <footer className='login-footer'>
-        <p>© 2022 Zelp Corp</p>
-        <a className='splash-github-link' href='https://github.com/zswanson92'> <img src={logotwo} alt='Logo' className='splash-logo-img'></img> Zack Swanson</a>
+      <div className='signup-form-footer'>
+      <footer className='splash-footer'>
+        <div className="splash-footer-div">
+          <div className="corp-div">© 2022 Zelp Corp</div>
+          <div className='foot-name-div'>
+
+            <div className='href-div'><a className='splash-github-link' href='https://github.com/zswanson92'>  Zack Swanson</a></div>
+            <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
+          </div>
+        </div>
       </footer>
+      </div>
     </>
   );
 };

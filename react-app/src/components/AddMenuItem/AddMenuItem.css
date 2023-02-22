@@ -26,6 +26,10 @@
     width: 6em;
 }
 
+.add-item-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
+}
+
 .edit-remove-item-button{
     background: none;
     background-color: #c41200;
@@ -34,4 +38,12 @@
     border: none;
     height: 2.5em;
     width: 11em;
+}
+
+.edit-remove-item-button:hover{
+    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
+}
+
+.return-to-biz-button-div{
+    padding-top: 5em;
 }

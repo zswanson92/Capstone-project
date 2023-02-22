@@ -6,7 +6,8 @@ import './Businesses.css'
 // import logo from '../../assets/yelp_logo.PNG'
 import logo from '../../assets/githublogo.png'
 import HomeMap from '../MapsApi';
-// import { getKey } from '../../store/map'
+import { getKey } from '../../store/map'
+
 
 
 const Businesses = () => {
@@ -27,6 +28,7 @@ const Businesses = () => {
     useEffect(() => {
         dispatch(getAllBusinessesThunk())
         // dispatch()
+        dispatch(getKey())
     }, [dispatch])
 
 
@@ -130,13 +132,11 @@ const Businesses = () => {
 
                                                 <div key={tag} className='mapped-tag-buttons-businesses-div'>
                                                     {obj?.tags ? <button className='mapped-tag-buttons-businesses'>{tag}</button> : ""}
-                                                    {/* {"$$$$$$$$$$$", console.log(tag)} */}
                                                 </div>
                                             )
                                         })} {dollarNumChecker(obj?.price)}</div>
                                         <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1]?.body} </p>
                                     </div>
-                                    {/* <hr className='businesses-hr' /> */}
                                 </Link>
                                 <Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
                                 {/* </div> */}
@@ -147,8 +147,14 @@ const Businesses = () => {
                 </div>
             </div>
             <footer className='splash-footer'>
-                <p>© 2022 Zelp Corp</p>
-                <a className='splash-github-link' href='https://github.com/zswanson92'> <img src={logo} alt='Logo' className='splash-logo-img'></img> Zack Swanson</a>
+                <div className="splash-footer-div">
+                    <div className="corp-div">© 2022 Zelp Corp</div>
+                    <div className='foot-name-div'>
+
+                        <div className='href-div'><a className='splash-github-link' href='https://github.com/zswanson92'>  Zack Swanson</a></div>
+                        <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
+                    </div>
+                </div>
             </footer>
         </>
     )

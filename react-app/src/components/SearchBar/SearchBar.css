@@ -1,9 +1,17 @@
 .search-bar {
-    width: 35em;
+    width: 20em;
     margin-top: 2.75em;
     height: 2.4em;
     border-radius: 3px;
     /* padding-right: 30px; */
+}
+
+.queryParams{
+    width: 7em;
+    margin-top: 2.75em;
+    height: 2.4em;
+    border-radius: 3px;
+    padding-left: .5em;
 }
 
 .search-form {
@@ -17,12 +25,17 @@
 }
 
 .search-button{
-    height: 2em;
+    height: 2.3em;
+    width: 2.3em;
     background: none;
     background-color: #c41200;
     border-radius: 3px;
     color: white;
     border: none;
+}
+
+.search-button:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 .main-search-container{
