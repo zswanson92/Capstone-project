@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { getAllBusinessesThunk } from '../../store/business';
 import './Businesses.css'
-// import logo from '../../assets/yelp_logo.PNG'
-import logo from '../../assets/githublogo.png'
 import HomeMap from '../MapsApi';
 import { getKey } from '../../store/map'
 
@@ -72,7 +70,7 @@ const Businesses = () => {
         if (stars === 4.00 || (stars > 3 && stars < 5)) {
             abc = "⭐⭐⭐⭐"
         }
-        if (stars == 5.00) {
+        if (stars === 5.00) {
             abc = "⭐⭐⭐⭐⭐"
         }
         return abc

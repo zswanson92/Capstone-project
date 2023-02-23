@@ -38,7 +38,8 @@ const BusinessDetails = () => {
     let newArr = []
     let sum = 0
 
-    const eachReviewStarsArr = businessInfoObj?.reviews.forEach(obj => newArr.push(obj.stars))
+    // const eachReviewStarsArr =
+    businessInfoObj?.reviews.forEach(obj => newArr.push(obj.stars))
 
     const reviewStarArrReduce = newArr?.reduce((accum, currVal) => accum + currVal, sum)
 
@@ -48,7 +49,7 @@ const BusinessDetails = () => {
     useEffect(() => {
         dispatch(getBusinessByIdThunk(businessId));
         dispatch(getReviewsByBusinessIdThunk(businessId));
-    }, [dispatch]);
+    }, [dispatch, businessId]);
 
     useEffect(() => {
         async function fetchData() {
@@ -145,7 +146,7 @@ const BusinessDetails = () => {
         if (stars === 4.00 || (stars > 3 && stars < 5)) {
             abc = "⭐⭐⭐⭐"
         }
-        if (stars == 5.00) {
+        if (stars === 5.00) {
             abc = "⭐⭐⭐⭐⭐"
         }
         return abc
@@ -177,7 +178,7 @@ const BusinessDetails = () => {
 
 
     let userInfoArr = []
-    const userComponents = users?.map((user) => {
+    users?.map((user) => {
         return userInfoArr.push(user.id + user.fullname)
     });
 
@@ -321,7 +322,7 @@ const BusinessDetails = () => {
                         {businessInfoObj?.menus.map((menu) => {
                             return menu.menu_items.map((menuitems) => {
                                 // {console.log("@@@@@@", menuitems)}
-                                return <div className="menu-items-map-divs">
+                                return <div className="menu-items-map-divs" key={menuitems.id}>
                                     <img className="menu-item-image" onError={addDefaultSrc} src={menuitems?.menu_item_image} alt='Loading...' />
                                     {menuitems.item_name},
                                     &nbsp; ${menuitems.price}

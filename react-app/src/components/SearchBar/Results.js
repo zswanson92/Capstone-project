@@ -45,7 +45,7 @@ const Results = () => {
         if (stars === 4.00 || (stars > 3 && stars < 5)) {
             abc = "⭐⭐⭐⭐"
         }
-        if (stars == 5.00) {
+        if (stars === 5.00) {
             abc = "⭐⭐⭐⭐⭐"
         }
         return abc

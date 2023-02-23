@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./ReviewForm.css";
 import { createReviewThunk, getReviewsByBusinessIdThunk } from "../../store/review";
-import { getBusinessByIdThunk } from "../../store/business";
-import UploadPicture from "../UploadPicture/UploadPicture";
+// import { getBusinessByIdThunk } from "../../store/business";
+// import UploadPicture from "../UploadPicture/UploadPicture";
 
 
 const ReviewFormButton = () => {

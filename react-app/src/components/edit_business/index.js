@@ -59,14 +59,6 @@ const EditBusiness = () => {
         setName(e.target.value)
     }
 
-    // const imageSet = (e) => {
-    //     setPreviewImage(e.target.value)
-    // }
-
-    // const serviceSet = (e) => {
-    //     setServices(e.target.value)
-    // }
-
     const monSet = (e) => {
         setMonHours(e.target.value)
     }
@@ -118,7 +110,7 @@ const EditBusiness = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
+        if (errors.length > 0) return;
         // const updatedBusiness = {
         //     businessId, name, preview_img,
         //     monday_hours, tuesday_hours, wednesday_hours, thursday_hours, friday_hours,
@@ -146,10 +138,7 @@ const EditBusiness = () => {
 
         await dispatch(editBusinessThunk(updatedBusiness))
         history.push(`/businesses/${businessId}`)
-        // const editedBusiness = await dispatch(editBusinessThunk(updatedBusiness))
-        // if (editedBusiness) {
-        //     history.push(`/businesses/${businessId}`)
-        // }
+
     }
 
     const cancelEdit = () => {
@@ -158,13 +147,11 @@ const EditBusiness = () => {
 
     function isValidPhone(phone) {
         let i = 0
-        // console.log(phone.split(''))
         phone.split('').forEach((letter) => {
             if (letter === '-' || letter === '1' || letter === '2' || letter === '3' || letter === '4' || letter === '5' || letter === '6' || letter === '7' || letter === '8' || letter === '9' || letter === '0') {
                 i++
             }
         })
-        // console.log(i)
         return i
     }
 
@@ -176,19 +163,6 @@ const EditBusiness = () => {
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
     }
-
-    // function validImageUrl(url) {
-    //     let falseycheck;
-    //     let lastThree = url.split('').slice(url.length - 3)
-    //     // console.log(lastThree.join(''))
-    //     if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-    //         falseycheck = true
-    //     } else {
-    //         falseycheck = false
-    //     }
-    //     // console.log(falseycheck)
-    //     return falseycheck
-    // }
 
     // useEffect(() => {
     //     const err = [];
@@ -276,12 +250,9 @@ const EditBusiness = () => {
         if (about_us.length < 30) {
             err.push("Description must be at least 30 characters.")
         }
-        // if (preview_img.length > 0 && !validImageUrl(preview_img)) {
-        //     err.push("must be valid image url")
-        // }
         setErrors(err)
     }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
-        thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us, preview_img])
+        thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us])
 
     let mon_falsey_check = (monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))
     // console.log(mon_falsey_check)

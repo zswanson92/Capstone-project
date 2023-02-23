@@ -1,6 +1,6 @@
 import './FullMenu.css'
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getBusinessByIdThunk } from '../../store/business';
 // import { deleteMenuItemThunk } from '../../store/business';

@@ -10,22 +10,18 @@ const EditMenu = () => {
     const dispatch = useDispatch();
     let history = useHistory();
     let { menuId } = useParams();
-    const sessionUser = useSelector((state) => state.session.user);
+    // const sessionUser = useSelector((state) => state.session.user);
 
-    let userId = sessionUser.id
+    // let userId = sessionUser.id
 
     const currentMenu = useSelector(state => state.businessReducer.businesses)
     const currentMenuArr = Object.values(currentMenu)
     const menuFilter = currentMenuArr[0]?.menus.filter(obj => obj.id === +menuId)
 
     let editValOne;
-    // let editValTwo;
 
-    const workAround = menuFilter ? editValOne = menuFilter[0]?.category : ""
-    // const workAroundTwo = menuFilter ? editValTwo = menuFilter[0]?.menu_image : ""
+    menuFilter ? editValOne = menuFilter[0]?.category : editValOne = ""
 
-    // console.log("the thingy", menuFilter)
-    // console.log(Object.values(currentMenu))
 
     const [category, setCategory] = useState(editValOne ? editValOne : "")
     const [menu_image, setMenuImage] = useState("")
@@ -42,13 +38,22 @@ const EditMenu = () => {
             menu_image
         }
 
-        const theEditedMenu = await dispatch(editMenuThunk(editedMenu))
+        await dispatch(editMenuThunk(editedMenu))
 
-        // history.push(`/businesses/${businessId}`)
-        // if (theEditedMenu) {
+
         await history.goBack()
-        // }
     }
+
+    useEffect(() => {
+
+        let err = [];
+
+        if (category.length > 40) {
+            err.push("Name of menu must be less than 40 characters.")
+        }
+
+        setErrors(err)
+    }, [category])
 
     const onClose = () => {
         history.push(`/businesses`);
@@ -72,6 +77,7 @@ const EditMenu = () => {
                         placeholder="Name of Menu Category"
                         className="menu-category-input"
                     />
+                    {category.length > 40 ? <div>Name of menu must be less than 40 characters.</div> : ""}
                 </div>
                 <div className="menu-form-divs">
                     <input

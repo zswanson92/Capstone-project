@@ -4,7 +4,6 @@ import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
 import logo from '../../assets/signup_illustration.png'
-import logotwo from '../../assets/githublogo.png'
 
 
 const LoginForm = () => {

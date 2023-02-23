@@ -4,7 +4,6 @@ import { getAllReviewsThunk } from '../../store/review';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import './SplashPage.css'
-import logo from '../../assets/githublogo.png'
 import { getKey } from '../../store/map'
 
 const SplashPage = () => {
@@ -33,7 +32,8 @@ const SplashPage = () => {
         'https://images4.alphacoders.com/988/988128.jpg'
     ]
 
-    const imgsFill = aBusiness?.map((business) => {
+
+    aBusiness?.map((business) => {
         return imgs.push(business.preview_img)
     })
 
@@ -75,7 +75,7 @@ const SplashPage = () => {
                     return (
                         <Link key={business.id} to={`/businesses/${business.id}`} className='suggested-reviews-links'>
                             <div className='suggested-reviews-div'>
-                                <div className='abcdef-div'><img onError={addDefaultSrc} className='suggested-reviews-img' src={business.preview_img} alt='https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' /></div>
+                                <div className='abcdef-div'><img onError={addDefaultSrc} className='suggested-reviews-img' src={business.preview_img} alt='Loading...' /></div>
                                 <div className='agddgaddga-div'>
                                     <p className='sugg-review-business-name'>{business.name}</p>
                                     <p>Do you recommend this business?</p>

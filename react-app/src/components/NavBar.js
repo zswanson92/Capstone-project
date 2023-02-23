@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from './SearchBar/SearchBar';
 import { logout } from '../store/session'
 import './auth/LogoutButton.css'
-import UserProfile from './UserProfile/UserProfile';
+// import UserProfile from './UserProfile/UserProfile';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);

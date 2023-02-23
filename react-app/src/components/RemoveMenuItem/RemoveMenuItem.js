@@ -4,7 +4,7 @@ import { useParams, Link, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { getBusinessByIdThunk } from '../../store/business';
 import { deleteMenuItemThunk } from '../../store/business';
-import EditMenuItem from '../EditMenuItem/EditMenuItem';
+// import EditMenuItem from '../EditMenuItem/EditMenuItem';
 
 const RemoveMenuItem = () => {
     const dispatch = useDispatch();
