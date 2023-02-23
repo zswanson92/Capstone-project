@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import './NavBar.css'
+import './SplashNav.css'
 import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from './SearchBar/SearchBar';
 import { logout } from '../store/session'
 import './auth/LogoutButton.css'
 
-const NavBar = () => {
+const SplashNavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
@@ -22,12 +22,12 @@ const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   return (
-    <nav className='main-nav-bar'>
+    <nav className='splash-main-nav-bar'>
       <div>
         <NavLink to='/' exact={true} activeClassName='active' className='home-navlink'>
           <div className='navbar-img-div'>
-            <span className='zelp-span'>Zelp!</span>
-            <img src='https://www.svgrepo.com/show/106088/yelp.svg' alt='Logo' className='home-logo-img'></img>
+            <span className='splash-zelp-span'>Zelp!</span>
+            <img src='https://logodix.com/logo/83894.png' alt='Logo' className='home-logo-img'></img>
           </div>
         </NavLink>
       </div>
@@ -35,19 +35,19 @@ const NavBar = () => {
         <SearchBar />
       </div>
       <div>
-        <NavLink to='/businesses' exact={true} activeClassName='active' className='viewbusiness-navlink'>
+        <NavLink to='/businesses' style={{color: 'white'}} exact={true} activeClassName='active' className='viewbusiness-navlink'>
           Businesses
         </NavLink>
       </div>
       {sessionUser ? "" :
         <div>
-          <NavLink to='/login' exact={true} activeClassName='active' className='login-navlink'>
+          <NavLink to='/login' style={{color: 'white'}} exact={true} activeClassName='active' className='login-navlink'>
             Login
           </NavLink>
         </div>}
       {sessionUser ? "" :
         <div>
-          <NavLink to='/sign-up' exact={true} activeClassName='active' className='signup-navlink'>
+          <NavLink to='/sign-up' style={{color: 'white'}} exact={true} activeClassName='active' className='signup-navlink'>
             Sign Up
           </NavLink>
         </div>}
@@ -55,7 +55,7 @@ const NavBar = () => {
 
       {sessionUser ?
         <div>
-          <NavLink to='/create' exact={true} activeClassName='active' className='createbusiness-navlink'>
+          <NavLink to='/create' style={{color: 'white'}} exact={true} activeClassName='active' className='createbusiness-navlink'>
             Create Business
           </NavLink>
         </div> : ""}
@@ -78,4 +78,4 @@ const NavBar = () => {
   );
 }
 
-export default NavBar;
+export default SplashNavBar;

@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* padding-bottom: 10em; */
+    position: relative;
+    top: -5em;
+    z-index: 0;
 }
 
 .splash-header-img {
@@ -12,9 +16,6 @@
     object-fit: cover;
 }
 
-.splash-image-div {
-    /* margin-bottom: -100px; */
-}
 
 .your-next-rev-text {
     font-size: 2em;

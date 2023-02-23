@@ -1,17 +1,36 @@
 .search-bar {
     width: 20em;
-    margin-top: 2.75em;
+    /* margin-top: 2.75em; */
     height: 2.4em;
     border-radius: 3px;
     /* padding-right: 30px; */
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+}
+
+.searchbar-container{
+    background: #160053
+}
+
+.the-searchbar-div{
+    display: inline-block;
+    margin-top: 2.75em;
+    /* align-items: center;
+    justify-content: center; */
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
+    /* height: 3em; */
+    /* border: 1px solid black; */
+    height: 2em;
 }
 
 .queryParams{
     width: 7em;
-    margin-top: 2.75em;
+    /* margin-top: 2.75em; */
     height: 2.4em;
     border-radius: 3px;
     padding-left: .5em;
+    border: none;
 }
 
 .search-form {
@@ -25,8 +44,8 @@
 }
 
 .search-button{
-    height: 2.3em;
-    width: 2.3em;
+    height: 2.4em;
+    width: 2.4em;
     background: none;
     background-color: #c41200;
     border-radius: 3px;

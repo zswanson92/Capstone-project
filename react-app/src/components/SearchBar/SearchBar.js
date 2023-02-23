@@ -23,29 +23,33 @@ const SearchBar = () => {
   return (
     <div className="main-search-container">
       <form className="search-form" onSubmit={handleSubmit}>
-        <input
-          type="search"
-          placeholder="Search..."
-          className="search-bar"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          required={true}
-        />
+        {/* <div className="searchbar-container"> */}
+          <div className="the-searchbar-div">
+            <input
+              type="search"
+              placeholder="Search..."
+              className="search-bar"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              required={true}
+            />
 
-        <select
-          className="queryParams"
-          type="text"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          required
-        >
-          <option disabled>Filters:</option>
-          <option value={"name"}>Name</option>
-          <option value={"location"}>Location</option>
-          <option value={"tags"}>Tags</option>
-        </select>
+            <select
+              className="queryParams"
+              type="text"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              required
+            >
+              <option disabled>Filters:</option>
+              <option value={"name"}>Name</option>
+              <option value={"location"}>Location</option>
+              <option value={"tags"}>Tags</option>
+            </select>
 
-        <button type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>
+            <button type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        {/* </div> */}
       </form>
     </div>
   );

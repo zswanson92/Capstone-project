@@ -301,7 +301,7 @@ const EditBusiness = () => {
                             value={preview_img}
                         ></input>
                         {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
-                        Upload a preview image for your business.
+                        <p>Upload a preview image for your business.</p>
                         <input
                             type="file"
                             name='image'
