@@ -12,7 +12,9 @@ const BusinessForm = () => {
 
     const [name, setName] = useState("");
     const [preview_img, setPreviewImage] = useState("");
+    // const [monClosed, setMonClosed] = useState(false)
     const [monday_hours, setMonHours] = useState("");
+    const [monday_hours_close, setMonHoursClose] = useState("");
     const [monday_hours_two, setMonHoursTwo] = useState("");
     const [tuesday_hours, setTuesHours] = useState("");
     const [tuesday_hours_two, setTuesHoursTwo] = useState("");
@@ -40,18 +42,20 @@ const BusinessForm = () => {
     const [about_us, setAbout] = useState("");
     const [price, setPrice] = useState("");
     const [tags, setTags] = useState("");
+    const [monOpenAmPM, setMonOpenAmPm] = useState("");
+    const [monCloseAmPm, setMonCloseAmPm] = useState("");
     const [errors, setErrors] = useState([]);
 
     const nameSet = (e) => {
         setName(e.target.value)
     }
 
-    // const imageSet = (e) => {
-    //     setPreviewImage(e.target.value)
-    // }
-
     const monSet = (e) => {
         setMonHours(e.target.value)
+    }
+
+    const monCloseSet = (e) => {
+        setMonHoursClose(e.target.value)
     }
 
     const tuesSet = (e) => {
@@ -105,7 +109,7 @@ const BusinessForm = () => {
         const createdBusiness = {
             name,
             preview_img,
-            monday_hours: monday_hours + "," + monday_hours_two,
+            monday_hours: monday_hours + monOpenAmPM + monday_hours_close + monCloseAmPm + "," + monday_hours_two,
             tuesday_hours: tuesday_hours + "," + tuesday_hours_two,
             wednesday_hours: wednesday_hours + "," + wednesday_hours_two,
             thursday_hours: thursday_hours + "," + thursday_hours_two,
@@ -185,9 +189,9 @@ const BusinessForm = () => {
         if (address.length > 100) {
             err.push("Address cannot exceed 100 characters")
         }
-        if ((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length < 7) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))) {
-            err.push("Must be valid time format for Monday.")
-        }
+        // if ((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length < 7) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))) {
+        //     err.push("Must be valid time format for Monday.")
+        // }
         if ((tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length < 7) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))) {
             err.push("Must be valid time format for Tuesday.")
         }
@@ -215,17 +219,12 @@ const BusinessForm = () => {
         if (about_us.length < 30) {
             err.push("Description must be at least 30 characters.")
         }
-        // if (preview_img.length > 0 && !validImageUrl(preview_img)) {
-        //     err.push("must be valid image url")
-        // }
         setErrors(err)
     }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
         thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us, preview_img])
 
-    // console.log(errors)
 
     let mon_falsey_check = (monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length < 7) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))
-    // console.log(mon_falsey_check)
     let tues_falsey_check = (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length < 7) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))
     let weds_falsey_check = (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length < 7) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))
     let thurs_falsey_check = (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length < 7) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))
@@ -289,15 +288,6 @@ const BusinessForm = () => {
                     {name.length && name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
                 </div>
                 <div className="business-form-previmg-input-div">
-                    {/* <input
-                        placeholder="Preview image link - must be a png or jpg format"
-                        className="business-form-previmg-input"
-                        type='text'
-                        name='preview_image'
-                        onChange={imageSet}
-                        value={preview_img}
-                    ></input>
-                    {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
                     Upload a preview image for your business.
                     <input
                         type="file"
@@ -308,8 +298,8 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-hours-inputs-div">
                     <div>
-                        <p>Business Hours &#40;Preferred format xx:xxam/pm-yy:yyam/pm, or "Closed"&#41;.</p>
-                        <input
+                        {/* <p>Business Hours &#40;Preferred format xx:xxam/pm-yy:yyam/pm, or "Closed"&#41;.</p> */}
+                        {/* <input
                             required={true}
                             className={monday_hours.length && mon_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
                             placeholder="Monday Hours of Operation"
@@ -319,7 +309,101 @@ const BusinessForm = () => {
                             value={monday_hours}
                         >
                         </input>
-                        {monday_hours.length && mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                        {monday_hours.length && mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""} */}
+                        <div>
+                        <p>Is your business closed Monday?</p>
+                        <label>Yes</label>
+                        <input
+
+                            type='radio'
+                            onChange={() => setMonHours("Closed")}
+                            checked={monday_hours === "Closed"}>
+                        </input>
+                        <label>No</label>
+                        <input
+                            type='radio'
+                            onChange={() => setMonHours("")}
+                            checked={monday_hours !== "Closed"}>
+                        </input>
+                        </div>
+                        <label>Opening time</label>
+                        <select
+                            value={monday_hours}
+                            onChange={monSet}>
+                            <option>Hour:</option>
+                            <option value={"1:00"}>1</option>
+                            <option value={"1:30"}>1:30</option>
+                            <option value={"2:00"}>2</option>
+                            <option value={"2:30"}>2:30</option>
+                            <option value={"3:00"}>3</option>
+                            <option value={"3:30"}>3:30</option>
+                            <option value={"4:00"}>4</option>
+                            <option value={"4:30"}>4:30</option>
+                            <option value={"5:00"}>5</option>
+                            <option value={"5:30"}>5:30</option>
+                            <option value={"6:00"}>6</option>
+                            <option value={"6:30"}>6:30</option>
+                            <option value={"7:00"}>7</option>
+                            <option value={"7:30"}>7:30</option>
+                            <option value={"8:00"}>8</option>
+                            <option value={"8:30"}>8:30</option>
+                            <option value={"9:00"}>9</option>
+                            <option value={"9:30"}>9:30</option>
+                            <option value={"10:00"}>10</option>
+                            <option value={"10:30"}>10:30</option>
+                            <option value={"11:00"}>11</option>
+                            <option value={"11:30"}>11:30</option>
+                            <option value={"12:00"}>12</option>
+                            <option value={"12:30"}>12:30</option>
+                        </select>
+                        <select
+                            value={monOpenAmPM}
+                            onChange={(e) => setMonOpenAmPm(e.target.value)}
+                        >
+                            <option>Am/Pm:</option>
+                            <option value={"AM"}>AM</option>
+                            <option value={"PM"}>PM</option>
+                        </select>
+
+                        <label>Closing time</label>
+                        <select
+                            value={monday_hours_close}
+                            onChange={monCloseSet}>
+                            <option>Hour:</option>
+                            <option value={"-1:00"}>1</option>
+                            <option value={"-1:30"}>1:30</option>
+                            <option value={"-2:00"}>2</option>
+                            <option value={"-2:30"}>2:30</option>
+                            <option value={"-3:00"}>3</option>
+                            <option value={"-3:30"}>3:30</option>
+                            <option value={"-4:00"}>4</option>
+                            <option value={"-4:30"}>4:30</option>
+                            <option value={"-5:00"}>5</option>
+                            <option value={"-5:30"}>5:30</option>
+                            <option value={"-6:00"}>6</option>
+                            <option value={"-6:30"}>6:30</option>
+                            <option value={"-7:00"}>7</option>
+                            <option value={"-7:30"}>7:30</option>
+                            <option value={"-8:00"}>8</option>
+                            <option value={"-8:30"}>8:30</option>
+                            <option value={"-9:00"}>9</option>
+                            <option value={"-9:30"}>9:30</option>
+                            <option value={"-10:00"}>10</option>
+                            <option value={"-10:30"}>10:30</option>
+                            <option value={"-11:00"}>11</option>
+                            <option value={"-11:30"}>11:30</option>
+                            <option value={"-12:00"}>12</option>
+                            <option value={"-12:30"}>12:30</option>
+                        </select>
+                        <select
+                            value={monCloseAmPm}
+                            onChange={(e) => setMonCloseAmPm(e.target.value)}>
+                            <option>Am/Pm:</option>
+                            <option value={"AM"}>AM</option>
+                            <option vale={"PM"}>PM</option>
+                        </select>
+
+
                         {(monday_hours === 'Closed' || monday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Monday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
