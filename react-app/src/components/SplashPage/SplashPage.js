@@ -146,7 +146,7 @@ const SplashPage = () => {
                 <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Home Services</p> <i className="fa fa-home" aria-hidden="true"></i></div></Link>
                 <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>More</p> <i className="fa fa-expand" aria-hidden="true"></i></div></Link>
             </div>
-            <footer className='splash-footer'>
+            {/* <div className='splashpage-footer-div'> */}
                 <div className="splash-footer-div">
                     <div className="corp-div">© 2022 Zelp Corp</div>
                     <div className='foot-name-div'>
@@ -155,7 +155,7 @@ const SplashPage = () => {
                         <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
                     </div>
                 </div>
-            </footer>
+            {/* </div> */}
         </div>
     )
 }

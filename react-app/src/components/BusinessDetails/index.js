@@ -427,16 +427,14 @@ const BusinessDetails = () => {
 
                 </div>
             </div>
-            <footer className='splash-footer'>
-                <div className="splash-footer-div">
-                    <div className="corp-div">© 2022 Zelp Corp</div>
-                    <div className='foot-name-div'>
+            <div className="splash-footer-div">
+                <div className="corp-div">© 2022 Zelp Corp</div>
+                <div className='foot-name-div'>
 
-                        <div className='href-div'><a className='splash-github-link' href='https://github.com/zswanson92'>  Zack Swanson</a></div>
-                        <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
-                    </div>
+                    <div className='href-div'><a className='splash-github-link' href='https://github.com/zswanson92'>  Zack Swanson</a></div>
+                    <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
                 </div>
-            </footer>
+            </div>
         </div>
     )
 }

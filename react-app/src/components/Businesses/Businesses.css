@@ -187,3 +187,11 @@
     /* gap: 98em; */
     justify-content: space-between;
 }
+
+.businesses-footer-div {
+    position: absolute;
+    bottom: auto;
+    width: 100%;
+    /* justify-content: space-between; */
+    background-color: lightgray;
+}

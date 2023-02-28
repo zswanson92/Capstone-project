@@ -87,7 +87,7 @@ const LoginForm = () => {
 
       </div>
       <div className='login-form-footer-div'>
-        <footer className='splash-footer'>
+        {/* <footer className='splash-footer'> */}
           <div className="splash-footer-div">
             <div className="corp-div">© 2022 Zelp Corp</div>
             <div className='foot-name-div'>
@@ -96,7 +96,7 @@ const LoginForm = () => {
               <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
             </div>
           </div>
-        </footer>
+        {/* </footer> */}
       </div>
     </>
   );
