@@ -23,10 +23,40 @@
 
 .test-splashbutton-div-two{
     border-radius: 10px;
-    background-color: orange;
+    background-color: #FFAC1C;
     padding: .2em;
     margin-bottom: .5em;
 }
+
+.test-splashbutton-div-two-two{
+    border-radius: 10px;
+    background-color:  #ffa600;
+    padding: .2em;
+    margin-bottom: .5em;
+}
+
+.test-splashbutton-div-two-three{
+    border-radius: 10px;
+    background-color: #FF7F50;
+    padding: .2em;
+    margin-bottom: .5em;
+}
+
+.test-splashbutton-div-two-four{
+    border-radius: 10px;
+    background-color: #FF7518;
+    padding: .2em;
+    margin-bottom: .5em;
+}
+
+.test-splashbutton-div-two-five{
+    border-radius: 10px;
+    background-color: #FF4433;
+    padding: .2em;
+    margin-bottom: .5em;
+}
+
+
 
 
 .abcdefg-div{
@@ -135,6 +165,7 @@
     background-color: rgb(216, 203, 203);
     display: flex;
     align-items: center;
+    margin-top: auto;
 }
 
 .splash-github-link {

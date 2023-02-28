@@ -102,26 +102,26 @@ const SplashPage = () => {
                                                 </IconContext.Provider>
                                             </button>
                                         </div>
-                                        <div id="b" onMouseEnter={() => [setShowIndex(i), setHovered(2)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 2) ? 'test-splashbutton-div-two' : 'test-splashbutton-div'}>
+                                        <div id="b" onMouseEnter={() => [setShowIndex(i), setHovered(2)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 2) ? 'test-splashbutton-div-two-two' : 'test-splashbutton-div'}>
                                             <button className="star-buttons-sugg-review" type='button'
                                             > <IconContext.Provider value={{ color: 'white', size: '16' }} >
                                                     <FaStar />
                                                 </IconContext.Provider></button>
 
                                         </div>
-                                        <div id="c" onMouseEnter={() => [setShowIndex(i), setHovered(3)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 3) ? 'test-splashbutton-div-two' : 'test-splashbutton-div'} >
+                                        <div id="c" onMouseEnter={() => [setShowIndex(i), setHovered(3)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 3) ? 'test-splashbutton-div-two-three' : 'test-splashbutton-div'} >
                                             <button className="star-buttons-sugg-review" type='button'
                                             > <IconContext.Provider value={{ color: 'white', size: '16' }} >
                                                     <FaStar />
                                                 </IconContext.Provider></button>
                                         </div>
-                                        <div id="d" onMouseEnter={() => [setShowIndex(i), setHovered(4)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 4) ? 'test-splashbutton-div-two' : 'test-splashbutton-div'}>
+                                        <div id="d" onMouseEnter={() => [setShowIndex(i), setHovered(4)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 4) ? 'test-splashbutton-div-two-four' : 'test-splashbutton-div'}>
                                             <button className="star-buttons-sugg-review" type='button'
                                             > <IconContext.Provider value={{ color: 'white', size: '16' }} >
                                                     <FaStar />
                                                 </IconContext.Provider></button>
                                         </div>
-                                        <div id="e" onMouseEnter={() => [setShowIndex(i), setHovered(5)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 5) ? 'test-splashbutton-div-two' : 'test-splashbutton-div'}>
+                                        <div id="e" onMouseEnter={() => [setShowIndex(i), setHovered(5)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 5) ? 'test-splashbutton-div-two-five' : 'test-splashbutton-div'}>
                                             <button className="star-buttons-sugg-review" type='button'
                                             > <IconContext.Provider value={{ color: 'white', size: '16' }} >
                                                     <FaStar />

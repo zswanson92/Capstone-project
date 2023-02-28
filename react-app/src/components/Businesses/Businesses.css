@@ -184,5 +184,6 @@
 .splash-footer-div{
     display: flex;
     align-items: center;
-    gap: 98em;
+    /* gap: 98em; */
+    justify-content: space-between;
 }
