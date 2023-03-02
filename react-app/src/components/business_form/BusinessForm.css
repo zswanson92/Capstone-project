@@ -45,8 +45,15 @@
 }
 
 /* .business-form-hours-inputs-div{
-    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 } */
+
+.hoursofop-h3{
+    display: flex;
+    justify-content: center;
+}
 
 .bizform-hours-div {
     border: solid 1px black;
@@ -55,6 +62,7 @@
     flex-direction: column;
     gap: 1em;
     align-items: center;
+    padding: .5em;
 }
 
 .bizform-hours-div-last {
@@ -63,22 +71,42 @@
     flex-direction: column;
     gap: 1em;
     align-items: center;
+    padding: .5em;
+}
+
+
+.bizform-hours-div-last-secondary {
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    border-bottom: none;
 }
 
 .openclosetime-div {
     display: flex;
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* gap: 1em; */
+    justify-content: center;
     padding-top: .3em;
 }
 
 .secondary-openclosetime-div {
     display: flex;
+    justify-content: center;
     padding-top: .3em;
     border: 1px solid black;
     border-top: none;
     border-bottom: none;
+    padding-bottom: .5em;
+}
+
+.secondary-openclosetime-div-last{
+    display: flex;
+    justify-content: center;
+    padding-top: .3em;
+    border: 1px solid black;
+    border-top: none;
+    /* border-bottom: none; */
     padding-bottom: .5em;
 }
 
@@ -105,6 +133,7 @@
 }
 
 .business-form-email-input-div {
+    padding-top: .8em;
     padding-bottom: .8em;
 }
 
@@ -131,6 +160,7 @@
     padding-bottom: .8em;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .business-form-website-input-div {
@@ -164,7 +194,7 @@
 .business-form-phone-input {
     padding: .3em;
     height: 1.2em;
-    width: 15em;
+    width: 8.5em;
     border-radius: 3px;
 }
 
@@ -191,6 +221,7 @@
 }
 
 .create-business-form-two-button-div {
+    padding-top: 2em;
     display: flex;
     gap: 5em;
 }
@@ -201,7 +232,7 @@
     border-radius: 3px;
     color: white;
     border: none;
-    height: 4em;
+    height: 3em;
     width: 10em;
 }
 
@@ -218,7 +249,7 @@
     border-radius: 3px;
     color: white;
     border: none;
-    height: 4em;
+    height: 3em;
     width: 7em;
 }
 
