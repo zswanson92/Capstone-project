@@ -1,21 +1,28 @@
-.main-business-form-div{
+.main-business-form-div {
     display: flex;
     /* flex-direction: column; */
+    /* align-items: center; */
     justify-content: center;
 }
 
-.business-form-name-input-div{
+.bizform-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.business-form-name-input-div {
     padding-bottom: .8em;
 }
 
-.business-form-name-input{
+.business-form-name-input {
     padding: .3em;
     height: 1.2em;
     width: 20em;
     border-radius: 3px;
 }
 
-.falsey-business-form-name-input{
+.falsey-business-form-name-input {
     padding: .3em;
     height: 1.2em;
     width: 20em;
@@ -23,14 +30,14 @@
     border-color: red;
 }
 
-.business-form-previmg-input-div{
+.business-form-previmg-input-div {
     padding-bottom: .8em;
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.business-form-previmg-input{
+.business-form-previmg-input {
     padding: .3em;
     height: 1.2em;
     width: 25em;
@@ -38,17 +45,58 @@
 }
 
 /* .business-form-hours-inputs-div{
-    padding-bottom: .5em;
+    border: solid 1px black;
 } */
 
-.business-form-hours-input{
+.bizform-hours-div {
+    border: solid 1px black;
+    border-bottom: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+
+.bizform-hours-div-last {
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+
+.openclosetime-div {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* gap: 1em; */
+    padding-top: .3em;
+}
+
+.secondary-openclosetime-div {
+    display: flex;
+    padding-top: .3em;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    padding-bottom: .5em;
+}
+
+.openclose-radio-div {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+}
+
+.business-form-hours-input {
     padding: .3em;
     height: 1.2em;
     width: 19em;
     border-radius: 3px;
+
 }
 
-.falsey-form-hours-input{
+.falsey-form-hours-input {
     padding: .3em;
     height: 1.2em;
     width: 19em;
@@ -56,18 +104,18 @@
     border-color: red;
 }
 
-.business-form-email-input-div{
+.business-form-email-input-div {
     padding-bottom: .8em;
 }
 
-.business-form-email-input{
+.business-form-email-input {
     padding: .3em;
     height: 1.2em;
     width: 15em;
     border-radius: 3px;
 }
 
-.falsey-business-form-email-input{
+.falsey-business-form-email-input {
     padding: .3em;
     height: 1.2em;
     width: 15em;
@@ -75,32 +123,32 @@
     border-color: red;
 }
 
-.business-form-address-input-div{
+.business-form-address-input-div {
     padding-bottom: .8em;
 }
 
-.business-form-phone-input-div{
+.business-form-phone-input-div {
     padding-bottom: .8em;
     display: flex;
     flex-direction: column;
 }
 
-.business-form-website-input-div{
+.business-form-website-input-div {
     padding-bottom: .8em;
 }
 
-.business-form-tags-input-div{
+.business-form-tags-input-div {
     padding-bottom: .8em;
 }
 
-.business-form-address-input{
+.business-form-address-input {
     padding: .3em;
     height: 1.2em;
     width: 20em;
     border-radius: 3px;
 }
 
-.falsey-business-form-address-input{
+.falsey-business-form-address-input {
     padding: .3em;
     height: 1.2em;
     width: 20em;
@@ -108,19 +156,19 @@
     border-color: red;
 }
 
-.phone-num-input-label{
+.phone-num-input-label {
     padding-bottom: .5em;
     font-size: 15px;
 }
 
-.business-form-phone-input{
+.business-form-phone-input {
     padding: .3em;
     height: 1.2em;
     width: 15em;
     border-radius: 3px;
 }
 
-.falsey-business-form-phone-input{
+.falsey-business-form-phone-input {
     padding: .3em;
     height: 1.2em;
     width: 15em;
@@ -128,26 +176,26 @@
     border-color: red;
 }
 
-.business-form-website-input{
+.business-form-website-input {
     padding: .3em;
     height: 1.2em;
     width: 20em;
     border-radius: 3px;
 }
 
-.business-form-tags-input{
+.business-form-tags-input {
     padding: .3em;
     height: 1.2em;
     width: 15em;
     border-radius: 3px;
 }
 
-.create-business-form-two-button-div{
+.create-business-form-two-button-div {
     display: flex;
     gap: 5em;
 }
 
-.business-form-button-submit{
+.business-form-button-submit {
     background: none;
     background-color: #c41200;
     border-radius: 3px;
@@ -157,14 +205,14 @@
     width: 10em;
 }
 
-.error-below-too-long-name{
+.error-below-too-long-name {
     color: red;
     font-size: .8em;
     width: 25em;
     padding-top: 1em;
 }
 
-.business-form-button-close{
+.business-form-button-close {
     background: none;
     background-color: #c41200;
     border-radius: 3px;
@@ -174,15 +222,15 @@
     width: 7em;
 }
 
-.business-form-aboutus-input-div{
+.business-form-aboutus-input-div {
     padding-bottom: .8em;
 }
 
-.business-form-price-input-div{
+.business-form-price-input-div {
     padding-bottom: .8em;
 }
 
-.business-form-aboutus-input{
+.business-form-aboutus-input {
     resize: none;
     padding: .3em;
     height: 8em;
@@ -190,7 +238,7 @@
     border-radius: 8px;
 }
 
-.falsey-business-form-aboutus-input{
+.falsey-business-form-aboutus-input {
     resize: none;
     padding: .3em;
     height: 8em;
@@ -199,14 +247,14 @@
     border-color: red;
 }
 
-.business-form-price-input{
+.business-form-price-input {
     padding: .3em;
     height: 1.2em;
     width: 15em;
     border-radius: 3px;
 }
 
-.falsey-business-form-price-input{
+.falsey-business-form-price-input {
     padding: .3em;
     height: 1.2em;
     width: 15em;
@@ -214,12 +262,12 @@
     border-color: red;
 }
 
-.secondary-hours-input-div{
+.secondary-hours-input-div {
     padding-bottom: 1em;
     /* padding-top: 1em; */
 }
 
-.error-below-inputs-divs{
+.error-below-inputs-divs {
     font-size: 12px;
     padding-top: .5em;
     padding-bottom: .5em;
@@ -230,6 +278,7 @@
     padding-bottom: 1em;
 } */
 
-.div-containing-secondary-check{
-    padding-bottom: 2em;
+.div-containing-secondary-check {
+    padding-bottom: .5em;
+    /* border: 1px solid black; */
 }
