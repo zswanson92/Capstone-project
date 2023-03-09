@@ -10,9 +10,7 @@ const EditMenu = () => {
     const dispatch = useDispatch();
     let history = useHistory();
     let { menuId } = useParams();
-    // const sessionUser = useSelector((state) => state.session.user);
 
-    // let userId = sessionUser.id
 
     const currentMenu = useSelector(state => state.businessReducer.businesses)
     const currentMenuArr = Object.values(currentMenu)
@@ -31,8 +29,6 @@ const EditMenu = () => {
         e.preventDefault()
         if (errors.length > 0) return;
         const editedMenu = {
-            // userId,
-            // businessId,
             menuId,
             category,
             menu_image

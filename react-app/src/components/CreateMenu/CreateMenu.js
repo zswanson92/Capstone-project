@@ -28,7 +28,6 @@ const CreateMenu = () => {
 
         const theNewMenu = await dispatch(createMenuThunk(createdMenu))
 
-        // history.push(`/businesses/${businessId}`)
         if (theNewMenu) {
             await history.push(`/create/menu/${theNewMenu.id}`)
         }
@@ -73,14 +72,6 @@ const CreateMenu = () => {
                     {category.length > 40 ? <div>Name of menu must be less than 40 characters.</div> : ""}
                 </div>
                 <div className="menu-form-divs">
-                    {/* <input
-                        type='text'
-                        onChange={(e) => setMenuImage(e.target.value)}
-                        value={menu_image}
-                        placeholder="Optional URL image for Menu Category"
-                        className="menu-category-input"
-                    />
-                    {menu_image.length > 0 && !validImageUrl(menu_image) ? <div>If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
                     <input
                         type="file"
                         name='image'

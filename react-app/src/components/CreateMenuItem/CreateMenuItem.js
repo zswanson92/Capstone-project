@@ -25,7 +25,6 @@ const CreateMenuItem = () => {
         if (errors.length > 0) return;
         const createdMenuItem = {
             userId,
-            // businessId,
             menuId,
             item_name,
             description,
@@ -100,15 +99,6 @@ const CreateMenuItem = () => {
                     />
                 </div>
                 <div className="menu-form-divs">
-                    {/* <input
-                        // required={true}
-                        type='text'
-                        onChange={(e) => setMenuItemImage(e.target.value)}
-                        value={menu_item_image}
-                        placeholder="Optional URL image for Menu Item"
-                        className="menu-category-input"
-                    />
-                    {menu_item_image.length > 0 && !validImageUrl(menu_item_image) ? <div>If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
                     <input
                         type="file"
                         name='image'

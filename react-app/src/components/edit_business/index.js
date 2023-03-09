@@ -164,44 +164,6 @@ const EditBusiness = () => {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    // useEffect(() => {
-    //     const err = [];
-    //     if (name.length < 6) {
-    //         err.push("Business name must be at least 6 characters long.")
-    //     }
-    //     if (isValidPhone(phone_number) !== 2 || phone_number.length !== 12) {
-    //         err.push("Must be a valid formatted phone number.")
-    //     }
-    //     if (address.length < 15) {
-    //         err.push("Address must be at least 15 characters long")
-    //     }
-    //     if (monday_hours.length !== 15 || (!isValidTime(monday_hours))) {
-    //         err.push("Must be valid time format for Monday.")
-    //     }
-    //     if (tuesday_hours.length !== 15 || (!isValidTime(tuesday_hours))) {
-    //         err.push("Must be valid time format for Tuesday.")
-    //     }
-    //     if (wednesday_hours.length !== 15 || (!isValidTime(wednesday_hours))) {
-    //         err.push("Must be valid time format for Wednesday.")
-    //     }
-    //     if (thursday_hours.length !== 15 || (!isValidTime(thursday_hours))) {
-    //         err.push("Must be valid time format for Thursday.")
-    //     }
-    //     if (friday_hours.length !== 15 || (!isValidTime(friday_hours))) {
-    //         err.push("Must be valid time format for Friday.")
-    //     }
-    //     if (saturday_hours.length !== 15 || (!isValidTime(saturday_hours))) {
-    //         err.push("Must be valid time format for Saturday.")
-    //     }
-    //     if (sunday_hours.length !== 15 || (!isValidTime(sunday_hours))) {
-    //         err.push("Must be valid time format for Sunday.")
-    //     }
-    //     if (!isValidEmail(email)) {
-    //         err.push("Must be a valid Email address")
-    //     }
-    //     setErrors(err)
-    // }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
-    //     thursday_hours, friday_hours, saturday_hours, sunday_hours, email])
 
     useEffect(() => {
         const err = [];
@@ -255,7 +217,6 @@ const EditBusiness = () => {
         thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us])
 
     let mon_falsey_check = (monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length !== 15) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))
-    // console.log(mon_falsey_check)
     let tues_falsey_check = (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length !== 15) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))
     let weds_falsey_check = (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length !== 15) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))
     let thurs_falsey_check = (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length !== 15) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))
@@ -266,7 +227,6 @@ const EditBusiness = () => {
 
     const updateImage = (e) => {
         const file = e.target.files[0];
-        // console.log("FILE!!", file)
         setPreviewImage(file);
     }
 
@@ -293,14 +253,6 @@ const EditBusiness = () => {
                         {name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
                     </div>
                     <div className="edit-business-previewimage-div">
-                        {/* <input
-                            className="business-form-previmg-input"
-                            type='text'
-                            name='preview_image'
-                            onChange={imageSet}
-                            value={preview_img}
-                        ></input>
-                        {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
                         <p>Upload a preview image for your business.</p>
                         <input
                             type="file"

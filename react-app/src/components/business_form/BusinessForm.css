@@ -1,7 +1,5 @@
 .main-business-form-div {
     display: flex;
-    /* flex-direction: column; */
-    /* align-items: center; */
     justify-content: center;
 }
 
@@ -13,6 +11,9 @@
 
 .business-form-name-input-div {
     padding-bottom: .8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .business-form-name-input {
@@ -44,11 +45,6 @@
     border-radius: 3px;
 }
 
-/* .business-form-hours-inputs-div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
 
 .hoursofop-h3{
     display: flex;
@@ -106,14 +102,11 @@
     padding-top: .3em;
     border: 1px solid black;
     border-top: none;
-    /* border-bottom: none; */
     padding-bottom: .5em;
 }
 
 .openclose-radio-div {
     display: flex;
-    /* flex-direction: column; */
-    /* align-items: center; */
 }
 
 .business-form-hours-input {
@@ -135,6 +128,9 @@
 .business-form-email-input-div {
     padding-top: .8em;
     padding-bottom: .8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .business-form-email-input {
@@ -154,6 +150,9 @@
 
 .business-form-address-input-div {
     padding-bottom: .8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .business-form-phone-input-div {
@@ -239,7 +238,6 @@
 .error-below-too-long-name {
     color: red;
     font-size: .8em;
-    width: 25em;
     padding-top: 1em;
 }
 
@@ -255,10 +253,16 @@
 
 .business-form-aboutus-input-div {
     padding-bottom: .8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .business-form-price-input-div {
     padding-bottom: .8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .business-form-aboutus-input {
@@ -305,11 +309,7 @@
     color: red;
 }
 
-/* .extra-day-input-checkbox{
-    padding-bottom: 1em;
-} */
 
 .div-containing-secondary-check {
     padding-bottom: .5em;
-    /* border: 1px solid black; */
 }

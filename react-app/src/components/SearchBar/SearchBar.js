@@ -23,7 +23,6 @@ const SearchBar = () => {
   return (
     <div className="main-search-container">
       <form className="search-form" onSubmit={handleSubmit}>
-        {/* <div className="searchbar-container"> */}
           <div className="the-searchbar-div">
             <input
               type="search"
@@ -49,7 +48,6 @@ const SearchBar = () => {
 
             <button type="submit" className="search-button"><i className="fa-solid fa-magnifying-glass"></i></button>
           </div>
-        {/* </div> */}
       </form>
     </div>
   );

@@ -9,7 +9,6 @@ import { FaStar } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
 const SplashPage = () => {
-    // const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch();
 
     const [arrTitles, setArrTitles] = useState("https://images4.alphacoders.com/150/1506.jpg");
@@ -22,7 +21,6 @@ const SplashPage = () => {
         position: 'relative',
         bottom: '30px',
         border: '1px solid black',
-        // marginTop: "2em",
         zIndex: '2'
     }
 
@@ -78,7 +76,6 @@ const SplashPage = () => {
     return (
         <div className='main-splashpage-div'>
             <div className='splash-image-div'>
-                {/* <h1>testing splash export</h1> */}
                 <img className='splash-header-img' src={arrTitles} alt='' />
             </div>
             <div className='next-rev-div'>
@@ -89,7 +86,7 @@ const SplashPage = () => {
                     return (
                         <Link key={i} to={`/businesses/${business.id}`} className='suggested-reviews-links'>
                             <div className='suggested-reviews-div'>
-                                <div className='abcdef-div'><img onError={addDefaultSrc} className='suggested-reviews-img' src={business.preview_img} alt='Loading...' /></div>
+                                {business.preview_img ? <div className='abcdef-div'><img onError={addDefaultSrc} className='suggested-reviews-img' src={business.preview_img} alt="Loading..."  /></div> : ""}
                                 <div className='agddgaddga-div'>
                                     <p className='sugg-review-business-name'>{business.name}</p>
                                     <p>Do you recommend this business?</p>
@@ -146,8 +143,7 @@ const SplashPage = () => {
                 <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Home Services</p> <i className="fa fa-home" aria-hidden="true"></i></div></Link>
                 <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>More</p> <i className="fa fa-expand" aria-hidden="true"></i></div></Link>
             </div>
-            {/* <div className='splashpage-footer-div'> */}
-                <div className="splash-footer-div">
+                <div className="splash-footer-div-splashpage">
                     <div className="corp-div">© 2022 Zelp Corp</div>
                     <div className='foot-name-div'>
 
@@ -155,7 +151,6 @@ const SplashPage = () => {
                         <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
                     </div>
                 </div>
-            {/* </div> */}
         </div>
     )
 }

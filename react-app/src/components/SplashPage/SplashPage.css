@@ -190,6 +190,22 @@
     text-decoration: none;
 }
 
-.splash-footer-div{
+
+.splash-footer-div-splashpage{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: lightgray;
+    position: relative;
+    bottom: 0;
+}
+
+@-moz-document url-prefix() {
+    .splash-footer-div-splashpage {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: lightgray;
+        position: relative;
+        bottom: -170px;  }
 }

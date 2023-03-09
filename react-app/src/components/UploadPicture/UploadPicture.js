@@ -1,11 +1,8 @@
 import React, {useState} from "react";
-// import { useHistory } from "react-router-dom";
 
 
 const UploadPicture = () => {
-    // const history = useHistory(); // so that we can redirect after the image upload is successful
     const [image, setImage] = useState(null);
-    // const [imageLoading, setImageLoading] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -39,7 +36,6 @@ const UploadPicture = () => {
               onChange={updateImage}
             />
             <button type="submit">Submit</button>
-            {/* {(imageLoading)&& <p>Loading...</p>} */}
         </form>
     )
 }

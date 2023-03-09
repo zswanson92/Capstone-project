@@ -11,7 +11,6 @@ const HomeMap = ({ addy }) => {
   const apiKey = useSelector(state => state.mapReducer.key)
   Geocode.setApiKey(apiKey);
   const [locations, setLocations] = useState([])
-  // const [showInfo, setShowInfo] = useState(false)
   const [clickedMark, setClickedMark] = useState(null);
 
   const handleClickedMark = (marker) => {

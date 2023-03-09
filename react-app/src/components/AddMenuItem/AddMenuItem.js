@@ -26,8 +26,6 @@ const AddMenuItem = () => {
 
 
 
-    // console.log(menuArr)
-
     function addDefaultSrc(ev) {
         ev.target.src = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
     }

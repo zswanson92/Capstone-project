@@ -9,9 +9,7 @@ const EditMenuItem = () => {
     let history = useHistory();
 
     const { businessId, menuItemId } = useParams();
-    // const sessionUser = useSelector((state) => state.session.user);
 
-    // let userId = sessionUser.id
 
     const menuItemState = useSelector(state => state.businessReducer.businesses[businessId]?.menus[0].menu_items)
 
@@ -36,9 +34,6 @@ const EditMenuItem = () => {
         e.preventDefault()
         if(errors.length > 0) return;
         const editedMenuItem = {
-            // userId,
-            // businessId,
-            // menuId,
             menuItemId,
             item_name,
             description,
@@ -88,7 +83,6 @@ const EditMenuItem = () => {
                     placeholder="Name of Menu Item"
                     className="menu-category-input"
                     />
-                    {/* {item_name && (item_name.length < 3 ? <div>Menu item name must be longer than 3 characters.</div> : "")} */}
                     {item_name && (item_name.length > 25 ? <div>Menu item name cannot exceed 25 characters.</div> : "")}
                 </div>
                 <div className="menu-form-divs">

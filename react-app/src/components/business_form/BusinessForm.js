@@ -120,6 +120,7 @@ const BusinessForm = () => {
     const [sunTwoCloseAmPm, setSunTwoCloseAmPm] = useState("");
 
     const [errors, setErrors] = useState([]);
+    const [renderErr, setRenderErr] = useState([])
 
     const nameSet = (e) => {
         setName(e.target.value)
@@ -180,7 +181,10 @@ const BusinessForm = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        if (errors.length > 0) return;
+        if (errors.length > 0){
+            setRenderErr(errors)
+            return
+        };
         const createdBusiness = {
             name,
             preview_img,
@@ -202,7 +206,6 @@ const BusinessForm = () => {
 
         const addedBiz = await dispatch(createBusinessThunk(createdBusiness))
 
-        // let path = ;
         console.log(addedBiz?.id)
         if (addedBiz) {
             await history.push(`/businesses/${addedBiz?.id}`);
@@ -215,37 +218,23 @@ const BusinessForm = () => {
 
     function isValidPhone(phone) {
         let i = 0
-        // console.log(phone.split(''))
         phone.split('').forEach((letter) => {
             if (letter === '-' || letter === '1' || letter === '2' || letter === '3' || letter === '4' || letter === '5' || letter === '6' || letter === '7' || letter === '8' || letter === '9' || letter === '0') {
                 i++
             }
         })
-        // console.log(i)
         return i
     }
 
-    function isValidTime(time) {
-        let regexp = /^[aAmMpP0-9---:]+$/;
-        return regexp.test(time)
-    }
+    // function isValidTime(time) {
+    //     let regexp = /^[aAmMpP0-9---:]+$/;
+    //     return regexp.test(time)
+    // }
 
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    // function validImageUrl(url) {
-    //     let falseycheck;
-    //     let lastThree = url.split('').slice(url.length - 3)
-    //     // console.log(lastThree.join(''))
-    //     if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-    //         falseycheck = true
-    //     } else {
-    //         falseycheck = false
-    //     }
-    //     // console.log(falseycheck)
-    //     return falseycheck
-    // }
 
     useEffect(() => {
         const err = [];
@@ -253,7 +242,7 @@ const BusinessForm = () => {
             err.push("Business name must be at least 6 characters long.")
         }
         if (name.length > 50) {
-            err.push("Business must be less than 50 characters long. You can include further naming needs within your business description")
+            err.push("Business must be less than 50 characters long. You can include further naming needs within your business description.")
         }
         if (isValidPhone(phone_number) !== 12) {
             err.push("Must be a valid formatted phone number.")
@@ -264,29 +253,30 @@ const BusinessForm = () => {
         if (address.length > 100) {
             err.push("Address cannot exceed 100 characters")
         }
-        // if ((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length < 7) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))) {
-        //     err.push("Must be valid time format for Monday.")
-        // }
-        // if ((tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length < 7) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))) {
-        //     err.push("Must be valid time format for Tuesday.")
-        // }
-        // if ((wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length < 7) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))) {
-        //     err.push("Must be valid time format for Wednesday.")
-        // }
-        // if ((thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length < 7) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))) {
-        //     err.push("Must be valid time format for Thursday.")
-        // }
-        // if ((friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length < 7) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))) {
-        //     err.push("Must be valid time format for Friday.")
-        // }
-        // if ((saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length < 7) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))) {
-        //     err.push("Must be valid time format for Saturday.")
-        // }
-        // if ((sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length < 7) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))) {
-        //     err.push("Must be valid time format for Sunday.")
-        // }
+        if ((monday_hours !== 'Closed' && (monday_hours === "" || monday_hours_close === "" || monOpenAmPM === "" || monCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
+        }
+        if ((tuesday_hours !== 'Closed' && (tuesday_hours === "" || tuesday_hours_close === "" || tueOpenAmPM === "" || tueCloseAmPm === ""))) {
+            err.push("Must enter hours for Tuesday if not closed.")
+        }
+        if ((wednesday_hours !== 'Closed' && (wednesday_hours === "" || wednesday_hours_close === "" || wedOpenAmPM === "" || wedCloseAmPm === ""))) {
+            err.push("Must enter hours for Wednesday if not closed.")
+        }
+        if ((thursday_hours !== 'Closed' && (thursday_hours === "" || thursday_hours_close === "" || thurOpenAmPM === "" || thurCloseAmPm === ""))) {
+            err.push("Must enter hours for Thursday if not closed.")
+        }
+        if ((friday_hours !== 'Closed' && (friday_hours === "" || friday_hours_close === "" || friOpenAmPM === "" || friCloseAmPm === ""))) {
+            err.push("Must enter hours for Friday if not closed.")
+        }
+        if ((saturday_hours !== 'Closed' && (saturday_hours === "" || saturday_hours_close === "" || satOpenAmPM === "" || satCloseAmPm === ""))) {
+            err.push("Must enter hours for Saturday if not closed.")
+        }
+        if ((sunday_hours !== 'Closed' && (sunday_hours === "" || sunday_hours_close === "" || sunOpenAmPM === "" || sunCloseAmPm === ""))) {
+            err.push("Must enter hours for Sunday if not closed.")
+        }
+
         if (!isValidEmail(email)) {
-            err.push("Must be a valid Email address")
+            err.push("Must enter a valid Email address")
         }
         if (price < 1 || price > 5) {
             err.push("Price must be between 1 and 5.")
@@ -295,17 +285,11 @@ const BusinessForm = () => {
             err.push("Description must be at least 30 characters.")
         }
         setErrors(err)
-    }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
-        thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us, preview_img])
+    }, [name, phone_number, address, monday_hours, monday_hours_close, monOpenAmPM, monCloseAmPm, tuesday_hours, tuesday_hours_close, tueOpenAmPM, tueCloseAmPm, wednesday_hours,
+        wednesday_hours_close, wedOpenAmPM, wedCloseAmPm, thursday_hours, thursday_hours_close, thurOpenAmPM, thurCloseAmPm, friday_hours, friday_hours_close, friOpenAmPM, friCloseAmPm,
+        saturday_hours, saturday_hours_close, satOpenAmPM, satCloseAmPm, sunday_hours, sunday_hours_close, sunOpenAmPM, sunCloseAmPm, email, price, about_us, preview_img])
 
 
-    let mon_falsey_check = (monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length < 7) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))
-    let tues_falsey_check = (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length < 7) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))
-    let weds_falsey_check = (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length < 7) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))
-    let thurs_falsey_check = (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length < 7) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))
-    let fri_falsey_check = (friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length < 7) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))
-    let sat_falsey_check = (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length < 7) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))
-    let sun_falsey_check = (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length < 7) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))
 
     const monCheckBox = () => {
         setMonCheck(!monCheck)
@@ -359,7 +343,7 @@ const BusinessForm = () => {
                         value={name}
                         placeholder="Business Name"></input>
                     {name.length && name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
-                    {name.length && name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
+                    {name.length && name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long.</div> : ""}
                 </div>
                 <div className="business-form-previmg-input-div">
                     Upload a preview image for your business.
@@ -373,19 +357,6 @@ const BusinessForm = () => {
                 <div className="business-form-hours-inputs-div">
                     <h3 className="hoursofop-h3">Hours of operation:</h3>
                     <div className="bizform-hours-div">
-
-                        {/* <p>Business Hours &#40;Preferred format xx:xxam/pm-yy:yyam/pm, or "Closed"&#41;.</p> */}
-                        {/* <input
-                            required={true}
-                            className={monday_hours.length && mon_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Monday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={monSet}
-                            value={monday_hours}
-                        >
-                        </input>
-                        {monday_hours.length && mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""} */}
                         <div className="openclose-radio-div">
                             <div>Open/Closed Monday?</div>
                             &nbsp; &nbsp;
@@ -483,18 +454,13 @@ const BusinessForm = () => {
                                 <option value={"AM"}>AM</option>
                                 <option vale={"PM"}>PM</option>
                             </select>
-                            {/* </div> */}
-
-                            {/* </div> */}
                         </div> : ""}
-                        {/* <div> */}
                         {(monday_hours === 'Closed' || monday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Monday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
                                 type='checkbox'
                                 onClick={monCheckBox}>
                             </input></div>}
-                        {/* </div> */}
                     </div>
                     {monCheck ? <div className='secondary-openclosetime-div'>
                         <label>Opening time: &nbsp;</label>
@@ -577,16 +543,6 @@ const BusinessForm = () => {
                         </div>
                     </div> : ""}
                     <div className="bizform-hours-div">
-                        {/* <input
-                            className={tuesday_hours.length && tues_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Tuesday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={tuesSet}
-                            value={tuesday_hours}
-                        >
-                        </input>
-                        {tuesday_hours.length && tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Tuesday. </div> : ""} */}
                         <div className="openclose-radio-div">
                             <div>Open/Closed Tuesday?</div>
                             &nbsp; &nbsp;
@@ -647,7 +603,6 @@ const BusinessForm = () => {
                             </select>
                             &nbsp; &nbsp;
                             <label>Closing time:  &nbsp;</label>
-                            {/* <div> */}
                             <select
                                 value={tuesday_hours_close}
                                 onChange={(e) => setTuesHoursClose(e.target.value)}>
@@ -684,16 +639,13 @@ const BusinessForm = () => {
                                 <option value={"AM"}>AM</option>
                                 <option vale={"PM"}>PM</option>
                             </select>
-                            {/* </div> */}
                         </div> : ""}
-                        {/* <div> */}
                         {(tuesday_hours === 'Closed' || tuesday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Tuesday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
                                 type='checkbox'
                                 onClick={tueCheckBox}>
                             </input></div>}
-                        {/* </div> */}
                     </div>
                     {tueCheck ? <div className='secondary-openclosetime-div'>
                         <label>Opening time: &nbsp;</label>
@@ -777,18 +729,6 @@ const BusinessForm = () => {
                     </div> : ""}
 
                     <div className="bizform-hours-div">
-                        {/* <input
-                            required={true}
-                            className={wednesday_hours.length && weds_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Wedsnesday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={wedsSet}
-                            value={wednesday_hours}>
-                        </input>
-                        {wednesday_hours.length && weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Wednesday. </div> : ""} */}
-
-
                         <div className="openclose-radio-div">
                             <div>Open/Closed Wednesday?</div>
                             &nbsp; &nbsp;
@@ -849,7 +789,6 @@ const BusinessForm = () => {
                             </select>
                             &nbsp; &nbsp;
                             <label>Closing time: &nbsp;</label>
-                            {/* <div> */}
                             <select
                                 value={wednesday_hours_close}
                                 onChange={(e) => setWedsHoursClose(e.target.value)}>
@@ -886,16 +825,13 @@ const BusinessForm = () => {
                                 <option value={"AM"}>AM</option>
                                 <option vale={"PM"}>PM</option>
                             </select>
-                            {/* </div> */}
                         </div> : ""}
-                        {/* <div> */}
                         {(wednesday_hours === 'Closed' || wednesday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Wednesday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
                                 type='checkbox'
                                 onClick={wedCheckBox}>
                             </input></div>}
-                        {/* </div> */}
 
                         {wedCheck ? <div className='secondary-openclosetime-div'>
                             <label>Opening time: &nbsp;</label>
@@ -980,18 +916,6 @@ const BusinessForm = () => {
 
                     </div>
                     <div className="bizform-hours-div">
-                        {/* <input
-                            required={true}
-                            className={thursday_hours.length && thurs_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Thursday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={thursSet}
-                            value={thursday_hours}>
-
-                        </input>
-                        {thursday_hours.length && thurs_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Thursday. </div> : ""} */}
-
                         <div className="openclose-radio-div">
                             <div>Open/Closed Thursday?</div>
                             &nbsp; &nbsp;
@@ -1175,18 +1099,6 @@ const BusinessForm = () => {
                         </div>
                     </div> : ""}
                     <div className="bizform-hours-div">
-                        {/* <input
-                            required={true}
-                            className={friday_hours.length && fri_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Friday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={friSet}
-                            value={friday_hours}>
-
-                        </input>
-                        {friday_hours.length && fri_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Friday. </div> : ""} */}
-
                         <div className="openclose-radio-div">
                             <div>Open/Closed Friday?</div>
                             &nbsp; &nbsp;
@@ -1371,18 +1283,6 @@ const BusinessForm = () => {
                         </div>
                     </div> : ""}
                     <div className="bizform-hours-div">
-                        {/* <input
-                            required={true}
-                            className={saturday_hours.length && sat_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Saturday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={satSet}
-                            value={saturday_hours}>
-
-                        </input>
-                        {saturday_hours.length && sat_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Saturday. </div> : ""} */}
-
                         <div className="openclose-radio-div">
                             <div>Open/Closed Saturday?</div>
                             &nbsp; &nbsp;
@@ -1569,19 +1469,6 @@ const BusinessForm = () => {
                         </div>
                     </div> : ""}
                     <div className={sunCheck ? "bizform-hours-div-last-secondary" : "bizform-hours-div-last"}>
-                        {/* <input
-                            required={true}
-                            className={sunday_hours.length && sun_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Sunday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={sunSet}
-                            value={sunday_hours}>
-
-                        </input>
-                        {sunday_hours.length && sun_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Sunday. </div> : ""} */}
-
-
                         <div className="openclose-radio-div">
                             <div>Open/Closed Sunday?</div>
                             &nbsp; &nbsp;
@@ -1768,7 +1655,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-email-input-div">
                     <input
-                        required={true}
                         placeholder="Email Address"
                         className={email.length && !isValidEmail(email) ? "falsey-business-form-email-input" : "business-form-email-input"}
                         name='email'
@@ -1780,7 +1666,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-address-input-div">
                     <input
-                        required={true}
                         placeholder="Business Address"
                         className={((address.length && address.length < 15) || (address.length && address.length > 100)) ? "falsey-business-form-address-input" : "business-form-address-input"}
                         name='address'
@@ -1793,7 +1678,6 @@ const BusinessForm = () => {
                 <div className="business-form-phone-input-div">
                     <label className="phone-num-input-label">Please enter in "xxx-xxx-xxxx" format.</label>
                     <input
-                        required={true}
                         placeholder="Business Phone #"
                         className={phone_number.length && isValidPhone(phone_number) !== 12 ? "falsey-business-form-phone-input" : "business-form-phone-input"}
                         name='phone_number'
@@ -1804,7 +1688,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-website-input-div">
                     <input
-                        // required={true}
                         placeholder="Business Website Link"
                         className="business-form-website-input"
                         type='text'
@@ -1815,7 +1698,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-aboutus-input-div">
                     <textarea
-                        required={true}
                         placeholder="Description of your business and offerings."
                         className={about_us.length && about_us.length < 30 ? "falsey-business-form-aboutus-input" : "business-form-aboutus-input"}
                         type='text'
@@ -1827,7 +1709,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-price-input-div">
                     <input
-                        required={true}
                         placeholder="Price (1-5, represented by $'s)"
                         className={((price.length && price < 1) || (price.length && price > 5)) ? "falsey-business-form-price-input" : "business-form-price-input"}
                         type='number'
@@ -1847,10 +1728,15 @@ const BusinessForm = () => {
                         value={tags}>
                     </input>
                 </div>
+                <ul>
+                    {renderErr?.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
                 <div className="create-business-form-two-button-div">
-                    {errors.length ? "" : <button className='business-form-button-submit' type="submit">Submit Business</button>}
+                    {/* {errors.length ? "" : <button className='business-form-button-submit' type="submit">Submit Business</button>} */}
+                    <button className='business-form-button-submit' type="submit">Submit Business</button>
                     <button className='business-form-button-close' onClick={onClose}>Close</button>
-                    {/* {console.log(errors)} */}
                 </div>
             </form >
         </div >

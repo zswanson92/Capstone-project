@@ -10,14 +10,10 @@ import { getKey } from '../../store/map'
 
 const Businesses = () => {
     const dispatch = useDispatch()
-    // const history = useHistory()
-
-
 
     const businessesObj = useSelector(state => {
         return state
     })
-
 
 
     const aBusiness = Object.values(businessesObj.businessReducer.businesses)
@@ -25,7 +21,6 @@ const Businesses = () => {
 
     useEffect(() => {
         dispatch(getAllBusinessesThunk())
-        // dispatch()
         dispatch(getKey())
     }, [dispatch])
 
@@ -87,14 +82,6 @@ const Businesses = () => {
         return sum
     }
 
-    // let newArr = []
-    // let sum = 0
-
-    // const eachReviewStarsArr = businessInfoObj?.reviews.forEach(obj => newArr.push(obj.stars))
-
-    // const reviewStarArrReduce = newArr?.reduce((accum, currVal) => accum + currVal, sum)
-
-    // const reviewStarAvg = (reviewStarArrReduce / businessInfoObj?.reviews.length).toFixed(2)
     const fillerImg = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
 
     function addDefaultSrc(ev) {
@@ -105,7 +92,6 @@ const Businesses = () => {
         <>
             <div className='total-business-count-div'>
                 <h2>{aBusiness?.length} Businesses</h2>
-                {/* <div className='a-map-div'> <HomeMap /> </div> */}
             </div>
             <div className='main-container-div-all-businesses'>
                 <div className='a-map-div'> <HomeMap /> </div>
@@ -113,12 +99,6 @@ const Businesses = () => {
                     {aBusiness.map((obj) => {
                         return (
                             <div key={obj?.id} className="business-detail">
-                                {/* <div className="details-div-image"> */}
-                                {/* <Link className="details-div-image" to={`/businesses/${obj?.id}`}> */}
-                                {/* {obj?.preview_img ? <img className='business-prev-img' src={obj?.preview_img} alt='Loading...' /> : ""} */}
-                                {/* </Link> */}
-                                {/* </div> */}
-                                {/* <div className='business-list-info-div'> */}
                                 <Link className='business-links' to={`/businesses/${obj?.id}`} style={{ textDecoration: 'none' }} >
                                     {obj?.preview_img ? <img className='business-prev-img' onError={addDefaultSrc} src={obj?.preview_img} alt='https://cdn-icons-png.flaticon.com/512/168/168812.png' /> : <img className='business-prev-img' src={fillerImg} alt={fillerImg} />}
                                     <div>
@@ -137,8 +117,6 @@ const Businesses = () => {
                                     </div>
                                 </Link>
                                 <Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
-                                {/* </div> */}
-                                {/*  */}
                             </div>
                         )
                     })}
