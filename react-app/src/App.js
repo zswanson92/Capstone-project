@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
+import SplashNavBar from './components/SplashNav';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -48,15 +49,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+
       <Switch>
         <Route path='/map' exact={true}>
-        <HomeMap />
+          <HomeMap />
         </Route>
         <Route path='/login' exact={true}>
+          <NavBar />
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
+          <NavBar />
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
@@ -69,10 +72,12 @@ function App() {
           <BusinessForm />
         </ProtectedRoute>
         <Route path='/businesses' exact={true}>
+          <NavBar />
           <Businesses />
           {/* <Pagination totalPosts={aBusiness.length} postsPerPage={postPerPage}/> */}
         </Route>
         <Route path='/businesses/:businessId' exact={true}>
+          <NavBar />
           <BusinessDetails />
         </Route>
         <ProtectedRoute exact={true} path="/edit/businesses/:businessId">
@@ -88,13 +93,13 @@ function App() {
           <DeleteMenu />
         </ProtectedRoute>
         <ProtectedRoute exact={true} path="/businesses/:businessId/menu/items/:menuId">
-        <RemoveMenuItem />
+          <RemoveMenuItem />
         </ProtectedRoute>
         <Route exact={true} path="/businesses/:businessId/fullmenu">
           <FullMenu />
         </Route>
         <ProtectedRoute exact={true} path="/menuedit/:menuId">
-        <EditMenu />
+          <EditMenu />
         </ProtectedRoute>
         <ProtectedRoute exact={true} path="/businesses/:businessId/menuedit/item/:menuItemId">
           <EditMenuItem />
@@ -106,6 +111,7 @@ function App() {
           <CreateMenu />
         </ProtectedRoute>
         <Route path='/' exact={true} >
+          <SplashNavBar />
           <SplashPage />
         </Route>
         <Route path='/production'>
@@ -115,6 +121,7 @@ function App() {
           <UserProfile />
         </Route>
         <Route path='/search'>
+          <NavBar />
           <Results />
         </Route>
         <Route>

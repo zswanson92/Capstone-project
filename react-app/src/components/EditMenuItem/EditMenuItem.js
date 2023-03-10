@@ -9,12 +9,9 @@ const EditMenuItem = () => {
     let history = useHistory();
 
     const { businessId, menuItemId } = useParams();
-    // const sessionUser = useSelector((state) => state.session.user);
 
-    // let userId = sessionUser.id
 
     const menuItemState = useSelector(state => state.businessReducer.businesses[businessId]?.menus[0].menu_items)
-    console.log("!!!!!", menuItemState)
 
     const menuItemFilter = menuItemState?.filter(obj => obj.id === +menuItemId)
 
@@ -22,9 +19,9 @@ const EditMenuItem = () => {
     let editValTwo;
     let editValThree;
 
-    const editValOneAssign = menuItemFilter ? editValOne = menuItemFilter[0]?.item_name : ""
-    const editValTwoAssign = menuItemFilter ? editValTwo = menuItemFilter[0]?.price : ""
-    const editValThreeAssign = menuItemFilter ? editValThree = menuItemFilter[0]?.description : ""
+    menuItemFilter ? editValOne = menuItemFilter[0]?.item_name : editValOne = ""
+    menuItemFilter ? editValTwo = menuItemFilter[0]?.price : editValTwo = ""
+    menuItemFilter ? editValThree = menuItemFilter[0]?.description : editValThree = ""
 
     const [item_name, setItemName] = useState(editValOne ? editValOne : "")
     const [price, setPrice] = useState(editValTwo ? editValTwo : "")
@@ -37,9 +34,6 @@ const EditMenuItem = () => {
         e.preventDefault()
         if(errors.length > 0) return;
         const editedMenuItem = {
-            // userId,
-            // businessId,
-            // menuId,
             menuItemId,
             item_name,
             description,
@@ -49,11 +43,23 @@ const EditMenuItem = () => {
 
         await dispatch(editMenuItemThunk(editedMenuItem))
 
-        // history.push(`/businesses/${businessId}`)
-        // if(theEditedMenuItem){
-        history.push(`/businesses/${businessId}`)
-        // }
+
+        await history.push(`/businesses/${businessId}`)
     }
+
+    useEffect(() => {
+
+        let err = [];
+
+        if (item_name.length > 25) {
+            errors.push("Menu Item name cannot be longer than 25 characters.")
+        }
+        if(description.length > 400){
+            errors.push("Menu Item description cannot be longer than 400 characters.")
+        }
+
+        setErrors(err)
+    }, [item_name, description, errors])
 
     const onClose = () => {
         history.push(`/businesses/${businessId}`);
@@ -77,7 +83,6 @@ const EditMenuItem = () => {
                     placeholder="Name of Menu Item"
                     className="menu-category-input"
                     />
-                    {item_name && (item_name.length < 3 ? <div>Menu item name must be longer than 3 characters.</div> : "")}
                     {item_name && (item_name.length > 25 ? <div>Menu item name cannot exceed 25 characters.</div> : "")}
                 </div>
                 <div className="menu-form-divs">

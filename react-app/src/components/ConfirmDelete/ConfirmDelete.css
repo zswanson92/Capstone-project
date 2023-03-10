@@ -1,8 +1,4 @@
 .main-modal-container-confirm-delete{
-    /* border: 3px solid black; */
-    /* position: fixed;
-    bottom: 25em;
-    left: 35em; */
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +7,6 @@
 
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
-    /* transform: translate(-50%, -50%) */
 }
 
 .inside-confirm-delete-div{
@@ -22,13 +17,11 @@
     background-color: white;
     padding: .5em;
     border-radius: 5px;
-    /* z-index: 1; */
 }
 
 .two-confirm-delete-buttons-div{
     display: flex;
     gap: 5em;
-    /* padding-left: 10em; */
     justify-content: center;
     padding-top: 1em;
     padding-bottom: .5em;

@@ -1,4 +1,4 @@
-.main-nav-bar{
+.splash-main-nav-bar{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,6 +11,8 @@
     /* padding-bottom: 3em; */
     position: relative;
     z-index: 1;
+    box-shadow: 5px 5em 10px -10px rgba(39, 38, 38, 0.3) inset;
+    border-radius: 5px;
 }
 
 .navbar-primary-ul{
@@ -59,15 +61,16 @@
     /* left: 10px; */
 }
 .home-logo-img{
-    height: 3em;
-    width: 4em;
+    height: 2em;
+    width: 2em;
     margin-right: 30px;
     /* margin-top: 20px; */
 }
 
-.zelp-span{
+.splash-zelp-span{
     font-weight: bold;
     font-size: 35px;
+    color: white;
 }
 
 .navbar-searchbar-div{

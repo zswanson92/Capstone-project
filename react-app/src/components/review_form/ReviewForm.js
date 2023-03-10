@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./ReviewForm.css";
 import { createReviewThunk, getReviewsByBusinessIdThunk } from "../../store/review";
-import { getBusinessByIdThunk } from "../../store/business";
-import UploadPicture from "../UploadPicture/UploadPicture";
+// import { getBusinessByIdThunk } from "../../store/business";
+// import UploadPicture from "../UploadPicture/UploadPicture";
 
 
 const ReviewFormButton = () => {
@@ -210,7 +210,6 @@ const ReviewFormButton = () => {
             )} */}
             <div>
               <div className="create-review-textarea-input-div">
-                {/* <br></br> */}
                 <textarea
                   className={body.length < 10 ? "falsey-create-review-inputfield" : "create-review-inputfield"}
                   type="text"
@@ -235,21 +234,12 @@ const ReviewFormButton = () => {
                 {stars < 1 || stars > 5 ? <div className="falsey-review-form-stars-input">Must click on a star value.</div> : ""}
               </div>
               <div>
-                {/* <input
-                  className="image-url-create-review-input"
-                  type="text"
-                  value={image_url}
-                  onChange={(e) => setImage_url(e.target.value)}
-                  placeholder="Optional Image URL"
-                /> */}
                 <input
                   type="file"
                   name='image'
                   accept="image/*"
                   onChange={updateImage}
                 />
-                {/* <UploadPicture /> */}
-                {/* {image_url.length > 0 && !validImageUrl(image_url) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
               </div>
               <div className="two-review-form-button-div">
                 {errors.length ? "" : <button type="submit" className="submitreview-button">Submit Review</button>}

@@ -1,13 +1,10 @@
 .edit-business-main-container{
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
 }
 
 .first-inner-container-edit-business{
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
+
 }
 
 .edit-business-name-div{

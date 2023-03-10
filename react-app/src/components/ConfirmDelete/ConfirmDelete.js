@@ -9,7 +9,6 @@ const ConfirmDelete = ({ confirm, setconfirm }) => {
     const { businessId } = useParams();
     const history = useHistory();
 
-    // const [confirm, setConfirm] = useState(false)
 
     const deleteABusiness = (e, id) => {
         e.preventDefault();

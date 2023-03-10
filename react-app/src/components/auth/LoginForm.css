@@ -1,12 +1,11 @@
-.main-login-form-div{
+.main-login-form-div {
     display: flex;
     flex-direction: row-reverse;
-
     justify-content: center;
     margin-top: 8em;
 }
 
-.login-form-login-button{
+.login-form-login-button {
     background: none;
     background-color: #c41200;
     border-radius: 3px;
@@ -15,10 +14,9 @@
     height: 3em;
     width: 18em;
     font-weight: bold;
-    /* margin-left: 5.8em; */
 }
 
-.login-form-login-demo-button{
+.login-form-login-demo-button {
     background: none;
     background-color: #c41200;
     border-radius: 3px;
@@ -27,44 +25,46 @@
     height: 3em;
     width: 18em;
     font-weight: bold;
-    /* margin-left: 5.8em; */
 }
 
-.two-loginform-buttons{
+.two-loginform-buttons {
     display: flex;
-    /* gap: 1em; */
     flex-direction: column;
     gap: 1em;
-    /* padding-top: 1em; */
 }
 
-.loginform-inputs{
+.loginform-inputs {
     padding: .3em;
     height: 1.2em;
     width: 17em;
     border-radius: 3px;
-    /* margin-left: 8em; */
 }
 
-.loginform-inputs-one{
+.loginform-inputs-one {
     padding: .3em;
     height: 1.2em;
     width: 17em;
     border-radius: 3px;
-    /* margin-left: 8em; */
     margin-bottom: 1em;
 }
 
-.login-form-error-map-div{
+.login-form-error-map-div {
     color: red;
     font-weight: bold;
     padding-top: 1em;
-    padding-left: 3.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.login-form-div-container{
+.loginform-alignment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form-div-container {
     padding-right: 10em;
-    /* padding-top: 1em; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,46 +73,54 @@
 
 
 
-.login-footer{
+.login-footer {
     background-color: rgb(216, 203, 203);
     display: flex;
     justify-content: space-between;
-    /* position: absolute; */
     margin-top: 375px;
-    /* align-items: center; */
 }
 
-.forgot-pw-div{
+.forgot-pw-div {
     padding-bottom: 1em;
     padding-left: 3.3em;
 }
 
-.forgot-pw-link{
+.signup-image-div{
+    padding-left: 10em;
+}
+
+
+
+.forgot-pw-link {
     text-decoration: none;
     font-size: 12px;
     color: #0073bb;
     font-weight: bold;
+    padding-right: 4em;
 }
 
-.forgot-pw-link:hover{
+.forgot-pw-link:hover {
     text-decoration: underline;
 }
 
-.login-h2{
+.login-h2 {
     color: #c41200;
     font-weight: bold;
 }
 
-.loginform-signup-link{
+.loginform-signup-link {
     text-decoration: none;
     color: #0073bb;
     font-weight: bold;
 }
 
-.loginform-signup-link:hover{
+.loginform-signup-link:hover {
     text-decoration: underline;
 }
 
-.login-form-footer-div{
-    padding-top: 24em;
+.login-form-footer-div {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: lightgray;
 }

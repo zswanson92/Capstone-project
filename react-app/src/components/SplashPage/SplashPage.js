@@ -4,13 +4,25 @@ import { getAllReviewsThunk } from '../../store/review';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import './SplashPage.css'
-import logo from '../../assets/githublogo.png'
 import { getKey } from '../../store/map'
+import { FaStar } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 const SplashPage = () => {
-    // const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch();
 
+    const [arrTitles, setArrTitles] = useState("https://images4.alphacoders.com/150/1506.jpg");
+    const [hovered, setHovered] = useState(0)
+    const [showIndex, setShowIndex] = useState(null);
+    const [hoverTip, setHoverTip] = useState(false)
+
+    const tooltipStyle = {
+        display: 'block',
+        position: 'relative',
+        bottom: '30px',
+        border: '1px solid black',
+        zIndex: '2'
+    }
 
 
     const businessesObj = useSelector(state => {
@@ -33,7 +45,8 @@ const SplashPage = () => {
         'https://images4.alphacoders.com/988/988128.jpg'
     ]
 
-    const imgsFill = aBusiness?.map((business) => {
+
+    aBusiness?.map((business) => {
         return imgs.push(business.preview_img)
     })
 
@@ -45,7 +58,6 @@ const SplashPage = () => {
 
     }, [dispatch]);
 
-    const [arrTitles, setArrTitles] = useState("https://images4.alphacoders.com/150/1506.jpg");
 
     const shuffle = useCallback(() => {
         const index = Math.floor(Math.random() * imgs.length);
@@ -64,31 +76,55 @@ const SplashPage = () => {
     return (
         <div className='main-splashpage-div'>
             <div className='splash-image-div'>
-                {/* <h1>testing splash export</h1> */}
                 <img className='splash-header-img' src={arrTitles} alt='' />
             </div>
             <div className='next-rev-div'>
                 <p className='your-next-rev-text'>Your Next Review Awaits</p>
             </div>
             <div className='mapped-suggest-businesses-div'>
-                {aBusiness?.map((business) => {
+                {aBusiness?.map((business, i) => {
                     return (
-                        <Link key={business.id} to={`/businesses/${business.id}`} className='suggested-reviews-links'>
+                        <Link key={i} to={`/businesses/${business.id}`} className='suggested-reviews-links'>
                             <div className='suggested-reviews-div'>
-                                <div className='abcdef-div'><img onError={addDefaultSrc} className='suggested-reviews-img' src={business.preview_img} alt='https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' /></div>
+                                {business.preview_img ? <div className='abcdef-div'><img onError={addDefaultSrc} className='suggested-reviews-img' src={business.preview_img} alt="Loading..."  /></div> : ""}
                                 <div className='agddgaddga-div'>
                                     <p className='sugg-review-business-name'>{business.name}</p>
                                     <p>Do you recommend this business?</p>
-                                    <button className="star-buttons-sugg-review" type='button'
-                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 1</button>
-                                    <button className="star-buttons-sugg-review" type='button'
-                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 2</button>
-                                    <button className="star-buttons-sugg-review" type='button'
-                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 3</button>
-                                    <button className="star-buttons-sugg-review" type='button'
-                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 4</button>
-                                    <button className="star-buttons-sugg-review" type='button'
-                                    > <i className="fa fa-star-o" aria-hidden="true"></i> 5</button>
+                                    <div className='abcdefg-div'>
+                                        <div id="a" onMouseEnter={() => [setShowIndex(i), setHovered(1), setHoverTip(true)]} onMouseLeave={() => [setShowIndex(null), setHovered(null), setHoverTip(false)]} className={(showIndex === i && hovered >= 1) ? 'test-splashbutton-div-two' : 'test-splashbutton-div'}>
+                                            {/* <div style={(showIndex === i && hoverTip) ? tooltipStyle : {display: 'none'}}>this is the tooltip!!</div> */}
+                                            <button className="star-buttons-sugg-review" type='radio'>
+                                                <IconContext.Provider value={{ color: 'white', size: '16' }} >
+                                                    <FaStar />
+                                                </IconContext.Provider>
+                                            </button>
+                                        </div>
+                                        <div id="b" onMouseEnter={() => [setShowIndex(i), setHovered(2)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 2) ? 'test-splashbutton-div-two-two' : 'test-splashbutton-div'}>
+                                            <button className="star-buttons-sugg-review" type='button'
+                                            > <IconContext.Provider value={{ color: 'white', size: '16' }} >
+                                                    <FaStar />
+                                                </IconContext.Provider></button>
+
+                                        </div>
+                                        <div id="c" onMouseEnter={() => [setShowIndex(i), setHovered(3)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 3) ? 'test-splashbutton-div-two-three' : 'test-splashbutton-div'} >
+                                            <button className="star-buttons-sugg-review" type='button'
+                                            > <IconContext.Provider value={{ color: 'white', size: '16' }} >
+                                                    <FaStar />
+                                                </IconContext.Provider></button>
+                                        </div>
+                                        <div id="d" onMouseEnter={() => [setShowIndex(i), setHovered(4)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 4) ? 'test-splashbutton-div-two-four' : 'test-splashbutton-div'}>
+                                            <button className="star-buttons-sugg-review" type='button'
+                                            > <IconContext.Provider value={{ color: 'white', size: '16' }} >
+                                                    <FaStar />
+                                                </IconContext.Provider></button>
+                                        </div>
+                                        <div id="e" onMouseEnter={() => [setShowIndex(i), setHovered(5)]} onMouseLeave={() => [setShowIndex(null), setHovered(null)]} className={(showIndex === i && hovered >= 5) ? 'test-splashbutton-div-two-five' : 'test-splashbutton-div'}>
+                                            <button className="star-buttons-sugg-review" type='button'
+                                            > <IconContext.Provider value={{ color: 'white', size: '16' }} >
+                                                    <FaStar />
+                                                </IconContext.Provider></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
@@ -107,8 +143,7 @@ const SplashPage = () => {
                 <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>Home Services</p> <i className="fa fa-home" aria-hidden="true"></i></div></Link>
                 <Link to={'/production'} className='category-div-links'><div className='splash-page-category-divs'><p className='text-inside-category-div'>More</p> <i className="fa fa-expand" aria-hidden="true"></i></div></Link>
             </div>
-            <footer className='splash-footer'>
-                <div className="splash-footer-div">
+                <div className="splash-footer-div-splashpage">
                     <div className="corp-div">© 2022 Zelp Corp</div>
                     <div className='foot-name-div'>
 
@@ -116,7 +151,6 @@ const SplashPage = () => {
                         <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
                     </div>
                 </div>
-            </footer>
         </div>
     )
 }

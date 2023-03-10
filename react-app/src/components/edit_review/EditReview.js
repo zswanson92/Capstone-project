@@ -17,14 +17,13 @@ const EditReviewButton = () => {
     let editValOne;
     let editValTwo;
 
-    const workAround = revFilter ? editValOne = revFilter[0]?.body : ""
-    const workAroundTwo = revFilter ? editValTwo = +revFilter[0]?.stars : ""
+    revFilter ? editValOne = revFilter[0]?.body : editValOne = ""
+    revFilter ? editValTwo = +revFilter[0]?.stars : editValTwo = ""
 
 
     const [body, setBody] = useState(editValOne ? editValOne : "")
     const [stars, setStars] = useState(editValTwo ? editValTwo : 1)
     const [image_url, setImage_url] = useState("")
-    // const [submitted, setSubmitted] = useState(false)
     const [starOne, setStarOne] = useState(false)
     const [starTwo, setStarTwo] = useState(false)
     const [starThree, setStarThree] = useState(false)
@@ -32,37 +31,7 @@ const EditReviewButton = () => {
     const [starFive, setStarFive] = useState(false)
     const [errors, setErrors] = useState([])
 
-    // console.log("CURRENT BIZ", stars)
-    // setStars(editValTwo)
 
-
-
-
-
-    // const currBusiness = useSelector(state => {
-    //     return state.businessReducer.businesses
-    // })
-
-    // console.log("THIS IS CURRBUSINESS", currBusiness)
-
-    // const currReview = Object.values(currBusiness)[0]?.reviews
-    // console.log("THIS IS CURRREVIEW", currReview)
-
-
-    // const reviewFilter = currReview?.filter(obj => {
-    //     return obj.id === +reviewId
-    // })
-
-
-    // useEffect(() => {
-    //     (async () => {
-    //       const res = await fetch(`/api/reviews/${reviewId}`)
-    //       const data = await res.json()
-    //       setStars(data.stars)
-    //       setBody(data.body)
-    //     })()
-    //   }, [reviewId])
-    // this needs a get review by Id thunk to work
 
     useEffect(() => {
         const err = []
@@ -184,7 +153,6 @@ const EditReviewButton = () => {
         }
 
         await dispatch(editReviewThunk(editedReview))
-        // await dispatch(getReviewsByBusinessIdThunk(businessId))
         return history.push(`/businesses/${businessId}`)
     }
 
@@ -201,35 +169,14 @@ const EditReviewButton = () => {
         return history.push(`/businesses/${businessId}`)
     }
 
-    function validImageUrl(url) {
-        let falseycheck;
-        let lastThree = url.split('').slice(url.length - 3)
-        // console.log(lastThree.join(''))
-        if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-            falseycheck = true
-        } else {
-            falseycheck = false
-        }
-        // console.log(falseycheck)
-        return falseycheck
-    }
-
     const updateImage = (e) => {
         const file = e.target.files[0];
-        console.log("FILE!!", file)
         setImage_url(file);
     }
 
     return (
         <div className="edit-review-container-div">
             <form onSubmit={editCurrReview} className="edit-review-form">
-                {/* {errors.length > 0 && (
-                    <ul className="edit-review-ul-errors">
-                        {errors.map((error, idx) => (
-                            <li key={idx}>{error}</li>
-                        ))}
-                    </ul>
-                )} */}
                 <div className="edit-review-input-divs-container">
                     <div className="edit-review-text-area-div">
                         <textarea
@@ -256,14 +203,6 @@ const EditReviewButton = () => {
                         {stars < 1 || stars > 5 ? <div className="falsey-review-form-stars-input">Must click on a star value.</div> : ""}
                     </div>
                     <div className="image-url-edit-review-input-div">
-                        {/* <input
-                            placeholder="Image URL (optional)"
-                            type='text'
-                            className="image-url-edit-review-input"
-                            value={image_url}
-                            onChange={(e) => setImage_Url(e.target.value)}
-                        />
-                        {image_url.length > 0 && !validImageUrl(image_url) ? <div className="error-below-inputs-divs-review-edit">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
                         <input
                             type="file"
                             name='image'

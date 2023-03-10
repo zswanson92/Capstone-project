@@ -25,7 +25,6 @@ const CreateMenuItem = () => {
         if (errors.length > 0) return;
         const createdMenuItem = {
             userId,
-            // businessId,
             menuId,
             item_name,
             description,
@@ -33,42 +32,30 @@ const CreateMenuItem = () => {
             menu_item_image
         }
 
-        const theNewMenuItem = await dispatch(createMenuItemThunk(createdMenuItem))
+        await dispatch(createMenuItemThunk(createdMenuItem))
 
-        // history.push(`/businesses/${businessId}`)
-        // if (theNewMenuItem) {
+
         await history.goBack()
-        // }
-
     }
 
     const onClose = () => {
         history.push(`/businesses`);
     }
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     let err = [];
+        let err = [];
 
-    //     if (menu_item_image.length > 0 && !validImageUrl(menu_item_image)) {
-    //         errors.push("Please submit as jpg, jpeg, or png.")
-    //     }
+        if (item_name.length > 25) {
+            errors.push("Menu Item name cannot be longer than 25 characters.")
+        }
+        if(description.length > 400){
+            errors.push("Menu Item description cannot be longer than 400 characters.")
+        }
 
-    //     setErrors(err)
-    // }, [menu_item_image, errors])
+        setErrors(err)
+    }, [item_name, description, errors])
 
-    // function validImageUrl(url) {
-    //     let falseycheck;
-    //     let lastThree = url.split('').slice(url.length - 3)
-    //     // console.log(lastThree.join(''))
-    //     if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-    //         falseycheck = true
-    //     } else {
-    //         falseycheck = false
-    //     }
-    //     // console.log(falseycheck)
-    //     return falseycheck
-    // }
 
     const updateImage = (e) => {
         const file = e.target.files[0];
@@ -112,15 +99,6 @@ const CreateMenuItem = () => {
                     />
                 </div>
                 <div className="menu-form-divs">
-                    {/* <input
-                        // required={true}
-                        type='text'
-                        onChange={(e) => setMenuItemImage(e.target.value)}
-                        value={menu_item_image}
-                        placeholder="Optional URL image for Menu Item"
-                        className="menu-category-input"
-                    />
-                    {menu_item_image.length > 0 && !validImageUrl(menu_item_image) ? <div>If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
                     <input
                         type="file"
                         name='image'

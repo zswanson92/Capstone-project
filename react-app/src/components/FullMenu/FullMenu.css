@@ -2,11 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* gap: 1em; */
 }
 
 .outer-fullmenu-div{
-    /* height: 10em; */
     width: 25em;
 }
 

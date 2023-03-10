@@ -1,26 +1,17 @@
 .logout-button{
     background: none;
-    /* background-color: rgba(45,46,47,1); */
     color: rgba(45,46,47,1);
     border-radius: 3px;
-    /* color: white; */
-    /* font-weight: bold; */
     border: none;
     height: 1.5em;
     width: 9.5em;
     margin-bottom: 1em;
-    /* border-top: 1px solid rgb(175, 166, 166); */
     font-size: 1em;
-    /* padding: 1em; */
     display: flex;
     justify-content: center;
     gap: 1em;
 }
 
 .logout-button:hover{
-    /* box-shadow: 0 0 11px rgba(33,33,33,.2); */
     background-color: darkgray;
-    /* margin-top: 1em; */
-    /* display: flex; */
-    /* padding: -1em; */
 }

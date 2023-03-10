@@ -12,20 +12,51 @@ const BusinessForm = () => {
 
     const [name, setName] = useState("");
     const [preview_img, setPreviewImage] = useState("");
+
     const [monday_hours, setMonHours] = useState("");
+    const [monday_hours_close, setMonHoursClose] = useState("");
+
     const [monday_hours_two, setMonHoursTwo] = useState("");
+    const [monday_hours_two_close, setMonHoursTwoClose] = useState("");
+
     const [tuesday_hours, setTuesHours] = useState("");
+    const [tuesday_hours_close, setTuesHoursClose] = useState("");
+
     const [tuesday_hours_two, setTuesHoursTwo] = useState("");
+    const [tuesday_hours_two_close, setTuesHoursTwoClose] = useState("");
+
+
     const [wednesday_hours, setWedsHours] = useState("");
+    const [wednesday_hours_close, setWedsHoursClose] = useState("");
+
     const [wednesday_hours_two, setWedsHoursTwo] = useState("");
+    const [wednesday_hours_two_close, setWedsHoursTwoClose] = useState("");
+
     const [thursday_hours, setThursHours] = useState("");
+    const [thursday_hours_close, setThursHoursClose] = useState("");
+
     const [thursday_hours_two, setThursHoursTwo] = useState("");
+    const [thursday_hours_two_close, setThursHoursTwoClose] = useState("");
+
     const [friday_hours, setFriHours] = useState("");
+    const [friday_hours_close, setFriHoursClose] = useState("");
+
     const [friday_hours_two, setFriHoursTwo] = useState("");
+    const [friday_hours_two_close, setFriHoursTwoClose] = useState("");
+
     const [saturday_hours, setSatHours] = useState("");
+    const [saturday_hours_close, setSatHoursClose] = useState("");
+
+
     const [saturday_hours_two, setSatHoursTwo] = useState("");
+    const [saturday_hours_two_close, setSatHoursTwoClose] = useState("");
+
     const [sunday_hours, setSunHours] = useState("");
+    const [sunday_hours_close, setSunHoursClose] = useState("");
+
     const [sunday_hours_two, setSunHoursTwo] = useState("");
+    const [sunday_hours_two_close, setSunHoursTwoClose] = useState("");
+
     const [monCheck, setMonCheck] = useState(false)
     const [tueCheck, setTueCheck] = useState(false)
     const [wedCheck, setWedCheck] = useState(false)
@@ -33,6 +64,7 @@ const BusinessForm = () => {
     const [friCheck, setFriCheck] = useState(false)
     const [satCheck, setSatCheck] = useState(false)
     const [sunCheck, setSunCheck] = useState(false)
+
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [phone_number, setPhone] = useState("");
@@ -40,18 +72,66 @@ const BusinessForm = () => {
     const [about_us, setAbout] = useState("");
     const [price, setPrice] = useState("");
     const [tags, setTags] = useState("");
+
+    const [monOpenAmPM, setMonOpenAmPm] = useState("");
+    const [monCloseAmPm, setMonCloseAmPm] = useState("");
+
+    const [monTwoOpenAmPM, setMonTwoOpenAmPm] = useState("");
+    const [monTwoCloseAmPm, setMonTwoCloseAmPm] = useState("");
+
+    const [tueOpenAmPM, setTueOpenAmPm] = useState("");
+    const [tueCloseAmPm, setTueCloseAmPm] = useState("");
+
+    const [tueTwoOpenAmPM, setTueTwoOpenAmPm] = useState("");
+    const [tueTwoCloseAmPm, setTueTwoCloseAmPm] = useState("");
+
+    const [wedOpenAmPM, setWedOpenAmPm] = useState("");
+    const [wedCloseAmPm, setWedCloseAmPm] = useState("");
+
+    const [wedTwoOpenAmPM, setWedTwoOpenAmPm] = useState("");
+    const [wedTwoCloseAmPm, setWedTwoCloseAmPm] = useState("");
+
+
+    const [thurOpenAmPM, setThurOpenAmPm] = useState("");
+    const [thurCloseAmPm, setThurCloseAmPm] = useState("");
+
+    const [thurTwoOpenAmPM, setThurTwoOpenAmPm] = useState("");
+    const [thurTwoCloseAmPm, setThurTwoCloseAmPm] = useState("");
+
+
+    const [friOpenAmPM, setFriOpenAmPm] = useState("");
+    const [friCloseAmPm, setFriCloseAmPm] = useState("");
+
+    const [friTwoOpenAmPM, setFriTwoOpenAmPm] = useState("");
+    const [friTwoCloseAmPm, setFriTwoCloseAmPm] = useState("");
+
+
+    const [satOpenAmPM, setSatOpenAmPm] = useState("");
+    const [satCloseAmPm, setSatCloseAmPm] = useState("");
+
+    const [satTwoOpenAmPM, setSatTwoOpenAmPm] = useState("");
+    const [satTwoCloseAmPm, setSatTwoCloseAmPm] = useState("");
+
+
+    const [sunOpenAmPM, setSunOpenAmPm] = useState("");
+    const [sunCloseAmPm, setSunCloseAmPm] = useState("");
+
+    const [sunTwoOpenAmPM, setSunTwoOpenAmPm] = useState("");
+    const [sunTwoCloseAmPm, setSunTwoCloseAmPm] = useState("");
+
     const [errors, setErrors] = useState([]);
+    const [renderErr, setRenderErr] = useState([])
 
     const nameSet = (e) => {
         setName(e.target.value)
     }
 
-    // const imageSet = (e) => {
-    //     setPreviewImage(e.target.value)
-    // }
-
     const monSet = (e) => {
         setMonHours(e.target.value)
+    }
+
+    const monCloseSet = (e) => {
+        setMonHoursClose(e.target.value)
     }
 
     const tuesSet = (e) => {
@@ -101,17 +181,20 @@ const BusinessForm = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        if (errors.length > 0) return;
+        if (errors.length > 0){
+            setRenderErr(errors)
+            return
+        };
         const createdBusiness = {
             name,
             preview_img,
-            monday_hours: monday_hours + "," + monday_hours_two,
-            tuesday_hours: tuesday_hours + "," + tuesday_hours_two,
-            wednesday_hours: wednesday_hours + "," + wednesday_hours_two,
-            thursday_hours: thursday_hours + "," + thursday_hours_two,
-            friday_hours: friday_hours + "," + friday_hours_two,
-            saturday_hours: saturday_hours + "," + saturday_hours_two,
-            sunday_hours: sunday_hours + "," + sunday_hours_two,
+            monday_hours: monday_hours + monOpenAmPM + monday_hours_close + monCloseAmPm + "," + monday_hours_two + monTwoOpenAmPM + monday_hours_two_close + monTwoCloseAmPm,
+            tuesday_hours: tuesday_hours + tueOpenAmPM + tuesday_hours_close + tueCloseAmPm + "," + tuesday_hours_two + tueTwoOpenAmPM + tuesday_hours_two_close + tueTwoCloseAmPm,
+            wednesday_hours: wednesday_hours + wedOpenAmPM + wednesday_hours_close + wedCloseAmPm + "," + wednesday_hours_two + wedTwoOpenAmPM + wednesday_hours_two_close + wedTwoCloseAmPm,
+            thursday_hours: thursday_hours + thurOpenAmPM + thursday_hours_close + thurCloseAmPm + "," + thursday_hours_two + thurTwoOpenAmPM + thursday_hours_two_close + thurTwoCloseAmPm,
+            friday_hours: friday_hours + friOpenAmPM + friday_hours_close + friCloseAmPm + "," + friday_hours_two + friTwoOpenAmPM + friday_hours_two_close + friTwoCloseAmPm,
+            saturday_hours: saturday_hours + satOpenAmPM + saturday_hours_close + satCloseAmPm + "," + saturday_hours_two + satTwoOpenAmPM + saturday_hours_two_close + satTwoCloseAmPm,
+            sunday_hours: sunday_hours + sunOpenAmPM + sunday_hours_close + sunCloseAmPm + "," + sunday_hours_two + sunTwoOpenAmPM + sunday_hours_two_close + sunTwoCloseAmPm,
             email,
             address,
             phone_number,
@@ -123,7 +206,6 @@ const BusinessForm = () => {
 
         const addedBiz = await dispatch(createBusinessThunk(createdBusiness))
 
-        // let path = ;
         console.log(addedBiz?.id)
         if (addedBiz) {
             await history.push(`/businesses/${addedBiz?.id}`);
@@ -136,37 +218,23 @@ const BusinessForm = () => {
 
     function isValidPhone(phone) {
         let i = 0
-        // console.log(phone.split(''))
         phone.split('').forEach((letter) => {
             if (letter === '-' || letter === '1' || letter === '2' || letter === '3' || letter === '4' || letter === '5' || letter === '6' || letter === '7' || letter === '8' || letter === '9' || letter === '0') {
                 i++
             }
         })
-        // console.log(i)
         return i
     }
 
-    function isValidTime(time) {
-        let regexp = /^[aAmMpP0-9---:]+$/;
-        return regexp.test(time)
-    }
+    // function isValidTime(time) {
+    //     let regexp = /^[aAmMpP0-9---:]+$/;
+    //     return regexp.test(time)
+    // }
 
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    // function validImageUrl(url) {
-    //     let falseycheck;
-    //     let lastThree = url.split('').slice(url.length - 3)
-    //     // console.log(lastThree.join(''))
-    //     if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-    //         falseycheck = true
-    //     } else {
-    //         falseycheck = false
-    //     }
-    //     // console.log(falseycheck)
-    //     return falseycheck
-    // }
 
     useEffect(() => {
         const err = [];
@@ -174,7 +242,7 @@ const BusinessForm = () => {
             err.push("Business name must be at least 6 characters long.")
         }
         if (name.length > 50) {
-            err.push("Business must be less than 50 characters long. You can include further naming needs within your business description")
+            err.push("Business must be less than 50 characters long. You can include further naming needs within your business description.")
         }
         if (isValidPhone(phone_number) !== 12) {
             err.push("Must be a valid formatted phone number.")
@@ -185,29 +253,30 @@ const BusinessForm = () => {
         if (address.length > 100) {
             err.push("Address cannot exceed 100 characters")
         }
-        if ((monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length < 7) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))) {
-            err.push("Must be valid time format for Monday.")
+        if ((monday_hours !== 'Closed' && (monday_hours === "" || monday_hours_close === "" || monOpenAmPM === "" || monCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
         }
-        if ((tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length < 7) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))) {
-            err.push("Must be valid time format for Tuesday.")
+        if ((tuesday_hours !== 'Closed' && (tuesday_hours === "" || tuesday_hours_close === "" || tueOpenAmPM === "" || tueCloseAmPm === ""))) {
+            err.push("Must enter hours for Tuesday if not closed.")
         }
-        if ((wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length < 7) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))) {
-            err.push("Must be valid time format for Wednesday.")
+        if ((wednesday_hours !== 'Closed' && (wednesday_hours === "" || wednesday_hours_close === "" || wedOpenAmPM === "" || wedCloseAmPm === ""))) {
+            err.push("Must enter hours for Wednesday if not closed.")
         }
-        if ((thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length < 7) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))) {
-            err.push("Must be valid time format for Thursday.")
+        if ((thursday_hours !== 'Closed' && (thursday_hours === "" || thursday_hours_close === "" || thurOpenAmPM === "" || thurCloseAmPm === ""))) {
+            err.push("Must enter hours for Thursday if not closed.")
         }
-        if ((friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length < 7) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))) {
-            err.push("Must be valid time format for Friday.")
+        if ((friday_hours !== 'Closed' && (friday_hours === "" || friday_hours_close === "" || friOpenAmPM === "" || friCloseAmPm === ""))) {
+            err.push("Must enter hours for Friday if not closed.")
         }
-        if ((saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length < 7) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))) {
-            err.push("Must be valid time format for Saturday.")
+        if ((saturday_hours !== 'Closed' && (saturday_hours === "" || saturday_hours_close === "" || satOpenAmPM === "" || satCloseAmPm === ""))) {
+            err.push("Must enter hours for Saturday if not closed.")
         }
-        if ((sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length < 7) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))) {
-            err.push("Must be valid time format for Sunday.")
+        if ((sunday_hours !== 'Closed' && (sunday_hours === "" || sunday_hours_close === "" || sunOpenAmPM === "" || sunCloseAmPm === ""))) {
+            err.push("Must enter hours for Sunday if not closed.")
         }
+
         if (!isValidEmail(email)) {
-            err.push("Must be a valid Email address")
+            err.push("Must enter a valid Email address")
         }
         if (price < 1 || price > 5) {
             err.push("Price must be between 1 and 5.")
@@ -215,23 +284,12 @@ const BusinessForm = () => {
         if (about_us.length < 30) {
             err.push("Description must be at least 30 characters.")
         }
-        // if (preview_img.length > 0 && !validImageUrl(preview_img)) {
-        //     err.push("must be valid image url")
-        // }
         setErrors(err)
-    }, [name, phone_number, address, monday_hours, tuesday_hours, wednesday_hours,
-        thursday_hours, friday_hours, saturday_hours, sunday_hours, email, price, about_us, preview_img])
+    }, [name, phone_number, address, monday_hours, monday_hours_close, monOpenAmPM, monCloseAmPm, tuesday_hours, tuesday_hours_close, tueOpenAmPM, tueCloseAmPm, wednesday_hours,
+        wednesday_hours_close, wedOpenAmPM, wedCloseAmPm, thursday_hours, thursday_hours_close, thurOpenAmPM, thurCloseAmPm, friday_hours, friday_hours_close, friOpenAmPM, friCloseAmPm,
+        saturday_hours, saturday_hours_close, satOpenAmPM, satCloseAmPm, sunday_hours, sunday_hours_close, sunOpenAmPM, sunCloseAmPm, email, price, about_us, preview_img])
 
-    // console.log(errors)
 
-    let mon_falsey_check = (monday_hours !== 'Closed' && monday_hours !== 'closed' && monday_hours.length < 7) || (monday_hours !== 'Closed' && monday_hours !== 'closed' && (!isValidTime(monday_hours)))
-    // console.log(mon_falsey_check)
-    let tues_falsey_check = (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && tuesday_hours.length < 7) || (tuesday_hours !== 'Closed' && tuesday_hours !== 'closed' && (!isValidTime(tuesday_hours)))
-    let weds_falsey_check = (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && wednesday_hours.length < 7) || (wednesday_hours !== 'Closed' && wednesday_hours !== 'closed' && (!isValidTime(wednesday_hours)))
-    let thurs_falsey_check = (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && thursday_hours.length < 7) || (thursday_hours !== 'Closed' && thursday_hours !== 'closed' && (!isValidTime(thursday_hours)))
-    let fri_falsey_check = (friday_hours !== 'Closed' && friday_hours !== 'closed' && friday_hours.length < 7) || (friday_hours !== 'Closed' && friday_hours !== 'closed' && (!isValidTime(friday_hours)))
-    let sat_falsey_check = (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && saturday_hours.length < 7) || (saturday_hours !== 'Closed' && saturday_hours !== 'closed' && (!isValidTime(saturday_hours)))
-    let sun_falsey_check = (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && sunday_hours.length < 7) || (sunday_hours !== 'Closed' && sunday_hours !== 'closed' && (!isValidTime(sunday_hours)))
 
     const monCheckBox = () => {
         setMonCheck(!monCheck)
@@ -263,13 +321,12 @@ const BusinessForm = () => {
 
     const updateImage = (e) => {
         const file = e.target.files[0];
-        // console.log("FILE!!", file)
         setPreviewImage(file);
     }
 
     return (
         <div className="main-business-form-div">
-            <form onSubmit={onSubmit}>
+            <form className="bizform-form" onSubmit={onSubmit}>
                 {/* <ul>
                     {errors?.map((error, idx) => (
                         <li key={idx}>{error}</li>
@@ -286,18 +343,9 @@ const BusinessForm = () => {
                         value={name}
                         placeholder="Business Name"></input>
                     {name.length && name.length < 6 ? <div className="error-below-inputs-divs">Business name must be at least 6 characters long.</div> : ""}
-                    {name.length && name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long. You can include further naming needs within your business description.</div> : ""}
+                    {name.length && name.length > 50 ? <div className="error-below-too-long-name">Business name must be less than 50 characters long.</div> : ""}
                 </div>
                 <div className="business-form-previmg-input-div">
-                    {/* <input
-                        placeholder="Preview image link - must be a png or jpg format"
-                        className="business-form-previmg-input"
-                        type='text'
-                        name='preview_image'
-                        onChange={imageSet}
-                        value={preview_img}
-                    ></input>
-                    {preview_img.length > 0 && !validImageUrl(preview_img) ? <div className="error-below-inputs-divs">If submitting an image, it must be jpg, jpeg, or png format.</div> : ""} */}
                     Upload a preview image for your business.
                     <input
                         type="file"
@@ -307,19 +355,106 @@ const BusinessForm = () => {
                     />
                 </div>
                 <div className="business-form-hours-inputs-div">
-                    <div>
-                        <p>Business Hours &#40;Preferred format xx:xxam/pm-yy:yyam/pm, or "Closed"&#41;.</p>
-                        <input
-                            required={true}
-                            className={monday_hours.length && mon_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Monday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={monSet}
-                            value={monday_hours}
-                        >
-                        </input>
-                        {monday_hours.length && mon_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Monday. </div> : ""}
+                    <h3 className="hoursofop-h3">Hours of operation:</h3>
+                    <div className="bizform-hours-div">
+                        <div className="openclose-radio-div">
+                            <div>Open/Closed Monday?</div>
+                            &nbsp; &nbsp;
+                            <label>Open</label>
+                            <input
+                                type='radio'
+                                onChange={() => setMonHours("")}
+                                checked={monday_hours !== "Closed"}>
+                            </input>
+                            &nbsp;
+                            <label>Closed</label>
+                            <input
+
+                                type='radio'
+                                onChange={() => [setMonHours("Closed"), setMonCheck(false)]}
+                                checked={monday_hours === "Closed"}>
+                            </input>
+
+                        </div>
+                        {monday_hours !== "Closed" ? <div className='openclosetime-div'>
+                            <label>Opening time: &nbsp;</label>
+                            <select
+                                value={monday_hours}
+                                onChange={monSet}>
+                                <option>Hour</option>
+                                <option value={"1:00"}>1</option>
+                                <option value={"1:30"}>1:30</option>
+                                <option value={"2:00"}>2</option>
+                                <option value={"2:30"}>2:30</option>
+                                <option value={"3:00"}>3</option>
+                                <option value={"3:30"}>3:30</option>
+                                <option value={"4:00"}>4</option>
+                                <option value={"4:30"}>4:30</option>
+                                <option value={"5:00"}>5</option>
+                                <option value={"5:30"}>5:30</option>
+                                <option value={"6:00"}>6</option>
+                                <option value={"6:30"}>6:30</option>
+                                <option value={"7:00"}>7</option>
+                                <option value={"7:30"}>7:30</option>
+                                <option value={"8:00"}>8</option>
+                                <option value={"8:30"}>8:30</option>
+                                <option value={"9:00"}>9</option>
+                                <option value={"9:30"}>9:30</option>
+                                <option value={"10:00"}>10</option>
+                                <option value={"10:30"}>10:30</option>
+                                <option value={"11:00"}>11</option>
+                                <option value={"11:30"}>11:30</option>
+                                <option value={"12:00"}>12</option>
+                                <option value={"12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={monOpenAmPM}
+                                onChange={(e) => setMonOpenAmPm(e.target.value)}
+                            >
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option value={"PM"}>PM</option>
+                            </select>
+                            &nbsp; &nbsp;
+                            <label>Closing time: &nbsp;</label>
+                            {/* <div> */}
+                            <select
+                                value={monday_hours_close}
+                                onChange={monCloseSet}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={monCloseAmPm}
+                                onChange={(e) => setMonCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div> : ""}
                         {(monday_hours === 'Closed' || monday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Monday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -327,27 +462,184 @@ const BusinessForm = () => {
                                 onClick={monCheckBox}>
                             </input></div>}
                     </div>
-                    {monCheck ? <div className="secondary-hours-input-div">
-                        <input
-                            className="business-form-hours-input"
-                            placeholder="Secondary Monday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={(e) => setMonHoursTwo(e.target.value)}
-                            value={monday_hours_two}>
-                        </input>
-                    </div> : ""}
-                    <div>
-                        <input
-                            className={tuesday_hours.length && tues_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Tuesday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={tuesSet}
-                            value={tuesday_hours}
+                    {monCheck ? <div className='secondary-openclosetime-div'>
+                        <label>Opening time: &nbsp;</label>
+                        <select
+                            value={monday_hours_two}
+                            onChange={(e) => setMonHoursTwo(e.target.value)}>
+                            <option>Hour</option>
+                            <option value={"1:00"}>1</option>
+                            <option value={"1:30"}>1:30</option>
+                            <option value={"2:00"}>2</option>
+                            <option value={"2:30"}>2:30</option>
+                            <option value={"3:00"}>3</option>
+                            <option value={"3:30"}>3:30</option>
+                            <option value={"4:00"}>4</option>
+                            <option value={"4:30"}>4:30</option>
+                            <option value={"5:00"}>5</option>
+                            <option value={"5:30"}>5:30</option>
+                            <option value={"6:00"}>6</option>
+                            <option value={"6:30"}>6:30</option>
+                            <option value={"7:00"}>7</option>
+                            <option value={"7:30"}>7:30</option>
+                            <option value={"8:00"}>8</option>
+                            <option value={"8:30"}>8:30</option>
+                            <option value={"9:00"}>9</option>
+                            <option value={"9:30"}>9:30</option>
+                            <option value={"10:00"}>10</option>
+                            <option value={"10:30"}>10:30</option>
+                            <option value={"11:00"}>11</option>
+                            <option value={"11:30"}>11:30</option>
+                            <option value={"12:00"}>12</option>
+                            <option value={"12:30"}>12:30</option>
+                        </select>
+                        <select
+                            value={monTwoOpenAmPM}
+                            onChange={(e) => setMonTwoOpenAmPm(e.target.value)}
                         >
-                        </input>
-                        {tuesday_hours.length && tues_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Tuesday. </div> : ""}
+                            <option>Am/Pm</option>
+                            <option value={"AM"}>AM</option>
+                            <option value={"PM"}>PM</option>
+                        </select>
+                        &nbsp; &nbsp;
+                        <label>Closing time: &nbsp;</label>
+                        <div>
+                            <select
+                                value={monday_hours_two_close}
+                                onChange={(e) => setMonHoursTwoClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={monTwoCloseAmPm}
+                                onChange={(e) => setMonTwoCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div>
+                    </div> : ""}
+                    <div className="bizform-hours-div">
+                        <div className="openclose-radio-div">
+                            <div>Open/Closed Tuesday?</div>
+                            &nbsp; &nbsp;
+                            <label>Open</label>
+                            <input
+                                type='radio'
+                                onChange={() => setTuesHours("")}
+                                checked={tuesday_hours !== "Closed"}>
+                            </input>
+                            &nbsp;
+                            <label>Closed</label>
+                            <input
+
+                                type='radio'
+                                onChange={() => [setTuesHours("Closed"), setTueCheck(false)]}
+                                checked={tuesday_hours === "Closed"}>
+                            </input>
+
+                        </div>
+                        {tuesday_hours !== "Closed" ? <div className='openclosetime-div'>
+                            <label>Opening time:  &nbsp;</label>
+                            <select
+                                value={tuesday_hours}
+                                onChange={tuesSet}>
+                                <option>Hour</option>
+                                <option value={"1:00"}>1</option>
+                                <option value={"1:30"}>1:30</option>
+                                <option value={"2:00"}>2</option>
+                                <option value={"2:30"}>2:30</option>
+                                <option value={"3:00"}>3</option>
+                                <option value={"3:30"}>3:30</option>
+                                <option value={"4:00"}>4</option>
+                                <option value={"4:30"}>4:30</option>
+                                <option value={"5:00"}>5</option>
+                                <option value={"5:30"}>5:30</option>
+                                <option value={"6:00"}>6</option>
+                                <option value={"6:30"}>6:30</option>
+                                <option value={"7:00"}>7</option>
+                                <option value={"7:30"}>7:30</option>
+                                <option value={"8:00"}>8</option>
+                                <option value={"8:30"}>8:30</option>
+                                <option value={"9:00"}>9</option>
+                                <option value={"9:30"}>9:30</option>
+                                <option value={"10:00"}>10</option>
+                                <option value={"10:30"}>10:30</option>
+                                <option value={"11:00"}>11</option>
+                                <option value={"11:30"}>11:30</option>
+                                <option value={"12:00"}>12</option>
+                                <option value={"12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={tueOpenAmPM}
+                                onChange={(e) => setTueOpenAmPm(e.target.value)}
+                            >
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option value={"PM"}>PM</option>
+                            </select>
+                            &nbsp; &nbsp;
+                            <label>Closing time:  &nbsp;</label>
+                            <select
+                                value={tuesday_hours_close}
+                                onChange={(e) => setTuesHoursClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={tueCloseAmPm}
+                                onChange={(e) => setTueCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div> : ""}
                         {(tuesday_hours === 'Closed' || tuesday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Tuesday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -355,56 +647,370 @@ const BusinessForm = () => {
                                 onClick={tueCheckBox}>
                             </input></div>}
                     </div>
-                    {tueCheck ? <div className="secondary-hours-input-div">
-                        <input
-                            className="business-form-hours-input"
-                            placeholder="Secondary Tuesday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={(e) => setTuesHoursTwo(e.target.value)}
-                            value={tuesday_hours_two}>
-                        </input>
+                    {tueCheck ? <div className='secondary-openclosetime-div'>
+                        <label>Opening time: &nbsp;</label>
+                        <select
+                            value={tuesday_hours_two}
+                            onChange={(e) => setTuesHoursTwo(e.target.value)}>
+                            <option>Hour</option>
+                            <option value={"1:00"}>1</option>
+                            <option value={"1:30"}>1:30</option>
+                            <option value={"2:00"}>2</option>
+                            <option value={"2:30"}>2:30</option>
+                            <option value={"3:00"}>3</option>
+                            <option value={"3:30"}>3:30</option>
+                            <option value={"4:00"}>4</option>
+                            <option value={"4:30"}>4:30</option>
+                            <option value={"5:00"}>5</option>
+                            <option value={"5:30"}>5:30</option>
+                            <option value={"6:00"}>6</option>
+                            <option value={"6:30"}>6:30</option>
+                            <option value={"7:00"}>7</option>
+                            <option value={"7:30"}>7:30</option>
+                            <option value={"8:00"}>8</option>
+                            <option value={"8:30"}>8:30</option>
+                            <option value={"9:00"}>9</option>
+                            <option value={"9:30"}>9:30</option>
+                            <option value={"10:00"}>10</option>
+                            <option value={"10:30"}>10:30</option>
+                            <option value={"11:00"}>11</option>
+                            <option value={"11:30"}>11:30</option>
+                            <option value={"12:00"}>12</option>
+                            <option value={"12:30"}>12:30</option>
+                        </select>
+                        <select
+                            value={tueTwoOpenAmPM}
+                            onChange={(e) => setTueTwoOpenAmPm(e.target.value)}
+                        >
+                            <option>Am/Pm</option>
+                            <option value={"AM"}>AM</option>
+                            <option value={"PM"}>PM</option>
+                        </select>
+                        &nbsp; &nbsp;
+                        <label>Closing time: &nbsp;</label>
+                        <div>
+                            <select
+                                value={tuesday_hours_two_close}
+                                onChange={(e) => setTuesHoursTwoClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={tueTwoCloseAmPm}
+                                onChange={(e) => setTueTwoCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div>
                     </div> : ""}
-                    <div>
-                        <input
-                            required={true}
-                            className={wednesday_hours.length && weds_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Wedsnesday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={wedsSet}
-                            value={wednesday_hours}>
-                        </input>
-                        {wednesday_hours.length && weds_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Wednesday. </div> : ""}
+
+                    <div className="bizform-hours-div">
+                        <div className="openclose-radio-div">
+                            <div>Open/Closed Wednesday?</div>
+                            &nbsp; &nbsp;
+                            <label>Open</label>
+                            <input
+                                type='radio'
+                                onChange={() => setWedsHours("")}
+                                checked={wednesday_hours !== "Closed"}>
+                            </input>
+                            &nbsp;
+                            <label>Closed</label>
+                            <input
+
+                                type='radio'
+                                onChange={() => [setWedsHours("Closed"), setWedCheck(false)]}
+                                checked={wednesday_hours === "Closed"}>
+                            </input>
+
+                        </div>
+                        {wednesday_hours !== "Closed" ? < div className='openclosetime-div'>
+                            <label>Opening time: &nbsp;</label>
+                            <select
+                                value={wednesday_hours}
+                                onChange={wedsSet}>
+                                <option>Hour</option>
+                                <option value={"1:00"}>1</option>
+                                <option value={"1:30"}>1:30</option>
+                                <option value={"2:00"}>2</option>
+                                <option value={"2:30"}>2:30</option>
+                                <option value={"3:00"}>3</option>
+                                <option value={"3:30"}>3:30</option>
+                                <option value={"4:00"}>4</option>
+                                <option value={"4:30"}>4:30</option>
+                                <option value={"5:00"}>5</option>
+                                <option value={"5:30"}>5:30</option>
+                                <option value={"6:00"}>6</option>
+                                <option value={"6:30"}>6:30</option>
+                                <option value={"7:00"}>7</option>
+                                <option value={"7:30"}>7:30</option>
+                                <option value={"8:00"}>8</option>
+                                <option value={"8:30"}>8:30</option>
+                                <option value={"9:00"}>9</option>
+                                <option value={"9:30"}>9:30</option>
+                                <option value={"10:00"}>10</option>
+                                <option value={"10:30"}>10:30</option>
+                                <option value={"11:00"}>11</option>
+                                <option value={"11:30"}>11:30</option>
+                                <option value={"12:00"}>12</option>
+                                <option value={"12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={wedOpenAmPM}
+                                onChange={(e) => setWedOpenAmPm(e.target.value)}
+                            >
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option value={"PM"}>PM</option>
+                            </select>
+                            &nbsp; &nbsp;
+                            <label>Closing time: &nbsp;</label>
+                            <select
+                                value={wednesday_hours_close}
+                                onChange={(e) => setWedsHoursClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={wedCloseAmPm}
+                                onChange={(e) => setWedCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div> : ""}
                         {(wednesday_hours === 'Closed' || wednesday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Wednesday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
                                 type='checkbox'
                                 onClick={wedCheckBox}>
                             </input></div>}
-                    </div>
-                    {wedCheck ? <div className="secondary-hours-input-div">
-                        <input
-                            className="business-form-hours-input"
-                            placeholder="Secondary Wednesday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={(e) => setWedsHoursTwo(e.target.value)}
-                            value={wednesday_hours_two}>
-                        </input>
-                    </div> : ""}
-                    <div>
-                        <input
-                            required={true}
-                            className={thursday_hours.length && thurs_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Thursday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={thursSet}
-                            value={thursday_hours}>
 
-                        </input>
-                        {thursday_hours.length && thurs_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Thursday. </div> : ""}
+                        {wedCheck ? <div className='secondary-openclosetime-div'>
+                            <label>Opening time: &nbsp;</label>
+                            <select
+                                value={wednesday_hours_two}
+                                onChange={(e) => setWedsHoursTwo(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"1:00"}>1</option>
+                                <option value={"1:30"}>1:30</option>
+                                <option value={"2:00"}>2</option>
+                                <option value={"2:30"}>2:30</option>
+                                <option value={"3:00"}>3</option>
+                                <option value={"3:30"}>3:30</option>
+                                <option value={"4:00"}>4</option>
+                                <option value={"4:30"}>4:30</option>
+                                <option value={"5:00"}>5</option>
+                                <option value={"5:30"}>5:30</option>
+                                <option value={"6:00"}>6</option>
+                                <option value={"6:30"}>6:30</option>
+                                <option value={"7:00"}>7</option>
+                                <option value={"7:30"}>7:30</option>
+                                <option value={"8:00"}>8</option>
+                                <option value={"8:30"}>8:30</option>
+                                <option value={"9:00"}>9</option>
+                                <option value={"9:30"}>9:30</option>
+                                <option value={"10:00"}>10</option>
+                                <option value={"10:30"}>10:30</option>
+                                <option value={"11:00"}>11</option>
+                                <option value={"11:30"}>11:30</option>
+                                <option value={"12:00"}>12</option>
+                                <option value={"12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={wedTwoOpenAmPM}
+                                onChange={(e) => setWedTwoOpenAmPm(e.target.value)}
+                            >
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option value={"PM"}>PM</option>
+                            </select>
+                            &nbsp; &nbsp;
+                            <label>Closing time: &nbsp;</label>
+                            <div>
+                                <select
+                                    value={wednesday_hours_two_close}
+                                    onChange={(e) => setWedsHoursTwoClose(e.target.value)}>
+                                    <option>Hour</option>
+                                    <option value={"-1:00"}>1</option>
+                                    <option value={"-1:30"}>1:30</option>
+                                    <option value={"-2:00"}>2</option>
+                                    <option value={"-2:30"}>2:30</option>
+                                    <option value={"-3:00"}>3</option>
+                                    <option value={"-3:30"}>3:30</option>
+                                    <option value={"-4:00"}>4</option>
+                                    <option value={"-4:30"}>4:30</option>
+                                    <option value={"-5:00"}>5</option>
+                                    <option value={"-5:30"}>5:30</option>
+                                    <option value={"-6:00"}>6</option>
+                                    <option value={"-6:30"}>6:30</option>
+                                    <option value={"-7:00"}>7</option>
+                                    <option value={"-7:30"}>7:30</option>
+                                    <option value={"-8:00"}>8</option>
+                                    <option value={"-8:30"}>8:30</option>
+                                    <option value={"-9:00"}>9</option>
+                                    <option value={"-9:30"}>9:30</option>
+                                    <option value={"-10:00"}>10</option>
+                                    <option value={"-10:30"}>10:30</option>
+                                    <option value={"-11:00"}>11</option>
+                                    <option value={"-11:30"}>11:30</option>
+                                    <option value={"-12:00"}>12</option>
+                                    <option value={"-12:30"}>12:30</option>
+                                </select>
+                                <select
+                                    value={wedTwoCloseAmPm}
+                                    onChange={(e) => setWedTwoCloseAmPm(e.target.value)}>
+                                    <option>Am/Pm</option>
+                                    <option value={"AM"}>AM</option>
+                                    <option vale={"PM"}>PM</option>
+                                </select>
+                            </div>
+                        </div> : ""}
+
+                    </div>
+                    <div className="bizform-hours-div">
+                        <div className="openclose-radio-div">
+                            <div>Open/Closed Thursday?</div>
+                            &nbsp; &nbsp;
+                            <label>Open</label>
+                            <input
+                                type='radio'
+                                onChange={() => setThursHours("")}
+                                checked={thursday_hours !== "Closed"}>
+                            </input>
+                            &nbsp;
+                            <label>Closed</label>
+                            <input
+                                type='radio'
+                                onChange={() => [setThursHours("Closed"), setThuCheck(false)]}
+                                checked={thursday_hours === "Closed"}>
+                            </input>
+                        </div>
+                        {thursday_hours !== "Closed" ? <div className='openclosetime-div'>
+                            <label>Opening time: &nbsp;</label>
+                            <select
+                                value={thursday_hours}
+                                onChange={thursSet}>
+                                <option>Hour</option>
+                                <option value={"1:00"}>1</option>
+                                <option value={"1:30"}>1:30</option>
+                                <option value={"2:00"}>2</option>
+                                <option value={"2:30"}>2:30</option>
+                                <option value={"3:00"}>3</option>
+                                <option value={"3:30"}>3:30</option>
+                                <option value={"4:00"}>4</option>
+                                <option value={"4:30"}>4:30</option>
+                                <option value={"5:00"}>5</option>
+                                <option value={"5:30"}>5:30</option>
+                                <option value={"6:00"}>6</option>
+                                <option value={"6:30"}>6:30</option>
+                                <option value={"7:00"}>7</option>
+                                <option value={"7:30"}>7:30</option>
+                                <option value={"8:00"}>8</option>
+                                <option value={"8:30"}>8:30</option>
+                                <option value={"9:00"}>9</option>
+                                <option value={"9:30"}>9:30</option>
+                                <option value={"10:00"}>10</option>
+                                <option value={"10:30"}>10:30</option>
+                                <option value={"11:00"}>11</option>
+                                <option value={"11:30"}>11:30</option>
+                                <option value={"12:00"}>12</option>
+                                <option value={"12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={thurOpenAmPM}
+                                onChange={(e) => setThurOpenAmPm(e.target.value)}
+                            >
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option value={"PM"}>PM</option>
+                            </select>
+                            &nbsp; &nbsp;
+                            <label>Closing time: &nbsp;</label>
+                            <select
+                                value={thursday_hours_close}
+                                onChange={(e) => setThursHoursClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={thurCloseAmPm}
+                                onChange={(e) => setThurCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div> : ""}
                         {(thursday_hours === 'Closed' || thursday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Thursday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -412,28 +1018,183 @@ const BusinessForm = () => {
                                 onClick={thuCheckBox}>
                             </input></div>}
                     </div>
-                    {thuCheck ? <div className="secondary-hours-input-div">
-                        <input
-                            className="business-form-hours-input"
-                            placeholder="Secondary Thursday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={(e) => setThursHoursTwo(e.target.value)}
-                            value={thursday_hours_two}>
-                        </input>
+                    {thuCheck ? <div className='secondary-openclosetime-div'>
+                        <label>Opening time: &nbsp;</label>
+                        <select
+                            value={thursday_hours_two}
+                            onChange={(e) => setThursHoursTwo(e.target.value)}>
+                            <option>Hour</option>
+                            <option value={"1:00"}>1</option>
+                            <option value={"1:30"}>1:30</option>
+                            <option value={"2:00"}>2</option>
+                            <option value={"2:30"}>2:30</option>
+                            <option value={"3:00"}>3</option>
+                            <option value={"3:30"}>3:30</option>
+                            <option value={"4:00"}>4</option>
+                            <option value={"4:30"}>4:30</option>
+                            <option value={"5:00"}>5</option>
+                            <option value={"5:30"}>5:30</option>
+                            <option value={"6:00"}>6</option>
+                            <option value={"6:30"}>6:30</option>
+                            <option value={"7:00"}>7</option>
+                            <option value={"7:30"}>7:30</option>
+                            <option value={"8:00"}>8</option>
+                            <option value={"8:30"}>8:30</option>
+                            <option value={"9:00"}>9</option>
+                            <option value={"9:30"}>9:30</option>
+                            <option value={"10:00"}>10</option>
+                            <option value={"10:30"}>10:30</option>
+                            <option value={"11:00"}>11</option>
+                            <option value={"11:30"}>11:30</option>
+                            <option value={"12:00"}>12</option>
+                            <option value={"12:30"}>12:30</option>
+                        </select>
+                        <select
+                            value={thurTwoOpenAmPM}
+                            onChange={(e) => setThurTwoOpenAmPm(e.target.value)}
+                        >
+                            <option>Am/Pm</option>
+                            <option value={"AM"}>AM</option>
+                            <option value={"PM"}>PM</option>
+                        </select>
+                        &nbsp; &nbsp;
+                        <label>Closing time: &nbsp;</label>
+                        <div>
+                            <select
+                                value={thursday_hours_two_close}
+                                onChange={(e) => setThursHoursTwoClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={thurTwoCloseAmPm}
+                                onChange={(e) => setThurTwoCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div>
                     </div> : ""}
-                    <div>
-                        <input
-                            required={true}
-                            className={friday_hours.length && fri_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Friday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={friSet}
-                            value={friday_hours}>
+                    <div className="bizform-hours-div">
+                        <div className="openclose-radio-div">
+                            <div>Open/Closed Friday?</div>
+                            &nbsp; &nbsp;
+                            <label>Open</label>
+                            <input
+                                type='radio'
+                                onChange={() => setFriHours("")}
+                                checked={friday_hours !== "Closed"}>
+                            </input>
+                            &nbsp;
+                            <label>Closed</label>
+                            <input
+                                type='radio'
+                                onChange={() => [setFriHours("Closed"), setFriCheck(false)]}
+                                checked={friday_hours === "Closed"}>
+                            </input>
+                        </div>
+                        {friday_hours !== "Closed" ? <div className='openclosetime-div'>
+                            <label>Opening time: &nbsp;</label>
+                            <select
+                                value={friday_hours}
+                                onChange={friSet}>
+                                <option>Hour</option>
+                                <option value={"1:00"}>1</option>
+                                <option value={"1:30"}>1:30</option>
+                                <option value={"2:00"}>2</option>
+                                <option value={"2:30"}>2:30</option>
+                                <option value={"3:00"}>3</option>
+                                <option value={"3:30"}>3:30</option>
+                                <option value={"4:00"}>4</option>
+                                <option value={"4:30"}>4:30</option>
+                                <option value={"5:00"}>5</option>
+                                <option value={"5:30"}>5:30</option>
+                                <option value={"6:00"}>6</option>
+                                <option value={"6:30"}>6:30</option>
+                                <option value={"7:00"}>7</option>
+                                <option value={"7:30"}>7:30</option>
+                                <option value={"8:00"}>8</option>
+                                <option value={"8:30"}>8:30</option>
+                                <option value={"9:00"}>9</option>
+                                <option value={"9:30"}>9:30</option>
+                                <option value={"10:00"}>10</option>
+                                <option value={"10:30"}>10:30</option>
+                                <option value={"11:00"}>11</option>
+                                <option value={"11:30"}>11:30</option>
+                                <option value={"12:00"}>12</option>
+                                <option value={"12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={friOpenAmPM}
+                                onChange={(e) => setFriOpenAmPm(e.target.value)}
+                            >
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option value={"PM"}>PM</option>
+                            </select>
+                            &nbsp; &nbsp;
+                            <label>Closing time: &nbsp;</label>
+                            <select
+                                value={friday_hours_close}
+                                onChange={(e) => setFriHoursClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={friCloseAmPm}
+                                onChange={(e) => setFriCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div> : ""}
 
-                        </input>
-                        {friday_hours.length && fri_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Friday. </div> : ""}
                         {(friday_hours === 'Closed' || friday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Friday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -441,28 +1202,185 @@ const BusinessForm = () => {
                                 onClick={friCheckBox}>
                             </input></div>}
                     </div>
-                    {friCheck ? <div className="secondary-hours-input-div">
-                        <input
-                            className="business-form-hours-input"
-                            placeholder="Secondary Friday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={(e) => setFriHoursTwo(e.target.value)}
-                            value={friday_hours_two}>
-                        </input>
+                    {friCheck ? <div className='secondary-openclosetime-div'>
+                        <label>Opening time: &nbsp;</label>
+                        <select
+                            value={friday_hours_two}
+                            onChange={(e) => setFriHoursTwo(e.target.value)}>
+                            <option>Hour</option>
+                            <option value={"1:00"}>1</option>
+                            <option value={"1:30"}>1:30</option>
+                            <option value={"2:00"}>2</option>
+                            <option value={"2:30"}>2:30</option>
+                            <option value={"3:00"}>3</option>
+                            <option value={"3:30"}>3:30</option>
+                            <option value={"4:00"}>4</option>
+                            <option value={"4:30"}>4:30</option>
+                            <option value={"5:00"}>5</option>
+                            <option value={"5:30"}>5:30</option>
+                            <option value={"6:00"}>6</option>
+                            <option value={"6:30"}>6:30</option>
+                            <option value={"7:00"}>7</option>
+                            <option value={"7:30"}>7:30</option>
+                            <option value={"8:00"}>8</option>
+                            <option value={"8:30"}>8:30</option>
+                            <option value={"9:00"}>9</option>
+                            <option value={"9:30"}>9:30</option>
+                            <option value={"10:00"}>10</option>
+                            <option value={"10:30"}>10:30</option>
+                            <option value={"11:00"}>11</option>
+                            <option value={"11:30"}>11:30</option>
+                            <option value={"12:00"}>12</option>
+                            <option value={"12:30"}>12:30</option>
+                        </select>
+                        <select
+                            value={friTwoOpenAmPM}
+                            onChange={(e) => setFriTwoOpenAmPm(e.target.value)}
+                        >
+                            <option>Am/Pm</option>
+                            <option value={"AM"}>AM</option>
+                            <option value={"PM"}>PM</option>
+                        </select>
+                        &nbsp; &nbsp;
+                        <label>Closing time: &nbsp;</label>
+                        <div>
+                            <select
+                                value={friday_hours_two_close}
+                                onChange={(e) => setFriHoursTwoClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={friTwoCloseAmPm}
+                                onChange={(e) => setFriTwoCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div>
                     </div> : ""}
-                    <div>
-                        <input
-                            required={true}
-                            className={saturday_hours.length && sat_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Saturday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={satSet}
-                            value={saturday_hours}>
+                    <div className="bizform-hours-div">
+                        <div className="openclose-radio-div">
+                            <div>Open/Closed Saturday?</div>
+                            &nbsp; &nbsp;
+                            <label>Open</label>
+                            <input
+                                type='radio'
+                                onChange={() => setSatHours("")}
+                                checked={saturday_hours !== "Closed"}>
+                            </input>
+                            &nbsp;
+                            <label>Closed</label>
+                            <input
 
-                        </input>
-                        {saturday_hours.length && sat_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Saturday. </div> : ""}
+                                type='radio'
+                                onChange={() => [setSatHours("Closed"), setSatCheck(false)]}
+                                checked={saturday_hours === "Closed"}>
+                            </input>
+
+                        </div>
+                        {saturday_hours !== "Closed" ? <div className='openclosetime-div'>
+                            <label>Opening time: &nbsp;</label>
+                            <select
+                                value={saturday_hours}
+                                onChange={satSet}>
+                                <option>Hour</option>
+                                <option value={"1:00"}>1</option>
+                                <option value={"1:30"}>1:30</option>
+                                <option value={"2:00"}>2</option>
+                                <option value={"2:30"}>2:30</option>
+                                <option value={"3:00"}>3</option>
+                                <option value={"3:30"}>3:30</option>
+                                <option value={"4:00"}>4</option>
+                                <option value={"4:30"}>4:30</option>
+                                <option value={"5:00"}>5</option>
+                                <option value={"5:30"}>5:30</option>
+                                <option value={"6:00"}>6</option>
+                                <option value={"6:30"}>6:30</option>
+                                <option value={"7:00"}>7</option>
+                                <option value={"7:30"}>7:30</option>
+                                <option value={"8:00"}>8</option>
+                                <option value={"8:30"}>8:30</option>
+                                <option value={"9:00"}>9</option>
+                                <option value={"9:30"}>9:30</option>
+                                <option value={"10:00"}>10</option>
+                                <option value={"10:30"}>10:30</option>
+                                <option value={"11:00"}>11</option>
+                                <option value={"11:30"}>11:30</option>
+                                <option value={"12:00"}>12</option>
+                                <option value={"12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={satOpenAmPM}
+                                onChange={(e) => setSatOpenAmPm(e.target.value)}
+                            >
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option value={"PM"}>PM</option>
+                            </select>
+                            &nbsp;
+                            <label>Closing time: &nbsp;</label>
+                            <select
+                                value={saturday_hours_close}
+                                onChange={(e) => setSatHoursClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={satCloseAmPm}
+                                onChange={(e) => setSatCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div> : ""}
+
                         {(saturday_hours === 'Closed' || saturday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Saturday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -470,28 +1388,183 @@ const BusinessForm = () => {
                                 onClick={satCheckBox}>
                             </input></div>}
                     </div>
-                    {satCheck ? <div className="secondary-hours-input-div">
-                        <input
-                            className="business-form-hours-input"
-                            placeholder="Secondary Saturday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={(e) => setSatHoursTwo(e.target.value)}
-                            value={saturday_hours_two}>
-                        </input>
+                    {satCheck ? <div className='secondary-openclosetime-div'>
+                        <label>Opening time: &nbsp;</label>
+                        <select
+                            value={saturday_hours_two}
+                            onChange={(e) => setSatHoursTwo(e.target.value)}>
+                            <option>Hour</option>
+                            <option value={"1:00"}>1</option>
+                            <option value={"1:30"}>1:30</option>
+                            <option value={"2:00"}>2</option>
+                            <option value={"2:30"}>2:30</option>
+                            <option value={"3:00"}>3</option>
+                            <option value={"3:30"}>3:30</option>
+                            <option value={"4:00"}>4</option>
+                            <option value={"4:30"}>4:30</option>
+                            <option value={"5:00"}>5</option>
+                            <option value={"5:30"}>5:30</option>
+                            <option value={"6:00"}>6</option>
+                            <option value={"6:30"}>6:30</option>
+                            <option value={"7:00"}>7</option>
+                            <option value={"7:30"}>7:30</option>
+                            <option value={"8:00"}>8</option>
+                            <option value={"8:30"}>8:30</option>
+                            <option value={"9:00"}>9</option>
+                            <option value={"9:30"}>9:30</option>
+                            <option value={"10:00"}>10</option>
+                            <option value={"10:30"}>10:30</option>
+                            <option value={"11:00"}>11</option>
+                            <option value={"11:30"}>11:30</option>
+                            <option value={"12:00"}>12</option>
+                            <option value={"12:30"}>12:30</option>
+                        </select>
+                        <select
+                            value={satTwoOpenAmPM}
+                            onChange={(e) => setSatTwoOpenAmPm(e.target.value)}
+                        >
+                            <option>Am/Pm</option>
+                            <option value={"AM"}>AM</option>
+                            <option value={"PM"}>PM</option>
+                        </select>
+                        &nbsp; &nbsp;
+                        <label>Closing time: &nbsp;</label>
+                        <div>
+                            <select
+                                value={saturday_hours_two_close}
+                                onChange={(e) => setSatHoursTwoClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={satTwoCloseAmPm}
+                                onChange={(e) => setSatTwoCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div>
                     </div> : ""}
-                    <div>
-                        <input
-                            required={true}
-                            className={sunday_hours.length && sun_falsey_check ? "falsey-form-hours-input" : "business-form-hours-input"}
-                            placeholder="Sunday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={sunSet}
-                            value={sunday_hours}>
+                    <div className={sunCheck ? "bizform-hours-div-last-secondary" : "bizform-hours-div-last"}>
+                        <div className="openclose-radio-div">
+                            <div>Open/Closed Sunday?</div>
+                            &nbsp; &nbsp;
+                            <label>Open</label>
+                            <input
+                                type='radio'
+                                onChange={() => setSunHours("")}
+                                checked={sunday_hours !== "Closed"}>
+                            </input>
+                            &nbsp;
+                            <label>Closed</label>
+                            <input
+                                type='radio'
+                                onChange={() => [setSunHours("Closed"), setSunCheck(false)]}
+                                checked={sunday_hours === "Closed"}>
+                            </input>
+                        </div>
+                        {sunday_hours !== "Closed" ? <div className='openclosetime-div'>
+                            <label>Opening time: &nbsp;</label>
+                            <select
+                                value={sunday_hours}
+                                onChange={sunSet}>
+                                <option>Hour</option>
+                                <option value={"1:00"}>1</option>
+                                <option value={"1:30"}>1:30</option>
+                                <option value={"2:00"}>2</option>
+                                <option value={"2:30"}>2:30</option>
+                                <option value={"3:00"}>3</option>
+                                <option value={"3:30"}>3:30</option>
+                                <option value={"4:00"}>4</option>
+                                <option value={"4:30"}>4:30</option>
+                                <option value={"5:00"}>5</option>
+                                <option value={"5:30"}>5:30</option>
+                                <option value={"6:00"}>6</option>
+                                <option value={"6:30"}>6:30</option>
+                                <option value={"7:00"}>7</option>
+                                <option value={"7:30"}>7:30</option>
+                                <option value={"8:00"}>8</option>
+                                <option value={"8:30"}>8:30</option>
+                                <option value={"9:00"}>9</option>
+                                <option value={"9:30"}>9:30</option>
+                                <option value={"10:00"}>10</option>
+                                <option value={"10:30"}>10:30</option>
+                                <option value={"11:00"}>11</option>
+                                <option value={"11:30"}>11:30</option>
+                                <option value={"12:00"}>12</option>
+                                <option value={"12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={sunOpenAmPM}
+                                onChange={(e) => setSunOpenAmPm(e.target.value)}
+                            >
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option value={"PM"}>PM</option>
+                            </select>
+                            &nbsp;
+                            <label>Closing time: &nbsp;</label>
+                            <select
+                                value={sunday_hours_close}
+                                onChange={(e) => setSunHoursClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={sunCloseAmPm}
+                                onChange={(e) => setSunCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div> : ""}
 
-                        </input>
-                        {sunday_hours.length && sun_falsey_check ? <div className="error-below-inputs-divs"> Must be valid time format for Sunday. </div> : ""}
                         {(sunday_hours === 'Closed' || sunday_hours === 'closed') ? "" : <div className='div-containing-secondary-check'><label>Click checkbox for secondary Sunday hours.</label>
                             <input
                                 className='extra-day-input-checkbox'
@@ -499,20 +1572,89 @@ const BusinessForm = () => {
                                 onClick={sunCheckBox}>
                             </input></div>}
                     </div>
-                    {sunCheck ? <div className="secondary-hours-input-div">
-                        <input
-                            className="business-form-hours-input"
-                            placeholder="Secondary Sunday Hours of Operation"
-                            name='hours'
-                            type='text'
-                            onChange={(e) => setSunHoursTwo(e.target.value)}
-                            value={sunday_hours_two}>
-                        </input>
+                    {sunCheck ? <div className='secondary-openclosetime-div-last'>
+                        <label>Opening time: &nbsp;</label>
+                        <select
+                            value={sunday_hours_two}
+                            onChange={(e) => setSunHoursTwo(e.target.value)}>
+                            <option>Hour</option>
+                            <option value={"1:00"}>1</option>
+                            <option value={"1:30"}>1:30</option>
+                            <option value={"2:00"}>2</option>
+                            <option value={"2:30"}>2:30</option>
+                            <option value={"3:00"}>3</option>
+                            <option value={"3:30"}>3:30</option>
+                            <option value={"4:00"}>4</option>
+                            <option value={"4:30"}>4:30</option>
+                            <option value={"5:00"}>5</option>
+                            <option value={"5:30"}>5:30</option>
+                            <option value={"6:00"}>6</option>
+                            <option value={"6:30"}>6:30</option>
+                            <option value={"7:00"}>7</option>
+                            <option value={"7:30"}>7:30</option>
+                            <option value={"8:00"}>8</option>
+                            <option value={"8:30"}>8:30</option>
+                            <option value={"9:00"}>9</option>
+                            <option value={"9:30"}>9:30</option>
+                            <option value={"10:00"}>10</option>
+                            <option value={"10:30"}>10:30</option>
+                            <option value={"11:00"}>11</option>
+                            <option value={"11:30"}>11:30</option>
+                            <option value={"12:00"}>12</option>
+                            <option value={"12:30"}>12:30</option>
+                        </select>
+                        <select
+                            value={sunTwoOpenAmPM}
+                            onChange={(e) => setSunTwoOpenAmPm(e.target.value)}
+                        >
+                            <option>Am/Pm</option>
+                            <option value={"AM"}>AM</option>
+                            <option value={"PM"}>PM</option>
+                        </select>
+                        &nbsp; &nbsp;
+                        <label>Closing time: &nbsp;</label>
+                        <div>
+                            <select
+                                value={sunday_hours_two_close}
+                                onChange={(e) => setSunHoursTwoClose(e.target.value)}>
+                                <option>Hour</option>
+                                <option value={"-1:00"}>1</option>
+                                <option value={"-1:30"}>1:30</option>
+                                <option value={"-2:00"}>2</option>
+                                <option value={"-2:30"}>2:30</option>
+                                <option value={"-3:00"}>3</option>
+                                <option value={"-3:30"}>3:30</option>
+                                <option value={"-4:00"}>4</option>
+                                <option value={"-4:30"}>4:30</option>
+                                <option value={"-5:00"}>5</option>
+                                <option value={"-5:30"}>5:30</option>
+                                <option value={"-6:00"}>6</option>
+                                <option value={"-6:30"}>6:30</option>
+                                <option value={"-7:00"}>7</option>
+                                <option value={"-7:30"}>7:30</option>
+                                <option value={"-8:00"}>8</option>
+                                <option value={"-8:30"}>8:30</option>
+                                <option value={"-9:00"}>9</option>
+                                <option value={"-9:30"}>9:30</option>
+                                <option value={"-10:00"}>10</option>
+                                <option value={"-10:30"}>10:30</option>
+                                <option value={"-11:00"}>11</option>
+                                <option value={"-11:30"}>11:30</option>
+                                <option value={"-12:00"}>12</option>
+                                <option value={"-12:30"}>12:30</option>
+                            </select>
+                            <select
+                                value={sunTwoCloseAmPm}
+                                onChange={(e) => setSunTwoCloseAmPm(e.target.value)}>
+                                <option>Am/Pm</option>
+                                <option value={"AM"}>AM</option>
+                                <option vale={"PM"}>PM</option>
+                            </select>
+                        </div>
                     </div> : ""}
                 </div>
                 <div className="business-form-email-input-div">
                     <input
-                        required={true}
                         placeholder="Email Address"
                         className={email.length && !isValidEmail(email) ? "falsey-business-form-email-input" : "business-form-email-input"}
                         name='email'
@@ -524,7 +1666,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-address-input-div">
                     <input
-                        required={true}
                         placeholder="Business Address"
                         className={((address.length && address.length < 15) || (address.length && address.length > 100)) ? "falsey-business-form-address-input" : "business-form-address-input"}
                         name='address'
@@ -537,8 +1678,7 @@ const BusinessForm = () => {
                 <div className="business-form-phone-input-div">
                     <label className="phone-num-input-label">Please enter in "xxx-xxx-xxxx" format.</label>
                     <input
-                        required={true}
-                        placeholder="Business Phone Number"
+                        placeholder="Business Phone #"
                         className={phone_number.length && isValidPhone(phone_number) !== 12 ? "falsey-business-form-phone-input" : "business-form-phone-input"}
                         name='phone_number'
                         type='text'
@@ -548,7 +1688,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-website-input-div">
                     <input
-                        // required={true}
                         placeholder="Business Website Link"
                         className="business-form-website-input"
                         type='text'
@@ -559,7 +1698,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-aboutus-input-div">
                     <textarea
-                        required={true}
                         placeholder="Description of your business and offerings."
                         className={about_us.length && about_us.length < 30 ? "falsey-business-form-aboutus-input" : "business-form-aboutus-input"}
                         type='text'
@@ -571,7 +1709,6 @@ const BusinessForm = () => {
                 </div>
                 <div className="business-form-price-input-div">
                     <input
-                        required={true}
                         placeholder="Price (1-5, represented by $'s)"
                         className={((price.length && price < 1) || (price.length && price > 5)) ? "falsey-business-form-price-input" : "business-form-price-input"}
                         type='number'
@@ -591,12 +1728,18 @@ const BusinessForm = () => {
                         value={tags}>
                     </input>
                 </div>
+                <ul>
+                    {renderErr?.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
                 <div className="create-business-form-two-button-div">
-                    {errors.length ? "" : <button className='business-form-button-submit' type="submit">Submit Business</button>}
+                    {/* {errors.length ? "" : <button className='business-form-button-submit' type="submit">Submit Business</button>} */}
+                    <button className='business-form-button-submit' type="submit">Submit Business</button>
                     <button className='business-form-button-close' onClick={onClose}>Close</button>
                 </div>
-            </form>
-        </div>
+            </form >
+        </div >
     )
 }
 
