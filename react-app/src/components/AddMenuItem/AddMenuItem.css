@@ -1,6 +1,7 @@
 .additemtomenu-img{
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
+    border-radius: 5px;
 }
 
 .primary-container-menuedit{

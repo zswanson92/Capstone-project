@@ -59,7 +59,7 @@ const EditMenuItem = () => {
         }
 
         setErrors(err)
-    }, [item_name, description, errors])
+    }, [item_name, description])
 
     const onClose = () => {
         history.push(`/businesses/${businessId}`);
@@ -70,10 +70,14 @@ const EditMenuItem = () => {
         setMenuItemImage(file);
     }
 
+    const goBackTwo = () => {
+        return history.goBack()
+    }
+
     return (
         <div className='main-menuitem-creation-container'>
-            <h1>Edit item on your menu</h1>
-            <form onSubmit={onSubmit}>
+            <h1>Edit information for {item_name}</h1>
+            <form className='editmi-form' onSubmit={onSubmit}>
                 <div className="menu-form-divs">
                     <input
                     required={true}
@@ -96,6 +100,7 @@ const EditMenuItem = () => {
                     />
                 </div>
                 <div className="menu-form-divs">
+                    <div>$</div>
                     <input
                     required={true}
                     type='number'
@@ -107,6 +112,7 @@ const EditMenuItem = () => {
                 </div>
                 <div className="menu-form-divs">
                 <input
+                        className='image-uploadinput-editmi'
                         type="file"
                         name='image'
                         accept="image/*"
@@ -115,9 +121,14 @@ const EditMenuItem = () => {
                 </div>
                 <div className="create-menu-two-buttons-div">
                 {errors.length ? "" : <button className='submit-edit-menu-item-button' type='submit'>Submit Menu Item Edit</button>}
-                <button className='create-menu-return-button' onClick={onClose}>Return to Business</button>
+
+
                 </div>
             </form>
+            <div className='twobuttons-editmi'>
+            <button className='create-menu-return-button' onClick={onClose}>Return to Business</button>
+            <button className='goback-button-editmi' onClick={() => goBackTwo()}>Back to Menu Item Selection</button>
+            </div>
         </div>
     )
 }

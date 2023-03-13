@@ -206,7 +206,6 @@ const BusinessForm = () => {
 
         const addedBiz = await dispatch(createBusinessThunk(createdBusiness))
 
-        console.log(addedBiz?.id)
         if (addedBiz) {
             await history.push(`/businesses/${addedBiz?.id}`);
         }

@@ -8,9 +8,6 @@
     width: 6em;
 }
 
-.edit-item-button:hover{
-    box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
-}
 
 .delete-item-button{
     background: none;
@@ -22,8 +19,16 @@
     width: 6em;
 }
 
-.delete-item-button:hover{
+.delete-item-button:hover, .edit-item-button:hover, .goback-button:hover, .returntobiz-button:hover{
     box-shadow: 0 0 30px rgba(32, 31, 31, 0.2);
+}
+
+.removeitem-item-img{
+    height: 4em;
+    width: 4em;
+    border-radius: 10px;
+    margin-right: 2em;
+    object-fit: cover;
 }
 
 .mapped-menuitems-div{
@@ -47,4 +52,32 @@
 
 .prefix-label-div{
     font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.goback-returnbiz-button-div{
+    padding-top: 5em;
+    display: flex;
+    gap: 2em;
+}
+
+.goback-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2.5em;
+    width: 12em;
+}
+
+.returntobiz-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 2.5em;
+    width: 10em;
 }

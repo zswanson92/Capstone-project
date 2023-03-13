@@ -265,48 +265,41 @@ const BusinessDetails = () => {
 
                 {/* change class name on 2nd div in condition */}
                 <div className="new-scratch-div-for-hours">
-                    {/* <div className="container-divs-inside-new-scratch">Mon {businessInfoObj?.monday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.monday_hours.split(',')[0]} {businessInfoObj?.monday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.monday_hours.split(',')[0]}    </div>                               }</div>
-                    <div className="container-divs-inside-new-scratch">Tue {businessInfoObj?.tuesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]} {businessInfoObj?.tuesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]}    </div>                           }</div>
-                    <div className="container-divs-inside-new-scratch">Wed {businessInfoObj?.wednesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.wednesday_hours.split(',')[0]} {businessInfoObj?.wednesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.wednesday_hours.split(',')[0]}  </div>                     }</div>
-                    <div className="container-divs-inside-new-scratch">Thu {businessInfoObj?.thursday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]} {businessInfoObj?.thursday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]}  </div>                         }</div>
-                    <div className="container-divs-inside-new-scratch">Fri {businessInfoObj?.friday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]} {businessInfoObj?.friday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]}    </div>                                }</div>
-                    <div className="container-divs-inside-new-scratch">Sat {businessInfoObj?.saturday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} {businessInfoObj?.saturday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} </div>                          }</div>
-                    <div className="container-divs-inside-new-scratch">Sun {businessInfoObj?.sunday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.sunday_hours.split(',')[0]} {businessInfoObj?.sunday_hours.split(',')[1]} </div> :  <div className="two-piece-hours-div">   {businessInfoObj?.sunday_hours.split(',')[0]} </div>                 }</div> */}
                     <table>
                         <tbody>
                             <tr>
                                 <th>Mon </th>
-                                <td>{businessInfoObj?.monday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.monday_hours.split(',')[0]} {businessInfoObj?.monday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.monday_hours.split(',')[0]}</div>}</td>
+                                <td>{businessInfoObj?.monday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.monday_hours.split(',')[0] === "Close" ? "Closed" : businessInfoObj?.monday_hours.split(',')[0]} {businessInfoObj?.monday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.monday_hours.split(',')[0]}</div>}</td>
                             </tr>
                             <tr className="spacing-row"></tr>
                             <tr>
                                 <th>Tue </th>
-                                <td>{businessInfoObj?.tuesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]} {businessInfoObj?.tuesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.tuesday_hours.split(',')[0]}</div>}</td>
+                                <td>{businessInfoObj?.tuesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.tuesday_hours.split(',')[0]  === "Close" ? "Closed" : businessInfoObj?.tuesday_hours.split(',')[0]}  {businessInfoObj?.tuesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.tuesday_hours.split(',')[0] === "Close" ? "Closed" : businessInfoObj?.tuesday_hours.split(',')[0]}</div>}</td>
                             </tr>
                             <tr className="spacing-row"></tr>
                             <tr>
                                 <th>Wed </th>
-                                <td>{businessInfoObj?.wednesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.wednesday_hours.split(',')[0]} {businessInfoObj?.wednesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.wednesday_hours.split(',')[0]}</div>}</td>
+                                <td>{businessInfoObj?.wednesday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.wednesday_hours.split(',')[0] === "Close" ? "Closed" : businessInfoObj?.wednesday_hours.split(',')[0]} {businessInfoObj?.wednesday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.wednesday_hours.split(',')[0]}</div>}</td>
                             </tr>
                             <tr className="spacing-row"></tr>
                             <tr>
                                 <th>Thu </th>
-                                <td>{businessInfoObj?.thursday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0]} {businessInfoObj?.thursday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.thursday_hours.split(',')[0]}</div>}</td>
+                                <td>{businessInfoObj?.thursday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.thursday_hours.split(',')[0] === "Close" ? "Closed" : businessInfoObj?.thursday_hours.split(',')[0]} {businessInfoObj?.thursday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.thursday_hours.split(',')[0]}</div>}</td>
                             </tr>
                             <tr className="spacing-row"></tr>
                             <tr>
                                 <th>Fri </th>
-                                <td>{businessInfoObj?.friday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0]} {businessInfoObj?.friday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.friday_hours.split(',')[0]}</div>}</td>
+                                <td>{businessInfoObj?.friday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.friday_hours.split(',')[0] === "Close" ? "Closed" : businessInfoObj?.friday_hours.split(',')[0]} {businessInfoObj?.friday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.friday_hours.split(',')[0]}</div>}</td>
                             </tr>
                             <tr className="spacing-row"></tr>
                             <tr>
                                 <th>Sat </th>
-                                <td>{businessInfoObj?.saturday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0]} {businessInfoObj?.saturday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.saturday_hours.split(',')[0]}</div>}</td>
+                                <td>{businessInfoObj?.saturday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.saturday_hours.split(',')[0] === "Close" ? "Closed" : businessInfoObj?.saturday_hours.split(',')[0]} {businessInfoObj?.saturday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.saturday_hours.split(',')[0]}</div>}</td>
                             </tr>
                             <tr className="spacing-row"></tr>
                             <tr>
                                 <th>Sun </th>
-                                <td>{businessInfoObj?.sunday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.sunday_hours.split(',')[0]} {businessInfoObj?.sunday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.sunday_hours.split(',')[0]}</div>}</td>
+                                <td>{businessInfoObj?.sunday_hours.split(',').length > 1 ? <div className="two-piece-hours-div"> {businessInfoObj?.sunday_hours.split(',')[0] === "Close" ? "Closed" : businessInfoObj?.sunday_hours.split(',')[0]} {businessInfoObj?.sunday_hours.split(',')[1]} </div> : <div className="two-piece-hours-div">  {businessInfoObj?.sunday_hours.split(',')[0]}</div>}</td>
                             </tr>
 
                         </tbody>
@@ -380,28 +373,6 @@ const BusinessDetails = () => {
                             {businessInfoObj?.reviews.length > 0 ? <div>{reviewStarAvg} • {starNumChecker(reviewStarAvg)}</div> : ""}
                             <div>{businessInfoObj?.reviews.length} review(s)</div>
                         </div>
-
-                        {/* {businessInfoObj?.reviews.map((reviewObj) => {
-                            return (
-                                <div key={reviewObj.id}>
-                                    <div className="move-around-reviews-li-div">
-                                        <p className="reviewer-name-p">{abcdef[reviewObj?.user_id - 1]?.split('').slice(1).join('')}</p>
-                                        <div className="business-details-reviews-stars-li">{starNumChecker(reviewObj?.stars)} &nbsp; {reviewObj?.created_at.split('').slice(0, 16).join('')}</div>
-                                        <div key={reviewObj.id} className="business-details-reviews-div">"{reviewObj?.body}" </div>
-                                    </div>
-                                    {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img onError={addDefaultSrc} className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
-                                    {sessionUser?.id !== reviewObj?.user_id ?
-                                        <div className="three-review-buttons-div">
-                                            <button className='review-voting-buttons'>💡 Useful</button>
-                                            <button className='review-voting-buttons'>😁 Funny</button>
-                                            <button className='review-voting-buttons'>😎 Cool</button>
-                                        </div> : ""}
-                                    {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
-                                        <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
-                                    ) : null}
-                                </div>
-                            )
-                        })} */}
                         {reviewsArr.map((reviewObj) => {
                             return (
                                 <div key={reviewObj.id}>
