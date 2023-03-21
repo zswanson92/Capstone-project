@@ -326,7 +326,7 @@ export const getBusinessByIdThunk = (businessId) => async dispatch => {
 
 
 export const getAllBusinessesThunk = () => async dispatch => {
-    const response = await fetch('/api/businesses');
+    const response = await fetch(`/api/businesses`);
 
     if (response.ok) {
         const data = await response.json()

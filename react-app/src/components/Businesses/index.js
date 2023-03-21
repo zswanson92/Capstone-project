@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { getAllBusinessesThunk } from '../../store/business';
@@ -11,12 +11,19 @@ import { getKey } from '../../store/map'
 const Businesses = () => {
     const dispatch = useDispatch()
 
+    const [start, setStart] = useState(0)
+    const [page, setPage] = useState(8)
+
     const businessesObj = useSelector(state => {
         return state
     })
 
+    console.log("WAT IS GOING ON", businessesObj)
 
-    const aBusiness = Object.values(businessesObj.businessReducer.businesses)
+    let aBusiness = Object.values(businessesObj?.businessReducer?.businesses)
+    const testTest = aBusiness.length
+    // console.log()
+    aBusiness = aBusiness.slice(start, page)
 
 
     useEffect(() => {
@@ -121,6 +128,13 @@ const Businesses = () => {
                         )
                     })}
                 </div>
+
+            </div>
+            <div className='back-forward-page-buttons-div'>
+            {start >= 8 ? <button className='page-button' onClick={() => [setStart(start - 8), setPage(page -8)]}>Previous Page</button> : ""}
+            {/* <button onClick={() => [setStart(start - 8), setPage(page -8)]}>Previous Page</button> */}
+            {console.log(start, testTest)}
+            {start < testTest / 2 ? <button className='page-button' onClick={() => [setStart(start + 8), setPage(page + 8)]}>Next Page</button> : ""}
             </div>
             <div className='businesses-footer-div'>
 

@@ -135,3 +135,25 @@
     width: 100%;
     background-color: lightgray;
 }
+
+.back-forward-page-buttons-div{
+    display: flex;
+    gap: 40em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.page-button{
+    background: none;
+    background-color: #c41200;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    height: 3em;
+    width: 16em;
+    font-weight: bold;
+}
+
+.page-button:hover{
+    box-shadow: 0 0 30px rgba(24, 23, 23, 0.2);
+}
