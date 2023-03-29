@@ -10,7 +10,7 @@ import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 // import NavBar from "../NavBar";
 // import HomeMap from "../MapsApi";
 // import UploadPicture from "../UploadPicture/UploadPicture";
-
+import HomeMap from "../MapsApi";
 
 const BusinessDetails = () => {
     const dispatch = useDispatch();
@@ -25,7 +25,6 @@ const BusinessDetails = () => {
         return state.businessReducer.businesses[businessId];
     });
 
-    // console.log("biz info obj", businessInfoObj)
 
 
     const reviewObj = useSelector(state => {
@@ -38,7 +37,6 @@ const BusinessDetails = () => {
     let newArr = []
     let sum = 0
 
-    // const eachReviewStarsArr =
     businessInfoObj?.reviews.forEach(obj => newArr.push(obj.stars))
 
     const reviewStarArrReduce = newArr?.reduce((accum, currVal) => accum + currVal, sum)
@@ -86,44 +84,6 @@ const BusinessDetails = () => {
         await dispatch(getReviewsByBusinessIdThunk(businessId));
 
     }
-
-
-    // let monCheck = false
-    // let tuesCheck = false
-    // let wedsCheck = false
-    // let thursCheck = false
-    // let friCheck = false
-    // let satCheck = false
-    // let sunCheck = false
-
-    // if (businessInfoObj?.monday_hours.split('').includes(',')) {
-    //     monCheck = true
-    // }
-
-    // if (businessInfoObj?.tuesday_hours.split('').includes(',')) {
-    //     tuesCheck = true
-    // }
-
-    // if (businessInfoObj?.wednesday_hours.split('').includes(',')) {
-    //     wedsCheck = true
-    // }
-
-    // if (businessInfoObj?.thursday_hours.split('').includes(',')) {
-    //     thursCheck = true
-    // }
-
-    // if (businessInfoObj?.friday_hours.split('').includes(',')) {
-    //     friCheck = true
-    // }
-
-    // if (businessInfoObj?.saturday_hours.split('').includes(',')) {
-    //     satCheck = true
-    // }
-
-    // if (businessInfoObj?.sunday_hours.split('').includes(',')) {
-    //     sunCheck = true
-    // }
-
 
 
 
@@ -213,7 +173,6 @@ const BusinessDetails = () => {
                         (sessionUser.id === businessInfoObj?.user_id ? (
                             <button
                                 className="business-delete-button"
-                                // onClick={(event) => deleteABusiness(event, businessId)}
                                 onClick={(event) => confirmDelete(event)}
                             >
                                 {" "}
@@ -245,11 +204,7 @@ const BusinessDetails = () => {
                 <div className="business-name-h2-two">{dollarNumChecker(businessInfoObj?.price)} &nbsp; &nbsp; • &nbsp; &nbsp; {businessInfoObj?.tags}  </div>
             </div>
 
-
-            {/* <UploadPicture /> */}
-
             <div className="beta-container-test">
-                {/* start of menu div */}
 
                 <div className="daily-hours-div">
 
@@ -257,9 +212,8 @@ const BusinessDetails = () => {
                         {businessInfoObj?.address}
                     </div>
                     <div className="potential-map-location" style={{ backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)' }}>
-                        {/* style={{ backgroundImage: 'url(https://www.greenbot.com/wp-content/uploads/2017/03/google-maps-2.jpg)' }} */}
                         <p className="maps-p">Maps API implementation coming soon.</p>
-                        {/* <HomeMap addy={businessInfoObj?.address} /> */}
+                        {/* <div> <HomeMap /> </div> */}
                     </div>
                 </div>
 
@@ -307,14 +261,11 @@ const BusinessDetails = () => {
                 </div>
 
                 {businessInfoObj?.menus.length ? <div className="menu-pop-items-div">
-                    {/* <hr className="about-biz-hr-sep-two"></hr> */}
-                    {/* <p>Menu</p> */}
                     <p>Popular Dishes:</p>
                     <div className="actual-menu-items-div">
 
                         {businessInfoObj?.menus.map((menu) => {
                             return menu.menu_items.map((menuitems) => {
-                                // {console.log("@@@@@@", menuitems)}
                                 return <div className="menu-items-map-divs" key={menuitems.id}>
                                     <img className="menu-item-image" onError={addDefaultSrc} src={menuitems?.menu_item_image} alt='Loading...' />
                                     {menuitems.item_name},
@@ -360,7 +311,6 @@ const BusinessDetails = () => {
 
                 <div className="where-reviews-will-go-probably">
                     <div className="about-the-biz-div">
-                        {/* <hr className="about-biz-hr-sep"></hr> */}
                         <h2 className="about-biz-h2">About the Business</h2>
                         {businessInfoObj?.about_us}
                         <hr className="about-biz-hr-sep-two"></hr>

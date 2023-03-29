@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllBusinessesThunk } from '../../store/business';
 
-const HomeMap = () => {
+const BusinessDetailsMap = ({ addy }) => {
   const dispatch = useDispatch()
 
   const apiKey = useSelector(state => state.mapReducer.key)
@@ -26,6 +26,7 @@ const HomeMap = () => {
 
 
   const aBusiness = Object.values(businessesObj.businessReducer.businesses)
+
 
 
 
@@ -60,7 +61,48 @@ const HomeMap = () => {
   };
 
 
+  let addyLng;
+  let addyLat;
+
+  if(addy){
+    Geocode.fromAddress(addy).then(
+      (response) => {
+        console.log("THIS IS RESPONSE", response)
+        const {lat, lng} = response.results[0].geometry.location
+        console.log("LAT", lat, "LNG", lng)
+        addyLng = lng
+        addyLat = lat
+      }
+    )
+  }
+
+  console.log("LNG", addyLng)
+  console.log("LAT", addyLat)
+
   let defaultCenter = {lat: 45.5152, lng: -122.6784}
+
+  if(addyLng && addyLat){
+    defaultCenter = {lat: addyLat, lng: addyLng}
+  }
+  // const defaultCenterFinder = (addy) => {
+
+  //   if (addy) {
+  //     Geocode.fromAddress(addy).then(
+  //       (response) => {
+  //         const { lat, lng } = response.results[0].geometry.location;
+
+  //         return { lat, lng }
+  //       },
+  //       (error) => {
+  //         console.error(error);
+  //       }
+
+  //     )
+  //   }
+  //   else return defaultCenter
+  // }
+
+
 
 
   return (
@@ -88,4 +130,4 @@ const HomeMap = () => {
   )
 }
 
-export default HomeMap
+export default BusinessDetailsMap

@@ -53,6 +53,9 @@ function enlargeImg(id) {
   }
 
 
+  let xTruth = document.getElementsByClassName("active").length > 0 ? false : true
+
+
   return (
     <div className='full-menu-primary-container'>
       <h1>
@@ -71,9 +74,11 @@ function enlargeImg(id) {
             {menu.menu_items?.map(menuitem => {
               return (
                 <div key={menuitem.id} className='inner-fullmenu-div'>
-                  {menuitem.menu_item_image ? <div><div onClick={() => enlargeImg(menuitem.id)}><img  id={menuitem.id} className='fullmenu-item-img' onError={addDefaultSrc} src={menuitem.menu_item_image} alt="Loading..."/></div><button disabled={disableCheck} onClick={() => xClick()} className='textxbutt'>x</button></div> : <div><img src='https://cdn-icons-png.flaticon.com/512/168/168812.png' alt='Loading...'/></div>}
+                  {menuitem.menu_item_image ? <div><div onClick={() => enlargeImg(menuitem.id)}><img  id={menuitem.id} className='fullmenu-item-img' onError={addDefaultSrc} src={menuitem.menu_item_image} alt="Loading..."/></div><button hidden={xTruth} disabled={disableCheck} onClick={() => xClick()} className='textxbutt'>x</button></div> : <div><img src='https://cdn-icons-png.flaticon.com/512/168/168812.png' alt='Loading...'/></div>}
                   {' '}
-                  {menuitem.item_name}, {menuitem.description}, $
+                  {menuitem.item_name}:
+                  <br/>
+                  {menuitem.description} - $
                   {menuitem.price}
                 </div>
               )

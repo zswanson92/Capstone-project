@@ -22,7 +22,6 @@ const Businesses = () => {
 
     let aBusiness = Object.values(businessesObj?.businessReducer?.businesses)
     const testTest = aBusiness.length
-    // console.log()
     aBusiness = aBusiness.slice(start, page)
 
 
@@ -120,7 +119,7 @@ const Businesses = () => {
                                                 </div>
                                             )
                                         })} {dollarNumChecker(obj?.price)}</div>
-                                        <p className='testtextdiv'>{obj?.reviews[obj?.reviews.length - 1]?.body} </p>
+                                        <p className='testtextdiv'>"{obj?.reviews[obj?.reviews.length - 1]?.body}" </p>
                                     </div>
                                 </Link>
                                 <Link className='more-link-on-businesses' to={`/businesses/${obj?.id}`}>more</Link>
@@ -132,8 +131,6 @@ const Businesses = () => {
             </div>
             <div className='back-forward-page-buttons-div'>
             {start >= 8 ? <button className='page-button' onClick={() => [setStart(start - 8), setPage(page -8)]}>Previous Page</button> : ""}
-            {/* <button onClick={() => [setStart(start - 8), setPage(page -8)]}>Previous Page</button> */}
-            {console.log(start, testTest)}
             {start < testTest / 2 ? <button className='page-button' onClick={() => [setStart(start + 8), setPage(page + 8)]}>Next Page</button> : ""}
             </div>
             <div className='businesses-footer-div'>

@@ -144,6 +144,11 @@
     box-shadow: inset 0 0 300px #000;
 }
 
+.bizdetailsmap{
+    height: 1em;
+    width: 5em;
+}
+
 
 .menu-pop-items-div{
     /* padding-top: 10em; */
@@ -277,6 +282,7 @@
 
 .business-details-reviews-div{
     padding-bottom: 3em;
+    line-height: 22px;
     overflow-wrap: break-word;
 }
 
