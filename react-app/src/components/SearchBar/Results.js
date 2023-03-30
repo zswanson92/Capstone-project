@@ -9,9 +9,7 @@ const Results = () => {
         return state;
     });
 
-    //   const history = useHistory()
     const search = Object.values(searchObj.searchReducer.allResults);
-    //   console.log("this is search", search)
 
     const fillerImg = 'https://cdn-icons-png.flaticon.com/512/168/168812.png'
 

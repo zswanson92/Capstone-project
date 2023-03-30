@@ -48,8 +48,8 @@ const SplashPage = () => {
                     <div className="corp-div">© 2022 Zelp Corp</div>
                     <div className='foot-name-div'>
 
-                        <div className='href-div'><a className='splash-github-link' href='https://github.com/zswanson92'>  Zack Swanson</a></div>
-                        <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
+                        <div className='href-div'><a className='splash-github-link' target="_blank" rel="noreferrer"  href='https://www.linkedin.com/in/zack-swanson-90697b261/'>  Zack Swanson</a></div>
+                        <div><a target="_blank" rel="noreferrer" href='https://github.com/zswanson92/Capstone-project'><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></a></div>
                     </div>
                 </div>
         </div>

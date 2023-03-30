@@ -1,7 +1,7 @@
 .main-splashpage-div {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     position: relative;
     top: -5em;
     z-index: 0;
@@ -124,7 +124,7 @@
 
 .post-mapped-sugg-business-hr {
     margin-top: 3em;
-    width: 100%;
+    width: 99.9%;
 }
 
 .splash-page-categories-h2 {

@@ -16,6 +16,10 @@
     font-weight: bold;
 }
 
+.login-form-login-button:hover{
+    box-shadow: 0 0 30px rgba(24, 23, 23, 0.2);
+}
+
 .login-form-login-demo-button {
     background: none;
     background-color: #c41200;
@@ -25,6 +29,10 @@
     height: 3em;
     width: 18em;
     font-weight: bold;
+}
+
+.login-form-login-demo-button:hover{
+    box-shadow: 0 0 30px rgba(24, 23, 23, 0.2);
 }
 
 .two-loginform-buttons {
@@ -51,7 +59,7 @@
 .login-form-error-map-div {
     color: red;
     font-weight: bold;
-    padding-top: 1em;
+    padding-bottom: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,7 +89,8 @@
 }
 
 .forgot-pw-div {
-    padding-bottom: 1em;
+    padding-top: 1em;
+    padding-bottom: .5em;
     padding-left: 3.3em;
 }
 

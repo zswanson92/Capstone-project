@@ -14,7 +14,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'- {field.capitalize()} is required.')
     return errorMessages
 
 
@@ -42,7 +42,7 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
-    print("!!!!!!!!!!!", form.errors)
+    # print("!!!!!!!!!!!", form.errors)
     # newerrmsg = {'Error': ['Email or Password is incorrect, please try again.']}
     newerrmsg = ['Email or Password is incorrect, please try again.']
 
@@ -77,7 +77,7 @@ def sign_up():
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    print("!!!!!!!!!!!", form.errors)
+    # print("!!!!!!!!!!!", form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

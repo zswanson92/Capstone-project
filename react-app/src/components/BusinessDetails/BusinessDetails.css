@@ -440,6 +440,13 @@
     font-weight: bold;
 }
 
+.nouser-review-voting-buttons{
+    background: none;
+    border-radius: 5px;
+    padding: .5em;
+    border: .5px solid rgb(177, 168, 168);
+}
+
 .review-voting-buttons{
     background: none;
     border-radius: 5px;

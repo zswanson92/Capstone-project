@@ -96,7 +96,6 @@ const SignUpForm = () => {
             </div>
             <div className='first-signupform-input-div'>
               <input
-                required={true}
                 className={
                   username.length > 0 && username.length < 26
                     ? 'signupform-inputs'
@@ -119,7 +118,6 @@ const SignUpForm = () => {
             </div>
             <div className='signupform-input-div'>
               <input
-                required={true}
                 className={
                   fullname.length > 0 && fullname.length < 41
                     ? 'signupform-inputs'
@@ -142,7 +140,6 @@ const SignUpForm = () => {
             </div>
             <div className='signupform-input-div'>
               <input
-                required={true}
                 className={
                   isValidEmail(email) &&
                   !errors.includes('email : Email address is already in use.')
@@ -172,7 +169,6 @@ const SignUpForm = () => {
             </div>
             <div className='signupform-input-div'>
               <input
-                required={true}
                 className={
                   !password.length
                     ? 'falsey-signupform-inputs'
@@ -198,7 +194,6 @@ const SignUpForm = () => {
                 name='repeat_password'
                 onChange={repeatPasswordHandleChange}
                 value={repeatPassword}
-                required={true}
               ></input>
               {repeatPassword !== password ? (
                 <div className='error-message-signupform-divs-repeat'>
@@ -208,6 +203,9 @@ const SignUpForm = () => {
                 ''
               )}
             </div>
+            {errors.map((error, ind) => (
+                  <div className='signupform-errs' key={ind}>{error}</div>
+            ))}
             <button className='sign-up-button' type='submit'>
               Sign Up
             </button>
@@ -227,18 +225,20 @@ const SignUpForm = () => {
             <div className='href-div'>
               <a
                 className='splash-github-link'
-                href='https://github.com/zswanson92'
+                target="_blank" rel="noreferrer"  href='https://www.linkedin.com/in/zack-swanson-90697b261/'
               >
                 {' '}
                 Zack Swanson
               </a>
             </div>
             <div>
+              <a target="_blank" rel="noreferrer" href='https://github.com/zswanson92/Capstone-project'>
               <img
                 src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg'
                 alt='Logo'
                 className='splash-logo-img'
               ></img>
+              </a>
             </div>
           </div>
         </div>

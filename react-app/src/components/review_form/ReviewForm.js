@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./ReviewForm.css";
 import { createReviewThunk, getReviewsByBusinessIdThunk } from "../../store/review";
-// import { getBusinessByIdThunk } from "../../store/business";
-// import UploadPicture from "../UploadPicture/UploadPicture";
+
 
 
 const ReviewFormButton = () => {
   const dispatch = useDispatch();
-  // let history = useHistory();
   const sessionUser = useSelector(state => state.session.user)
   const { businessId } = useParams()
 
@@ -44,37 +42,14 @@ const ReviewFormButton = () => {
     setBody('');
     setReviewForm(false)
 
-    // await dispatch(getBusinessByIdThunk(businessId))
     await dispatch(getReviewsByBusinessIdThunk(businessId))
-    // let imageOne;
-    // let theRvId = +theCreatedRev.id
-    // const formData = new FormData();
 
-    // console.log("AGGDADGDGADGAGD", theRvId)
-    // await formData.append("image_url", image_url);
-    // await formData.append("review_id", theRvId)
-
-
-    // const res = await fetch('/api/images', {
-    //   method: "POST",
-    //   body: formData,
-    // });
-    // if (res.ok) {
-    //   imageOne = await res.json();
-    //   return imageOne
-    // }
-    // else {
-    //   console.log("error");
-    // }
-
-
-    // await dispatch(getBusinessByIdThunk(businessId))
   };
 
   const starOneClick = () => {
     if (stars < 2) {
       setStarOne(!starOne)
-      setStars(1) // what is this doing
+      setStars(1)
     }
     if (stars === 1) {
       setStars(0)
@@ -179,18 +154,6 @@ const ReviewFormButton = () => {
     setErrors(err)
   }, [body, stars])
 
-  // function validImageUrl(url) {
-  //   let falseycheck;
-  //   let lastThree = url.split('').slice(url.length - 3)
-  //   // console.log(lastThree.join(''))
-  //   if (lastThree.join('') === 'png' || lastThree.join('') === 'jpg' || lastThree.join('') === 'peg') {
-  //     falseycheck = true
-  //   } else {
-  //     falseycheck = false
-  //   }
-  //   // console.log(falseycheck)
-  //   return falseycheck
-  // }
 
   const updateImage = (e) => {
     const file = e.target.files[0];
@@ -242,8 +205,8 @@ const ReviewFormButton = () => {
                 />
               </div>
               <div className="two-review-form-button-div">
-                {errors.length ? "" : <button type="submit" className="submitreview-button">Submit Review</button>}
-                <button onClick={() => setReviewForm(false)} className='discardreviewform-button'>Close Form</button>
+                <button type="submit" disabled={errors.length ? true : false} className="submitreview-button">Submit Review</button>
+                <button onClick={() => [setReviewForm(false), setStars(0), setStarOne(false), setStarTwo(false), setStarThree(false), setStarFour(false), setStarFive(false), setBody("")]} className='discardreviewform-button'>Close Form</button>
               </div>
             </div>
           </form>

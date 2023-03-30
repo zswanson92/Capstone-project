@@ -176,7 +176,9 @@ const EditReviewButton = () => {
 
     return (
         <div className="edit-review-container-div">
+            <h1>Edit Review</h1>
             <form onSubmit={editCurrReview} className="edit-review-form">
+
                 <div className="edit-review-input-divs-container">
                     <div className="edit-review-text-area-div">
                         <textarea

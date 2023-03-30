@@ -53,6 +53,11 @@ const LoginForm = () => {
             </Link>
           </h4>
           <form onSubmit={onLogin} className='loginform-alignment'>
+            <div className='login-form-error-map-div'>
+            {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+            </div>
             <div>
               <input
                 className='loginform-inputs-one'
@@ -61,7 +66,6 @@ const LoginForm = () => {
                 placeholder='Email'
                 value={email}
                 onChange={updateEmail}
-                required={true}
               />
             </div>
             <div className='loginform-alignment'>
@@ -72,12 +76,8 @@ const LoginForm = () => {
                 placeholder='Password'
                 value={password}
                 onChange={updatePassword}
-                required={true}
               />
               <div className='login-form-error-map-div'>
-                {errors.map((error, ind) => (
-                  <div key={ind}>{error}</div>
-                ))}
                 <div className='forgot-pw-div'>
                   <Link className='forgot-pw-link' to={'/production'}>
                     Forgot your password?
@@ -107,18 +107,20 @@ const LoginForm = () => {
             <div className='href-div'>
               <a
                 className='splash-github-link'
-                href='https://github.com/zswanson92'
+                target="_blank" href='https://www.linkedin.com/in/zack-swanson-90697b261/' rel="noreferrer"
               >
                 {' '}
                 Zack Swanson
               </a>
             </div>
             <div>
+              <a target="_blank" href='https://github.com/zswanson92/Capstone-project' rel="noreferrer">
               <img
                 src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg'
                 alt='Logo'
                 className='splash-logo-img'
               ></img>
+              </a>
             </div>
           </div>
         </div>

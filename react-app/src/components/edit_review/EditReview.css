@@ -1,6 +1,8 @@
 .edit-review-container-div{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-top: 15em;
 }
 
@@ -64,6 +66,7 @@
 }
 
 .edit-review-button-duo{
+    padding-top: 2em;
     display: flex;
     justify-content: center;
     gap: 1.5em;

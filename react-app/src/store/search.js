@@ -25,7 +25,6 @@ const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RESULTS:{
       const newState = {allResults:{}};
-      console.log("THIS IS ACTION", action)
       for(const key in action.data){
         newState.allResults[key] = action.data[key];
       }

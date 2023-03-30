@@ -334,7 +334,6 @@ const BusinessForm = () => {
                 <h1>Create a New Business</h1>
                 <div className="business-form-name-input-div">
                     <input
-                        required={true}
                         className={((name.length && name.length < 6) || (name.length && name.length > 50)) ? "falsey-business-form-name-input" : "business-form-name-input"}
                         type='text'
                         name='name'

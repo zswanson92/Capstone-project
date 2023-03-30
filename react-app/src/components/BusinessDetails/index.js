@@ -299,7 +299,7 @@ const BusinessDetails = () => {
                     <h2 className="contact-info-h2">Contact Information</h2>
                     <hr />
                     <ul className="contact-info-ul">
-                        {businessInfoObj?.business_website ? <li className="contact-info-li">  <Link className="business-website-link-link" to={`/`}>{businessInfoObj?.business_website}</Link> &nbsp; &nbsp; &nbsp; <i className="fa fa-share" aria-hidden="true"></i></li> : ""}
+                        {businessInfoObj?.business_website ? <li className="contact-info-li">  <a className="business-website-link-link" href={"https://" + businessInfoObj?.business_website} target="_blank">{businessInfoObj?.business_website}</a> &nbsp; &nbsp; &nbsp; <i className="fa fa-share" aria-hidden="true"></i></li> : ""}
                         {businessInfoObj?.business_website ? <hr className="contact-info-ul-hr" /> : ""}
                         <li className="contact-info-li"> {businessInfoObj?.phone_number} &nbsp; &nbsp; &nbsp;  <i className="fa fa-phone" aria-hidden="true"></i></li>
                         <hr className="contact-info-ul-hr" />
@@ -323,7 +323,7 @@ const BusinessDetails = () => {
                             {businessInfoObj?.reviews.length > 0 ? <div>{reviewStarAvg} • {starNumChecker(reviewStarAvg)}</div> : ""}
                             <div>{businessInfoObj?.reviews.length} review(s)</div>
                         </div>
-                        {reviewsArr.map((reviewObj) => {
+                        {reviewsArr.sort((a, b) => { return new Date(b.created_at) - new Date(a.created_at)}).map((reviewObj) => {
                             return (
                                 <div key={reviewObj.id}>
                                     <div className="move-around-reviews-li-div">
@@ -334,9 +334,9 @@ const BusinessDetails = () => {
                                     {reviewObj?.image_url ? <div className="business-details-reviews-li-image-holder"><img onError={addDefaultSrc} className="review-prev-img" src={reviewObj?.image_url} alt="" /></div> : ""}
                                     {sessionUser?.id !== reviewObj?.user_id ?
                                         <div className="three-review-buttons-div">
-                                            <button className='review-voting-buttons' disabled={sessionUser ? false : true} onClick={(e) => createUseful(e, reviewObj.id)}>💡 Useful {reviewObj?.useful}</button>
-                                            <button className='review-voting-buttons' disabled={sessionUser ? false : true} onClick={(e) => createFunny(e, reviewObj.id)}>😁 Funny {reviewObj?.funny}</button>
-                                            <button className='review-voting-buttons' disabled={sessionUser ? false : true} onClick={(e) => createCool(e, reviewObj.id)}>😎 Cool {reviewObj?.cool}</button>
+                                            <button className={sessionUser ? 'review-voting-buttons' : 'nouser-review-voting-buttons'} disabled={sessionUser ? false : true} onClick={(e) => createUseful(e, reviewObj.id)}>💡 Useful {reviewObj?.useful}</button>
+                                            <button className={sessionUser ? 'review-voting-buttons' : 'nouser-review-voting-buttons'} disabled={sessionUser ? false : true} onClick={(e) => createFunny(e, reviewObj.id)}>😁 Funny {reviewObj?.funny}</button>
+                                            <button className={sessionUser ? 'review-voting-buttons' : 'nouser-review-voting-buttons'} disabled={sessionUser ? false : true} onClick={(e) => createCool(e, reviewObj.id)}>😎 Cool {reviewObj?.cool}</button>
                                         </div> : ""}
                                     {sessionUser && (sessionUser.id === reviewObj.user_id) ? (
                                         <div className="edit-review-link-business-details-div"><Link className='edit-review-link-business-details' to={`/edit/${businessId}/reviews/${reviewObj.id}`}><button className="edit-review-link-business-details-button">Edit Review</button></Link></div>
@@ -352,8 +352,8 @@ const BusinessDetails = () => {
                 <div className="corp-div">© 2022 Zelp Corp</div>
                 <div className='foot-name-div'>
 
-                    <div className='href-div'><a className='splash-github-link' href='https://github.com/zswanson92'>  Zack Swanson</a></div>
-                    <div><img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></div>
+                    <div className='href-div'><a className='splash-github-link' target="_blank" rel="noreferrer" href='https://www.linkedin.com/in/zack-swanson-90697b261/'>  Zack Swanson</a></div>
+                    <div><a target="_blank" rel="noreferrer" href='https://github.com/zswanson92/Capstone-project'> <img src='https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg' alt='Logo' className='splash-logo-img'></img></a></div>
                 </div>
             </div>
         </div>

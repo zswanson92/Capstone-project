@@ -44,17 +44,17 @@ const CreateMenuItem = () => {
 
     useEffect(() => {
 
-        let err = [];
+        const err = [];
 
         if (item_name.length > 25) {
-            errors.push("Menu Item name cannot be longer than 25 characters.")
+            err.push("Menu Item name cannot be longer than 25 characters.")
         }
         if(description.length > 400){
-            errors.push("Menu Item description cannot be longer than 400 characters.")
+            err.push("Menu Item description cannot be longer than 400 characters.")
         }
 
         setErrors(err)
-    }, [item_name, description, errors])
+    }, [item_name, description])
 
 
     const updateImage = (e) => {
