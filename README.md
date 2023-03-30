@@ -1,4 +1,4 @@
-# Zelp!
+# [Zelp!](https://zelp-hdmq.onrender.com)
 
 ## About
 
@@ -6,46 +6,7 @@ Zelp! is my attempt at a rough clone of the Yelp! website, primarily focused on 
 
 In the future I hope to also implement maps as well as a search bar to further enable people to find things that are popular near them and potentially find some hiddens gems as well as let their own feelings be known to business owners. It's been a lot of fun trying to recreate this highly intricate site that has a ton of very cool functionality and styling, I look forward to see how much more I can implement.
 
-To use the app you can either select the live link, or by downloading from the repository and following the steps listed out in the 'Getting Zelp! started' section below
-
-## Getting Zelp! started
-1. Clone this repository and open the file.
-
-2. Install dependencies
-
-      ```bash
-      pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-
-4. Make sure the SQLite3 database connection URL is in the **.env** file
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
-
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+To use the app you can either select the live link [here](https://zelp-hdmq.onrender.com), or by downloading from the repository and following the steps listed out in the 'Getting Zelp! started' section below
 
 
 ## Wiki Links
@@ -98,4 +59,43 @@ Host Database:
 ## Zelp Review Start ![image](https://user-images.githubusercontent.com/68711430/211255050-64a0bdb5-e879-4373-aeb7-070dff8cae02.png)
 
 
+
+## Getting Zelp! started
+1. Clone this repository and open the file.
+
+2. Install dependencies
+
+      ```bash
+      pipenv install -r requirements.txt
+      ```
+
+3. Create a **.env** file based on the example with proper settings for your
+   development environment
+
+4. Make sure the SQLite3 database connection URL is in the **.env** file
+
+5. This starter organizes all tables inside the `flask_schema` schema, defined
+   by the `SCHEMA` environment variable.  Replace the value for
+   `SCHEMA` with a unique name, **making sure you use the snake_case
+   convention**.
+
+6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+
+   ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+   ```
+
+7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
