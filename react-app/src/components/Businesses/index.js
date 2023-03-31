@@ -129,8 +129,8 @@ const Businesses = () => {
 
             </div>
             <div className='back-forward-page-buttons-div'>
-            {start >= 8 ? <button className='page-button' onClick={() => [setStart(start - 8), setPage(page -8)]}>Previous Page</button> : ""}
-            {start < testTest / 2 ? <button className='page-button' onClick={() => [setStart(start + 8), setPage(page + 8)]}>Next Page</button> : ""}
+            <button disabled={start >= 8 ? false : true} className='page-button' onClick={() => [setStart(start - 8), setPage(page -8)]}>Previous Page</button>
+            <button disabled={start < testTest / 2 ? false : true} className='page-button' onClick={() => [setStart(start + 8), setPage(page + 8)]}>Next Page</button>
             </div>
             <div className='businesses-footer-div'>
 

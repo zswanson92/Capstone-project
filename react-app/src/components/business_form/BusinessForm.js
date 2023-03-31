@@ -255,23 +255,44 @@ const BusinessForm = () => {
         if ((monday_hours !== 'Closed' && (monday_hours === "" || monday_hours_close === "" || monOpenAmPM === "" || monCloseAmPm === ""))) {
             err.push("Must enter hours for Monday if not closed.")
         }
+        if ((monday_hours !== 'Closed' && monCheck === true && (monday_hours_two === "" || monday_hours_two_close === "" || monTwoOpenAmPM === "" || monTwoCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
+        }
         if ((tuesday_hours !== 'Closed' && (tuesday_hours === "" || tuesday_hours_close === "" || tueOpenAmPM === "" || tueCloseAmPm === ""))) {
             err.push("Must enter hours for Tuesday if not closed.")
+        }
+        if ((tuesday_hours !== 'Closed' && tueCheck === true && (tuesday_hours_two === "" || tuesday_hours_two_close === "" || tueTwoOpenAmPM === "" || tueTwoCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
         }
         if ((wednesday_hours !== 'Closed' && (wednesday_hours === "" || wednesday_hours_close === "" || wedOpenAmPM === "" || wedCloseAmPm === ""))) {
             err.push("Must enter hours for Wednesday if not closed.")
         }
+        if ((wednesday_hours !== 'Closed' && wedCheck === true && (wednesday_hours_two === "" || wednesday_hours_two_close === "" || wedTwoOpenAmPM === "" || wedTwoCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
+        }
         if ((thursday_hours !== 'Closed' && (thursday_hours === "" || thursday_hours_close === "" || thurOpenAmPM === "" || thurCloseAmPm === ""))) {
             err.push("Must enter hours for Thursday if not closed.")
+        }
+        if ((thursday_hours !== 'Closed' && thuCheck === true && (thursday_hours_two === "" || thursday_hours_two_close === "" || thurTwoOpenAmPM === "" || thurTwoCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
         }
         if ((friday_hours !== 'Closed' && (friday_hours === "" || friday_hours_close === "" || friOpenAmPM === "" || friCloseAmPm === ""))) {
             err.push("Must enter hours for Friday if not closed.")
         }
+        if ((friday_hours !== 'Closed' && friCheck === true && (friday_hours_two === "" || friday_hours_two_close === "" || friTwoOpenAmPM === "" || friTwoCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
+        }
         if ((saturday_hours !== 'Closed' && (saturday_hours === "" || saturday_hours_close === "" || satOpenAmPM === "" || satCloseAmPm === ""))) {
             err.push("Must enter hours for Saturday if not closed.")
         }
+        if ((saturday_hours !== 'Closed' && satCheck === true && (saturday_hours_two === "" || saturday_hours_two_close === "" || satTwoOpenAmPM === "" || satTwoCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
+        }
         if ((sunday_hours !== 'Closed' && (sunday_hours === "" || sunday_hours_close === "" || sunOpenAmPM === "" || sunCloseAmPm === ""))) {
             err.push("Must enter hours for Sunday if not closed.")
+        }
+        if ((sunday_hours !== 'Closed' && sunCheck === true && (sunday_hours_two === "" || sunday_hours_two_close === "" || sunTwoOpenAmPM === "" || sunTwoCloseAmPm === ""))) {
+            err.push("Must enter hours for Monday if not closed.")
         }
 
         if (!isValidEmail(email)) {
@@ -284,7 +305,11 @@ const BusinessForm = () => {
             err.push("Description must be at least 30 characters.")
         }
         setErrors(err)
-    }, [name, phone_number, address, monday_hours, monday_hours_close, monOpenAmPM, monCloseAmPm, tuesday_hours, tuesday_hours_close, tueOpenAmPM, tueCloseAmPm, wednesday_hours,
+    }, [name, phone_number, address, monCheck, monday_hours, monday_hours_close, monOpenAmPM, monCloseAmPm, monday_hours_two, monday_hours_two_close, monTwoOpenAmPM, monTwoCloseAmPm,
+        tueCheck, tuesday_hours, tuesday_hours_two, tueTwoOpenAmPM, tuesday_hours_close, tuesday_hours_two_close, tueTwoCloseAmPm, tueOpenAmPM, tueCloseAmPm, wednesday_hours,
+        wedCheck, wednesday_hours_two, wednesday_hours_two_close, wedTwoOpenAmPM, wedTwoCloseAmPm, thuCheck, thursday_hours_two, thursday_hours_two_close, thurTwoOpenAmPM, thurTwoCloseAmPm,
+        friCheck, friday_hours_two, friday_hours_two_close, friTwoOpenAmPM, friTwoCloseAmPm, satCheck, saturday_hours_two, saturday_hours_two_close, satTwoOpenAmPM, satTwoCloseAmPm,
+        sunCheck, sunday_hours_two, sunday_hours_two_close, sunTwoOpenAmPM, sunTwoCloseAmPm,
         wednesday_hours_close, wedOpenAmPM, wedCloseAmPm, thursday_hours, thursday_hours_close, thurOpenAmPM, thurCloseAmPm, friday_hours, friday_hours_close, friOpenAmPM, friCloseAmPm,
         saturday_hours, saturday_hours_close, satOpenAmPM, satCloseAmPm, sunday_hours, sunday_hours_close, sunOpenAmPM, sunCloseAmPm, email, price, about_us, preview_img])
 
@@ -369,7 +394,7 @@ const BusinessForm = () => {
                             <input
 
                                 type='radio'
-                                onChange={() => [setMonHours("Closed"), setMonCheck(false)]}
+                                onChange={() => [setMonHours("Closed"), setMonOpenAmPm(""), setMonHoursClose(""), setMonCloseAmPm(""), setMonHoursTwo(""), setMonTwoOpenAmPm(""), setMonHoursTwoClose(""), setMonTwoCloseAmPm(""), setMonCheck(false)]}
                                 checked={monday_hours === "Closed"}>
                             </input>
 
@@ -555,7 +580,7 @@ const BusinessForm = () => {
                             <input
 
                                 type='radio'
-                                onChange={() => [setTuesHours("Closed"), setTueCheck(false)]}
+                                onChange={() => [setTuesHours("Closed"), setTueOpenAmPm(""), setTuesHoursClose(""), setTueCloseAmPm(""), setTuesHoursTwo(""), setTueTwoOpenAmPm(""), setTuesHoursTwoClose(""), setTueTwoCloseAmPm(""), setTueCheck(false)]}
                                 checked={tuesday_hours === "Closed"}>
                             </input>
 
@@ -741,7 +766,7 @@ const BusinessForm = () => {
                             <input
 
                                 type='radio'
-                                onChange={() => [setWedsHours("Closed"), setWedCheck(false)]}
+                                onChange={() => [setWedsHours("Closed"), setWedOpenAmPm(""), setWedsHoursClose(""), setWedCloseAmPm(""), setWedsHoursTwo(""), setWedTwoOpenAmPm(""), setWedsHoursTwoClose(""), setWedTwoCloseAmPm(""), setWedCheck(false)]}
                                 checked={wednesday_hours === "Closed"}>
                             </input>
 
@@ -927,7 +952,7 @@ const BusinessForm = () => {
                             <label>Closed</label>
                             <input
                                 type='radio'
-                                onChange={() => [setThursHours("Closed"), setThuCheck(false)]}
+                                onChange={() => [setThursHours("Closed"), setThurOpenAmPm(""), setThursHoursClose(""), setThurCloseAmPm(""), setThursHoursTwo(""), setThurTwoOpenAmPm(""), setThursHoursTwoClose(""), setThurTwoCloseAmPm(""), setThuCheck(false)]}
                                 checked={thursday_hours === "Closed"}>
                             </input>
                         </div>
@@ -1110,7 +1135,7 @@ const BusinessForm = () => {
                             <label>Closed</label>
                             <input
                                 type='radio'
-                                onChange={() => [setFriHours("Closed"), setFriCheck(false)]}
+                                onChange={() => [setFriHours("Closed"), setFriOpenAmPm(""), setFriHoursClose(""), setFriCloseAmPm(""), setFriHoursTwo(""), setFriTwoOpenAmPm(""), setFriHoursTwoClose(""), setFriTwoCloseAmPm(""), setFriCheck(false)]}
                                 checked={friday_hours === "Closed"}>
                             </input>
                         </div>
@@ -1295,7 +1320,7 @@ const BusinessForm = () => {
                             <input
 
                                 type='radio'
-                                onChange={() => [setSatHours("Closed"), setSatCheck(false)]}
+                                onChange={() => [setSatHours("Closed"), setSatOpenAmPm(""), setSatHoursClose(""), setSatCloseAmPm(""), setSatHoursTwo(""), setSatTwoOpenAmPm(""), setSatHoursTwoClose(""), setSatTwoCloseAmPm(""), setSatCheck(false)]}
                                 checked={saturday_hours === "Closed"}>
                             </input>
 
@@ -1480,7 +1505,7 @@ const BusinessForm = () => {
                             <label>Closed</label>
                             <input
                                 type='radio'
-                                onChange={() => [setSunHours("Closed"), setSunCheck(false)]}
+                                onChange={() => [setSunHours("Closed"), setSunOpenAmPm(""), setSunHoursClose(""), setSunCloseAmPm(""), setSunHoursTwo(""), setSunTwoOpenAmPm(""), setSunHoursTwoClose(""), setSunTwoCloseAmPm(""), setSunCheck(false)]}
                                 checked={sunday_hours === "Closed"}>
                             </input>
                         </div>

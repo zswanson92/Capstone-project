@@ -115,17 +115,17 @@ def search():
     params2 = args[' filter']
     if params2 == 'name':
         print("this is params1", params1)
-        business_query = Business.query.filter(Business.name.like(f"%{params1.lower()}%"))
+        business_query = Business.query.filter(Business.name.ilike(f"%{params1}%"))
         search_results={}
         for business in business_query:
          search_results[business.id] = business.to_dict()
     elif params2 == 'location':
-        business_query = Business.query.filter(Business.address.like(f"%{params1.lower()}%"))
+        business_query = Business.query.filter(Business.address.ilike(f"%{params1}%"))
         search_results={}
         for business in business_query:
          search_results[business.id] = business.to_dict()
     elif params2 == 'tags':
-        business_query = Business.query.filter(Business.tags.like(f"%{params1.lower()}%"))
+        business_query = Business.query.filter(Business.tags.ilike(f"%{params1}%"))
         search_results={}
         for business in business_query:
          search_results[business.id] = business.to_dict()
