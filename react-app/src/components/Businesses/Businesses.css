@@ -157,3 +157,7 @@
 .page-button:hover{
     box-shadow: 0 0 30px rgba(24, 23, 23, 0.2);
 }
+
+.businesses-count-h2{
+    padding-left: 1em;
+}
