@@ -96,7 +96,7 @@ const Businesses = () => {
     return (
         <>
             <div className='total-business-count-div'>
-                <h2>{aBusiness?.length} Businesses</h2>
+                <h2 className='businesses-count-h2'>{aBusiness?.length} Businesses</h2>
             </div>
             <div className='main-container-div-all-businesses'>
                 <div className='a-map-div'> <HomeMap /> </div>

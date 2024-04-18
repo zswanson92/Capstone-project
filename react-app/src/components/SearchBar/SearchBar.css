@@ -4,6 +4,8 @@
     border-radius: 10px;
     border: none;
     padding: 1em;
+    /* background-color: rgb(230, 178, 178); */
+    /* margin-right: 1em; */
 }
 
 .searchbar-container{
@@ -17,6 +19,7 @@
     height: 2em;
     border-radius: 20px;
     border: none;
+    background-color: white;
 }
 
 .queryParams{
